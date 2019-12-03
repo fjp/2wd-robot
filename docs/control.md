@@ -76,4 +76,4 @@ You should also be able to detect the motor driver with `i2cdetect -y 1`:
 60: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
 70: -- -- -- -- -- -- -- --</pre>
 
-
+As you can see the address of the motor driver is detected at `0x0f`.
