@@ -14,3 +14,16 @@ Official documentation [link](http://wiki.seeedstudio.com/Grove-I2C_Motor_Driver
 
 [Python library from DexterInd](https://github.com/DexterInd/GrovePi/blob/master/Software/Python/grove_i2c_motor_driver) 
 which is a rewerite of the [SeedStudio Arduino library](https://github.com/Seeed-Studio/Grove_I2C_Motor_Driver_v1_3/blob/master).
+
+
+This library requires the following two python libraries
+
+- [RPi.GPIO](https://pypi.org/project/RPi.GPIO/)
+- [smbus](https://pypi.org/project/smbus/)
+
+```bash
+pip install RPi.GPIO
+pip install smbus
+``` 
+
+
