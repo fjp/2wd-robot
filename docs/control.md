@@ -19,11 +19,61 @@ which is a rewerite of the [SeedStudio Arduino library](https://github.com/Seeed
 This library requires the following two python libraries
 
 - [RPi.GPIO](https://pypi.org/project/RPi.GPIO/)
-- [smbus](https://pypi.org/project/smbus/)
+- [smbus](https://pypi.org/project/smbus/) SMBus (System Management Bus) is a subset from the I2C protocol
 
 ```bash
 pip install RPi.GPIO
 pip install smbus
 ``` 
+
+### Connection
+
+Afterwards the I2C port of the motor should be connected to the I2C port 1 of the Raspberry Pi 4 B. 
+Don't forget to remove the jumper on the motor driver board which would provide power to the Pi.
+However, it is also not required to connect VCC and GND of the I2C connector. 
+Only the SDA (data) and SCL (clock) wires are required.
+
+Make sure to set the address with the dip switches on the motor driver to `0x0f` because this is the default address used
+in the library files.
+
+### Test Motor Driver
+
+Test the motor driver by running one of the python files:
+
+```bash
+sudo python ...
+``` 
+
+If you get errors like the following use the `RESET` button on the motor driver.
+
+<pre><font color="#8AE234"><b>fjp@ubuntu</b></font>:<font color="#729FCF"><b>~/git/2wd-robot/ros/src/control</b></font>$ sudo python grove_i2c_motor_driver.py 
+Traceback (most recent call last):
+  File &quot;grove_i2c_motor_driver.py&quot;, line 68, in &lt;module&gt;
+    m.MotorSpeedSetAB(100,100)
+  File &quot;grove_i2c_motor_driver.py&quot;, line 57, in MotorSpeedSetAB
+    bus.write_i2c_block_data(self.I2CMotorDriverAdd, self.MotorSpeedSet, [MotorSpeedA,MotorSpeedB])
+IOError: [Errno 110] Connection timed out
+<font color="#8AE234"><b>fjp@ubuntu</b></font>:<font color="#729FCF"><b>~/git/2wd-robot/ros/src/control</b></font>$ sudo python grove_i2c_motor_driver.py 
+Traceback (most recent call last):
+  File &quot;grove_i2c_motor_driver.py&quot;, line 68, in &lt;module&gt;
+    m.MotorSpeedSetAB(100,100)
+  File &quot;grove_i2c_motor_driver.py&quot;, line 57, in MotorSpeedSetAB
+    bus.write_i2c_block_data(self.I2CMotorDriverAdd, self.MotorSpeedSet, [MotorSpeedA,MotorSpeedB])
+IOError: [Errno 121] Remote I/O error
+</pre>
+
+Try pressing the `RESET` button and release it right before executing one of the scripts.
+You should also be able to detect the motor driver with `i2cdetect -y 1`:
+
+<pre><font color="#8AE234"><b>fjp@ubuntu</b></font>:<font color="#729FCF"><b>~/git/2wd-robot/ros/src/control/src</b></font>$ sudo i2cdetect -y 1
+     0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f
+00:          -- -- -- -- -- -- -- -- -- -- -- -- 0f 
+10: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+20: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+30: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+40: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+50: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+60: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+70: -- -- -- -- -- -- -- --</pre>
 
 
