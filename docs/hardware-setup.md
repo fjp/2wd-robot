@@ -1,0 +1,135 @@
+## Prepare i2c Connection
+
+The i2c connections will be used for the following components which is why 
+we need to setup the i2c ports on the Raspberry Pi 4 B first. 
+
+To do so, we will use the tool `i2cdetect` which requires that we install a tool on Ubuntu called `i2c-tools`:
+
+<pre><font color="#8AE234"><b>fjp@ubuntu</b></font>:<font color="#729FCF"><b>~/git/2wd-robot</b></font>$ i2cdetect
+
+Command &apos;i2cdetect&apos; not found, but can be installed with:
+
+sudo apt install i2c-tools
+
+<font color="#8AE234"><b>fjp@ubuntu</b></font>:<font color="#729FCF"><b>~/git/2wd-robot</b></font>$ sudo apt install i2c-tools</pre>
+
+To test if the i2c ports are working we use the following commands:
+
+fjp@ubuntu:~/git/2wd-robot$ i2cdetect -y 0
+Error: Could not open file `/dev/i2c-0' or `/dev/i2c/0': No such file or directory
+fjp@ubuntu:~/git/2wd-robot$ i2cdetect -y 1
+Error: Could not open file `/dev/i2c-1' or `/dev/i2c/1': No such file or directory
+
+The porst are not setup correctly, which is why we need the `raspi-config` tool:
+
+<pre><font color="#8AE234"><b>fjp@ubuntu</b></font>:<font color="#729FCF"><b>~/git/2wd-robot</b></font>$ sudo raspi-config</pre>
+
+<pre><span style="background-color:#75507B"><font color="#D3D7CF">Raspberry Pi 4 Model B Rev 1.1</font></span>
+
+
+
+<span style="background-color:#D3D7CF"><font color="#2E3436">┌──────────────────┤ </font></span><span style="background-color:#D3D7CF"><font color="#CC0000">Raspberry Pi Software Configuration Tool (raspi-config)</font></span><span style="background-color:#D3D7CF"><font color="#2E3436"> ├───────────────────┐</font></span>
+<span style="background-color:#D3D7CF"><font color="#2E3436">│                                                                                                │</font></span>
+<span style="background-color:#D3D7CF"><font color="#2E3436">│      1 Change User Password Change password for the current user                               │</font></span>
+<span style="background-color:#D3D7CF"><font color="#2E3436">│      2 Network Options      Configure network settings                                         │</font></span>
+<span style="background-color:#D3D7CF"><font color="#2E3436">│      3 Boot Options         Configure options for start-up                                     │</font></span>
+<span style="background-color:#D3D7CF"><font color="#2E3436">│      4 Localisation Options Set up language and regional settings to match your location       │</font></span>
+<span style="background-color:#D3D7CF"><font color="#2E3436">│      </font></span><span style="background-color:#CC0000"><font color="#D3D7CF">5 Interfacing Options  Configure connections to peripherals                        </font></span><span style="background-color:#D3D7CF"><font color="#2E3436">       │</font></span>
+<span style="background-color:#D3D7CF"><font color="#2E3436">│      6 Overclock            Configure overclocking for your Pi                                 │</font></span>
+<span style="background-color:#D3D7CF"><font color="#2E3436">│      7 Advanced Options     Configure advanced settings                                        │</font></span>
+<span style="background-color:#D3D7CF"><font color="#2E3436">│      8 Update               Update this tool to the latest version                             │</font></span>
+<span style="background-color:#D3D7CF"><font color="#2E3436">│      9 About raspi-config   Information about this configuration tool                          │</font></span>
+<span style="background-color:#D3D7CF"><font color="#2E3436">│                                                                                                │</font></span>
+<span style="background-color:#D3D7CF"><font color="#2E3436">│                                                                                                │</font></span>
+<span style="background-color:#D3D7CF"><font color="#2E3436">│                                                                                                │</font></span>
+<span style="background-color:#D3D7CF"><font color="#2E3436">│                           &lt;Select&gt;                           &lt;Finish&gt;                          │</font></span>
+<span style="background-color:#D3D7CF"><font color="#2E3436">│                                                                                                │</font></span>
+<span style="background-color:#D3D7CF"><font color="#2E3436">└────────────────────────────────────────────────────────────────────────────────────────────────┘</font></span>
+
+
+</pre>
+
+Select the i2c option:
+
+<pre>
+
+
+
+<span style="background-color:#D3D7CF"><font color="#2E3436">┌──────────────────┤ </font></span><span style="background-color:#D3D7CF"><font color="#CC0000">Raspberry Pi Software Configuration Tool (raspi-config)</font></span><span style="background-color:#D3D7CF"><font color="#2E3436"> ├───────────────────┐</font></span>
+<span style="background-color:#D3D7CF"><font color="#2E3436">│                                                                                                │</font></span>
+<span style="background-color:#D3D7CF"><font color="#2E3436">│        P1 Camera      Enable/Disable connection to the Raspberry Pi Camera                     │</font></span>
+<span style="background-color:#D3D7CF"><font color="#2E3436">│        P2 SSH         Enable/Disable remote command line access to your Pi using SSH           │</font></span>
+<span style="background-color:#D3D7CF"><font color="#2E3436">│        P3 VNC         Enable/Disable graphical remote access to your Pi using RealVNC          │</font></span>
+<span style="background-color:#D3D7CF"><font color="#2E3436">│        P4 SPI         Enable/Disable automatic loading of SPI kernel module                    │</font></span>
+<span style="background-color:#D3D7CF"><font color="#2E3436">│        </font></span><span style="background-color:#CC0000"><font color="#D3D7CF">P5 I2C         Enable/Disable automatic loading of I2C kernel module            </font></span><span style="background-color:#D3D7CF"><font color="#2E3436">        │</font></span>
+<span style="background-color:#D3D7CF"><font color="#2E3436">│        P6 Serial      Enable/Disable shell and kernel messages on the serial connection        │</font></span>
+<span style="background-color:#D3D7CF"><font color="#2E3436">│        P7 1-Wire      Enable/Disable one-wire interface                                        │</font></span>
+<span style="background-color:#D3D7CF"><font color="#2E3436">│        P8 Remote GPIO Enable/Disable remote access to GPIO pins                                │</font></span>
+<span style="background-color:#D3D7CF"><font color="#2E3436">│                                                                                                │</font></span>
+<span style="background-color:#D3D7CF"><font color="#2E3436">│                                                                                                │</font></span>
+<span style="background-color:#D3D7CF"><font color="#2E3436">│                                                                                                │</font></span>
+<span style="background-color:#D3D7CF"><font color="#2E3436">│                                                                                                │</font></span>
+<span style="background-color:#D3D7CF"><font color="#2E3436">│                           &lt;Select&gt;                           &lt;Back&gt;                            │</font></span>
+<span style="background-color:#D3D7CF"><font color="#2E3436">│                                                                                                │</font></span>
+<span style="background-color:#D3D7CF"><font color="#2E3436">└────────────────────────────────────────────────────────────────────────────────────────────────┘</font></span>
+
+
+</pre>
+
+And enable the interface:
+
+<pre>
+
+
+<span style="background-color:#75507B"><font color="#EEEEEC">                   </font></span><span style="background-color:#D3D7CF"><font color="#2E3436">┌──────────────────────────────────────────────────────────┐</font></span>
+<span style="background-color:#75507B"><font color="#EEEEEC">                   </font></span><span style="background-color:#D3D7CF"><font color="#2E3436">│                                                          │</font></span><span style="background-color:#2E3436"><font color="#EEEEEC"> </font></span>
+<span style="background-color:#75507B"><font color="#EEEEEC">                   </font></span><span style="background-color:#D3D7CF"><font color="#2E3436">│ Would you like the ARM I2C interface to be enabled?      │</font></span><span style="background-color:#2E3436"><font color="#EEEEEC"> </font></span>
+<span style="background-color:#75507B"><font color="#EEEEEC">                   </font></span><span style="background-color:#D3D7CF"><font color="#2E3436">│                                                          │</font></span><span style="background-color:#2E3436"><font color="#EEEEEC"> </font></span>
+<span style="background-color:#75507B"><font color="#EEEEEC">                   </font></span><span style="background-color:#D3D7CF"><font color="#2E3436">│                                                          │</font></span><span style="background-color:#2E3436"><font color="#EEEEEC"> </font></span>
+<span style="background-color:#75507B"><font color="#EEEEEC">                   </font></span><span style="background-color:#D3D7CF"><font color="#2E3436">│                                                          │</font></span><span style="background-color:#2E3436"><font color="#EEEEEC"> </font></span>
+<span style="background-color:#75507B"><font color="#EEEEEC">                   </font></span><span style="background-color:#D3D7CF"><font color="#2E3436">│                                                          │</font></span><span style="background-color:#2E3436"><font color="#EEEEEC"> </font></span>
+<span style="background-color:#75507B"><font color="#EEEEEC">                   </font></span><span style="background-color:#D3D7CF"><font color="#2E3436">│                                                          │</font></span><span style="background-color:#2E3436"><font color="#EEEEEC"> </font></span>
+<span style="background-color:#75507B"><font color="#EEEEEC">                   </font></span><span style="background-color:#D3D7CF"><font color="#2E3436">│                                                          │</font></span><span style="background-color:#2E3436"><font color="#EEEEEC"> </font></span>
+<span style="background-color:#75507B"><font color="#EEEEEC">                   </font></span><span style="background-color:#D3D7CF"><font color="#2E3436">│                                                          │</font></span><span style="background-color:#2E3436"><font color="#EEEEEC"> </font></span>
+<span style="background-color:#75507B"><font color="#EEEEEC">                   </font></span><span style="background-color:#D3D7CF"><font color="#2E3436">│                                                          │</font></span><span style="background-color:#2E3436"><font color="#EEEEEC"> </font></span>
+<span style="background-color:#75507B"><font color="#EEEEEC">                   </font></span><span style="background-color:#D3D7CF"><font color="#2E3436">│                                                          │</font></span><span style="background-color:#2E3436"><font color="#EEEEEC"> </font></span>
+<span style="background-color:#75507B"><font color="#EEEEEC">                   </font></span><span style="background-color:#D3D7CF"><font color="#2E3436">│                                                          │</font></span><span style="background-color:#2E3436"><font color="#EEEEEC"> </font></span>
+<span style="background-color:#75507B"><font color="#EEEEEC">                   </font></span><span style="background-color:#D3D7CF"><font color="#2E3436">│                                                          │</font></span><span style="background-color:#2E3436"><font color="#EEEEEC"> </font></span>
+<span style="background-color:#75507B"><font color="#EEEEEC">                   </font></span><span style="background-color:#D3D7CF"><font color="#2E3436">│                                                          │</font></span><span style="background-color:#2E3436"><font color="#EEEEEC"> </font></span>
+<span style="background-color:#75507B"><font color="#EEEEEC">                   </font></span><span style="background-color:#D3D7CF"><font color="#2E3436">│                                                          │</font></span><span style="background-color:#2E3436"><font color="#EEEEEC"> </font></span>
+<span style="background-color:#75507B"><font color="#EEEEEC">                   </font></span><span style="background-color:#D3D7CF"><font color="#2E3436">│                                                          │</font></span><span style="background-color:#2E3436"><font color="#EEEEEC"> </font></span>
+<span style="background-color:#75507B"><font color="#EEEEEC">                   </font></span><span style="background-color:#D3D7CF"><font color="#2E3436">│               </font></span><span style="background-color:#CC0000"><font color="#D3D7CF">&lt;Yes&gt;</font></span><span style="background-color:#D3D7CF"><font color="#2E3436">                  &lt;No&gt;                │</font></span><span style="background-color:#2E3436"><font color="#EEEEEC"> </font></span>
+<span style="background-color:#75507B"><font color="#EEEEEC">                   </font></span><span style="background-color:#D3D7CF"><font color="#2E3436">│                                                          │</font></span><span style="background-color:#2E3436"><font color="#EEEEEC"> </font></span>
+<span style="background-color:#75507B"><font color="#EEEEEC">                   </font></span><span style="background-color:#D3D7CF"><font color="#2E3436">└──────────────────────────────────────────────────────────┘</font></span><span style="background-color:#2E3436"><font color="#EEEEEC"> </font></span>
+<span style="background-color:#75507B"><font color="#EEEEEC">                    </font></span><span style="background-color:#2E3436"><font color="#EEEEEC">                                                            </font></span>
+
+</pre>
+
+Confirm the activation and restart the RPi:
+
+<pre>
+
+
+<span style="background-color:#75507B"><font color="#EEEEEC">                   </font></span><span style="background-color:#D3D7CF"><font color="#2E3436">┌──────────────────────────────────────────────────────────┐</font></span>
+<span style="background-color:#75507B"><font color="#EEEEEC">                   </font></span><span style="background-color:#D3D7CF"><font color="#2E3436">│                                                          │</font></span><span style="background-color:#2E3436"><font color="#EEEEEC"> </font></span>
+<span style="background-color:#75507B"><font color="#EEEEEC">                   </font></span><span style="background-color:#D3D7CF"><font color="#2E3436">│ The ARM I2C interface is enabled                         │</font></span><span style="background-color:#2E3436"><font color="#EEEEEC"> </font></span>
+<span style="background-color:#75507B"><font color="#EEEEEC">                   </font></span><span style="background-color:#D3D7CF"><font color="#2E3436">│                                                          │</font></span><span style="background-color:#2E3436"><font color="#EEEEEC"> </font></span>
+<span style="background-color:#75507B"><font color="#EEEEEC">                   </font></span><span style="background-color:#D3D7CF"><font color="#2E3436">│                                                          │</font></span><span style="background-color:#2E3436"><font color="#EEEEEC"> </font></span>
+<span style="background-color:#75507B"><font color="#EEEEEC">                   </font></span><span style="background-color:#D3D7CF"><font color="#2E3436">│                                                          │</font></span><span style="background-color:#2E3436"><font color="#EEEEEC"> </font></span>
+<span style="background-color:#75507B"><font color="#EEEEEC">                   </font></span><span style="background-color:#D3D7CF"><font color="#2E3436">│                                                          │</font></span><span style="background-color:#2E3436"><font color="#EEEEEC"> </font></span>
+<span style="background-color:#75507B"><font color="#EEEEEC">                   </font></span><span style="background-color:#D3D7CF"><font color="#2E3436">│                                                          │</font></span><span style="background-color:#2E3436"><font color="#EEEEEC"> </font></span>
+<span style="background-color:#75507B"><font color="#EEEEEC">                   </font></span><span style="background-color:#D3D7CF"><font color="#2E3436">│                                                          │</font></span><span style="background-color:#2E3436"><font color="#EEEEEC"> </font></span>
+<span style="background-color:#75507B"><font color="#EEEEEC">                   </font></span><span style="background-color:#D3D7CF"><font color="#2E3436">│                                                          │</font></span><span style="background-color:#2E3436"><font color="#EEEEEC"> </font></span>
+<span style="background-color:#75507B"><font color="#EEEEEC">                   </font></span><span style="background-color:#D3D7CF"><font color="#2E3436">│                                                          │</font></span><span style="background-color:#2E3436"><font color="#EEEEEC"> </font></span>
+<span style="background-color:#75507B"><font color="#EEEEEC">                   </font></span><span style="background-color:#D3D7CF"><font color="#2E3436">│                                                          │</font></span><span style="background-color:#2E3436"><font color="#EEEEEC"> </font></span>
+<span style="background-color:#75507B"><font color="#EEEEEC">                   </font></span><span style="background-color:#D3D7CF"><font color="#2E3436">│                                                          │</font></span><span style="background-color:#2E3436"><font color="#EEEEEC"> </font></span>
+<span style="background-color:#75507B"><font color="#EEEEEC">                   </font></span><span style="background-color:#D3D7CF"><font color="#2E3436">│                                                          │</font></span><span style="background-color:#2E3436"><font color="#EEEEEC"> </font></span>
+<span style="background-color:#75507B"><font color="#EEEEEC">                   </font></span><span style="background-color:#D3D7CF"><font color="#2E3436">│                                                          │</font></span><span style="background-color:#2E3436"><font color="#EEEEEC"> </font></span>
+<span style="background-color:#75507B"><font color="#EEEEEC">                   </font></span><span style="background-color:#D3D7CF"><font color="#2E3436">│                                                          │</font></span><span style="background-color:#2E3436"><font color="#EEEEEC"> </font></span>
+<span style="background-color:#75507B"><font color="#EEEEEC">                   </font></span><span style="background-color:#D3D7CF"><font color="#2E3436">│                                                          │</font></span><span style="background-color:#2E3436"><font color="#EEEEEC"> </font></span>
+<span style="background-color:#75507B"><font color="#EEEEEC">                   </font></span><span style="background-color:#D3D7CF"><font color="#2E3436">│                          </font></span><span style="background-color:#CC0000"><font color="#D3D7CF">&lt;Ok&gt;</font></span><span style="background-color:#D3D7CF"><font color="#2E3436">                            │</font></span><span style="background-color:#2E3436"><font color="#EEEEEC"> </font></span>
+<span style="background-color:#75507B"><font color="#EEEEEC">                   </font></span><span style="background-color:#D3D7CF"><font color="#2E3436">│                                                          │</font></span><span style="background-color:#2E3436"><font color="#EEEEEC"> </font></span>
+<span style="background-color:#75507B"><font color="#EEEEEC">                   </font></span><span style="background-color:#D3D7CF"><font color="#2E3436">└──────────────────────────────────────────────────────────┘</font></span><span style="background-color:#2E3436"><font color="#EEEEEC"> </font></span>
+<span style="background-color:#75507B"><font color="#EEEEEC">                    </font></span><span style="background-color:#2E3436"><font color="#EEEEEC">                                                            </font></span>
+
+</pre>
