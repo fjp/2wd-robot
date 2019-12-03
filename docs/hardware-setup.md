@@ -15,12 +15,12 @@ sudo apt install i2c-tools
 
 To test if the i2c ports are working we use the following commands:
 
-fjp@ubuntu:~/git/2wd-robot$ i2cdetect -y 0
-Error: Could not open file `/dev/i2c-0' or `/dev/i2c/0': No such file or directory
-fjp@ubuntu:~/git/2wd-robot$ i2cdetect -y 1
-Error: Could not open file `/dev/i2c-1' or `/dev/i2c/1': No such file or directory
+<pre><font color="#8AE234"><b>fjp@ubuntu</b></font>:<font color="#729FCF"><b>~/git/2wd-robot</b></font>$ i2cdetect -y 0
+Error: Could not open file `/dev/i2c-0&apos; or `/dev/i2c/0&apos;: No such file or directory
+<font color="#8AE234"><b>fjp@ubuntu</b></font>:<font color="#729FCF"><b>~/git/2wd-robot</b></font>$ i2cdetect -y 1
+Error: Could not open file `/dev/i2c-1&apos; or `/dev/i2c/1&apos;: No such file or directory</pre>
 
-The porst are not setup correctly, which is why we need the `raspi-config` tool:
+The ports are not setup correctly yet, which is why we need the `raspi-config` tool:
 
 <pre><font color="#8AE234"><b>fjp@ubuntu</b></font>:<font color="#729FCF"><b>~/git/2wd-robot</b></font>$ sudo raspi-config</pre>
 
