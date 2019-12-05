@@ -1,7 +1,7 @@
-## Prepare i2c Connection
+## Prepare I2C Connection
 
-The i2c connections will be used for the following components which is why 
-we need to setup the i2c ports on the Raspberry Pi 4 B first. 
+The I2C connections are used for multiple components such as the motor driver and the oled display.
+Therefore we need to setup the I2C ports on the Raspberry Pi 4 B first. 
 
 To do so, we will use the tool `i2cdetect` which requires that we install a tool on Ubuntu called `i2c-tools`:
 
@@ -20,7 +20,20 @@ Error: Could not open file `/dev/i2c-0&apos; or `/dev/i2c/0&apos;: No such file 
 <font color="#8AE234"><b>fjp@ubuntu</b></font>:<font color="#729FCF"><b>~/git/2wd-robot</b></font>$ i2cdetect -y 1
 Error: Could not open file `/dev/i2c-1&apos; or `/dev/i2c/1&apos;: No such file or directory</pre>
 
-The ports are not setup correctly yet, which is why we need the `raspi-config` tool:
+The ports are not setup correctly yet, which is why we need to enable the following two lines in the `/boot/firmware/config.txt` file:
+
+```bash
+dtparam=i2c0=on
+dtparam=i2c1=on
+```
+
+<figure>
+    <a href="/assets/collections/2wd-robot/car-kit05.jpg"><img src="/assets/collections/2wd-robot/car-kit05.jpg"></a>
+    <figcaption>[I2C Pinout](https://pinout.xyz/pinout/i2c) on Raspberry Pi 4 B.</figcaption>
+</figure>
+
+
+On Raspian Buster, the official Raspberry OS, we could use the `raspi-config` tool:
 
 <pre><font color="#8AE234"><b>fjp@ubuntu</b></font>:<font color="#729FCF"><b>~/git/2wd-robot</b></font>$ sudo raspi-config</pre>
 
