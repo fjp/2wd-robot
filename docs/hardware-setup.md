@@ -1,3 +1,9 @@
+## GPIO
+
+The ultrasonic ranger uses just a single GPIO pin for communicating its measured distances.
+
+
+
 ## Prepare I2C Connection
 
 The I2C connections are used for multiple components such as the motor driver and the oled display.
