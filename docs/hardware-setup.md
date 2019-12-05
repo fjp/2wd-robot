@@ -29,12 +29,12 @@ dtparam=i2c1=on
 
 <figure>
     <a href="/assets/collections/2wd-robot/car-kit05.jpg"><img src="/assets/collections/2wd-robot/car-kit05.jpg"></a>
-    <figcaption>[I2C Pinout](https://pinout.xyz/pinout/i2c) on Raspberry Pi 4 B.</figcaption>
+    <figcaption><a href="https://pinout.xyz/pinout/i2c" title="I2C Pinout">MI2C Pinout</a> on Raspberry Pi 4 B.</figcaption>
 </figure>
 
 <figure>
     <a href="i2c-rpi-pinout.png"><img src="i2c-rpi-pinout.png"></a>
-    <figcaption>[I2C Pinout](https://pinout.xyz/pinout/i2c) on Raspberry Pi 4 B.</figcaption>
+    <figcaption><a href="https://pinout.xyz/pinout/i2c" title="I2C Pinout">MI2C Pinout</a> on Raspberry Pi 4 B.</figcaption>
 </figure>
 
 
