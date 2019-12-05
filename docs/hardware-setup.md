@@ -32,6 +32,13 @@ dtparam=i2c1=on
     <figcaption>[I2C Pinout](https://pinout.xyz/pinout/i2c) on Raspberry Pi 4 B.</figcaption>
 </figure>
 
+<figure>
+    <a href="i2c-rpi-pinout.png"><img src="i2c-rpi-pinout.png"></a>
+    <figcaption>[I2C Pinout](https://pinout.xyz/pinout/i2c) on Raspberry Pi 4 B.</figcaption>
+</figure>
+
+
+
 
 On Raspian Buster, the official Raspberry OS, we could use the `raspi-config` tool:
 
