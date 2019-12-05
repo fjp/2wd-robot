@@ -29,15 +29,8 @@ dtparam=i2c1=on
 
 <figure>
     <a href="https://github.com/fjp/2wd-robot/raw/master/docs/i2c-rpi-pinout.png"><img src="https://github.com/fjp/2wd-robot/raw/master/docs/i2c-rpi-pinout.png"></a>
-    <figcaption><a href="https://pinout.xyz/pinout/i2c" title="I2C Pinout">MI2C Pinout</a> on Raspberry Pi 4 B.</figcaption>
+    <figcaption><a href="https://pinout.xyz/pinout/i2c" title="I2C Pinout">I2C Pinout</a> on Raspberry Pi 4 B.</figcaption>
 </figure>
-
-<figure>
-    <a href="i2c-rpi-pinout.png"><img src="i2c-rpi-pinout.png"></a>
-    <figcaption><a href="https://pinout.xyz/pinout/i2c" title="I2C Pinout">MI2C Pinout</a> on Raspberry Pi 4 B.</figcaption>
-</figure>
-
-
 
 
 On Raspian Buster, the official Raspberry OS, we could use the `raspi-config` tool:
