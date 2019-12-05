@@ -77,3 +77,8 @@ You should also be able to detect the motor driver with `i2cdetect -y 1`:
 70: -- -- -- -- -- -- -- --</pre>
 
 As you can see the address of the motor driver is detected at `0x0f`.
+
+
+### ROS Wrapper
+
+To use the available library of the Grove I2C motor driver in ROS we need to create a wrapper node.
