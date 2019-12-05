@@ -28,7 +28,7 @@ dtparam=i2c1=on
 ```
 
 <figure>
-    <a href="/assets/collections/2wd-robot/components/i2c-rpi-pinout.png"><img src="/assets/collections/2wd-robot/components/i2c-rpi-pinout.png"></a>
+    <a href="https://github.com/fjp/2wd-robot/raw/master/docs/i2c-rpi-pinout.png"><img src="https://github.com/fjp/2wd-robot/raw/master/docs/i2c-rpi-pinout.png"></a>
     <figcaption><a href="https://pinout.xyz/pinout/i2c" title="I2C Pinout">MI2C Pinout</a> on Raspberry Pi 4 B.</figcaption>
 </figure>
 
