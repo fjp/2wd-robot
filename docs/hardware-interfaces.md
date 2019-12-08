@@ -25,20 +25,13 @@ sudo apt install i2c-tools
 fjp@ubuntu:~/git/2wd-robot$ sudo apt install i2c-tools
 ```
 
-<pre><font color="#8AE234"><b>fjp@ubuntu</b></font>:<font color="#729FCF"><b>~/git/2wd-robot</b></font>$ i2cdetect
-
-Command &apos;i2cdetect&apos; not found, but can be installed with:
-
-sudo apt install i2c-tools
-
-<font color="#8AE234"><b>fjp@ubuntu</b></font>:<font color="#729FCF"><b>~/git/2wd-robot</b></font>$ sudo apt install i2c-tools</pre>
-
 To test if the i2c ports are working we use the following commands:
 
-<pre><font color="#8AE234"><b>fjp@ubuntu</b></font>:<font color="#729FCF"><b>~/git/2wd-robot</b></font>$ i2cdetect -y 0
-Error: Could not open file `/dev/i2c-0&apos; or `/dev/i2c/0&apos;: No such file or directory
-<font color="#8AE234"><b>fjp@ubuntu</b></font>:<font color="#729FCF"><b>~/git/2wd-robot</b></font>$ i2cdetect -y 1
-Error: Could not open file `/dev/i2c-1&apos; or `/dev/i2c/1&apos;: No such file or directory</pre>
+```bash
+$ i2cdetect -y 0
+Error: Could not open file '/dev/i2c-0' or '/dev/i2c/0': No such file or directory
+$ i2cdetect -y 1
+Error: Could not open file '/dev/i2c-1' or '/dev/i2c/1': No such file or directory
 
 The ports are not setup correctly yet, which is why we need to enable the following two lines in the `/boot/firmware/config.txt` file:
 
