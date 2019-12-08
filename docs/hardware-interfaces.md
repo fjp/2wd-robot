@@ -13,13 +13,13 @@ Therefore we need to setup the I2C ports on the Raspberry Pi 4 B first.
 To do so, we will use the tool `i2cdetect` which requires that we install a tool on Ubuntu called `i2c-tools`:
 
 ```bash
-$ i2cdetect
+fjp@ubuntu:~/git/2wd-robot$ i2cdetect
 
 Command 'i2cdetect' not found, but can be installed with:
 
 sudo apt install i2c-tools
 
-$ sudo apt install i2c-tools
+fjp@ubuntu:~/git/2wd-robot$ sudo apt install i2c-tools
 ```
 
 <pre><font color="#8AE234"><b>fjp@ubuntu</b></font>:<font color="#729FCF"><b>~/git/2wd-robot</b></font>$ i2cdetect
