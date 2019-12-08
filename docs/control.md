@@ -2,11 +2,13 @@
 
 The control package is created with `catkin create pkg PKG_NAME`:
 
-<pre><font color="#8AE234"><b>fjp@ubuntu</b></font>:<font color="#729FCF"><b>~/git/2wd-robot/ros/src</b></font>$ catkin create pkg control
-Creating package &quot;control&quot; in &quot;/home/fjp/git/2wd-robot/ros/src&quot;...
+```bash
+fjp@ubuntu~/git/2wd-robot/ros/src$ catkin create pkg control
+Creating package "control" in "/home/fjp/git/2wd-robot/ros/src"...
 Created file control/package.xml
 Created file control/CMakeLists.txt
-Successfully created package files in /home/fjp/git/2wd-robot/ros/src/control.</pre>
+Successfully created package files in /home/fjp/git/2wd-robot/ros/src/control.
+```
 
 ### Grove - I2C Motor Driver V1.3
 
@@ -46,26 +48,28 @@ sudo python ...
 
 If you get errors like the following use the `RESET` button on the motor driver.
 
-<pre><font color="#8AE234"><b>fjp@ubuntu</b></font>:<font color="#729FCF"><b>~/git/2wd-robot/ros/src/control</b></font>$ sudo python grove_i2c_motor_driver.py 
+```bash
+fjp@ubuntu:~/git/2wd-robot/ros/src/control$ sudo python grove_i2c_motor_driver.py 
 Traceback (most recent call last):
-  File &quot;grove_i2c_motor_driver.py&quot;, line 68, in &lt;module&gt;
+  File "grove_i2c_motor_driver.py", line 68, in <module>
     m.MotorSpeedSetAB(100,100)
-  File &quot;grove_i2c_motor_driver.py&quot;, line 57, in MotorSpeedSetAB
+  File "grove_i2c_motor_driver.py", line 57, in MotorSpeedSetAB
     bus.write_i2c_block_data(self.I2CMotorDriverAdd, self.MotorSpeedSet, [MotorSpeedA,MotorSpeedB])
 IOError: [Errno 110] Connection timed out
-<font color="#8AE234"><b>fjp@ubuntu</b></font>:<font color="#729FCF"><b>~/git/2wd-robot/ros/src/control</b></font>$ sudo python grove_i2c_motor_driver.py 
+fjp@ubuntu:~/git/2wd-robot/ros/src/control$ sudo python grove_i2c_motor_driver.py 
 Traceback (most recent call last):
-  File &quot;grove_i2c_motor_driver.py&quot;, line 68, in &lt;module&gt;
+  File "grove_i2c_motor_driver.py", line 68, in <module>
     m.MotorSpeedSetAB(100,100)
-  File &quot;grove_i2c_motor_driver.py&quot;, line 57, in MotorSpeedSetAB
+  File "grove_i2c_motor_driver.py", line 57, in MotorSpeedSetAB
     bus.write_i2c_block_data(self.I2CMotorDriverAdd, self.MotorSpeedSet, [MotorSpeedA,MotorSpeedB])
 IOError: [Errno 121] Remote I/O error
-</pre>
+```
 
 Try pressing the `RESET` button and release it right before executing one of the scripts.
 You should also be able to detect the motor driver with `i2cdetect -y 1`:
 
-<pre><font color="#8AE234"><b>fjp@ubuntu</b></font>:<font color="#729FCF"><b>~/git/2wd-robot/ros/src/control/src</b></font>$ sudo i2cdetect -y 1
+```bash
+fjp@ubuntu:~/git/2wd-robot/ros/src/control/src$ sudo i2cdetect -y 1
      0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f
 00:          -- -- -- -- -- -- -- -- -- -- -- -- 0f 
 10: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
@@ -74,7 +78,8 @@ You should also be able to detect the motor driver with `i2cdetect -y 1`:
 40: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
 50: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
 60: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
-70: -- -- -- -- -- -- -- --</pre>
+70: -- -- -- -- -- -- -- --
+```
 
 As you can see the address of the motor driver is detected at `0x0f`.
 
