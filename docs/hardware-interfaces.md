@@ -1,6 +1,7 @@
 ## GPIO
 
 The ultrasonic ranger uses just a single GPIO pin for communicating its measured distances.
+Therefore we can use one of the GPIO pins such as [physical pin 11](https://pinout.xyz/pinout/pin11_gpio17).
 
 
 
@@ -10,6 +11,16 @@ The I2C connections are used for multiple components such as the motor driver an
 Therefore we need to setup the I2C ports on the Raspberry Pi 4 B first. 
 
 To do so, we will use the tool `i2cdetect` which requires that we install a tool on Ubuntu called `i2c-tools`:
+
+```bash
+$ i2cdetect
+
+Command 'i2cdetect' not found, but can be installed with:
+
+sudo apt install i2c-tools
+
+$ sudo apt install i2c-tools
+```
 
 <pre><font color="#8AE234"><b>fjp@ubuntu</b></font>:<font color="#729FCF"><b>~/git/2wd-robot</b></font>$ i2cdetect
 
