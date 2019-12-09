@@ -6,52 +6,48 @@ From the [catkin tutorial](https://wiki.ros.org/catkin/Tutorials) here are the c
 Use [`catkin build`](https://catkin-tools.readthedocs.io/en/latest/verbs/catkin_build.html) instead of [`catkin_make`](https://wiki.ros.org/catkin/commands/catkin_make).
 [Here is why](https://robotics.stackexchange.com/questions/16604/ros-catkin-make-vs-catkin-build).
 
-```
-$ mkdir -p ~/ros/src
-$ cd ~/ros/
-$ catkin build
-``` 
+```bash
+fjp@ubuntu:~/git/2wd-robot/ros$ catkin build
+----------------------------------------------------------------
+Profile:                     default
+Extending:             [env] /opt/ros/melodic
+Workspace:                   /home/fjp/git/2wd-robot/ros
+----------------------------------------------------------------
+Build Space:        [exists] /home/fjp/git/2wd-robot/ros/build
+Devel Space:        [exists] /home/fjp/git/2wd-robot/ros/devel
+Install Space:      [unused] /home/fjp/git/2wd-robot/ros/install
+Log Space:         [missing] /home/fjp/git/2wd-robot/ros/logs
+Source Space:       [exists] /home/fjp/git/2wd-robot/ros/src
+DESTDIR:            [unused] None
+----------------------------------------------------------------
+Devel Space Layout:          linked
+Install Space Layout:        None
+----------------------------------------------------------------
+Additional CMake Args:       None
+Additional Make Args:        None
+Additional catkin Make Args: None
+Internal Make Job Server:    True
+Cache Job Environments:      False
+----------------------------------------------------------------
+Whitelisted Packages:        None
+Blacklisted Packages:        None
+----------------------------------------------------------------
+Workspace configuration appears valid.
 
-<pre><font color="#8AE234"><b>fjp@ubuntu</b></font>:<font color="#729FCF"><b>~/git/2wd-robot/ros</b></font>$ catkin build
-<font color="#75507B">----------------------------------------------------------------</font>
-<font color="#06989A">Profile:</font>                     <font color="#C4A000">default</font>
-<font color="#06989A">Extending:</font>             <font color="#4E9A06">[env]</font> <font color="#C4A000">/opt/ros/melodic</font>
-<font color="#06989A">Workspace:</font>                   <font color="#C4A000">/home/fjp/git/2wd-robot/ros</font>
-<font color="#75507B">----------------------------------------------------------------</font>
-<font color="#06989A">Build Space:</font>        <font color="#4E9A06">[exists]</font> <font color="#C4A000">/home/fjp/git/2wd-robot/ros/build</font>
-<font color="#06989A">Devel Space:</font>        <font color="#4E9A06">[exists]</font> <font color="#C4A000">/home/fjp/git/2wd-robot/ros/devel</font>
-<font color="#06989A">Install Space:</font>      <font color="#3465A4">[unused]</font> <font color="#C4A000">/home/fjp/git/2wd-robot/ros/install</font>
-<font color="#06989A">Log Space:</font>         <font color="#CC0000">[missing]</font> <font color="#C4A000">/home/fjp/git/2wd-robot/ros/logs</font>
-<font color="#06989A">Source Space:</font>       <font color="#4E9A06">[exists]</font> <font color="#C4A000">/home/fjp/git/2wd-robot/ros/src</font>
-<font color="#06989A">DESTDIR:</font>            <font color="#3465A4">[unused]</font> <font color="#C4A000">None</font>
-<font color="#75507B">----------------------------------------------------------------</font>
-<font color="#06989A">Devel Space Layout:</font>          <font color="#C4A000">linked</font>
-<font color="#06989A">Install Space Layout:</font>        <font color="#C4A000">None</font>
-<font color="#75507B">----------------------------------------------------------------</font>
-<font color="#06989A">Additional CMake Args:</font>       <font color="#C4A000">None</font>
-<font color="#06989A">Additional Make Args:</font>        <font color="#C4A000">None</font>
-<font color="#06989A">Additional catkin Make Args:</font> <font color="#C4A000">None</font>
-<font color="#06989A">Internal Make Job Server:</font>    <font color="#C4A000">True</font>
-<font color="#06989A">Cache Job Environments:</font>      <font color="#C4A000">False</font>
-<font color="#75507B">----------------------------------------------------------------</font>
-<font color="#06989A">Whitelisted Packages:</font>        <font color="#C4A000">None</font>
-<font color="#06989A">Blacklisted Packages:</font>        <font color="#C4A000">None</font>
-<font color="#75507B">----------------------------------------------------------------</font>
-<font color="#34E2E2"><b>Workspace configuration appears valid.</b></font>
-
-<font color="#34E2E2"><b>NOTE:</b></font> Forcing CMake to run for each package.
-<font color="#75507B">----------------------------------------------------------------</font>
-[build] No packages were found in the source space &apos;/home/fjp/git/2wd-robot/ros/src&apos;
+NOTE: Forcing CMake to run for each package.
+----------------------------------------------------------------
+[build] No packages were found in the source space '/home/fjp/git/2wd-robot/ros/src'
 [build] No packages to be built.
 [build] Package table is up to date.                                                                                                                                                              
-Starting  <font color="#8AE234"><b>&gt;&gt;&gt;</b></font> <font color="#34E2E2"><b>catkin_tools_prebuild               </b></font>                                                                                                                                                
-<font color="#555753"><b>Finished</b></font>  <font color="#4E9A06">&lt;&lt;&lt;</font> <font color="#06989A">catkin_tools_prebuild               </font> [ <font color="#C4A000">10.0 seconds</font> ]                                                                                                                               
-[build] <font color="#8AE234"><i><b>Summary:</b></i></font> <i>All </i><i><b>1</b></i> <i>packages succeeded!</i>                                                                                                                                                        
-[build]   <font color="#555753"><i><b>Ignored:   None.</b></i></font>                                                                                                                                                                        
-[build]   <font color="#555753"><i><b>Warnings:  None.</b></i></font>                                                                                                                                                                        
-[build]   <font color="#555753"><i><b>Abandoned: None.</b></i></font>                                                                                                                                                                        
-[build]   <font color="#555753"><i><b>Failed:    None.</b></i></font>                                                                                                                                                                        
-[build] <i><b>Runtime:</b></i> <i>10.1 seconds total.</i>                         </pre>
+Starting  >>> catkin_tools_prebuild                                                                                                                                                               
+Finished  <<< catkin_tools_prebuild                [ 10.0 seconds ]                                                                                                                               
+[build] Summary: All 1 packages succeeded!                                                                                                                                                        
+[build]   Ignored:   None.                                                                                                                                                                        
+[build]   Warnings:  None.                                                                                                                                                                        
+[build]   Abandoned: None.                                                                                                                                                                        
+[build]   Failed:    None.                                                                                                                                                                        
+[build] Runtime: 10.1 seconds total.
+```
 
 
 ## Create a new Catkin package
