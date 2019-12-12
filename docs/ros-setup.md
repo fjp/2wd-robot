@@ -38,31 +38,13 @@ NOTE: Forcing CMake to run for each package.
 ----------------------------------------------------------------
 [build] No packages were found in the source space '/home/fjp/git/2wd-robot/ros/src'
 [build] No packages to be built.
-[build] Package table is up to date.                                                                                                                                                              
-Starting  >>> catkin_tools_prebuild                                                                                                                                                               
-Finished  <<< catkin_tools_prebuild                [ 10.0 seconds ]                                                                                                                               
-[build] Summary: All 1 packages succeeded!                                                                                                                                                        
-[build]   Ignored:   None.                                                                                                                                                                        
-[build]   Warnings:  None.                                                                                                                                                                        
-[build]   Abandoned: None.                                                                                                                                                                        
-[build]   Failed:    None.                                                                                                                                                                        
+[build] Package table is up to date.
+Starting  >>> catkin_tools_prebuild
+Finished  <<< catkin_tools_prebuild                [ 10.0 seconds ]
+[build] Summary: All 1 packages succeeded!
+[build]   Ignored:   None.
+[build]   Warnings:  None.
+[build]   Abandoned: None.
+[build]   Failed:    None.
 [build] Runtime: 10.1 seconds total.
-```
-
-
-## Create a new Catkin package
-
-To create a new Catkin package when in your workspace use the following command:
-
-```bash
-$ catkin create pkg PKG_NAME
-```
-For example the `control` package was created with the following command:
-
-```bash
-fjp@ubuntu:~/git/2wd-robot/ros/src$ catkin create pkg control
-Creating package "control" in "/home/fjp/git/2wd-robot/ros/src"...
-Created file control/package.xml
-Created file control/CMakeLists.txt
-Successfully created package files in /home/fjp/git/2wd-robot/ros/src/control.
 ```
