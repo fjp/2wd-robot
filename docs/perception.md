@@ -1,6 +1,6 @@
 ## Perception - Catkin package
 
-This package was created with `catkin create pkg PKG_NAME`:
+The perception ROS package is created with `catkin create pkg PKG_NAME`:
 
 ```bash
 fjp@ubuntu:~/git/2wd-robot/ros/src$ catkin create pkg perception
