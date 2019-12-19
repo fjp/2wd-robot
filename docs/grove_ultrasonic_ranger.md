@@ -261,5 +261,10 @@ min_range: 0.019999999553
 max_range: 3.5
 range: 1.67693090439
 ---
-
 ```
+
+
+#### Informational Distance Measurements
+
+To provide additional information when an obstacle is too close or the robot has no obstacle in front of it we use
+[REP-117](https://www.ros.org/reps/rep-0117.html) as guideline.
