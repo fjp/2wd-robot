@@ -87,3 +87,5 @@ As you can see the address of the motor driver is detected at `0x0f`.
 To use the available library of the Grove I2C motor driver in ROS we need to create a wrapper node, called `motor_driver`.
 The topic `/2wd_robot/cmd_vel` uses the Twist message to send commands to the motor. These commands can be published with
 nodes from the navigation stack.
+
+https://en.wikipedia.org/wiki/Differential_wheeled_robot
