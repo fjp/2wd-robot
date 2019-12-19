@@ -165,3 +165,101 @@ As the final note of the build output suggests, we have to `source` the `setup.b
 ```bash
 fjp@ubuntu:~/git/2wd-robot/ros$ source devel/setup.bash
 ```
+
+To make the `ranger` node executable we have to modify the `ranger.py` file:
+
+```bash
+fjp@ubuntu:~/git/2wd-robot/ros/src/grove_ultrasonic_ranger/src$ sudo chmod a+x ranger.py
+```
+
+Then we can test the node using `rosrun`:
+
+```bash
+fjp@ubuntu:~/git/2wd-robot/ros$ sudo su
+[sudo] password for fjp:
+root@ubuntu:/home/fjp/git/2wd-robot/ros# source devel/setup.bash 
+root@ubuntu:/home/fjp/git/2wd-robot/ros# rosrun grove_ultrasonic_ranger ranger.py 
+Distance : 1.617 m
+Distance : 1.617 m
+Distance : 1.617 m
+Distance : 0.108 m
+Distance : 0.092 m
+Distance : 0.099 m
+```
+
+This lets the node publishe range messages which we can capture in another terminal window using `rostopic`.
+First we use `rostopic list` to find the name of the topic we are interested in:
+
+```bash
+fjp@ubuntu:~/git/2wd-robot/ros$ rostopic list
+/distance
+/rosout
+/rosout_agg
+```
+
+We named our topic `/distance` which we can use with the `rostopic echo` command to see the published messages:
+
+```bash
+fjp@ubuntu:~/git/2wd-robot/ros$ rostopic echo /distance
+header: 
+  seq: 1
+  stamp: 
+    secs: 1576778377
+    nsecs: 746809959
+  frame_id: "ranger_distance"
+radiation_type: 0
+field_of_view: 0.261799007654
+min_range: 0.019999999553
+max_range: 3.5
+range: 1.61674261093
+---
+header: 
+  seq: 2
+  stamp: 
+    secs: 1576778378
+    nsecs: 459048986
+  frame_id: "ranger_distance"
+radiation_type: 0
+field_of_view: 0.261799007654
+min_range: 0.019999999553
+max_range: 3.5
+range: 1.61261284351
+---
+header: 
+  seq: 3
+  stamp: 
+    secs: 1576778379
+    nsecs: 172172069
+  frame_id: "ranger_distance"
+radiation_type: 0
+field_of_view: 0.261799007654
+min_range: 0.019999999553
+max_range: 3.5
+range: 1.61657905579
+---
+header: 
+  seq: 4
+  stamp: 
+    secs: 1576778379
+    nsecs: 884002923
+  frame_id: "ranger_distance"
+radiation_type: 0
+field_of_view: 0.261799007654
+min_range: 0.019999999553
+max_range: 3.5
+range: 1.61277639866
+---
+header: 
+  seq: 5
+  stamp: 
+    secs: 1576778380
+    nsecs: 596549034
+  frame_id: "ranger_distance"
+radiation_type: 0
+field_of_view: 0.261799007654
+min_range: 0.019999999553
+max_range: 3.5
+range: 1.67693090439
+---
+
+```
