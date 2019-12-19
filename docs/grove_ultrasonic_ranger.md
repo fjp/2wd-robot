@@ -109,3 +109,7 @@ GPIO.cleanup() done
 
 ROS provides the [Range Message](http://docs.ros.org/melodic/api/sensor_msgs/html/msg/Range.html) in the [sensor_msgs header](https://wiki.ros.org/sensor_msgs). This message type can be used to write a wrapper that will act as a ROS node for the Grove ultrasonic sensor.
 
+To the design this node we will send out measurements periodically over a topic of type `sensor_msgs/Range`.
+The code for this node is in [`ranger.py`](https://github.com/fjp/2wd-robot/blob/master/ros/src/grove_ultrasonic_ranger/src/ranger.py).
+
+
