@@ -109,7 +109,59 @@ GPIO.cleanup() done
 
 ROS provides the [Range Message](http://docs.ros.org/melodic/api/sensor_msgs/html/msg/Range.html) in the [sensor_msgs header](https://wiki.ros.org/sensor_msgs). This message type can be used to write a wrapper that will act as a ROS node for the Grove ultrasonic sensor.
 
-To the design this node we will send out measurements periodically over a topic of type `sensor_msgs/Range`.
+To design this node we will send out measurements periodically over a topic of type `sensor_msgs/Range`.
 The code for this node is in [`ranger.py`](https://github.com/fjp/2wd-robot/blob/master/ros/src/grove_ultrasonic_ranger/src/ranger.py).
 
 
+After writing the node we need to build the packages in the workspace with `catkin build`.
+
+```bash
+fjp@ubuntu:~/git/2wd-robot/ros$ catkin build
+----------------------------------------------------------------
+Profile:                     default
+Extending:             [env] /opt/ros/melodic
+Workspace:                   /home/fjp/git/2wd-robot/ros
+----------------------------------------------------------------
+Build Space:        [exists] /home/fjp/git/2wd-robot/ros/build
+Devel Space:        [exists] /home/fjp/git/2wd-robot/ros/devel
+Install Space:      [unused] /home/fjp/git/2wd-robot/ros/install
+Log Space:         [missing] /home/fjp/git/2wd-robot/ros/logs
+Source Space:       [exists] /home/fjp/git/2wd-robot/ros/src
+DESTDIR:            [unused] None
+----------------------------------------------------------------
+Devel Space Layout:          linked
+Install Space Layout:        None
+----------------------------------------------------------------
+Additional CMake Args:       None
+Additional Make Args:        None
+Additional catkin Make Args: None
+Internal Make Job Server:    True
+Cache Job Environments:      False
+----------------------------------------------------------------
+Whitelisted Packages:        None
+Blacklisted Packages:        None
+----------------------------------------------------------------
+Workspace configuration appears valid.
+
+NOTE: Forcing CMake to run for each package.
+----------------------------------------------------------------
+[build] Found '1' package in 0.0 seconds.                                                                                                
+[build] Updating package table.                                                                                                           
+Starting  >>> catkin_tools_prebuild                                                                                                       
+Finished  <<< catkin_tools_prebuild                  [ 9.9 seconds ]                                                                                                                                                                                         
+Starting  >>> grove_ultrasonic_ranger                                                                                                                                                                                                                                                                                                                                                         
+Finished  <<< grove_ultrasonic_ranger                [ 12.0 seconds ]                                                                     
+[build] Summary: All 2 packages succeeded!                                                                                                
+[build]   Ignored:   None.                                                                                                                
+[build]   Warnings:  None.                                                                                                                
+[build]   Abandoned: None.                                                                                                                
+[build]   Failed:    None.                                                                                                                
+[build] Runtime: 21.9 seconds total.                                                                                                      
+[build] Note: Workspace packages have changed, please re-source setup files to use them.
+```
+
+As the final note of the build output suggests, we have to `source` the `setup.bash` files in the `devel` space.
+
+```bash
+fjp@ubuntu:~/git/2wd-robot/ros$ source devel/setup.bash
+```
