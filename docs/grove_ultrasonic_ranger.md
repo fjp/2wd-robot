@@ -16,11 +16,8 @@ To signalise the current distance to obstacles the [`sensor_msgs/Range`](http://
 After connecting the signal pin of the sensor to [(physical) GPIO 11](https://pinout.xyz/pinout/pin11_gpio17#) of the Raspberry Pi 4 B and power it with 5V and ground, we can test its functionality with the available 
 python script [`ultrasonic.py`](https://github.com/Seeed-Studio/Grove-RaspberryPi/blob/master/Grove%20-%20Ultrasonic%20Ranger/ultrasonic.py) from Seed Studio.
 
-Note that I renamed the script from `ultrasonic.py` to `seeedstudio_ultrasonic.py` because I use
-a modified `ultrasonic.py` file as class to interface the ultrasonic ranger (Application Program Interface - API).
-{: .notice-warning}
 
-The following shows the truncated output of the `seeedstudio_ultrasonic.py` script when moving an obstacle in front of the sensor. We see that the distance value changes as expected. 
+The following shows the truncated output of the `ultrasonic.py` script when moving an obstacle in front of the sensor. We see that the distance value changes as expected. 
 
 ```bash
 fjp@ubuntu:~/git/2wd-robot/ros/src/perception/src$ sudo python seeedstudio_ultrasonic.py 
@@ -83,16 +80,15 @@ Ultrasonic Measurement
 Distance : 159.4 CM
 ...
 ``` 
-#### Modified Ultrasonic Library
+#### Modified GroveUltrasonicRanger Library
 
 To use the ultrasonic ranger as a ROS node it is convenient to wrap the sensor functionality in a class.
-This is why I wraped the core functionality of the [`ultrasonic.py`](https://github.com/Seeed-Studio/Grove-RaspberryPi/blob/master/Grove%20-%20Ultrasonic%20Ranger/ultrasonic.py) from Seeed Studio in a class `UltrasonicRanger`.
+This provides an easy to extend interface for the ultrasonic ranger ([API](https://en.wikipedia.org/wiki/Application_programming_interface))
+Therefore I copied the core functionality of the [`ultrasonic.py`](https://github.com/Seeed-Studio/Grove-RaspberryPi/blob/master/Grove%20-%20Ultrasonic%20Ranger/ultrasonic.py) script from Seeed Studio in a class named [`GroveUltrasonicRanger`](https://github.com/fjp/2wd-robot/blob/master/ros/src/grove_ultrasonic_ranger/src/grove_ultrasonic_ranger.py).
+
 
 
 #### ROS Node for Ultrasonic Ranger
 
 ROS provides the [Range Message](http://docs.ros.org/melodic/api/sensor_msgs/html/msg/Range.html) in the [sensor_msgs header](https://wiki.ros.org/sensor_msgs). This message type can be used to write a wrapper that will act as a ROS node for the Grove ultrasonic sensor.
-
-
-### RPi Camera
 
