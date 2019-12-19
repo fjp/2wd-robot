@@ -1,16 +1,14 @@
-## Control - Catkin package
+### Grove - I2C Motor Driver V1.3
 
-The control package is created with `catkin create pkg PKG_NAME`:
+The package for the Grove I2C Motor Driver V1.3 is created with `catkin create pkg PKG_NAME`:
 
 ```bash
-fjp@ubuntu~/git/2wd-robot/ros/src$ catkin create pkg control
+fjp@ubuntu~/git/2wd-robot/ros/src$ catkin create pkg grove_motor_driver --catkin-deps rospy roscpp 
 Creating package "control" in "/home/fjp/git/2wd-robot/ros/src"...
 Created file control/package.xml
 Created file control/CMakeLists.txt
 Successfully created package files in /home/fjp/git/2wd-robot/ros/src/control.
 ```
-
-### Grove - I2C Motor Driver V1.3
 
 Official documentation [link](http://wiki.seeedstudio.com/Grove-I2C_Motor_Driver_V1.3/) from SeedStudio.
 
