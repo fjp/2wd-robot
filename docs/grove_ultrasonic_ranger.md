@@ -20,7 +20,7 @@ python script [`ultrasonic.py`](https://github.com/Seeed-Studio/Grove-RaspberryP
 The following shows the truncated output of the `ultrasonic.py` script when moving an obstacle in front of the sensor. We see that the distance value changes as expected. 
 
 ```bash
-fjp@ubuntu:~/git/2wd-robot/ros/src/perception/src$ sudo python seeedstudio_ultrasonic.py 
+fjp@ubuntu:~/git/2wd-robot/ros/src/grove_ultrasonic_ranger/src$ sudo python ultrasonic.py
 SeeedStudio Grove Ultrasonic get data and print
 Ultrasonic Measurement
 Distance : 2.0 CM
