@@ -51,7 +51,7 @@ Workspace configuration appears valid.
 
 To [create packages](https://catkin-tools.readthedocs.io/en/latest/quick_start.html#adding-packages-to-the-workspace), which will be covered in the next posts in more depth, we will use [`catkin create pkg PKG_NAME`](https://catkin-tools.readthedocs.io/en/latest/verbs/catkin_create.html#catkin-create-pkg).
 
-Building the workspace is done with [`catkin buil`](https://catkin-tools.readthedocs.io/en/latest/quick_start.html#building-the-workspace).
+Building the workspace is done with [`catkin build`](https://catkin-tools.readthedocs.io/en/latest/quick_start.html#building-the-workspace).
 
 ```bash
 fjp@ubuntu:~/git/2wd-robot/ros$ catkin build
