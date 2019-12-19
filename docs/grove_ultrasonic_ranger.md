@@ -86,7 +86,24 @@ To use the ultrasonic ranger as a ROS node it is convenient to wrap the sensor f
 This provides an easy to extend interface for the ultrasonic ranger ([API](https://en.wikipedia.org/wiki/Application_programming_interface))
 Therefore I copied the core functionality of the [`ultrasonic.py`](https://github.com/Seeed-Studio/Grove-RaspberryPi/blob/master/Grove%20-%20Ultrasonic%20Ranger/ultrasonic.py) script from Seeed Studio in a class named [`GroveUltrasonicRanger`](https://github.com/fjp/2wd-robot/blob/master/ros/src/grove_ultrasonic_ranger/src/grove_ultrasonic_ranger.py).
 
+Executing the `grove_ultrasonic_ranger.py` will result in the following output:
 
+```bash
+fjp@ubuntu:~/git/2wd-robot/ros/src/grove_ultrasonic_ranger/src$ sudo python grove_ultrasonic_ranger.py 
+SeeedStudio Grove Ultrasonic get data and print
+Distance : 0.051 m
+Distance : 0.069 m
+Distance : 0.098 m
+Distance : 0.131 m
+Distance : 0.153 m
+Distance : 0.172 m
+Distance : 0.207 m
+Distance : 0.210 m
+Distance : 0.234 m
+Distance : 0.256 m
+GPIO.cleanup()
+GPIO.cleanup() done
+```
 
 #### ROS Node for Ultrasonic Ranger
 
