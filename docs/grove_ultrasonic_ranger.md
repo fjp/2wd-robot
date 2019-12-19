@@ -268,3 +268,19 @@ range: 1.67693090439
 
 To provide additional information when an obstacle is too close or the robot has no obstacle in front of it we use
 [REP-117](https://www.ros.org/reps/rep-0117.html) as guideline.
+
+To successfully implement this REP, checks for valid measurements should use floating-point standards and follow this form:
+
+```python
+if(minimum_range <= value && value <= maximum_range){  // Represents expected pre-REP logic and is the only necessary condition for most applications.
+    // This is a valid measurement.
+} else if( !isfinite(value) && value < 0){
+    // Object too close to measure.
+} else if( !isfinite(value) && value > 0){
+    // No objects detected in range.
+} else if( isnan(value) ){
+    // This is an erroneous, invalid, or missing measurement.
+} else {
+    // The sensor reported these measurements as valid, but they are discarded per the limits defined by minimum_range and maximum_range.
+}
+```
