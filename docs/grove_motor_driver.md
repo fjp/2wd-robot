@@ -1,6 +1,6 @@
 ### Grove - I2C Motor Driver V1.3
 
-The package for the Grove I2C Motor Driver V1.3 is created with `catkin create pkg PKG_NAME`:
+The package for the [Grove I2C Motor Driver V1.3](http://wiki.seeedstudio.com/Grove-I2C_Motor_Driver_V1.3/) from Seeed Studio is created with `catkin create pkg PKG_NAME`:
 
 ```bash
 fjp@ubuntu~/git/2wd-robot/ros/src$ catkin create pkg grove_motor_driver --catkin-deps rospy roscpp 
@@ -10,8 +10,6 @@ Created file control/CMakeLists.txt
 Successfully created package files in /home/fjp/git/2wd-robot/ros/src/control.
 ```
 
-Official documentation [link](http://wiki.seeedstudio.com/Grove-I2C_Motor_Driver_V1.3/) from SeedStudio.
-
 [Python library from DexterInd](https://github.com/DexterInd/GrovePi/blob/master/Software/Python/grove_i2c_motor_driver) 
 which is a rewerite of the [SeedStudio Arduino library](https://github.com/Seeed-Studio/Grove_I2C_Motor_Driver_v1_3/blob/master).
 
@@ -20,6 +18,8 @@ This library requires the following two python libraries
 
 - [RPi.GPIO](https://pypi.org/project/RPi.GPIO/)
 - [smbus](https://pypi.org/project/smbus/) SMBus (System Management Bus) is a subset from the I2C protocol
+
+These libraries should be installed with `pip`, Python's package manager:
 
 ```bash
 pip install RPi.GPIO
@@ -84,4 +84,6 @@ As you can see the address of the motor driver is detected at `0x0f`.
 
 ### ROS Wrapper
 
-To use the available library of the Grove I2C motor driver in ROS we need to create a wrapper node.
+To use the available library of the Grove I2C motor driver in ROS we need to create a wrapper node, called `motor_driver`.
+The topic `/2wd_robot/cmd_vel` uses the Twist message to send commands to the motor. These commands can be published with
+nodes from the navigation stack.
