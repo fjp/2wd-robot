@@ -113,7 +113,7 @@ To design this node we will send out measurements periodically over a topic of t
 The code for this node is in [`ranger.py`](https://github.com/fjp/2wd-robot/blob/master/ros/src/grove_ultrasonic_ranger/src/ranger.py).
 
 
-After writing the node we need to build the packages in the workspace with `catkin build`.
+After writing the node we need to build the packages in the workspace with [`catkin build`](https://catkin-tools.readthedocs.io/en/latest/verbs/catkin_build.html).
 
 ```bash
 fjp@ubuntu:~/git/2wd-robot/ros$ catkin build
@@ -187,7 +187,7 @@ Distance : 0.092 m
 Distance : 0.099 m
 ```
 
-This lets the node publishe range messages which we can capture in another terminal window using `rostopic`.
+This lets the node publish range messages which we can capture in another terminal window using `rostopic`.
 First we use `rostopic list` to find the name of the topic we are interested in:
 
 ```bash
