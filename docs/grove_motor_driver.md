@@ -202,3 +202,59 @@ https://en.wikipedia.org/wiki/Differential_wheeled_robot
 http://wiki.ros.org/differential_drive
 
 
+After the node has been implemented, we need to build the workspace with [`catkin build`](https://catkin-tools.readthedocs.io/en/latest/verbs/catkin_build.html):
+
+```bash
+fjp@ubuntu:~/git/2wd-robot/ros/src$ catkin build
+----------------------------------------------------------------
+Profile:                     default
+Extending:          [cached] /opt/ros/melodic
+Workspace:                   /home/fjp/git/2wd-robot/ros
+----------------------------------------------------------------
+Build Space:        [exists] /home/fjp/git/2wd-robot/ros/build
+Devel Space:        [exists] /home/fjp/git/2wd-robot/ros/devel
+Install Space:      [unused] /home/fjp/git/2wd-robot/ros/install
+Log Space:          [exists] /home/fjp/git/2wd-robot/ros/logs
+Source Space:       [exists] /home/fjp/git/2wd-robot/ros/src
+DESTDIR:            [unused] None
+----------------------------------------------------------------
+Devel Space Layout:          linked
+Install Space Layout:        None
+----------------------------------------------------------------
+Additional CMake Args:       None
+Additional Make Args:        None
+Additional catkin Make Args: None
+Internal Make Job Server:    True
+Cache Job Environments:      False
+----------------------------------------------------------------
+Whitelisted Packages:        None
+Blacklisted Packages:        None
+----------------------------------------------------------------
+Workspace configuration appears valid.
+----------------------------------------------------------------
+[build] Found '2' packages in 0.0 seconds.                                                                          
+[build] Updating package table.                                                                                     
+Starting  >>> grove_motor_driver                                                                                    
+Starting  >>> grove_ultrasonic_ranger                                                                                                                                                                              
+Finished  <<< grove_motor_driver                     [ 1.0 seconds ]                                                
+Finished  <<< grove_ultrasonic_ranger                [ 1.0 seconds ]                                                                                             
+[build] Summary: All 2 packages succeeded!                                                                          
+[build]   Ignored:   None.                                                                                          
+[build]   Warnings:  None.                                                                                          
+[build]   Abandoned: None.                                                                                          
+[build]   Failed:    None.                                                                                          
+[build] Runtime: 2.0 seconds total. 
+```
+
+
+As the final note of the build output suggests, we have to `source` the `setup.bash` files in the `devel` space.
+
+```bash
+fjp@ubuntu:~/git/2wd-robot/ros$ source devel/setup.bash
+```
+
+To make the `ranger` node executable we have to modify the `ranger.py` file:
+
+```bash
+fjp@ubuntu:~/git/2wd-robot/ros/src/grove_ultrasonic_ranger/src$ sudo chmod a+x ranger.py
+```
