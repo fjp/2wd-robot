@@ -205,7 +205,7 @@ http://wiki.ros.org/differential_drive
 After the node has been implemented, we need to build the workspace with [`catkin build`](https://catkin-tools.readthedocs.io/en/latest/verbs/catkin_build.html):
 
 ```bash
-fjp@ubuntu:~/git/2wd-robot/ros/src$ catkin build
+fjp@ubuntu:~/git/2wd-robot/ros$ catkin build
 ----------------------------------------------------------------
 Profile:                     default
 Extending:          [cached] /opt/ros/melodic
