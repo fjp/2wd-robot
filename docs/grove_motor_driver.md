@@ -190,11 +190,12 @@ fjp@ubuntu:~/git/2wd-robot/ros/src/control/src$ sudo i2cdetect -y 1
 As you can see the address of the motor driver is detected at `0x0f`.
 
 
-### ROS Wrapper
+### ROS Node for Motor Driver
 
 To use the available library of the Grove I2C motor driver in ROS we need to create a wrapper node, called [`motor_driver`](https://github.com/fjp/2wd-robot/blob/master/ros/src/grove_motor_driver/src/motor_driver.py).
-The topic `/2wd_robot/cmd_vel` uses the [Twist message](https://docs.ros.org/api/geometry_msgs/html/msg/Twist.html) 
-from the [geometry_msgs](https://docs.ros.org/api/geometry_msgs/html/index-msg.html) header to send commands to the motor. These commands can be published with nodes from the navigation stack.
+The node subscribes to the topic `/2wd_robot/cmd_vel` which is of type [Twist message](https://docs.ros.org/api/geometry_msgs/html/msg/Twist.html) 
+from the [geometry_msgs](https://docs.ros.org/api/geometry_msgs/html/index-msg.html) header. 
+To send commands to the motor the . These topics can be published with nodes from the navigation stack or with [`rostopic pub`](http://wiki.ros.org/rostopic#rostopic_pub) for test purposes.
 
 https://en.wikipedia.org/wiki/Differential_wheeled_robot
 
