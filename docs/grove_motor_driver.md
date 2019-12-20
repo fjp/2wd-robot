@@ -11,7 +11,7 @@ Successfully created package files in /home/fjp/git/2wd-robot/ros/src/control.
 ```
 
 [Python library from DexterInd](https://github.com/DexterInd/GrovePi/blob/master/Software/Python/grove_i2c_motor_driver) 
-which is a rewerite of the [SeedStudio Arduino library](https://github.com/Seeed-Studio/Grove_I2C_Motor_Driver_v1_3/blob/master).
+which is a rewerite of the [Seeed Studio Arduino library](https://github.com/Seeed-Studio/Grove_I2C_Motor_Driver_v1_3/blob/master).
 
 
 This library requires the following two python libraries
