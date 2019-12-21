@@ -271,7 +271,7 @@ To provide additional information when an obstacle is too close or the robot has
 
 To successfully implement this REP, checks for valid measurements should use floating-point standards and follow this form:
 
-```python
+```cpp
 if(minimum_range <= value && value <= maximum_range){  // Represents expected pre-REP logic and is the only necessary condition for most applications.
     // This is a valid measurement.
 } else if( !isfinite(value) && value < 0){
