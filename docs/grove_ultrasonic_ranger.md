@@ -36,28 +36,7 @@ Ultrasonic Measurement
 Distance : 2.4 CM
 Ultrasonic Measurement
 Distance : 12.9 CM
-Ultrasonic Measurement
-Distance : 13.3 CM
-Ultrasonic Measurement
-Distance : 13.0 CM
-Ultrasonic Measurement
-Distance : 13.0 CM
-Ultrasonic Measurement
-Distance : 7.3 CM
-Ultrasonic Measurement
-Distance : 5.4 CM
-Ultrasonic Measurement
-Distance : 5.3 CM
-Ultrasonic Measurement
-Distance : 6.3 CM
-Ultrasonic Measurement
-Distance : 15.7 CM
-Ultrasonic Measurement
-Distance : 510.7 CM
-Ultrasonic Measurement
-Distance : 39.9 CM
-Ultrasonic Measurement
-Distance : 42.4 CM
+...
 Ultrasonic Measurement
 Distance : 45.8 CM
 Ultrasonic Measurement
