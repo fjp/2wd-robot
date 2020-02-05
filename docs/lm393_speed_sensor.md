@@ -5,20 +5,25 @@ First, we will create a ROS package with [`catkin create pkg PKG_NAME [--catkin-
 
 ```bash
 fjp@ubuntu:~/git/2wd-robot/ros/src$ catkin create pkg lm393_speed_sensor --catkin-deps rospy roscpp nav_msgs
-TODO
+Creating package "lm393_speed_sensor" in "/home/fjp/git/2wd-robot/ros/src"...
+Created file lm393_speed_sensor/CMakeLists.txt
+Created file lm393_speed_sensor/package.xml
+Created folder lm393_speed_sensor/include/lm393_speed_sensor
+Created folder lm393_speed_sensor/src
+Successfully created package files in /home/fjp/git/2wd-robot/ros/src/lm393_speed_sensor.
 ```
-The package depends on the two ROS [client libraries](http://wiki.ros.org/Client%20Libraries) [`rospy`](http://wiki.ros.org/rospy) and [`roscpp`](http://wiki.ros.org/roscpp). 
-To signalise the current distance to obstacles the [`sensor_msgs/Range`](http://docs.ros.org/melodic/api/sensor_msgs/html/msg/Range.html) message is used.
 
-After connecting the signal pin of the sensor to [(physical) GPIO 11](https://pinout.xyz/pinout/pin11_gpio17#) of the Raspberry Pi 4 B and power it with 5V and ground, we can test its functionality with the available 
-python script [`ultrasonic.py`](https://github.com/Seeed-Studio/Grove-RaspberryPi/blob/master/Grove%20-%20Ultrasonic%20Ranger/ultrasonic.py) from Seed Studio.
+The package depends on the two ROS [client libraries](http://wiki.ros.org/Client%20Libraries) [`rospy`](http://wiki.ros.org/rospy) and [`roscpp`](http://wiki.ros.org/roscpp). The current implementation uses python and the RPi.GPIO library for interrupts. To achieve more percise results, C++ should be used instead. 
+To signalise the current pose of the robot in the odometry frame, the [`nav_msgs/Range`](http://docs.ros.org/melodic/api/sensor_msgs/html/msg/Range.html) message is used.
+
+After connecting the signal pin of the sensor to [(physical) GPIO 15](https://pinout.xyz/pinout/pin15_gpio22#) of the Raspberry Pi 4 B and power it with 3.3V and ground, we can test its functionality with the following python script [`lm393_speed_sensor.py`]().
 
 
-The following shows the truncated output of the `ultrasonic.py` script when moving an obstacle in front of the sensor. We see that the distance value changes as expected. 
+The following shows the truncated output of the `lm393_speed_sensor.py` script when the motors are spinning freely with full speed and using some force to slow the down. We see that the RPM values change. 
 
 ```bash
 fjp@ubuntu:~/git/2wd-robot/ros/src/grove_ultrasonic_ranger/src$ sudo python ultrasonic.py
-
+TODO
 ``` 
 #### LM393 Speed Sensor Library
 
