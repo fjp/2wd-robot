@@ -1,6 +1,6 @@
 ### LM393 Speed Sensor - Odometry
 
-To measure how far the robot has driven we use the [LM393 speed sensor]() from Joy-IT as [odometry]() sensor.
+To measure how far the robot has driven, we use the [LM393 speed sensor](https://joy-it.net/en/products/SEN-Speed) from Joy-IT as [odometry](https://en.wikipedia.org/wiki/Odometry) sensor. 
 First, we will create a ROS package with [`catkin create pkg PKG_NAME [--catkin-deps [DEP [DEP ...]]]`](https://catkin-tools.readthedocs.io/en/latest/verbs/catkin_create.html#catkin-create-pkg):
 
 ```bash
