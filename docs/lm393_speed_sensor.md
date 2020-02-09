@@ -16,27 +16,22 @@ Successfully created package files in /home/fjp/git/2wd-robot/ros/src/lm393_spee
 The package depends on the two ROS [client libraries](http://wiki.ros.org/Client%20Libraries) [`rospy`](http://wiki.ros.org/rospy) and [`roscpp`](http://wiki.ros.org/roscpp). The current implementation uses python and the RPi.GPIO library for interrupts. To achieve more percise results, C++ should be used instead. 
 To signalise the current pose of the robot in the odometry frame, the [`nav_msgs/Range`](http://docs.ros.org/melodic/api/sensor_msgs/html/msg/Range.html) message is used.
 
-After connecting the signal pin of the sensor to [(physical) GPIO 15](https://pinout.xyz/pinout/pin15_gpio22#) of the Raspberry Pi 4 B and power it with 3.3V and ground, we can test its functionality with the following python script [`lm393_speed_sensor.py`]().
+### Connection
 
+To get the speed sensors working, we connect the signal pins to [(physical) GPIO 15](https://pinout.xyz/pinout/pin15_gpio22#) and [(physical) GPIO 16](https://pinout.xyz/pinout/pin16_gpio23#) of the Raspberry Pi 4 B and power them with 3.3V. The ground pins are connected to ground of the Pi.
 
-The following shows the truncated output of the `lm393_speed_sensor.py` script when the motors are spinning freely with full speed and using some force to slow the down. We see that the RPM values change. 
-
-```bash
-fjp@ubuntu:~/git/2wd-robot/ros/src/grove_ultrasonic_ranger/src$ sudo python ultrasonic.py
-TODO
-``` 
 #### LM393 Speed Sensor Library
 
-To use the LM393 speed sensor as a ROS node we wrap the sensor functionality in a class.
+To use the LM393 speed sensor as a ROS node the sensor functionality is wraped in a class.
 This provides an easy to extend interface for the speed sensor ([API](https://en.wikipedia.org/wiki/Application_programming_interface))
 The code consists of a class LM393SpeedSensor which has two interrupt service routines (ISR) methods.
 Using the RPi.GPIO interrupt capabilities, these ISR methods are used as callback functions when the sensor measures a falling
 edge. This is the case when the rotary disk spins and the optocoupler measures a high to low signal due to the spinning disk. 
 
-Executing the `lm393_speed_sensor.py` will result in the following output:
+The sensor API is implemented in the [`lm393_speed_sensor.py`](https://github.com/fjp/2wd-robot/blob/master/ros/src/lm393_speed_sensor/src/lm393_speed_sensor.py) python module. Executing the module will result in the following output when the motors are spinning freely with full speed and using some force to slow them down. We see that the RPM values change. 
 
 ```bash
-fjp@ubuntu:~/git/2wd-robot/ros/src/grove_ultrasonic_ranger/src$ sudo python lm393_speed_sensor.py 
+fjp@ubuntu:~/git/2wd-robot/ros/src/lm393_speed_sensor/src$ sudo python lm393_speed_sensor.py
 TODO
 ```
 
