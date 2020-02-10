@@ -3,15 +3,17 @@ the main processing unit, the Raspberry Pi 4 B.
 
 ## GPIO
 
+Currently, three GPIO pins are used to connect the ultrasonic ranger and two speed sensors.
+
 The ultrasonic ranger uses just a single GPIO pin for communicating its measured distances.
-Therefore we can use one of the GPIO pins such as [physical pin 11](https://pinout.xyz/pinout/pin11_gpio17).
+Therefore, we can use one of the GPIO pins such as [physical pin 11](https://pinout.xyz/pinout/pin11_gpio17).
 
-
+The LM393 speed sensors also use a single digital GPIO pin each. These pins will be setup using software interrupts with the [RPi.GPIO](https://pypi.org/project/RPi.GPIO/) library. 
 
 ## Prepare I2C Connection
 
 The I2C connections are used for multiple components such as the motor driver and the oled display.
-Therefore we need to setup the I2C ports on the Raspberry Pi 4 B first. 
+Using these ports on the Raspberry Pi 4 B, requires that we enable the I2C interface. 
 
 To do so, we will use the tool `i2cdetect` which requires that we install a tool on Ubuntu called `i2c-tools`:
 
