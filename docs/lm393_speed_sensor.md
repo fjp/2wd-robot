@@ -28,12 +28,18 @@ The code consists of a class LM393SpeedSensor which has two interrupt service ro
 Using the RPi.GPIO interrupt capabilities, these ISR methods are used as callback functions when the sensor measures a falling
 edge. This is the case when the rotary disk spins and the optocoupler measures a high to low signal due to the spinning disk. 
 
-The sensor API is implemented in the [`lm393_speed_sensor.py`](https://github.com/fjp/2wd-robot/blob/master/ros/src/lm393_speed_sensor/src/lm393_speed_sensor.py) python module. Executing the module will result in the following output when the motors are spinning freely with full speed and using some force to slow them down. We see that the RPM values change. 
+The sensor API is implemented in the [`lm393_speed_sensor.py`](https://github.com/fjp/2wd-robot/blob/master/ros/src/lm393_speed_sensor/src/lm393_speed_sensor.py) python module. Executing the module will result in the following output when the motors are spinning freely with full speed and using some force to slow them down. We see that the RPM (revolutions per minute) values change.
 
 ```bash
 fjp@ubuntu:~/git/2wd-robot/ros/src/lm393_speed_sensor/src$ sudo python lm393_speed_sensor.py
 TODO
 ```
+
+The RPM values will be converted to velocity values using the radius $r$ of the wheels.
+
+$$
+v = 2 \pi n \cdot r
+$$
 
 #### ROS Node for LM393 Speed Sensor
 
