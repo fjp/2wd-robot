@@ -34,6 +34,7 @@ $ i2cdetect -y 0
 Error: Could not open file '/dev/i2c-0' or '/dev/i2c/0': No such file or directory
 $ i2cdetect -y 1
 Error: Could not open file '/dev/i2c-1' or '/dev/i2c/1': No such file or directory
+``` 
 
 The ports are not setup correctly yet, which is why we need to enable the following two lines in the `/boot/firmware/config.txt` file:
 
