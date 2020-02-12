@@ -20,7 +20,7 @@ To signalise the current pose of the robot in the odometry frame, the [`nav_msgs
 
 To get the speed sensors working, we connect the signal pins to [(physical) GPIO 15](https://pinout.xyz/pinout/pin15_gpio22#) and [(physical) GPIO 16](https://pinout.xyz/pinout/pin16_gpio23#) of the Raspberry Pi 4 B and power them with 3.3V. The ground pins are connected to ground of the Pi.
 
-#### LM393 Speed Sensor Library
+### LM393 Speed Sensor Library
 
 To use the LM393 speed sensor as a ROS node the sensor functionality is wraped in a class.
 This provides an easy to extend interface for the speed sensor ([API](https://en.wikipedia.org/wiki/Application_programming_interface))
@@ -41,7 +41,7 @@ $$
 v = \omega \cdot r = 2 \pi n \cdot r
 $$
 
-#### ROS Node for LM393 Speed Sensor
+### ROS Node for LM393 Speed Sensor
 
 ROS provides the [Odometry Message](http://docs.ros.org/api/nav_msgs/html/msg/Odometry.html) in the 
 [nav_msgs header](https://wiki.ros.org/sensor_msgs). 
