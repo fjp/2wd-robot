@@ -22,3 +22,10 @@ In general, if a robot moves at a constant applied to the motors it causes the w
 - No two electrical or mechanical components are ever precisely identical.
 - The environment affects the velocity of a robot because of different friction of the surface
 - External forces can affect the velocity of a robot. It needs more power to sustain a specific velocity when moving uphill and less power when moving downhill, because the force of gravity decreases and increases the velocity.
+
+
+Velocity is speed in a direction. A robot can be moving 10cm/s forwards or backwards; in both cases, the speed is the same but the velocity is different.
+{: .notice }
+
+### Acceleration as Change in Velocity
+
