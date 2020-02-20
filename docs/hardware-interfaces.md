@@ -51,32 +51,31 @@ dtparam=i2c1=on
 
 On Raspian Buster, the official Raspberry OS, we could use the `raspi-config` tool:
 
-<pre><font color="#8AE234"><b>fjp@ubuntu</b></font>:<font color="#729FCF"><b>~/git/2wd-robot</b></font>$ sudo raspi-config</pre>
-
-<pre><span style="background-color:#75507B"><font color="#D3D7CF">Raspberry Pi 4 Model B Rev 1.1</font></span>
-
-
-
-<span style="background-color:#D3D7CF"><font color="#2E3436">┌──────────────────┤ </font></span><span style="background-color:#D3D7CF"><font color="#CC0000">Raspberry Pi Software Configuration Tool (raspi-config)</font></span><span style="background-color:#D3D7CF"><font color="#2E3436"> ├───────────────────┐</font></span>
-<span style="background-color:#D3D7CF"><font color="#2E3436">│                                                                                                │</font></span>
-<span style="background-color:#D3D7CF"><font color="#2E3436">│      1 Change User Password Change password for the current user                               │</font></span>
-<span style="background-color:#D3D7CF"><font color="#2E3436">│      2 Network Options      Configure network settings                                         │</font></span>
-<span style="background-color:#D3D7CF"><font color="#2E3436">│      3 Boot Options         Configure options for start-up                                     │</font></span>
-<span style="background-color:#D3D7CF"><font color="#2E3436">│      4 Localisation Options Set up language and regional settings to match your location       │</font></span>
-<span style="background-color:#D3D7CF"><font color="#2E3436">│      </font></span><span style="background-color:#CC0000"><font color="#D3D7CF">5 Interfacing Options  Configure connections to peripherals                        </font></span><span style="background-color:#D3D7CF"><font color="#2E3436">       │</font></span>
-<span style="background-color:#D3D7CF"><font color="#2E3436">│      6 Overclock            Configure overclocking for your Pi                                 │</font></span>
-<span style="background-color:#D3D7CF"><font color="#2E3436">│      7 Advanced Options     Configure advanced settings                                        │</font></span>
-<span style="background-color:#D3D7CF"><font color="#2E3436">│      8 Update               Update this tool to the latest version                             │</font></span>
-<span style="background-color:#D3D7CF"><font color="#2E3436">│      9 About raspi-config   Information about this configuration tool                          │</font></span>
-<span style="background-color:#D3D7CF"><font color="#2E3436">│                                                                                                │</font></span>
-<span style="background-color:#D3D7CF"><font color="#2E3436">│                                                                                                │</font></span>
-<span style="background-color:#D3D7CF"><font color="#2E3436">│                                                                                                │</font></span>
-<span style="background-color:#D3D7CF"><font color="#2E3436">│                           &lt;Select&gt;                           &lt;Finish&gt;                          │</font></span>
-<span style="background-color:#D3D7CF"><font color="#2E3436">│                                                                                                │</font></span>
-<span style="background-color:#D3D7CF"><font color="#2E3436">└────────────────────────────────────────────────────────────────────────────────────────────────┘</font></span>
+```bash
+fjp@ubuntu:~/git/2wd-robot$ sudo raspi-config
+Raspberry Pi 4 Model B Rev 1.1
 
 
-</pre>
+
+┌──────────────────┤ Raspberry Pi Software Configuration Tool (raspi-config) ├───────────────────┐
+│                                                                                                │
+│      1 Change User Password Change password for the current user                               │
+│      2 Network Options      Configure network settings                                         │
+│      3 Boot Options         Configure options for start-up                                     │
+│      4 Localisation Options Set up language and regional settings to match your location       │
+│      5 Interfacing Options  Configure connections to peripherals                               │
+│      6 Overclock            Configure overclocking for your Pi                                 │
+│      7 Advanced Options     Configure advanced settings                                        │
+│      8 Update               Update this tool to the latest version                             │
+│      9 About raspi-config   Information about this configuration tool                          │
+│                                                                                                │
+│                                                                                                │
+│                                                                                                │
+│                           <Select>                           <Finish>                          │
+│                                                                                                │
+└────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+```
 
 Select the i2c option:
 
