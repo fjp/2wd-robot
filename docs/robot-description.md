@@ -1,6 +1,6 @@
 ### 2WD Robot Description
 
-The description of the 2WD robot will be created in its own package. The description uses URDF and xacro. 
+The description of the 2WD robot will be created in its own package. The description uses [URDF](https://wiki.ros.org/urdf) and [xacro](https://wiki.ros.org/xacro). 
 The `2wd_robot_description` package can be with [`catkin create pkg PKG_NAME [--catkin-deps [DEP [DEP ...]]]`](https://catkin-tools.readthedocs.io/en/latest/verbs/catkin_create.html#catkin-create-pkg):
 
 ```bash
@@ -27,7 +27,7 @@ The `meshes` folder keeps the `meshes` that are included in the `urdf` file, and
 
 ### Tools
 
-To check a urdf file we can make use of the tool `check_urdf` in the `liburdfdom-tools` debian package. 
+To check a [urdf](https://wiki.ros.org/urdf) file we can make use of the tools `check_urdf` and `urdf_to_graphiz` in the `liburdfdom-tools` debian package. 
 Install it with the following command:
 
 ```bash
@@ -38,4 +38,10 @@ Then it is possible to check urdf files for errors:
 
 ```bash
 fjp@ubuntu:~/git/2wd-robot/ros/src/robot_description/urdf$ check_urdf robot.urdf
+```
+
+And output a graphviz diagram of the robot model:
+
+```bash
+fjp@ubuntu:~/git/2wd-robot/ros/src/robot_description/urdf$ urdf_to_graphiz robot.urdf
 ```
