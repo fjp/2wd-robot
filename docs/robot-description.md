@@ -14,3 +14,10 @@ Successfully created package files in /home/fjp/git/2wd-robot/ros/src/robot_desc
 ```
 
 The package depends on the ROS [client library](http://wiki.ros.org/Client%20Libraries) [`roscpp`](http://wiki.ros.org/roscpp).
+
+According to ROS conventions we create the following folders where the individual files realted to the robot description will be placed:
+
+```bash
+fjp@ubuntu:~/git/2wd-robot/ros/src/robot_description$ mkdir urdf meshes launch
+``` 
+
