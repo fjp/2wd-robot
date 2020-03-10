@@ -24,3 +24,18 @@ fjp@ubuntu:~/git/2wd-robot/ros/src/robot_description$ mkdir urdf meshes launch
 The `urdf` folder will be used to keep the `urdf` and `xacro` files. 
 The `meshes` folder keeps the `meshes` that are included in the `urdf` file, and the `launch` folder keeps the ROS launch files.
 
+
+### Tools
+
+To check a urdf file we can make use of the tool `check_urdf` in the `liburdfdom-tools` debian package. 
+Install it with the following command:
+
+```bash
+sudo apt install liburdfdom-tools
+```
+
+Then it is possible to check urdf files for errors:
+
+```bash
+fjp@ubuntu:~/git/2wd-robot/ros/src/robot_description/urdf$ check_urdf robot.urdf
+```
