@@ -21,3 +21,6 @@ According to ROS conventions we create the following folders where the individua
 fjp@ubuntu:~/git/2wd-robot/ros/src/robot_description$ mkdir urdf meshes launch
 ``` 
 
+The `urdf` folder will be used to keep the `urdf` and `xacro` files. 
+The `meshes` folder keeps the `meshes` that are included in the `urdf` file, and the `launch` folder keeps the ROS launch files.
+
