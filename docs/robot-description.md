@@ -5,12 +5,12 @@ The `2wd_robot_description` package can be with [`catkin create pkg PKG_NAME [--
 
 ```bash
 fjp@ubuntu:~/git/2wd-robot/ros/src$ catkin create pkg robot_description --catkin-deps roscpp tf geometry_msgs urdf rviz xacro
-Creating package "lm393_speed_sensor" in "/home/fjp/git/2wd-robot/ros/src"...
-Created file lm393_speed_sensor/CMakeLists.txt
-Created file lm393_speed_sensor/package.xml
-Created folder lm393_speed_sensor/include/lm393_speed_sensor
-Created folder lm393_speed_sensor/src
-Successfully created package files in /home/fjp/git/2wd-robot/ros/src/lm393_speed_sensor.
+Creating package "robot_description" in "/home/fjp/git/2wd-robot/ros/src"...
+Created file robot_description/package.xml
+Created file robot_description/CMakeLists.txt
+Created folder robot_description/include/robot_description
+Created folder robot_description/src
+Successfully created package files in /home/fjp/git/2wd-robot/ros/src/robot_description.
 ```
 
 The package depends on the ROS [client library](http://wiki.ros.org/Client%20Libraries) [`roscpp`](http://wiki.ros.org/roscpp).
