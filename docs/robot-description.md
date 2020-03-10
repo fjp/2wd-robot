@@ -45,3 +45,9 @@ And output a graphviz diagram of the robot model:
 ```bash
 fjp@ubuntu:~/git/2wd-robot/ros/src/robot_description/urdf$ urdf_to_graphiz robot.urdf
 ```
+
+To visualize the 3D model in RVIZ we first need to install the `joint-state-publisher-gui` which was separated from non-gui `joint-state-publisher`. There exists a debian package which can be installed with the following command:
+
+```bash
+fjp@ubuntu:~/git/2wd-robot/ros$ sudo apt install ros-melodic-joint-state-publisher-gui
+```
