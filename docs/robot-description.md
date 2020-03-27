@@ -1,4 +1,4 @@
-### 2WD Robot Description
+### DiffBot Robot Description
 
 The description of the 2WD robot will be created in its own package named `diffbot_description`. 
 The description uses [URDF](https://wiki.ros.org/urdf) and [xacro](https://wiki.ros.org/xacro). 
@@ -24,7 +24,7 @@ The `urdf` folder will be used to keep the `urdf` and `xacro` files.
 The `meshes` folder keeps the `meshes` that are included in the `urdf` file, and the `launch` folder keeps the ROS launch files.
 
 
-### Tools
+### Required Tools
 
 To check a [urdf](https://wiki.ros.org/urdf) file we can make use of the tools `check_urdf` and `urdf_to_graphiz` in the `liburdfdom-tools` debian package. 
 Install it with the following command:
@@ -50,3 +50,8 @@ To visualize the 3D model in RVIZ we first need to install the `joint-state-publ
 ```bash
 fjp@ubuntu:~/git/2wd-robot/ros$ sudo apt install ros-melodic-joint-state-publisher-gui
 ```
+
+### Robot Model
+
+To model the two wheeled differential drive robot we follow [REP-120](https://www.ros.org/reps/rep-0120.html#base-link).
+It states to use a `base_link` and a `base_footprint`. 
