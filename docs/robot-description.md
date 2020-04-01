@@ -5,11 +5,11 @@ The description uses [URDF](https://wiki.ros.org/urdf) and [xacro](https://wiki.
 For this we create we first create a package with [`catkin create pkg PKG_NAME [--catkin-deps [DEP [DEP ...]]]`](https://catkin-tools.readthedocs.io/en/latest/verbs/catkin_create.html#catkin-create-pkg):
 
 ```bash
-fjp@ubuntu:~/git/2wd-robot/ros/src$ catkin create pkg diffbot_description
-Creating package "diffbot_description" in "/home/fjp/git/2wd-robot/ros/src"...
+fjp@ubuntu:~/git/diffbot/ros/src$ catkin create pkg diffbot_description
+Creating package "diffbot_description" in "/home/fjp/git/diffbot/ros/src"...
 Created file diffbot_description/CMakeLists.txt
 Created file diffbot_description/package.xml
-Successfully created package files in /home/fjp/git/2wd-robot/ros/src/diffbot_description.
+Successfully created package files in /home/fjp/git/diffbot/ros/src/diffbot_description.
 ```
 
 Because this package contains only descriptions and launch files it doesn't require any dependencies. 
@@ -17,7 +17,7 @@ Because this package contains only descriptions and launch files it doesn't requ
 According to ROS conventions we create the following folders where the individual files realted to the robot description will be placed:
 
 ```bash
-fjp@ubuntu:~/git/2wd-robot/ros/src/robot_description$ mkdir urdf meshes launch
+fjp@ubuntu:~/git/diffbot/ros/src/robot_description$ mkdir urdf meshes launch
 ``` 
 
 The `urdf` folder will be used to keep the `urdf` and `xacro` files. 
@@ -33,22 +33,40 @@ Install it with the following command:
 sudo apt install liburdfdom-tools
 ```
 
-Then it is possible to check urdf files for errors:
+First we need to convert the robot description of DiffBot, which is present as `xacro` file, to a `urdf` file by issuing the following command: 
 
 ```bash
-fjp@ubuntu:~/git/2wd-robot/ros/src/robot_description/urdf$ check_urdf robot.urdf
+fjp@ubuntu:~/git/diffbot/ros$ rosrun xacro xacro `rospack find diffbot_description`/urdf/diffbot.urdf.xacro -o /tmp/diffbot.urdf
 ```
 
-And output a graphviz diagram of the robot model:
+After we've created the `urdf` from the `xacro` file we can check the `urdf` files for errors with:
 
 ```bash
-fjp@ubuntu:~/git/2wd-robot/ros/src/robot_description/urdf$ urdf_to_graphiz robot.urdf
+fjp@ubuntu:/tmp$ check_urdf diffbot.urdf 
+robot name is: diffbot
+---------- Successfully Parsed XML ---------------
+root Link: base_footprint has 1 child(ren)
+    child(1):  base_link
+        child(1):  caster_link
+        child(2):  front_left_wheel
+        child(3):  front_right_wheel
 ```
+
+It is also helpful to output a graphviz diagram of the robot model:
+
+```bash
+fjp@ubuntu:/tmp$ urdf_to_graphiz diffbot.urdf 
+Created file diffbot.gv
+Created file diffbot.pdf
+fjp@ubuntu:/tmp$ evince diffbot.pdf
+```
+
+
 
 To visualize the 3D model in RVIZ we first need to install the `joint-state-publisher-gui` which was separated from non-gui `joint-state-publisher`. There exists a debian package which can be installed with the following command:
 
 ```bash
-fjp@ubuntu:~/git/2wd-robot/ros$ sudo apt install ros-melodic-joint-state-publisher-gui
+fjp@ubuntu:~/git/diffbot/ros$ sudo apt install ros-melodic-joint-state-publisher-gui
 ```
 
 ### Robot Model
