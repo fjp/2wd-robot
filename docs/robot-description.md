@@ -62,7 +62,7 @@ fjp@ubuntu:/tmp$ evince diffbot.pdf
 ```
 
 <figure>
-    <a href="https://raw.githubusercontent.com/fjp/diffbot/master/docs/resources/graphviz_diffbot.png"><img src="https://raw.githubusercontent.com/fjp/diffbot/master/docs/images/graphviz_diffbot.png"></a>
+    <a href="https://raw.githubusercontent.com/fjp/diffbot/master/docs/resources/graphviz_diffbot.png"><img src="https://raw.githubusercontent.com/fjp/diffbot/master/docs/resources/graphviz_diffbot.png"></a>
     <figcaption>Graphviz diagram of DiffBot URDF robot description.</figcaption>
 </figure>
 
