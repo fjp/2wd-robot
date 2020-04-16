@@ -61,7 +61,10 @@ Created file diffbot.pdf
 fjp@ubuntu:/tmp$ evince diffbot.pdf
 ```
 
-<object data="resources/diffbot.pdf" width="1000" height="1000" type='application/pdf'/>
+<figure>
+    <a href="https://raw.githubusercontent.com/fjp/diffbot/master/docs/resources/graphviz_diffbot.png"><img src="https://raw.githubusercontent.com/fjp/diffbot/master/docs/resources/graphviz_diffbot.png"></a>
+    <figcaption>Graphviz diagram of DiffBot URDF robot description.</figcaption>
+</figure>
 
 
 To visualize the 3D model in RVIZ we first need to install the `joint-state-publisher-gui` which was separated from non-gui `joint-state-publisher`. There exists a debian package which can be installed with the following command:
