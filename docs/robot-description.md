@@ -26,7 +26,7 @@ The `meshes` folder keeps the `meshes` that are included in the `urdf` file, and
 ### Robot Model
 
 To model the two wheeled differential drive robot we follow [REP-120](https://www.ros.org/reps/rep-0120.html#base-link).
-It states to use a `base_link` and a `base_footprint`. The resulting description files can be found in the [`diffbot_description`](../src/diffbot_description) package.
+It states to use a `base_link` and a `base_footprint`. The resulting description files can be found in the [`diffbot_description`](https://github.com/fjp/diffbot/tree/master/ros/src/diffbot_control) package.
 
 
 ### Required Tools
