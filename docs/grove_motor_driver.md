@@ -1,15 +1,15 @@
-### Grove - I2C Motor Driver V1.3
+## Grove - I2C Motor Driver V1.3
 
 The package for the [Grove I2C Motor Driver V1.3](http://wiki.seeedstudio.com/Grove-I2C_Motor_Driver_V1.3/) from Seeed Studio is created with [`catkin create pkg PKG_NAME [--catkin-deps [DEP [DEP ...]]]`](https://catkin-tools.readthedocs.io/en/latest/verbs/catkin_create.html#catkin-create-pkg):
 
-```bash
-fjp@ubuntu:~/git/2wd-robot/ros/src$ catkin create pkg grove_motor_driver --catkin-deps rospy roscpp geometry_msgs
-Creating package "grove_motor_driver" in "/home/fjp/git/2wd-robot/ros/src"...
+```console
+fjp@ubuntu:~/git/diffbot/ros/src$ catkin create pkg grove_motor_driver --catkin-deps rospy roscpp geometry_msgs
+Creating package "grove_motor_driver" in "/home/fjp/git/diffbot/ros/src"...
 Created file grove_motor_driver/CMakeLists.txt
 Created file grove_motor_driver/package.xml
 Created folder grove_motor_driver/include/grove_motor_driver
 Created folder grove_motor_driver/src
-Successfully created package files in /home/fjp/git/2wd-robot/ros/src/grove_motor_driver.
+Successfully created package files in /home/fjp/git/diffbot/ros/src/grove_motor_driver.
 ```
 
 The package depends on the two ROS [client libraries](http://wiki.ros.org/Client%20Libraries) [`rospy`](http://wiki.ros.org/rospy) and [`roscpp`](http://wiki.ros.org/roscpp). 
@@ -25,7 +25,7 @@ This library requires the following two python libraries
 
 These libraries should be installed with `pip`, Python's package manager:
 
-```bash
+```console
 pip install RPi.GPIO
 pip install smbus
 ``` 
@@ -44,7 +44,7 @@ in the library files.
 
 Test the motor driver by running one of the python files:
 
-```bash
+```console
 fjp@ubuntu:~/git/2wd-robot/ros/src/grove_motor_driver/src$ sudo python motor_example.py 
 Forward
 Back
@@ -109,7 +109,7 @@ Stop
 
 If you get errors like the following, use the `RESET` button on the motor driver.
 
-```bash
+```console
 fjp@ubuntu:~/git/2wd-robot/ros/src/control$ sudo python grove_i2c_motor_driver.py 
 Traceback (most recent call last):
   File "grove_i2c_motor_driver.py", line 68, in <module>
@@ -129,7 +129,7 @@ IOError: [Errno 121] Remote I/O error
 Try pressing the `RESET` button and release it right before executing one of the scripts.
 You should also be able to detect the motor driver with `i2cdetect -y 1`:
 
-```bash
+```console
 fjp@ubuntu:~/git/2wd-robot/ros/src/control/src$ sudo i2cdetect -y 1
      0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f
 00:          -- -- -- -- -- -- -- -- -- -- -- -- 0f 
@@ -159,7 +159,7 @@ http://wiki.ros.org/differential_drive
 
 After the node has been implemented, we need to build the workspace with [`catkin build`](https://catkin-tools.readthedocs.io/en/latest/verbs/catkin_build.html):
 
-```bash
+```console
 fjp@ubuntu:~/git/2wd-robot/ros$ catkin build
 ----------------------------------------------------------------
 Profile:                     default
@@ -204,12 +204,13 @@ Finished  <<< grove_ultrasonic_ranger                [ 1.0 seconds ]
 
 As the final note of the build output suggests, we have to `source` the `setup.bash` files in the `devel` space.
 
-```bash
+```console
 fjp@ubuntu:~/git/2wd-robot/ros$ source devel/setup.bash
 ```
 
 To make the `ranger` node executable we have to modify the `ranger.py` file:
 
-```bash
+```console
 fjp@ubuntu:~/git/2wd-robot/ros/src/grove_ultrasonic_ranger/src$ sudo chmod a+x ranger.py
 ```
+
