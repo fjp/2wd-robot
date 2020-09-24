@@ -9,9 +9,61 @@ Created file diffbot_gazebo/package.xml
 Created file diffbot_gazebo/CMakeLists.txt
 Successfully created package files in /home/fjp/git/diffbot/ros/src/diffbot_gazebo.
 ```
- Replace 'MYROBOT' with the name of your bot in lower case letters.
  
  This package contains a launch file to lauch a world in Gazebo and spawn the robot model defined in the previously created `diffbot_description` package.
+ Inside the package, for the launch files the convention is to have a folder named `launch` and for Gazebo world files a folder named `world`.
+ 
+ ```console
+ fjp@ubuntu:~/git/diffbot/ros/src/diffbot_gazebo$ mkdir launch world
+ ```
+ 
+ Inside the `launch` folder is the `diffbot.launch`.
+ 
+ ```xml
+ <launch>
+  <!-- We resume the logic in empty_world.launch, changing only the name of the world to be launched -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(find MYROBOT_gazebo)/worlds/MYROBOT.world"/>
+    <!-- more default parameters can be changed here -->
+  </include>
+</launch>
+```
+
+In the `world` folder of the `diffbot_gazebo` package is the `diffbot.world` file:
+
+```xml
+<?xml version="1.0" ?>
+<sdf version="1.4">
+  <world name="default">
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+    <include>
+      <uri>model://sun</uri>
+    </include>
+    <include>
+      <uri>model://gas_station</uri>
+      <name>gas_station</name>
+      <pose>-2.0 7.0 0 0 0 0</pose>
+    </include>
+  </world>
+</sdf>
+```
+
+With these files build the catkin workspace and source it to make the new `diffbot_gazebo` package visible to `roslaunch`:
+
+```console
+catkin build
+source devel/setup.zsh
+```
+
+Then launch the `diffbot.launch` with:
+
+```console
+roslaunch diffbot_gazebo diffbot.launch
+```
+
+
  
  ### Using ROS launch to Spawn URDF Robots
  
