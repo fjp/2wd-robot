@@ -175,6 +175,7 @@ gz sdf -p MODEL.urdf
 ```
 
 <details markdown="1"><summary>DiffBot sdf.</summary>
+```xml
 <sdf version='1.7'>
   <model name='diffbot'>
     <link name='base_footprint'>
@@ -437,4 +438,5 @@ gz sdf -p MODEL.urdf
     </plugin>
   </model>
 </sdf>
+```
 </details>
