@@ -155,6 +155,15 @@ This will open Gazebo simulator and show the DiffBot model:
     <figcaption>Empty world including DiffBot.</figcaption>
 </figure>
 
+### Moving the Robot
+
+Note that the robot cannot be moved without having either a Gazebo plugin loaded or making use of [ROS Control](http://wiki.ros.org/ros_control)
+and its Gazebo plugin [`gazebo_ros_control`](http://wiki.ros.org/gazebo_ros_control), see also the [Gazebo ROS Control Tutorial](http://gazebosim.org/tutorials/?tut=ros_control#Addthegazebo_ros_controlplugin). Using the ROS Control and its Gazebo plugin is done in case of DiffBot. 
+An alternative would be to use the existing [`differential_drive_controller`](http://gazebosim.org/tutorials?tut=ros_gzplugins#DifferentialDrive) Gazebo plugin without having to rely on ROS Control. 
+The next section explains the `diffbot_control` package in more detail and how to setup the 
+[`diff_drive_controller`](http://wiki.ros.org/diff_drive_controller?distro=noetic)
+from the [`ros_controllers`](http://wiki.ros.org/ros_controllers) package.
+
 
 ### Troubleshooting
 
