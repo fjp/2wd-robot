@@ -151,6 +151,6 @@ See also the complete [`diffbot.launch`](https://github.com/fjp/diffbot/blob/mas
 This will open Gazebo simulator and show the DiffBot model:
 
 <figure>
-    <a href="/assets/collections/diffbot/gazebo/diffbot.png"><img src="/assets/collections/diffbot/gazebo/diffbot.png"></a>
+    <a href="/assets/collections/diffbot/gazebo/diffbot_gazebo.png"><img src="/assets/collections/diffbot/gazebo/diffbot_gazebo.png"></a>
     <figcaption>Empty world including DiffBot.</figcaption>
 </figure>
