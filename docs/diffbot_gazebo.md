@@ -117,7 +117,7 @@ that has to be downloaded first, which is happening in the background. TODO: gas
 
 
 <figure>
-    <a href="/assets/collections/diffbot/gazebo/diffbot-empty.png"><img src="/assets/collections/diffbot/gazebo/diffbot-empty.png"></a>
+    <a href="/assets/collections/diffbot/gazebo/empty-world.png"><img src="/assets/collections/diffbot/gazebo/empty-world.png"></a>
     <figcaption>Empty world of DiffBot.</figcaption>
 </figure>
 
