@@ -5,8 +5,8 @@ Another example can be found in the [gazebo_ros_demos](https://github.com/ros-si
 
 ```console
 fjp@ubuntu:~/git/diffbot/ros/src$ catkin create pkg diffbot_gazebo
-Creating package "diffbot_description" in "/home/fjp/git/diffbot/ros/src"...
-Created file diffbot_gazebo/CMakeLists.txt
+Creating package "diffbot_gazebo" in "/home/fjp/git/diffbot/ros/src"...
 Created file diffbot_gazebo/package.xml
+Created file diffbot_gazebo/CMakeLists.txt
 Successfully created package files in /home/fjp/git/diffbot/ros/src/diffbot_gazebo.
 ```
