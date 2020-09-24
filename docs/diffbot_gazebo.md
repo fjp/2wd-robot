@@ -117,7 +117,7 @@ that has to be downloaded first, which is happening in the background. TODO: gas
 
 
 <figure>
-    <a href="/assets/collections/diffbot/gazebo/empty-world.png"><img src="/assets/collections/diffbot/gazebo/empty-world.png"></a>
+    <a href="resources/gazebo/empty-world.png"><img src="resources/gazebo/empty-world.png"></a>
     <figcaption>Empty world of DiffBot.</figcaption>
 </figure>
 
@@ -151,6 +151,6 @@ See also the complete [`diffbot.launch`](https://github.com/fjp/diffbot/blob/mas
 This will open Gazebo simulator and show the DiffBot model:
 
 <figure>
-    <a href="/assets/collections/diffbot/gazebo/diffbot_gazebo.png"><img src="/assets/collections/diffbot/gazebo/diffbot_gazebo.png"></a>
+    <a href="resources/gazebo/diffbot_gazebo.png"><img src="resources/diffbot/gazebo/diffbot_gazebo.png"></a>
     <figcaption>Empty world including DiffBot.</figcaption>
 </figure>
