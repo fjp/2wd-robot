@@ -1,6 +1,6 @@
 ## ROS Installation
 
-The robot setup is supposed to run on Ubuntu 18.04 Bionic. [ROS Melodic](http://wiki.ros.org/melodic) is intended to run with this Ubuntu version.
+The robot setup is supposed to run on Ubuntu Mate 20.04 Focal Fossa. [ROS Noetic](http://wiki.ros.org/melodic) is intended to run with this Ubuntu version.
 
 ## Build Tool: `catkin_tools`
 
