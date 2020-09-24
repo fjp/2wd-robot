@@ -24,10 +24,10 @@ To work with this package the specified dependencies must be installed either us
 
 | Dependency                    | Source                                                | Ubuntu/Debian Package            |
 |:-----------------------------:|:-----------------------------------------------------:|:--------------------------------:|
-| `rosparam_shortcuts`          | https://github.com/PickNikRobotics/rosparam_shortcuts | `ros-melodic-rosparam-shortcuts` |
-| `hardware_interface`          | https://github.com/ros-controls/ros_control           | `ros-melodic-ros-control`        |
+| `rosparam_shortcuts`          | https://github.com/PickNikRobotics/rosparam_shortcuts | `ros-noetic-rosparam-shortcuts` |
+| `hardware_interface`          | https://github.com/ros-controls/ros_control           | `ros-noetic-ros-control`        |
 | `transmission_interface`                                                                                                 |
-| `diff_drive_controller`       | https://github.com/ros-controls/ros_controllers       | `ros-melodic-ros-controllers`    |
+| `diff_drive_controller`       | https://github.com/ros-controls/ros_controllers       | `ros-noetic-ros-controllers`    |
 
 To install a package from source clone (using git) or download the source files from where they are located (commonly hosted on GitHub) into the `src` folder of a ros catkin workspace and execute the [`catkin build`](https://catkin-tools.readthedocs.io/en/latest/verbs/catkin_build.html) command. Also make sure to d
 
@@ -38,5 +38,5 @@ ls build                  # Show the resulting build space
 ls devel                  # Show the resulting devel space
 ```
 
-Make sure to clone/download the source files suitable for the ROS distribtion you are using. If the sources are not available for the distribution you are working with, it is worth to try building anyway. Chances are that the package you want to use is suitable for multiple ROS distros. For example if a package states in its docs, that it is only available for [kinetic](http://wiki.ros.org/kinetic) it is possible that it will work with a ROS [melodic](http://wiki.ros.org/melodic) install.
+Make sure to clone/download the source files suitable for the ROS distribtion you are using. If the sources are not available for the distribution you are working with, it is worth to try building anyway. Chances are that the package you want to use is suitable for multiple ROS distros. For example if a package states in its docs, that it is only available for [kinetic](http://wiki.ros.org/kinetic) it is possible that it will work with a ROS [noetic](http://wiki.ros.org/noetic) install.
 {: .notice }
