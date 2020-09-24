@@ -1,13 +1,15 @@
 ## DiffBot Control Package
 
-As described in the [ROS Integration](https://fjp.at/projects/diffbot/ros-integration/#ros-control) section, 
+As described in the [ROS Integration](https://fjp.at/projects/diffbot/ros-integration/#ros-control) and 
+[Gazebo Simulation](https://fjp.at/projects/diffbot/ros-packages/gazebo/) sections, 
 DiffBot makes use of [ROS Control](https://fjp.at/posts/ros/ros-control/) repositories. 
 Specifically the [`diff_drive_controller`](http://wiki.ros.org/diff_drive_controller) package from the 
 [`ros_controllers`](https://github.com/ros-controls/ros_controllers) meta package. 
-To leverage ROS Control we require our implemented 
-[robot description](https://fjp.at/projects/diffbot/ros-packages/robot-description/) and implement 
+To leverage ROS Control for the simulation with Gazebo the [robot description](https://fjp.at/projects/diffbot/ros-packages/robot-description/) and the 
+controller configuration (usually a `MYROBOT_control.yaml` file) is required. For the real hardware its required to implement 
 a class derived from [`hardware_interface::RobotHW`](http://docs.ros.org/melodic/api/hardware_interface/html/c++/classhardware__interface_1_1RobotHW.html).
-Let's call it `DiffBotHW` and create it inside a new package named `diffbot_control`, which is created with
+
+The convention to control a robot (in simulation and in the real world) is to have a package named `MYROBOT_control`. In case of DiffBot its called `diffbot_control` and created with
 [`catkin create pkg PKG_NAME [--catkin-deps [DEP [DEP ...]]]`](https://catkin-tools.readthedocs.io/en/latest/verbs/catkin_create.html#catkin-create-pkg):
 
 ```console
@@ -40,3 +42,19 @@ ls devel                  # Show the resulting devel space
 
 Make sure to clone/download the source files suitable for the ROS distribtion you are using. If the sources are not available for the distribution you are working with, it is worth to try building anyway. Chances are that the package you want to use is suitable for multiple ROS distros. For example if a package states in its docs, that it is only available for [kinetic](http://wiki.ros.org/kinetic) it is possible that it will work with a ROS [noetic](http://wiki.ros.org/noetic) install.
 {: .notice }
+
+
+### ROS Control in Gazebo
+
+Two great resources to get the `diff_drive_controller` working inside Gazebo is the [Gazebo ROS Control Tutorial](http://gazebosim.org/tutorials?tut=ros_control)
+of [`rrbot`](https://github.com/ros-simulation/gazebo_ros_demos) and the [R2D2 ROS URDF Tutorial](http://wiki.ros.org/urdf/Tutorials/Using%20a%20URDF%20in%20Gazebo), especially the last section, [The Wheels on the Droid Go Round and Round](http://wiki.ros.org/urdf/Tutorials/Using%20a%20URDF%20in%20Gazebo#The_Wheels_on_the_Droid_Go_Round_and_Round).
+
+
+
+
+
+### ROS Control on the Real Hardware
+
+As mentioned above the its required to implement a class derived from 
+[`hardware_interface::RobotHW`](http://docs.ros.org/melodic/api/hardware_interface/html/c++/classhardware__interface_1_1RobotHW.html).
+Let's call it `DiffBotHW` and create it inside the `diffbot_control/src` folder.
