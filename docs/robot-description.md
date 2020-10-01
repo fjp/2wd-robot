@@ -75,7 +75,7 @@ fjp@ubuntu:/tmp$ evince diffbot.pdf
 To visualize the 3D model in RViz we first need to install the `joint-state-publisher-gui` which was separated from non-gui `joint-state-publisher`. There exists a debian package which can be installed with the following command:
 
 ```console
-fjp@ubuntu:~/git/diffbot/ros$ sudo apt install ros-melodic-joint-state-publisher-gui
+fjp@ubuntu:~/git/diffbot/ros$ sudo apt install ros-noetic-joint-state-publisher-gui
 ```
 
 After installing the required dependency, the `view_diffbot.launch` launch file can be executed using [`roslaunch`](http://wiki.ros.org/roslaunch) command:
@@ -90,3 +90,5 @@ According to the launch file's configuration, this will show the robot in RViz t
     <a href="https://raw.githubusercontent.com/fjp/diffbot/master/docs/resources/rviz_diffbot_meshes.png"><img src="https://raw.githubusercontent.com/fjp/diffbot/master/docs/resources/rviz_diffbot_meshes.png"></a>
     <figcaption>DiffBot displayed in RViz.</figcaption>
 </figure>
+
+With the robot descripton loaded on the ROS parameter server, it's possible to use the `TF Tree` `rqt` plugin to display the transformation tree.
