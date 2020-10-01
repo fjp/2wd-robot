@@ -67,7 +67,7 @@ fjp@ubuntu:/tmp$ evince diffbot.pdf
 ```
 
 <figure>
-    <a href="https://raw.githubusercontent.com/fjp/diffbot/master/docs/resources/graphviz_diffbot.png"><img src="https://raw.githubusercontent.com/fjp/diffbot/master/docs/resources/graphviz_diffbot.png"></a>
+    <a href="https://raw.githubusercontent.com/fjp/diffbot/master/docs/resources/diffbot-tf-tree.png"><img src="https://raw.githubusercontent.com/fjp/diffbot/master/docs/resources/diffbot-tf-tree.png"></a>
     <figcaption>Graphviz diagram of DiffBot URDF robot description.</figcaption>
 </figure>
 
@@ -87,6 +87,6 @@ fjp@ubuntu:~/git/diffbot/ros$ roslaunch diffbot_description view_diffbot.launch
 According to the launch file's configuration, this will show the robot in RViz together with the `joint-state-publisher-gui` to set the joint values:
 
 <figure>
-    <a href="https://raw.githubusercontent.com/fjp/diffbot/master/docs/resources/rviz_diffbot_basic.png"><img src="https://raw.githubusercontent.com/fjp/diffbot/master/docs/resources/rviz_diffbot_basic.png"></a>
+    <a href="https://raw.githubusercontent.com/fjp/diffbot/master/docs/resources/rviz_diffbot_meshes.png"><img src="https://raw.githubusercontent.com/fjp/diffbot/master/docs/resources/rviz_diffbot_meshes.png"></a>
     <figcaption>DiffBot displayed in RViz.</figcaption>
 </figure>
