@@ -40,6 +40,22 @@ Only the SDA (data) and SCL (clock) wires are required.
 Make sure to set the address with the dip switches on the motor driver to `0x0f` because this is the default address used
 in the library files.
 
+To test the physical I2C connection use `i2cdetect` described in [Hardware Interfaces](https://fjp.at/projects/diffbot/hardware-interfaces/#prepare-i2c-connection):
+The output should list `0f` in the address table:
+
+```console
+$ i2cdetect -y 1
+     0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f
+00:          -- -- -- -- -- -- -- -- -- -- -- -- 0f 
+10: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+20: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+30: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+40: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+50: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+60: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+70: -- -- -- -- -- -- -- --
+```
+
 ### Test Motor Driver
 
 Test the motor driver by running one of the python files:
