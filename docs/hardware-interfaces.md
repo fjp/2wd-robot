@@ -114,16 +114,7 @@ $ i2cdetect -y 0
 ```
 
 It outputs a table with the list of detected devices on the specified bus.
-i2cbus  indicates  the number or name of the I2C bus to be scanned, and
-       should correspond to one of the busses listed by i2cdetect -l.  The op‐
-       tional  parameters first and last restrict the scanning range (default:
-       from 0x03 to 0x77).
-
-       As there is no standard I2C detection command, i2cdetect uses arbitrary
-       SMBus  commands  (namely  SMBus  quick write and SMBus receive byte) to
-       probe for devices. By default, the command used is the one believed  to
-       be  the  safest  for each address. See options -q and -r to change this
-       behavior.
+In this case there are no connected devices on I2C bus 0.
 
 <details><summary>Alternative setup using raspi-config</summary>
 
