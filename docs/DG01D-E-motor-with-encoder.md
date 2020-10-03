@@ -15,9 +15,9 @@ Meanwhile the North is the inverse and, when sensed, the hall output will result
 
 The pins on the product are as follows, when looking at the connector on the housing, motor down/connector up, from right to left. The colors correspond to the included cable when plugged in to the connection slot.
 
-G (Blue): hall power negative
-H1 (Green): hall H1 output signal, square wave
-H2 (Yellow): hall H2 output signal, square wave
-V (Orange): hall power positive
-M+ (Red): motor positive pole
-M- (Brown): motor negative pole
+- G (Blue): hall power negative
+- H1 (Green): hall H1 output signal, square wave
+- H2 (Yellow): hall H2 output signal, square wave
+- V (Orange): hall power positive
+- M+ (Red): motor positive pole
+- M- (Brown): motor negative pole
