@@ -48,6 +48,7 @@ dtparam=i2c1=on
     <figcaption><a href="https://pinout.xyz/pinout/i2c" title="I2C Pinout">I2C Pinout</a> on Raspberry Pi 4 B.</figcaption>
 </figure>
 
+<details><summary>Alternative setup using raspi-config</summary>
 
 On Raspian Buster, the official Raspberry OS, we could use the `raspi-config` tool:
 
@@ -160,3 +161,5 @@ Confirm the activation and restart the RPi:
 <span style="background-color:#75507B"><font color="#EEEEEC">                    </font></span><span style="background-color:#2E3436"><font color="#EEEEEC">                                                            </font></span>
 
 </pre>
+
+</details>
