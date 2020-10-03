@@ -35,6 +35,10 @@ sudo apt install i2c-tools
 fjp@ubuntu:~/git/2wd-robot$ sudo apt install i2c-tools
 ```
 
+This `i2cdetect` tool is  a  userspace program to scan an I2C bus for devices
+given a specific i2cbus argument which indicates  the number or name of the I2C bus to be scanned, 
+and should correspond to one of the busses listed by `i2cdetect -l`. See also `info i2cdetect` for the manual page.
+
 To test if the i2c ports are working we use the following commands:
 
 ```console
@@ -94,18 +98,32 @@ Adding user fjp to group i2c
 Done.
 ```
 
-Similar things can be done for usb connections. For this we add the user to the `dialout` group:
-
-```console
-sudo adduser fjp dialout
-Adding user `fjp' to group `dialout' ...
-Adding user fjp to group dialout
-Done.
-```
-
 After logging out and back in again the access will be granted and following output will come up:
 
+```console
+$ i2cdetect -y 0
+     0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f
+00:          -- -- -- -- -- -- -- -- -- -- -- -- -- 
+10: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+20: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+30: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+40: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+50: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+60: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+70: -- -- -- -- -- -- -- -- 
+```
 
+It outputs a table with the list of detected devices on the specified bus.
+i2cbus  indicates  the number or name of the I2C bus to be scanned, and
+       should correspond to one of the busses listed by i2cdetect -l.  The op‐
+       tional  parameters first and last restrict the scanning range (default:
+       from 0x03 to 0x77).
+
+       As there is no standard I2C detection command, i2cdetect uses arbitrary
+       SMBus  commands  (namely  SMBus  quick write and SMBus receive byte) to
+       probe for devices. By default, the command used is the one believed  to
+       be  the  safest  for each address. See options -q and -r to change this
+       behavior.
 
 <details><summary>Alternative setup using raspi-config</summary>
 
@@ -222,3 +240,15 @@ Confirm the activation and restart the RPi:
 </pre>
 
 </details>
+
+
+## USB Devices
+
+Similar to accessing `i2c` devices, a non root user can use usb connections by adding it to the the `dialout` group:
+
+```console
+sudo adduser fjp dialout
+Adding user `fjp' to group `dialout' ...
+Adding user fjp to group dialout
+Done.
+```
