@@ -23,6 +23,30 @@ The pins on the product are as follows, when looking at the connector on the hou
 
 ### Wheel Encoder Measurements
 
+This section shows oscilloscope waveform measurements of the quadrature encoder in the DG01D-E motor. 
+The motor is connected to the [Grove I2C Motor Driver](https://fjp.at/projects/diffbot/components/#control) that is powerd with 10 VDC. 
+The `motor_example.py` applies 50-100% of the 10 VDC which leads to the following output voltages on the motor:
+
+{% include video id="31Zix56L-IA" provider="youtube" %}
+
+<details><summary>Summary of installation instructions</summary>
+0:00 Forward Speed 50: 6.5 VDC
+0:12 Back Speed 50: 6.5 VDC 
+0:23 Forward Speed 60: 6.9 VDC
+0:34 Back Speed 60: 6.9 VDC
+0:46 Forward Speed 70:  7.2 VDC
+0:56 Back Speed 70:  7.2 VDC
+1:07 Forward 80: 7.3 VDC
+1:18 Back 80: 7.3 VDC
+1:29 Forward 90: 7.6 VDC
+1:41 Back 90: 7.6 VDC
+1:52 Forward 100: 7.9 VDC
+2:02 Back 100: 7.9 VDC
+</details>
+
+
+At the bottom of the pico scope window the cycle time, duty cycle, high and low pulse width measurements are shown for both encoder signals.
+Oscilloscope is the [PicoScope 3000 Series](https://www.picotech.com/oscilloscope/3000/usb3-oscilloscope-logic-analyzer) with 2 Channels.
 To download and install Pico Scope software on Linux refer to the [documentation](https://www.picotech.com/downloads/linux).
 
 <details><summary>Summary of installation instructions</summary>
@@ -48,4 +72,4 @@ sudo apt-get install picoscope
 
 </details>
 
-{% include video id="31Zix56L-IA" provider="youtube" %}
+
