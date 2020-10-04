@@ -23,4 +23,29 @@ The pins on the product are as follows, when looking at the connector on the hou
 
 ### Wheel Encoder Measurements
 
+To download and install Pico Scope software on Linux refer to the [documentation](https://www.picotech.com/downloads/linux).
+
+<details><summary>Summary of installation instructions</summary>
+
+1. Add repository to the updater
+```console
+sudo bash -c 'echo "deb https://labs.picotech.com/debian/ picoscope main" >/etc/apt/sources.list.d/picoscope.list'
+```
+2. Import public key
+```console
+wget -O - https://labs.picotech.com/debian/dists/picoscope/Release.gpg.key | sudo apt-key add -
+```
+3. Update package manager cache
+```console
+sudo apt-get update
+```
+
+4. Install PicoScope
+
+```console
+sudo apt-get install picoscope
+```
+
+</details>
+
 {% include video id="31Zix56L-IA" provider="youtube" %}
