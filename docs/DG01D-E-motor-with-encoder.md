@@ -20,6 +20,13 @@ The pins on the product are as follows, when looking at the connector on the hou
 - M+ (Red): motor positive pole
 - M- (Brown): motor negative pole
 
+The following image shows the motor from its side with the corresponding pin descriptions:
+
+<figure>
+    <a href="https://raw.githubusercontent.com/fjp/fjp.github.io/master/assets/collections/diffbot/components/dg01d-e-motor-with-encoder-pins.png"><img src="https://raw.githubusercontent.com/fjp/fjp.github.io/master/assets/collections/diffbot/components/dg01d-e-motor-with-encoder-pins.png"></a>
+    <figcaption>DG01D-E Motor with encoder pin description.</figcaption>
+</figure>
+
 
 ### Wheel Encoder Measurements
 
