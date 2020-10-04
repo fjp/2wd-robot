@@ -29,7 +29,7 @@ The `motor_example.py` applies 50-100% of the 10 VDC which leads to the followin
 
 {% include video id="31Zix56L-IA" provider="youtube" %}
 
-<details><summary>Summary of installation instructions</summary>
+<details><summary>Voltage sweep measurements</summary>
 0:00 Forward Speed 50: 6.5 VDC
 0:12 Back Speed 50: 6.5 VDC 
 0:23 Forward Speed 60: 6.9 VDC
