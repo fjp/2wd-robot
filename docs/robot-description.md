@@ -91,4 +91,9 @@ According to the launch file's configuration, this will show the robot in RViz t
     <figcaption>DiffBot displayed in RViz.</figcaption>
 </figure>
 
-With the robot descripton loaded on the ROS parameter server, it's possible to use the `TF Tree` `rqt` plugin to display the transformation tree.
+With the robot descripton loaded on the ROS parameter server, it's possible to use the `TF Tree` `rqt` plugin to display the transformation tree (see image above).
+
+The following video shows the implementation of the robot description. Note the video may be outdated when you read this and the model has improved.
+
+
+{% include video id="gfhgfU8zUOs" provider="youtube" %}
