@@ -165,7 +165,35 @@ The next section explains the `diffbot_control` package in more detail and how t
 from the [`ros_controllers`](http://wiki.ros.org/ros_controllers) package.
 
 
-### Troubleshooting
+### Adding Sensors
+
+To add sensors to a robot model make use of link and joint tags to define the desired location and shape, possibly using meshes.
+For the simulation of these sensor there exist common Gazebo plugins that can be used. See, the [Tutorial: Using Gazebo plugins with ROS]
+for existing plugins and more details how to use them. For a full list of plugins see also [`gazebo_ros_pkgs`](https://github.com/ros-simulation/gazebo_ros_pkgs/tree/kinetic-devel/gazebo_plugins/src) which is a package or interface
+for using ROS with the Gazebo simulator.
+
+
+#### Camera
+
+This section follows Gazebo tutorial [Adding a Camera](http://gazebosim.org/tutorials?tut=ros_gzplugins#Camera).
+
+#### Laser (Lidar)
+
+This section follows Gazebo tutorial [Adding a Laser GPU](http://gazebosim.org/tutorials?tut=ros_gzplugins#GPULaser).
+
+
+#### Ultrasonic Ranger
+
+
+See the source of the [`gazebo_ros_range`](https://github.com/ros-simulation/gazebo_ros_pkgs/blob/kinetic-devel/gazebo_plugins/src/gazebo_ros_range.cpp) plugin.
+
+
+#### Inertial Measurement Unit (IMU)
+
+This section follows Gazebo tutorial [Adding an IMU](http://gazebosim.org/tutorials?tut=ros_gzplugins#IMU(GazeboRosImu). Note use GazeboRosImuSensor?
+
+
+## Troubleshooting
 
 A quick way to verify if the conversion from [xacro](http://wiki.ros.org/xacro) to [urdf](http://wiki.ros.org/urdf) to [sdf](http://sdformat.org/) is working is the following ([source: Tutorial URDF in Gazebo](http://gazebosim.org/tutorials/?tut=ros_urdf#VerifyingtheGazeboModelWorks)):
 First convert the xacro model to a urdf model with the `xacro` command:
@@ -449,3 +477,6 @@ gz sdf -p MODEL.urdf
 </sdf>
 ```
 </details>
+
+
+
