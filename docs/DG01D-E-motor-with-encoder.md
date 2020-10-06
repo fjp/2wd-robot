@@ -34,9 +34,9 @@ This section shows oscilloscope waveform measurements of the quadrature encoder 
 The motor is connected to the [Grove I2C Motor Driver](https://fjp.at/projects/diffbot/components/#control) that is powerd with 10 VDC. 
 The `motor_example.py` applies 50-100% of the 10 VDC which leads to the following output voltages on the motor:
 
-{% include video id="31Zix56L-IA" provider="youtube" %}
+{% include video id="5GlZtQ87Co8" provider="youtube" %}
 
-<details><summary>Voltage sweep measurements</summary>
+<details markdown="1"><summary>Voltage sweep measurements</summary>
 - 0:00 Forward Speed 50: 6.5 VDC
 - 0:12 Back Speed 50: 6.5 VDC 
 - 0:23 Forward Speed 60: 6.9 VDC
@@ -56,7 +56,7 @@ At the bottom of the pico scope window the cycle time, duty cycle, high and low 
 Oscilloscope is the [PicoScope 3000 Series](https://www.picotech.com/oscilloscope/3000/usb3-oscilloscope-logic-analyzer) with 2 Channels.
 To download and install Pico Scope software on Linux refer to the [documentation](https://www.picotech.com/downloads/linux).
 
-<details><summary>Summary of installation instructions</summary>
+<details markdown="1"><summary>Summary of installation instructions</summary>
 
 1. Add repository to the updater
 ```console
