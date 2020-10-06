@@ -4,7 +4,7 @@ The robot setup is supposed to run on Ubuntu Mate 20.04 Focal Fossa. [ROS Noetic
 
 Another program that is required to run ROS nodes written with the `rospy` client library is `python-is-python3`. Install it with:
 
-```
+```console
 sudo apt install python-is-python3
 ```
 
