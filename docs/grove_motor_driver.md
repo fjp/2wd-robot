@@ -23,12 +23,17 @@ This library requires the following two python libraries
 - [RPi.GPIO](https://pypi.org/project/RPi.GPIO/)
 - [smbus](https://pypi.org/project/smbus/) SMBus (System Management Bus) is a subset from the I2C protocol
 
-These libraries should be installed with `pip`, Python's package manager:
+These libraries should be installed with `pip3`, Python's package manager:
 
 ```console
-pip install RPi.GPIO
-pip install smbus
-``` 
+pip3 install RPi.GPIO
+pip3 install smbus
+```
+
+Note that this will install these packages system wide. This is ok because they are installed on the Raspberry Pi which is dedicated to 
+operate for this purpose. For a development environment it is best practice to use a python virtual environment like 
+[`venv`](https://docs.python.org/3/library/venv.html) and install the packages inside it.
+{: .notice }
 
 ### Connection
 
@@ -40,72 +45,90 @@ Only the SDA (data) and SCL (clock) wires are required.
 Make sure to set the address with the dip switches on the motor driver to `0x0f` because this is the default address used
 in the library files.
 
+To test the physical I2C connection use `i2cdetect` described in [Hardware Interfaces](https://fjp.at/projects/diffbot/hardware-interfaces/#prepare-i2c-connection):
+The output should list `0f` in the address table:
+
+```console
+$ i2cdetect -y 1
+     0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f
+00:          -- -- -- -- -- -- -- -- -- -- -- -- 0f 
+10: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+20: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+30: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+40: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+50: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+60: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+70: -- -- -- -- -- -- -- --
+```
+
 ### Test Motor Driver
 
 Test the motor driver by running one of the python files:
 
 ```console
-fjp@ubuntu:~/git/2wd-robot/ros/src/grove_motor_driver/src$ sudo python motor_example.py 
+fjp@ubuntu:~/git/diffbot/ros/src/grove_motor_driver/src$ python3 motor_example.py 
 Forward
 Back
 Stop
-('Speed:', 0)
-('Speed:', 1)
-('Speed:', 2)
-('Speed:', 3)
-('Speed:', 4)
-('Speed:', 5)
-('Speed:', 6)
-('Speed:', 7)
-('Speed:', 8)
-('Speed:', 9)
-('Speed:', 10)
-('Speed:', 11)
-('Speed:', 12)
-('Speed:', 13)
-('Speed:', 14)
-('Speed:', 15)
-('Speed:', 16)
-('Speed:', 17)
-('Speed:', 18)
-('Speed:', 19)
-('Speed:', 20)
-('Speed:', 21)
-('Speed:', 22)
-('Speed:', 23)
-('Speed:', 24)
-('Speed:', 25)
-('Speed:', 26)
-('Speed:', 27)
-('Speed:', 28)
-('Speed:', 29)
-('Speed:', 30)
-('Speed:', 31)
-('Speed:', 32)
-('Speed:', 33)
-('Speed:', 34)
-('Speed:', 35)
-('Speed:', 36)
-('Speed:', 37)
-('Speed:', 38)
-('Speed:', 39)
-('Speed:', 40)
-('Speed:', 41)
-('Speed:', 42)
+Speed: 0
+Speed: 1
+Speed: 2
+Speed: 3
+Speed: 4
+Speed: 5
+Speed: 6
+Speed: 7
+Speed: 8
+Speed: 9
+Speed: 10
+Speed: 11
+Speed: 12
 ...
-('Speed:', 89)
-('Speed:', 90)
-('Speed:', 91)
-('Speed:', 92)
-('Speed:', 93)
-('Speed:', 94)
-('Speed:', 95)
-('Speed:', 96)
-('Speed:', 97)
-('Speed:', 98)
-('Speed:', 99)
+Speed: 25
+Speed: 26
+Speed: 27
+Speed: 28
+Speed: 29
+Speed: 30
+Speed: 31
+Speed: 32
+Speed: 33
+...
+Speed: 55
+Speed: 56
+Speed: 57
+Speed: 58
+Speed: 59
+Speed: 60
+Speed: 61
+Speed: 62
+Speed: 63
+Speed: 64
+Speed: 65
+Speed: 66
+...
+Speed: 75
+Speed: 76
+Speed: 77
+Speed: 78
+Speed: 79
+Speed: 80
+Speed: 81
+Speed: 82
+Speed: 83
+Speed: 84
+Speed: 85
+Speed: 86
+Speed: 87
+Speed: 88
+...
+Speed: 97
+Speed: 98
+Speed: 99
 Stop
-``` 
+```
+
+#### Troubleshooting
 
 If you get errors like the following, use the `RESET` button on the motor driver.
 

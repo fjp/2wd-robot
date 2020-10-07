@@ -91,4 +91,7 @@ According to the launch file's configuration, this will show the robot in RViz t
     <figcaption>DiffBot displayed in RViz.</figcaption>
 </figure>
 
-With the robot descripton loaded on the ROS parameter server, it's possible to use the `TF Tree` `rqt` plugin to display the transformation tree.
+With the robot descripton loaded on the ROS parameter server, it's possible to use the `TF Tree` `rqt` plugin to display the transformation tree (see image above).
+
+In the next section, [Gazebo Simulation](/projects/diffbot/ros-packages/gazebo/), the robot model is prepared for simulation inside of 
+[Gazebo](http://gazebosim.org/).

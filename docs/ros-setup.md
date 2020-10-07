@@ -2,6 +2,12 @@
 
 The robot setup is supposed to run on Ubuntu Mate 20.04 Focal Fossa. [ROS Noetic](http://wiki.ros.org/melodic) is intended to run with this Ubuntu version.
 
+Another program that is required to run ROS nodes written with the `rospy` client library is `python-is-python3`. Install it with:
+
+```console
+sudo apt install python-is-python3
+```
+
 ## Build Tool: `catkin_tools`
 
 To work with ROS we will use [`catkin_tools`](https://catkin-tools.readthedocs.io/en/latest/index.html) 
