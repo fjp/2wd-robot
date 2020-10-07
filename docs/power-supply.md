@@ -19,3 +19,9 @@ approximately 900 mAh. This means that four batteries of these provide 14.8 V wh
 Although the capacity is lower compared to non recharchable AA batteries (2700 mAh), these type of batteries can be reused multiple times when charged
 with a suitable battery charchger such as the [Nitecore UMS4](https://charger.nitecore.com/product/ums4) or the 
 [XTAR VC4](https://www.xtar.cc/product/XTAR-VC4-Charger-20.html). DiffBot uses four 14500 batteries from [Trustfire](https://www.trustfire.com/products/trustfire-14500-900mah-battery) with 3.7 V and 900 mAh.
+
+
+Note that four standard AA bateries with 1.5 V each is perfectly fine. 
+Only the motor driver has to provide 100% of its input voltage to avoid stalling the motors.
+With higher Voltage rated batteries more different speeds will be possible.
+{: .notice}
