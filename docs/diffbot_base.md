@@ -1,5 +1,23 @@
 ## DiffBot Base Package
 
+This package contains the so called hardware interface of DiffBot which represents the real hardware in software to work with ROS Control. 
+
+<figure>
+    <a href="resources/ros_control_overview.png"><img src="resources/ros_control_overview.png"></a>
+    <figcaption><a href="http://wiki.ros.org/ros_control#Overview" title="ROS Control">ROS Control</a> Overview.</figcaption>
+</figure>
+
+All that is needed in this package is to write a class that inherits from `hardware_interface::RobotHW` and provide a launch
+file. The launch file will 
+
+- Load the robot description from `diffbot_description` to the paramter server
+- Run the hardware interface of this package `diffbot_base`
+- Load the controller configuration yaml from the `diffbot_control` package to the parameter server
+- Load the controllers with the [controller manager](http://wiki.ros.org/controller_manager?distro=noetic)
+
+### diffbot_base Package
+
+The `diffbot_base` package is created with `catkin-tools`:
 
 ```console
 catkin create pkg diffbot_base --catkin-deps diff_drive_controller hardware_interface roscpp sensor_msgs diagnostic_updater                      
@@ -9,4 +27,33 @@ Created file diffbot_base/CMakeLists.txt
 Created folder diffbot_base/include/diffbot_base
 Created folder diffbot_base/src
 Successfully created package files in /home/fjp/git/diffbot/ros/src/diffbot_base.
+```
+
+### Hardware Interface
+
+See the `include` and `src` folders of this package for details on the hardware interface implementation.
+More infos in the documentation is coming soon (TODO).
+
+
+### Launch File
+
+
+```xml
+<!-- https://github.com/ros-controls/ros_controllers/tree/kinetic-devel/diff_drive_controller/test -->
+<launch>
+	<!-- Load DiffBot model -->
+	<param name="robot_description"
+    	   command="$(find xacro)/xacro '$(find diffbot_description)/urdf/diffbot.xacro'"/>
+
+    <node name="diffbot_base" pkg="diffbot_base" type="diffbot_base"/>
+
+    <!-- Load controller config to the parameter server -->
+    <rosparam command="load" 
+              file="$(find diffbot_control)/config/diffbot_control.yaml"/>
+
+    <!-- Load the controllers -->
+    <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
+        output="screen" ns="diffbot" args="joint_state_controller
+                                            mobile_base_controller"/>
+</launch>
 ```
