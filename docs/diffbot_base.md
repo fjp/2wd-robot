@@ -1,6 +1,7 @@
 ## DiffBot Base Package
 
-This package contains the so called hardware interface of DiffBot which represents the real hardware in software to work with ROS Control. 
+This package contains the so called hardware interface of DiffBot which represents the real hardware in software to work with 
+[ROS Control](http://wiki.ros.org/ros_control). 
 
 <figure>
     <a href="resources/ros_control_overview.png"><img src="resources/ros_control_overview.png"></a>
