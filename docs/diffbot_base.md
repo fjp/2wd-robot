@@ -4,7 +4,7 @@ This package contains the so called hardware interface of DiffBot which represen
 [ROS Control](http://wiki.ros.org/ros_control). 
 
 <figure>
-    <a href="resources/ros_control_overview.png"><img src="resources/ros_control_overview.png"></a>
+    <a href="https://raw.githubusercontent.com/fjp/diffbot/master/docs/resources/ros_control_overview.png"><img src="https://raw.githubusercontent.com/fjp/diffbot/master/docs/resources/ros_control_overview.png"></a>
     <figcaption><a href="http://wiki.ros.org/ros_control#Overview" title="ROS Control">ROS Control</a> Overview.</figcaption>
 </figure>
 
