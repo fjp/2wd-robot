@@ -58,3 +58,35 @@ More infos in the documentation is coming soon (TODO).
                                             mobile_base_controller"/>
 </launch>
 ```
+
+After launching this launch file with 
+
+```console
+roslaunch diffbot_base diffbot.launch
+```
+
+the following parameters are stored on the parameter server:
+
+```console
+$ rosparam list
+/diffbot/hardware_interface/joints
+/diffbot/joint_state_controller/extra_joints
+/diffbot/joint_state_controller/publish_rate
+/diffbot/joint_state_controller/type
+/diffbot/mobile_base_controller/base_frame_id
+/diffbot/mobile_base_controller/left_wheel
+/diffbot/mobile_base_controller/pose_covariance_diagonal
+/diffbot/mobile_base_controller/publish_rate
+/diffbot/mobile_base_controller/right_wheel
+/diffbot/mobile_base_controller/twist_covariance_diagonal
+/diffbot/mobile_base_controller/type
+/diffbot/mobile_base_controller/wheel_radius
+/diffbot/mobile_base_controller/wheel_separation
+/robot_description
+/rosdistro
+/roslaunch/uris/host_tensorbook__46157
+/roslaunch/uris/host_ubuntu__33729
+/rosversion
+/run_id
+```
+
