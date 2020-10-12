@@ -61,7 +61,7 @@ launch file from [`diffbot_base/launch/diffbot.launch`](https://github.com/fjp/d
 </launch>
 ```
 
-This will load the DiffBot robot description to the parameter server which is required  for the hardware interface that gets created inside the next
+This will load the DiffBot robot description onto the parameter server which is required  for the hardware interface that gets created inside the next
 node `diffbot_base`. It creates the hardware interface and instantiates a new controller manager in the `diffbot_base.cpp`.
 Finally the `spawner` from the `controller_manager` package is used to initialize and start the controllers defined in the `diffbot_control/config/diffbot_control.yaml`. The last step in this launch file is required to get the controllers initialized and started.
 Another way would be to use `controller_manager::ControllerManager::loadControllers()` inside the `diffbot_base.cpp`.
@@ -104,6 +104,14 @@ To have a simulation showing DiffBot, the second step is to use the [`diffbot_ga
 $ roslaunch diffbot_gazebo diffbot_base.launch
 ```
 
-This will launch the gazebo simulation. After launching the Gazebo simulation the controllers got uninitialized.
+This will launch the gazebo simulation, which will can make use of the running controllers inside the controller manager too:
+
+<figure>
+    <a href="https://raw.githubusercontent.com/fjp/diffbot/master/docs/resources/ros_control_gazebo.png"><img src="https://raw.githubusercontent.com/fjp/diffbot/master/docs/resources/ros_control_gazebo.png"></a>
+    <figcaption><a href="http://gazebosim.org/tutorials/?tut=ros_control" title="ROS Control with Gazebo">ROS Control with Gazebo</a> Overview.</figcaption>
+</figure>
+
+
+After launching the Gazebo simulation the controllers got uninitialized.
 (It is assumed that the [`gazebo_ros_control`](https://github.com/ros-simulation/gazebo_ros_pkgs/tree/kinetic-devel/gazebo_ros_control) plugin that gets launched). Because of this the controllers have to be initialized and started again. For this the [`diffbot_base/launch/controllers.launch`](https://github.com/fjp/diffbot/blob/master/ros/src/diffbot_base/launch/controllers.launch) should be used.
 This launch file is just loading and starting all controllers again. Note that using the `spawner` from the `controller_manager` package, like in the `diffbot_base/launch/diffbot.launch` results in an error. (TODO this needs some more testing).
