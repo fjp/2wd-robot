@@ -62,12 +62,21 @@ After the program is flashed to the Teensy board it can be tested with the follo
 1. Create a rosserial node using `rosserial_python` package:
 
 ```console
-rosrun rosserial_python serial_node.py _port:=/dev/ttyACM0 _baud:=115200
-[INFO] [1602782359.573606]: ROS Serial Python Node
-[INFO] [1602782359.600944]: Connecting to /dev/ttyACM0 at 115200 baud
-[INFO] [1602782361.717904]: Requesting topics...
-[ERROR] [1602782376.724880]: Unable to sync with device; possible link problem or link software version mismatch such as hydro rosserial_python with groovy Arduino
+$ rosrun rosserial_python serial_node.py _port:=/dev/ttyACM0 _baud:=115200
+[INFO] [1602784903.659869]: ROS Serial Python Node
+[INFO] [1602784903.692366]: Connecting to /dev/ttyACM0 at 115200 baud
+[INFO] [1602784905.809722]: Requesting topics...
+[INFO] [1602784905.824418]: Note: publish buffer size is 512 bytes
+[INFO] [1602784905.829712]: Setup publisher on /diffbot/ticks_left [std_msgs/Int32]
+[INFO] [1602784905.839914]: Setup publisher on /diffbot/ticks_right [std_msgs/Int32]
+[INFO] [1602784905.856772]: Note: subscribe buffer size is 512 bytes
+[INFO] [1602784905.861749]: Setup subscriber on /reset [std_msgs/Empty]
+```
 
+In case of the following error, probably the wrong program is flashed to the Teensy board:
+
+```console
+[ERROR] [1602782376.724880]: Unable to sync with device; possible link problem or link software version mismatch such as hydro rosserial_python with groovy Arduino
 ```
 
 Each [DG01D-E](https://www.sparkfun.com/products/16413) motor encoder has two signal pins its built-in encoder. For these the Teensy pins 5, 6 are used for the left encoder and 7, 8 are used for the right one, see also the [Teensy pinout](https://www.pjrc.com/teensy/pinout.html).
