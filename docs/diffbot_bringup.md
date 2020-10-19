@@ -2,9 +2,9 @@
 
 
 ```console
-fjp@diffbot:~/git/diffbot/ros$ catkin create pkg diffbot_bringup
-Creating package "diffbot_bringup" in "/home/fjp/git/diffbot/ros"...
+fjp@diffbot:~/git/diffbot/ros/src$ catkin create pkg diffbot_bringup
+Creating package "diffbot_bringup" in "/home/fjp/git/diffbot/ros/src"...
 Created file diffbot_bringup/package.xml
 Created file diffbot_bringup/CMakeLists.txt
-Successfully created package files in /home/fjp/git/diffbot/ros/diffbot_bringup.
+Successfully created package files in /home/fjp/git/diffbot/ros/src/diffbot_bringup.
 ```
