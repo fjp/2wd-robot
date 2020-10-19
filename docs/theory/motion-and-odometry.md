@@ -1,7 +1,7 @@
 ## Robotic Motion and Odometry
 
 This section reviews the basic concepts of distance, time, velocity and acceleration. 
-The physics of motion is can be described using calculus, but a computer cannot deal with continuous functions; 
+The physics of motion can be described using calculus, but a computer cannot deal with continuous functions; 
 instead, discrete approximations must be used.
 
 Odometry, the fundamental algorithm for computing robotic motion. 
@@ -14,6 +14,10 @@ It is important to understand that errors in direction are much more significant
 In the simplest implementation, the speed of the wheels of a robot is assumed to be proportional to 
 the power applied by the motors. To improve the accuracy of odometry wheel encoders can be used, 
 which measure the actual number of revolutions of the wheels.
+
+The following video from Sparkfun gives an overview of Encoders
+
+{% include video id="oLBYHbLO8W0" provider="youtube" %}
 
 ### Distance, Velocity and Time
 
