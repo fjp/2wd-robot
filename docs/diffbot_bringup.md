@@ -48,7 +48,7 @@ And for the encoders rosserial communicates with the Teensy microcontroller to p
 
 As mentioned, the ROS controller used for DiffBot is the [`diff_drive_controller`](http://wiki.ros.org/diff_drive_controller?distro=noetic). 
 This controller publishes a transform message (see its [published topics](http://wiki.ros.org/diff_drive_controller?distro=noetic#Published_Topics)), 
-via the `/tf` topic, between the `odom` frame and the frame configured in the controller's configuration specified by the `base_frame_id`. 
+via the `/tf` topic, between the `odom` frame and the frame configured in the [controller's configuration](http://wiki.ros.org/diff_drive_controller?distro=noetic#Complete_description) specified by the `base_frame_id`. 
 In the case of DiffBot this is the `base_footprint`, a conventional link, defined in [REP-120](https://www.ros.org/reps/rep-0120.html#base-footprint), for mobile robots that specifies the robot's footprint.
 
 Because this is the only transform published by `diff_drive_controller` another node is needed to publish rest of the link transformations.
