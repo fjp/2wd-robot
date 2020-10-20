@@ -21,7 +21,7 @@ file. The launch file will
 The `diffbot_base` package is created with `catkin-tools`:
 
 ```console
-catkin create pkg diffbot_base --catkin-deps diff_drive_controller hardware_interface roscpp sensor_msgs diagnostic_updater                      
+fjp@diffbot:/home/fjp/git/diffbot/ros/src$ catkin create pkg diffbot_base --catkin-deps diff_drive_controller hardware_interface roscpp sensor_msgs rosparam_shortcuts                 
 Creating package "diffbot_base" in "/home/fjp/git/diffbot/ros/src"...
 Created file diffbot_base/package.xml
 Created file diffbot_base/CMakeLists.txt
@@ -30,10 +30,30 @@ Created folder diffbot_base/src
 Successfully created package files in /home/fjp/git/diffbot/ros/src/diffbot_base.
 ```
 
+To work with this package the specified dependencies must be installed either using the available Ubuntu/Debian packages for ROS Noetic or have to be built from source first. The following table lists the dependencies that we have to install because they are not already part of the ROS Noetic desktop full installation. Refer to the section [ROS Noetic Setup](https://fjp.at/projects/diffbot/ros-noetic/) for how this was done. 
+
+| Dependency                    | Source                                                | Ubuntu/Debian Package            |
+|:-----------------------------:|:-----------------------------------------------------:|:--------------------------------:|
+| `rosparam_shortcuts`          | https://github.com/PickNikRobotics/rosparam_shortcuts | `ros-noetic-rosparam-shortcuts` |
+| `hardware_interface`          | https://github.com/ros-controls/ros_control           | `ros-noetic-ros-control`        |
+| `diff_drive_controller`       | https://github.com/ros-controls/ros_controllers       | `ros-noetic-ros-controllers`    |
+
+To install a package from source clone (using git) or download the source files from where they are located (commonly hosted on GitHub) into the `src` folder of a ros catkin workspace and execute the [`catkin build`](https://catkin-tools.readthedocs.io/en/latest/verbs/catkin_build.html) command. Also make sure to source the workspace after building new packages with `source devel/setup.bash`.
+
+```console
+cd /homw/fjp/git/diffbot/ros/  # Navigate to the workspace
+catkin build              # Build all the packages in the workspace
+ls build                  # Show the resulting build space
+ls devel                  # Show the resulting devel space
+```
+
+Make sure to clone/download the source files suitable for the ROS distribtion you are using. If the sources are not available for the distribution you are working with, it is worth to try building anyway. Chances are that the package you want to use is suitable for multiple ROS distros. For example if a package states in its docs, that it is only available for [kinetic](http://wiki.ros.org/kinetic) it is possible that it will work with a ROS [noetic](http://wiki.ros.org/noetic) install.
+{: .notice }
+
 ### Hardware Interface
 
-See the `include` and `src` folders of this package for details on the hardware interface implementation.
-More infos in the documentation is coming soon (TODO).
+See the [`include`](../diffbot_base/include) and [`src`](../diffbot_base/src) folders of this package for details on the hardware interface implementation.
+More infos in this part of the documentation is coming soon (TODO). For now the section [ROS Integration: Control](https://fjp.at/projects/diffbot/ros-integration/#ros-control) gives more details and this [overview article about ROS Control](https://fjp.at/posts/ros/ros-control/).
 
 
 ### Launch File
