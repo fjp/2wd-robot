@@ -1,5 +1,8 @@
 ## Robotic Motion and Odometry
 
+The following section describes the theory of robotic motion and odometry, which is part of the book [Elements of Robotics](https://link.springer.com/book/10.1007/978-3-319-62533-1). The section focuses on a detailed look on the quadrature encoders that are
+attached to the robot wheels. For DiffBot the encoders are part of the [motors DG01D-E](https://www.sparkfun.com/products/16413). 
+
 This section reviews the basic concepts of distance, time, velocity and acceleration. 
 The physics of motion can be described using calculus, but a computer cannot deal with continuous functions; 
 instead, discrete approximations must be used.
