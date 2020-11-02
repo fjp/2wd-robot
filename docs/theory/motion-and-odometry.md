@@ -13,6 +13,10 @@ the change direction from the velocity of the wheels in a short period of time.
 Unfortunately, odometry is subject to serious errors. 
 It is important to understand that errors in direction are much more significant than errors in distance.
 
+See the following video explaining odometry:
+
+{% include video id="3S8MXsnNe3U" provider="youtube" %}
+
 
 In the simplest implementation, the speed of the wheels of a robot is assumed to be proportional to 
 the power applied by the motors. To improve the accuracy of odometry wheel encoders can be used, 
