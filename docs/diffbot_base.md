@@ -316,12 +316,21 @@ In the control loop the [overriden `hardware_interface::RobotHW::read()` method 
 Note the PID controller inside the hardware interface that is passed the error between velocity measured by the encoders and the target velocity computed
 by the `diff_drive_controller`.
 
-
 Note that the `diff_drive_controller` doesn't have a PID controller integrated, it doesn't take care if the wheels are actually turning.
 As mentioned above, ROS Control expects that the commands sent by the controller are actually implemented on the real robot hardware and that the
 joint states are always up to date. This means that the `diff_drive_controller` just uses the `twist_msg` on the `cmd_vel` topic for example from the `rqt_robot_steering` and converts it to a velocity command for the motors. It doesn't take the actual velocity of the motors into account. 
 See [the code of `diff_drive_controller`](https://github.com/ros-controls/ros_controllers/blob/698f85b2c3467dfcc3ca5743d68deba03f3fcff2/diff_drive_controller/src/diff_drive_controller.cpp#L460) where the `joint_command_velocity` is calculated. 
 {: .notice :}
+
+This is why a PID controller is needed to avoid situations like the following where the robot moves not straigth although it is commanded to do so:
+
+{% include video id="chUPeWXtim4" provider="youtube" %}
+
+The PID used here inherits from the ROS Control [`control_toolbox::Pid`](http://wiki.ros.org/control_toolbox) that provides Dynamic Reconfigure out of the box to tune the proportional, integral and derivative gains.
+
+After the use of the PID controller the robot is able to drive straight:
+
+TODO create video
 
 
 ### Launch File
