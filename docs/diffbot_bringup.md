@@ -52,7 +52,7 @@ via the `/tf` topic, between the `odom` frame and the frame configured in the [c
 In the case of DiffBot this is the `base_footprint`, a conventional link, defined in [REP-120](https://www.ros.org/reps/rep-0120.html#base-footprint), for mobile robots that specifies the robot's footprint.
 
 Because this is the only transform published by `diff_drive_controller` another node is needed to publish rest of the link transformations.
-It is the well known [`robot_state_publisher`](http://wiki.ros.org/robot_state_publisher), which uses the joint states published by the ROS controller [`joint_state_controller`](http://wiki.ros.org/joint_state_controller) (not to be confused with [`joint_state_publisher`](http://wiki.ros.org/joint_state_publisher) - it is not used here) to create the transforms
+It is the well known [`robot_state_publisher`](http://wiki.ros.org/robot_state_publisher), which uses the joint states published by the ROS controller [`joint_state_controller`](http://wiki.ros.org/joint_state_controller) (not to be confused with [`joint_state_publisher`](http://wiki.ros.org/joint_state_publisher) - it is not used here, see [this answer](https://answers.ros.org/question/303358/what-is-the-difference-between-joint_state_publisher-and-joint_state_controller/) for the difference) to create the transforms
 between the links.
 
 To do this the `bringup.launch` includes the `minimal.launch` and then runs the `robot_state_publisher`:
