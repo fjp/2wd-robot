@@ -61,7 +61,8 @@ Remember that the simulation uses the `gazebo_ros_control` package to communicat
 ROS Control uses an instance of type [`hardware_interface::RobotHW`](http://docs.ros.org/en/noetic/api/hardware_interface/html/c++/) that is passed to the `controller_manager` to handle the resources, meaning that the actuated robot joints are not in use by multiple controllers that might be loaded.
 
 
-The skeleton of DiffBot's hardware interface looks like this:
+The skeleton of DiffBot's hardware interface looks like following, where the constructor is used to read loaded configuration values from 
+the robot's description from the ROS parameter server:
 
 ```cpp
 namespace diffbot_base
@@ -205,7 +206,7 @@ namespace diffbot_base
         pub_right_motor_value_.publish(right_motor);
     }
 
-    // Process updates from encoders
+    // Process updates from encoders using a subscriber
     void DiffBotHWInterface::leftEncoderTicksCallback(const std_msgs::Int32::ConstPtr& msg)
     {
         encoder_ticks_[0] = msg->data;
@@ -218,7 +219,6 @@ namespace diffbot_base
         ROS_DEBUG_STREAM_THROTTLE(1, "Right encoder ticks: " << msg->data);
     }
 
-
     double DiffBotHWInterface::ticksToAngle(const int &ticks) const
     {
         // Convert number of encoder ticks to angle in radians
@@ -230,15 +230,13 @@ namespace diffbot_base
 };
 ```
 
-
-
 The functions above are designed to give the controller manager (and the controllers inside the controller manager) access to the joint state of custom robot, 
 and to command it. When the controller manager runs, the controllers will read from the pos, vel and eff variables of the custom robot hardware interface, and the controller will write the desired command into the cmd variable. It's mandatory to make sure the pos, vel and eff variables always have the latest joint state available, and to make sure that whatever is written into the cmd variable gets executed by the robot. This can be done by implementing hardware_interface::RobotHW::read() and a hardware_interface::RobotHW::write() methods.
 
 
 
-The main node that will be executed uses the `controller_manager` to operate the so called control loop. In the case of  DiffBot a simple example looks like this,
-refer to the [`diffbot_base.cpp`](https://github.com/fjp/diffbot/blob/master/diffbot_base/src/diffbot_base.cpp) for the complete implementation:
+The main node that will be executed uses the `controller_manager` to operate the so called control loop. In the case of  DiffBot a simple example looks like 
+the following, refer to the [`diffbot_base.cpp`](https://github.com/fjp/diffbot/blob/master/diffbot_base/src/diffbot_base.cpp) for the complete implementation:
 
 ```cpp
 #include <ros/ros.h>
@@ -302,10 +300,28 @@ control loop that does the following:
 - Write the computed values 
 
 You may be wondering why the read values aren't returned from the `diffbot.read()` method and nothing is passed to the `diffbot.write()`.
-This is because the `RobotHW::init()` method is used to reference the ac
+This is because the `RobotHW::init()` method, shown in the first code snippet, is used to register the actuated joint names (described in the `diffbot_description`) to the `joint_position`, `joint_velocity` and `joint_effort` member variables of the custom robot hardware interface.
+The class that registers the variables of the controller with the hardware interface member variables and thereby gives read access to all joint values 
+without conflicting with other controllers, is the [`hardware_interface::JointStateInterface`](http://docs.ros.org/en/noetic/api/hardware_interface/html/c++/classhardware__interface_1_1JointStateInterface.html). 
+ROS Control uses the `hardware_interface::VelocityJointInterface` (part of the [`joint_command_interface.h`](http://docs.ros.org/en/noetic/api/hardware_interface/html/c++/joint__command__interface_8h_source.html)) 
+that registers the command member variable of the controller with the hardware interface to provide it the command that should be written to the actuators.
 
-In the control loop the [overriden `RobotHW::read()` method of DiffBot](https://github.com/fjp/diffbot/blob/522cba34117ea4cf90e3e0b5b9b70f0824e226fc/diffbot_base/src/diffbot_hw_interface.cpp#L106) is used to read the joint states. The `diff_drive_controller` works with 
-a VelocityInterface which is why the position, defined in rad, and velocity, defined in rad/s, are calculated from the encoder ticks.
+When the controller manager runs, the controllers will read from the `joint_position`, `joint_velocity` and `joint_effort` variables of the custom robot hardware interface, and the controller will write the desired command into the `joint_velocity_command` variable. It's mandatory to make sure the position, velocity and effort (effort is not needed in the case of the `diff_drive_controller`) variables always have the latest joint state available, and to make sure that whatever is written into the `joint_velocity_command` variable gets executed by the robot. As mentioned this can be done by implementing `hardware_interface::RobotHW::read()` and a `hardware_interface::RobotHW::write()` methods.
+
+In the control loop the [overriden `hardware_interface::RobotHW::read()` method of DiffBot](https://github.com/fjp/diffbot/blob/522cba34117ea4cf90e3e0b5b9b70f0824e226fc/diffbot_base/src/diffbot_hw_interface.cpp#L106) is used to read the joint states. The `diff_drive_controller` works with a VelocityInterface which is why the `joint_position`, defined in rad, and `joint_velocity`, defined in rad/s, are calculated from the encoder ticks.
+
+
+## PID Controller
+
+Note the PID controller inside the hardware interface that is passed the error between velocity measured by the encoders and the target velocity computed
+by the `diff_drive_controller`.
+
+
+Note that the `diff_drive_controller` doesn't have a PID controller integrated, it doesn't take care if the wheels are actually turning.
+As mentioned above, ROS Control expects that the commands sent by the controller are actually implemented on the real robot hardware and that the
+joint states are always up to date. This means that the `diff_drive_controller` just uses the `twist_msg` on the `cmd_vel` topic for example from the `rqt_robot_steering` and converts it to a velocity command for the motors. It doesn't take the actual velocity of the motors into account. 
+See [the code of `diff_drive_controller`](https://github.com/ros-controls/ros_controllers/blob/698f85b2c3467dfcc3ca5743d68deba03f3fcff2/diff_drive_controller/src/diff_drive_controller.cpp#L460) where the `joint_command_velocity` is calculated. 
+{: .notice :}
 
 
 ### Launch File
@@ -370,13 +386,21 @@ $ rosparam list
 /run_id
 ```
 
+## Additional Requirements
+
+Because the hardware interface subscribes to the encoders, that are connected to the Teensy MCU, and publishes to the motors via the motr driver node,
+another launch will be required to run these additional nodes. See the `diffbot_bringup` package for this setup.
+
+## Simulation
+
+
 To have a simulation showing DiffBot, the second step is to use the [`diffbot_gazebo/launch/diffbot_base.launch`](https://github.com/fjp/diffbot/blob/master/ros/src/diffbot_gazebo/launch/diffbot_base.launch) on the work pc:
 
 ```console
 $ roslaunch diffbot_gazebo diffbot_base.launch
 ```
 
-This will launch the gazebo simulation, which will can make use of the running controllers inside the controller manager too:
+This will launch the gazebo simulation, which can make use of the running controllers inside the controller manager too:
 
 <figure>
     <a href="https://raw.githubusercontent.com/fjp/diffbot/master/docs/resources/ros_control_gazebo.png"><img src="https://raw.githubusercontent.com/fjp/diffbot/master/docs/resources/ros_control_gazebo.png"></a>
