@@ -27,7 +27,7 @@ The first step can be used on the work PC and the Raspberry Pi to enable the USB
 Step two of these instructions are only necessary on the work PC to actually program the Teensy board.
 
 
-TODO add teensy duino video
+{% include video id="k56e-KBiP-w" provider="youtube" %}
 
 
 To check if the connection to the Teensy board works use these commands on the Raspberry Pi:
