@@ -8,6 +8,12 @@ Created file diffbot_navigation/CMakeLists.txt
 Successfully created package files in /home/fjp/git/ros_ws/src/diffbot/diffbot_navigation.
 ```
 
+We also need the following ROS packages that can be installed from the ROS Ubuntu packages:
+
+```console
+$ sudo apt install ros-noetic-dwa-local-planner
+``` 
+
 After this we create the required launch files and parameter configurations. These will be used for the simulation and the real robot.
 First we focus on the simulation in Gazebo.
 
