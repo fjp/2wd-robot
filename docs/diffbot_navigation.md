@@ -8,6 +8,18 @@ Created file diffbot_navigation/CMakeLists.txt
 Successfully created package files in /home/fjp/git/ros_ws/src/diffbot/diffbot_navigation.
 ```
 
+After this we create the required launch files and parameter configurations. These will be used for the simulation and the real robot.
+First we focus on the simulation in Gazebo.
+
+### Launch files
+
+All launch files are in the folder named `launch` of the `diffbot_navigation` package.
+
+
+### Parameter Configuration
+
+The parameters for the navigation package go into the `param` folder.
+
 - [Setup and Configuration of the Navigation Stack on a Robot](http://wiki.ros.org/navigation/Tutorials/RobotSetup)
 
 - [`amcl`](http://wiki.ros.org/amcl?distro=noetic): amcl is a probabilistic localization system for a robot moving in 2D. 
