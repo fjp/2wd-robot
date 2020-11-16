@@ -14,6 +14,9 @@ Successfully created package files in /home/fjp/git/ros_ws/src/diffbot/diffbot_n
 It implements the adaptive (or KLD-sampling) Monte Carlo localization approach (as described by Dieter Fox), 
 which uses a particle filter to track the pose of a robot against a known map.
 
+- [`map_server`](http://wiki.ros.org/map_server?distro=noetic): provides the `map_server` ROS Node, which offers map data as a ROS Service. 
+It also provides the `map_saver` command-line utility, which allows dynamically generated maps to be saved to file.
+
 - [`move_base`](http://wiki.ros.org/move_base?distro=noetic): The `move_base` package provides an implementation of an action 
 (see the [`actionlib`](http://www.ros.org/wiki/actionlib) package) that, given a goal in the world, will attempt to reach it with a mobile base. 
 The `move_base` node links together a global and local planner to accomplish its global navigation task. 
