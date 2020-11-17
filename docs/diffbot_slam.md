@@ -10,4 +10,4 @@ Successfully created package files in /home/fjp/git/ros_ws/src/diffbot/diffbot_s
 
 As you can see this package has lots of dependencies to test different slam implementations and frontier exploration approaches.
 
-The ROS wiki provides a good [tutorial using Husky robot](http://wiki.ros.org/husky_navigation/Tutorials/Husky%20Frontier%20Exploration%20Demo) how to use the `frontier_exploration` package.
+The ROS wiki provides a good [tutorial using Husky robot](http://wiki.ros.org/husky_navigation/Tutorials/Husky%20Frontier%20Exploration%20Demo) how to use the [`frontier_exploration`](http://wiki.ros.org/frontier_exploration) package. A lightweight alternative is the [`explore_lite`](http://wiki.ros.org/explore_lite) package.
