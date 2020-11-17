@@ -10,6 +10,15 @@ Successfully created package files in /home/fjp/git/ros_ws/src/diffbot/diffbot_s
 
 As you can see this package has lots of dependencies to test different slam implementations and frontier exploration approaches.
 
+### SLAM
+
+SLAM stands for Simultaneous Localization and Mapping sometimes refered to as Concurrent Localization and Mappping (CLAM). The SLAM algorithm combines localization and mapping, where a robot has access only to its own movement and sensory data. The robot must build a map while simultaneously localizing itself relative to the map. See also this [blog post on FastSLAM](https://fjp.at/posts/slam/fastslam/).
+
+#### Launch files
+
+
+#### Parameter Configurations
+
 
 ### Frontier Exploration
 
