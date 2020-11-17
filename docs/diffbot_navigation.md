@@ -24,7 +24,7 @@ All launch files are in the folder named `launch` of the `diffbot_navigation` pa
 
 ### Parameter Configuration
 
-The parameters for the navigation package go into the `param` folder.
+The parameters for the navigation package go into the `config` (for some robots named `param`) folder.
 
 - [Setup and Configuration of the Navigation Stack on a Robot](http://wiki.ros.org/navigation/Tutorials/RobotSetup)
 
@@ -52,3 +52,16 @@ Using slam_gmapping, you can create a 2-D occupancy grid map (like a building fl
 
 Examples
 - [TurtleBot3 Navigation](https://github.com/ROBOTIS-GIT/turtlebot3/tree/master/turtlebot3_navigation)
+
+### Navigation in Gazebo with available Map
+
+To navigate the robot in the simulation run the following command but make sure to first download the 
+[turtlebot3_world](https://github.com/ROBOTIS-GIT/turtlebot3_simulations/tree/master/turtlebot3_gazebo/models/turtlebot3_world)  
+to your `~/.gazebo/models/` folder. This is required because the `turtlebot3_world.world` file references the `turtlebot3_world` model.
+
+
+```console
+roslaunch diffbot_navigation diffbot.launch world_name:='$(find diffbot_gazebo)/worlds/turtlebot3_world.world'
+```
+
+[![DiffBot navigation](https://github.com/fjp/diffbot/blob/master/docs/resources/navigation/diffbot-navigation-gazebo-turtlebot3-world-small.gif)](https://youtu.be/2SwFTrJ1Ofg)
