@@ -26,6 +26,16 @@ Using `slam_gmapping`, you can create a 2-D occupancy grid map (like a building 
 #### Launch files
 
 
+Inside the `gmapping` node in the `gmapping.launch` it is important to map the `scan` topic to laser scanner topic published by Diffbot:
+
+```xml
+  <!-- Arguments -->
+  <arg name="scan_topic"  default="diffbot/scan"/>
+...
+    <!-- remapping of gmapping node -->
+    <remap from="scan" to="$(arg scan_topic)"/>
+```
+
 #### Parameter Configurations
 
 
