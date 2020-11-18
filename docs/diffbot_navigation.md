@@ -27,10 +27,10 @@ Inside the `move_base.launch` it is important to remap the following topics:
   <!-- Arguments -->
   <arg name="cmd_vel_topic" default="/diffbot/mobile_base_controller/cmd_vel" />
   <arg name="odom_topic" default="/diffbot/mobile_base_controller/odom" />
-
-  <!-- remappings -->
-  <remap from="cmd_vel" to="$(arg cmd_vel_topic)"/>
-  <remap from="odom" to="$(arg odom_topic)"/>
+...
+    <!-- remappings of move_base node -->
+    <remap from="cmd_vel" to="$(arg cmd_vel_topic)"/>
+    <remap from="odom" to="$(arg odom_topic)"/>
 ``` 
 
 ### Parameter Configuration
