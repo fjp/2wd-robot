@@ -1,5 +1,10 @@
 ## DiffBot Navigation Package
 
+<figure>
+    <a href="https://github.com/fjp/diffbot/raw/master/docs/resources/navigation/navigation_stack.png"><img src="https://github.com/fjp/diffbot/raw/master/docs/resources/navigation/navigation_stack.png"></a>
+    <figcaption>Navigation Stack Overview.</figcaption>
+</figure>
+
 ```console
 fjp@diffbot:~/catkin_ws/src/diffbot$ catkin create pkg diffbot_navigation --catkin-deps amcl map_server move_base diffbot_bringup                           
 Creating package "diffbot_navigation" in "/home/fjp/git/ros_ws/src/diffbot"...
@@ -79,6 +84,11 @@ roslaunch diffbot_navigation diffbot.launch world_name:='$(find diffbot_gazebo)/
 This will spawn DiffBot inside the turtlebot3 world inside Gazebo and visualize the elements of the navigation stack in RViz.
 
 [![DiffBot navigation](https://github.com/fjp/diffbot/blob/master/docs/resources/navigation/diffbot-navigation-gazebo-turtlebot3-world-small.gif)](https://youtu.be/2SwFTrJ1Ofg)
+
+<figure>
+    <a href="https://youtu.be/2SwFTrJ1Ofg"><img src="https://github.com/fjp/diffbot/blob/master/docs/resources/navigation/diffbot-navigation-gazebo-turtlebot3-world-small.gif"></a>
+    <figcaption>Navigation demo of DiffBot (click to view the demo on Youtube).</figcaption>
+</figure>
 
 To navigate the robot using the default [DWA planner](http://wiki.ros.org/dwa_local_planner) in the known map, 
 coming from the running [`map_server`](http://wiki.ros.org/map_server), you can use the 
