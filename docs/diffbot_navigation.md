@@ -75,4 +75,18 @@ to your `~/.gazebo/models/` folder. This is required because the `turtlebot3_wor
 roslaunch diffbot_navigation diffbot.launch world_name:='$(find diffbot_gazebo)/worlds/turtlebot3_world.world'
 ```
 
+This will spawn DiffBot inside the turtlebot3 world inside Gazebo and visualize the elements of the navigation stack in RViz.
+
 [![DiffBot navigation](https://github.com/fjp/diffbot/blob/master/docs/resources/navigation/diffbot-navigation-gazebo-turtlebot3-world-small.gif)](https://youtu.be/2SwFTrJ1Ofg)
+
+To navigate the robot using the default [DWA planner](http://wiki.ros.org/dwa_local_planner) in the known map, 
+coming from the running [`map_server`](http://wiki.ros.org/map_server), you can use the 
+[2D Nav Goal in RViz](http://wiki.ros.org/navigation/Tutorials/Using%20rviz%20with%20the%20Navigation%20Stack#A2D_Nav_Goal).
+Just select the navigation arrow to where the robot should move as shown in the animation above.
+
+
+The DWA local planner is working for differential drive robots, like DiffBot. For other robots such as non-holonomic robots or other types of mobile robots (also differential drive robots) other planners can be used. See for example [`teb_local_planner`](http://wiki.ros.org/teb_local_planner).
+{: .notice }
+
+
+
