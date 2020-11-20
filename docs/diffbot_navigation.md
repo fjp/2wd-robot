@@ -89,4 +89,14 @@ The DWA local planner is working for differential drive robots, like DiffBot. Fo
 {: .notice }
 
 
+### Resources 
+
+Global Planners:
+- [`global_planner`](http://wiki.ros.org/global_planner)
+
+Local Planners:
+- [Difference between DWA and Base Local Planner](https://answers.ros.org/question/10718/dwa_planner-vs-base_local_planner/)
+- [Difference between DWA and TEB Local Planner](https://answers.ros.org/question/274564/difference-between-dwa-local_planner-and-teb-local_planner/)
+
+
 
