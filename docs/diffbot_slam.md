@@ -9,6 +9,11 @@ Successfully created package files in /home/fjp/git/ros_ws/src/diffbot/diffbot_s
 ```
 
 As you can see this package has lots of dependencies to test different slam implementations and frontier exploration approaches.
+To make this package work the required dependencies need to be installed. Currently only `gmapping` provides a ROS Noetic Ubuntu package that can be installed directly with:
+
+```console
+sudo apt install ros-noetic-gmapping
+```
 
 ### SLAM
 
