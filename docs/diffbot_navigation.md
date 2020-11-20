@@ -36,6 +36,7 @@ Inside the `move_base.launch` it is important to remap the following topics:
 ### Parameter Configuration
 
 The parameters for the navigation package go into the `config` (for some robots named `param`) folder.
+Most of them can be changed during runtime using [dynamic reconfigure](http://wiki.ros.org/dynamic_reconfigure) with the [`rqt_reconfigure` gui](http://wiki.ros.org/rqt_reconfigure).
 
 - [Setup and Configuration of the Navigation Stack on a Robot](http://wiki.ros.org/navigation/Tutorials/RobotSetup)
 
