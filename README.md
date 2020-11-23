@@ -26,7 +26,7 @@ The following sections describe how to run the robot simulation and how to make 
 Control the robot inside Gazebo and view what it sees in RViz using the following launch file:
 
 ```console
-roslaunch diffbot_control diffbot.launch world_name:='$(find diffbot_gazebo)/worlds/corridor.world'
+roslaunch diffbot_control diffbot.launch world_name:='turtlebot3_world'
 ```
 
 To run the [turtlebot3_world](https://github.com/ROBOTIS-GIT/turtlebot3_simulations/tree/master/turtlebot3_gazebo/models/turtlebot3_world) 
@@ -41,7 +41,7 @@ make sure to download it to your `~/.gazebo/models/` folder, because the `turtle
 To navigate the robot in the simulation run this command:
 
 ```console
-roslaunch diffbot_navigation diffbot.launch world_name:='$(find diffbot_gazebo)/worlds/turtlebot3_world.world'
+roslaunch diffbot_navigation diffbot.launch world_name:='turtlebot3_world'
 ```
 
 Navigate the robot in a known map from the running [`map_server`](http://wiki.ros.org/map_server) using the [2D Nav Goal in RViz](http://wiki.ros.org/navigation/Tutorials/Using%20rviz%20with%20the%20Navigation%20Stack#A2D_Nav_Goal).
