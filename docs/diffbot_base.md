@@ -324,7 +324,7 @@ See [the code of `diff_drive_controller`](https://github.com/ros-controls/ros_co
 
 This is why a PID controller is needed to avoid situations like the following where the robot moves not straigth although it is commanded to do so:
 
-{% include video id="chUPeWXtim4" provider="youtube" %}
+
 
 The PID used here inherits from the ROS Control [`control_toolbox::Pid`](http://wiki.ros.org/control_toolbox) that provides Dynamic Reconfigure out of the box to tune the proportional, integral and derivative gains. The behaviour when using only the P, I and D gains is that the output can overshoot and even change between positive and negative motor percent values because of a P gain that is too high. To avoid this a feed forward gain can help to reach the setpoint faster.
 To add this feed forward gain to the dynamic reconfigure parameters it is necessary to add a new parameter configuration file in this package inside a `cfg` folder. 
@@ -333,7 +333,7 @@ For more details on ROS dynamic reconfigure see [the official tutorials](http://
 
 After the use of the PID controller the robot is able to drive straight:
 
-TODO create video
+{% include video id="fdn5Mu0Qhl8" provider="youtube" %}
 
 
 ### Launch File
