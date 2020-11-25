@@ -59,7 +59,8 @@ TODO link to code encoders.ino
 
 After the program is flashed to the Teensy board it can be tested with the following procedure:
 
-1. Create a rosserial node using `rosserial_python` package:
+1. Start a ROS [master](http://wiki.ros.org/Master) by executing [`roscore`](http://wiki.ros.org/roscore) in a new terminal.
+2. Create a rosserial node using `rosserial_python` package:
 
 ```console
 $ rosrun rosserial_python serial_node.py _port:=/dev/ttyACM0 _baud:=115200
@@ -79,6 +80,9 @@ In case of the following error, probably the wrong program is flashed to the Tee
 [ERROR] [1602782376.724880]: Unable to sync with device; possible link problem or link software version mismatch such as hydro rosserial_python with groovy Arduino
 ```
 
-Each [DG01D-E](https://www.sparkfun.com/products/16413) motor encoder has two signal pins its built-in encoder. For these the Teensy pins 5, 6 are used for the left encoder and 7, 8 are used for the right one, see also the [Teensy pinout](https://www.pjrc.com/teensy/pinout.html).
+Note that the rosserial node needs to be stopped to flash new sketches to the Teensy board.
+{: .notice }
+
+Each [DG01D-E](https://www.sparkfun.com/products/16413) motor has two signal pins for its built-in encoder. For these, the Teensy pins 5, 6 are used for the left encoder and 7, 8 are used for the right one, see also the [Teensy pinout](https://www.pjrc.com/teensy/pinout.html).
 
 TODO add teensy pinout image and connection schematic
