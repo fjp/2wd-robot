@@ -53,3 +53,8 @@ Inside the `gmapping` node in the `gmapping.launch` it is important to map the `
 map into new territory until the entire environment has been explored. 
 
 The ROS wiki provides a good [tutorial using Husky robot](http://wiki.ros.org/husky_navigation/Tutorials/Husky%20Frontier%20Exploration%20Demo) how to use the [`frontier_exploration`](http://wiki.ros.org/frontier_exploration) package. A lightweight alternative is the [`explore_lite`](http://wiki.ros.org/explore_lite) package.
+
+
+### References
+
+- [`slam_toolbox`](http://wiki.ros.org/slam_toolbox), [Slam Toolbox ROSCon 2019 pdf](https://roscon.ros.org/2019/talks/roscon2019_slamtoolbox.pdf)
