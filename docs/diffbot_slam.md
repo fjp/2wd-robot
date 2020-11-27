@@ -1,15 +1,18 @@
 ## DiffBot Slam Package
 
 ```console
-fjp@diffbot:~/catkin_ws/src/diffbot$ catkin create pkg diffbot_slam --catkin-deps diffbot_navigation gmapping cartographer_ros hector_slam frontier_exploration explore_lite
+fjp@diffbot:~/catkin_ws/src/diffbot$ catkin create pkg diffbot_slam --catkin-deps diffbot_navigation gmapping
 Creating package "diffbot_slam" in "/home/fjp/git/ros_ws/src/diffbot"...
 Created file diffbot_slam/package.xml
 Created file diffbot_slam/CMakeLists.txt
 Successfully created package files in /home/fjp/git/ros_ws/src/diffbot/diffbot_slam.
 ```
 
+Additional runtime dependencies are: `cartographer_ros`, `hector_slam`, `frontier_exploration` and `explore_lite`. These
+are added to this workspace using [`vcstool`](https://github.com/dirk-thomas/vcstool) (TODO).
+
 As you can see this package has lots of dependencies to test different slam implementations and frontier exploration approaches.
-To make this package work the required dependencies need to be installed. Currently only `gmapping` provides a ROS Noetic Ubuntu package that can be installed directly with:
+To run this package these dependencies need to be installed and are set as `exec_depend` in the `package.xml`. Currently only `gmapping` provides a ROS Noetic Ubuntu package that can be installed directly with:
 
 ```console
 sudo apt install ros-noetic-gmapping
