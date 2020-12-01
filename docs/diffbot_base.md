@@ -313,10 +313,9 @@ In the control loop the [overriden `hardware_interface::RobotHW::read()` method 
 
 ## PID Controller
 
-Note the PID controller inside the hardware interface that is passed the error between velocity measured by the encoders and the target velocity computed
-by the `diff_drive_controller`.
-
-Note that the `diff_drive_controller` doesn't have a PID controller integrated, it doesn't take care if the wheels are actually turning.
+Note the two PID controllers inside the hardware interface, where each PID is passed the error between velocity measured by the encoders 
+and the target velocity computed by the `diff_drive_controller` for a specific wheel joint. 
+The `diff_drive_controller` doesn't have a PID controller integrated, and doesn't take care if the wheels of the robot are actually turning.
 As mentioned above, ROS Control expects that the commands sent by the controller are actually implemented on the real robot hardware and that the
 joint states are always up to date. This means that the `diff_drive_controller` just uses the `twist_msg` on the `cmd_vel` topic for example from the `rqt_robot_steering` and converts it to a velocity command for the motors. It doesn't take the actual velocity of the motors into account. 
 See [the code of `diff_drive_controller`](https://github.com/ros-controls/ros_controllers/blob/698f85b2c3467dfcc3ca5743d68deba03f3fcff2/diff_drive_controller/src/diff_drive_controller.cpp#L460) where the `joint_command_velocity` is calculated. 
@@ -324,17 +323,51 @@ See [the code of `diff_drive_controller`](https://github.com/ros-controls/ros_co
 
 This is why a PID controller is needed to avoid situations like the following where the robot moves not straigth although it is commanded to do so:
 
+{% include video id="chUPeWXtim4" provider="youtube" %}
 
-
-The PID used here inherits from the ROS Control [`control_toolbox::Pid`](http://wiki.ros.org/control_toolbox) that provides Dynamic Reconfigure out of the box to tune the proportional, integral and derivative gains. The behaviour when using only the P, I and D gains is that the output can overshoot and even change between positive and negative motor percent values because of a P gain that is too high. To avoid this a feed forward gain can help to reach the setpoint faster.
+The PID used here inherits from the ROS Control [`control_toolbox::Pid`](http://wiki.ros.org/control_toolbox) that provides Dynamic Reconfigure out of the box to tune the proportional, integral and derivative gains. The behaviour when using only the P, I and D gains is that the output can overshoot and even change between positive and negative motor percent values because of a P gain that is too high. To avoid this, a feed forward gain can help to reach the setpoint faster.
 To add this feed forward gain to the dynamic reconfigure parameters it is necessary to add a new parameter configuration file in this package inside a `cfg` folder. 
 
 For more details on ROS dynamic reconfigure see [the official tutorials](http://wiki.ros.org/dynamic_reconfigure/Tutorials).
 
-After the use of the PID controller the robot is able to drive straight:
+With the use of the PID controller the robot is able to drive straight:
 
 {% include video id="fdn5Mu0Qhl8" provider="youtube" %}
 
+In case of using inexpensive motors like the [DG01D-E](https://www.sparkfun.com/products/16413) of DiffBot,
+you have to take inaccurate driving behaviour into account. The straight driving behaviour can be improved
+with motors that start spinning at the same voltage levels. To find suitable motors do a voltage sweep test by slightly increasing the voltage and
+note the voltage level where each motor starts to rotate. Such a test was done on DiffBot's motors. 
+
+Using six [DG01D-E](https://www.sparkfun.com/products/16413) motors the following values were recorded (sorted by increasing voltage):
+
+| Motor | Voltage (V) |
+|:-----:|:-----------:|
+| 01    |  2.5        |
+| 02    |  2.8 - 3.0  | 
+| 03    |  3.1        |
+| 04    |  3.2        |
+| 05    |  3.2        |
+| 06    |  3.3        |
+
+
+In the videos above, motors numbered 01 and 03 were used coincidencely and I wasn't aware of the remarkable differences in voltage levels.
+Using the motors 04 and 05 improved the driving behaviour significantly. 
+{: .notice } 
+
+To deal with significant differences in the motors it would also help to tune the two PIDs individually,
+which is not shown in the [video above](https://youtu.be/fdn5Mu0Qhl8).
+
+
+Make also sure that the motor driver outputs the same voltage level on both channels when the robot is commanded to move straight.
+The used Grove i2c motor driver was tested to do this.
+Another problem of not driving straight can be weight distribution or the orientation of the caster wheel.
+{: .notice }
+
+A good test to check the accuracy is to fix two meters of adhesive tape on the floor in a straight line. 
+Then, place the robot on one end oriented in the direction to the other end. Now command it to move straight along the line
+and stop it when it reaches the end of the tape. Record the lateral displacement from the tape. 
+Measuring a value below 10 cm is considered precise for these motors.
 
 ### Launch File
 
