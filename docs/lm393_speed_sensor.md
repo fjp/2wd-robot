@@ -1,5 +1,12 @@
 ### LM393 Speed Sensor - Odometry
 
+Note that this sensor is deprecated in the current version of DiffBot because it isn't a quadrature encoder.
+Instead, the [DG01D-E](https://www.sparkfun.com/products/16413) motor includes a quadrature encoder that can measure ticks (can be converted to speed)
+and the direction the motor is turning (clock-wise or anti-clock-wise).
+The LM393 speed sensor could be used in combination with an additional information about the current driving direction, for example coming from
+the software. Howerver, this won't be as accurate as using a quadrature encoder that provides this information. 
+{: .notice }
+
 To measure how far the robot has driven, we use the [LM393 speed sensor](https://joy-it.net/en/products/SEN-Speed) from Joy-IT as [odometry](https://en.wikipedia.org/wiki/Odometry) sensor. 
 First, we will create a ROS package with [`catkin create pkg PKG_NAME [--catkin-deps [DEP [DEP ...]]]`](https://catkin-tools.readthedocs.io/en/latest/verbs/catkin_create.html#catkin-create-pkg):
 
