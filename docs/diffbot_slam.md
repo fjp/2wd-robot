@@ -84,4 +84,8 @@ The ROS wiki provides a good [tutorial using Husky robot](http://wiki.ros.org/hu
 ### References
 
 - [`slam_toolbox`](http://wiki.ros.org/slam_toolbox), [Slam Toolbox ROSCon 2019 pdf](https://roscon.ros.org/2019/talks/roscon2019_slamtoolbox.pdf)
+
+Papers:
+
 - [A Tutorial on Graph-Based SLAM](http://www2.informatik.uni-freiburg.de/~stachnis/pdf/grisetti10titsmag.pdf)
+- [A flexible and scalable SLAM system with full 3D motion estimation](https://www.researchgate.net/publication/228852006_A_flexible_and_scalable_SLAM_system_with_full_3D_motion_estimation) `hector_slam` paper.
