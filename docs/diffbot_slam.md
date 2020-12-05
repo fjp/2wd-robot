@@ -55,6 +55,9 @@ Unlike `gmapping` which uses a [particle filter](https://en.wikipedia.org/wiki/P
 
 #### Launch files
 
+This package provides a main launch file named `diffbot_slam.launch` which accepts an argument `slam_method`.
+Depending on its value, different launch files will be included that execute the specified SLAM algorithm using its configuration in the `config` folder.
+
 As mentioned above, every ROS slam package requries messages from the laser-range finder topic. Usually this topic is named `/scan`.
 To distinguish possible multiple lidars, the topic of DiffBot resides in its namespace `/diffbot/scan`.
 Therefore, its necessary to remap the `/scan` topic to `/diffbot/scan`. The following shows how this was done for the `gmapping` launch file.
@@ -80,6 +83,9 @@ Remappings are done in the [node tag](http://wiki.ros.org/roslaunch/XML/node). H
 
 
 #### Parameter Configurations
+
+Most of the configrations are the same as [`turtlebot3_slam`](https://github.com/ROBOTIS-GIT/turtlebot3/tree/master/turtlebot3_slam/config).
+For detailed description of what each parameter does, please check the individual package documentation of the different SLAM methods. 
 
 
 ### Gazebo Simulation Tests
