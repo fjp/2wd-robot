@@ -49,7 +49,8 @@ The `hector_mapping` is a SLAM approach that can be used without odometry as wel
 
 Unlike `gmapping` which uses a [particle filter](https://en.wikipedia.org/wiki/Particle_filter), 
 `karto`, `cartographer` and `hector_slam` are all [graph-based SLAM algorithms](http://www2.informatik.uni-freiburg.de/~stachnis/pdf/grisetti10titsmag.pdf).
-
+The least accurate SLAM algorithm is `gmapping` but it works fine for smaller maps. Use other algorithms, such as `karto` if you operate your robot in
+larger environments.
 
 
 
@@ -84,7 +85,7 @@ Remappings are done in the [node tag](http://wiki.ros.org/roslaunch/XML/node). H
 
 #### Parameter Configurations
 
-Most of the configrations are the same as [`turtlebot3_slam`](https://github.com/ROBOTIS-GIT/turtlebot3/tree/master/turtlebot3_slam/config).
+Most of the configrations are the same as [`turtlebot3_slam/config`](https://github.com/ROBOTIS-GIT/turtlebot3/tree/master/turtlebot3_slam/config).
 For detailed description of what each parameter does, please check the individual package documentation of the different SLAM methods. 
 
 
