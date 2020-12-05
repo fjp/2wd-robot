@@ -68,6 +68,26 @@ Inside the `gmapping` node in the `gmapping.launch` it is important to map the `
 
 #### Parameter Configurations
 
+
+### Gazebo Simulation Tests
+
+To test SLAM in the Gazebo simulator run the following two launch files in separate terminals.
+
+First run the simulation with:
+
+```console
+roslaunch diffbot_gazebo diffbot.launch world_name:='$(find diffbot_gazebo)/worlds/turtlebot3_world.world'
+```
+
+and in a second terminal execute the SLAM algorithm:
+
+```console
+roslaunch diffbot_slam diffbot_slam.launch slam_method:=gmapping
+```
+
+Here you can choose between different algorithms by changing the value of the `slam_method` argument.
+Possible values are `gmapping` (the default), `karto`, `hector` and `cartographer`.
+
 ### Field Tests
 
 In case you get inaccurate maps follow the official ROS [troubleshooting guide for navigation](http://wiki.ros.org/navigation/Troubleshooting).
