@@ -55,16 +55,29 @@ Unlike `gmapping` which uses a [particle filter](https://en.wikipedia.org/wiki/P
 
 #### Launch files
 
+As mentioned above, every ROS slam package requries messages from the laser-range finder topic. Usually this topic is named `/scan`.
+To distinguish possible multiple lidars, the topic of DiffBot resides in its namespace `/diffbot/scan`.
+Therefore, its necessary to remap the `/scan` topic to `/diffbot/scan`. The following shows how this was done for the `gmapping` launch file.
 
-Inside the `gmapping` node in the `gmapping.launch` it is important to map the `scan` topic to laser scanner topic published by Diffbot:
+Inside this package in the [`launch/gmapping.launch`](https://github.com/fjp/diffbot/blob/noetic-devel/diffbot_slam/launch/diffbot_gmapping.launch) 
+it is important to map the `scan` topic to laser scanner topic published by Diffbot.
+Remappings are done in the [node tag](http://wiki.ros.org/roslaunch/XML/node). Here, for the `gmapping.launch` in the `gmapping` node: 
 
 ```xml
+<launch>
   <!-- Arguments -->
   <arg name="scan_topic"  default="diffbot/scan"/>
 ...
+  <!-- Gmapping -->
+  <node pkg="gmapping" type="slam_gmapping" name="diffbot_slam_gmapping" output="screen">
+    ...
     <!-- remapping of gmapping node -->
     <remap from="scan" to="$(arg scan_topic)"/>
+  </node>
+</launch>
 ```
+
+
 
 #### Parameter Configurations
 
