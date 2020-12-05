@@ -108,6 +108,13 @@ roslaunch diffbot_slam diffbot_slam.launch slam_method:=gmapping
 Here you can choose between different algorithms by changing the value of the `slam_method` argument.
 Possible values are `gmapping` (the default), `karto`, `hector` and `cartographer`.
 
+The ROS node graph will look like the following:
+
+<figure>
+    <a href="https://raw.githubusercontent.com/fjp/diffbot/noetic-devel/docs/resources/slam/nodegraph-gmapping.svg"><img src="https://raw.githubusercontent.com/fjp/diffbot/noetic-devel/docs/resources/slam/nodegraph-gmapping.svg"></a>
+    <figcaption>ROS Node graph after launching Gazebo and gmapping.</figcaption>
+</figure>
+
 ### Field Tests
 
 In case you get inaccurate maps follow the official ROS [troubleshooting guide for navigation](http://wiki.ros.org/navigation/Troubleshooting).
