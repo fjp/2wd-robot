@@ -1,5 +1,9 @@
 ## DiffBot Slam Package
 
+This package contains launch files and configurations for different 
+[simultaneous localization and mapping (SLAM)](https://en.wikipedia.org/wiki/Simultaneous_localization_and_mapping) algorithms
+to map the environment of the robot in 2D, although some of these algorithms can be used to map in 3D.
+
 ```console
 fjp@diffbot:~/catkin_ws/src/diffbot$ catkin create pkg diffbot_slam --catkin-deps diffbot_navigation gmapping
 Creating package "diffbot_slam" in "/home/fjp/git/ros_ws/src/diffbot"...
@@ -45,12 +49,22 @@ Using `slam_gmapping`, you can create a 2-D occupancy grid map (like a building 
 [algorithm walkthrough](https://google-cartographer-ros.readthedocs.io/en/latest/algo_walkthrough.html).
 - [`karto`](http://wiki.ros.org/karto): This package pulls in the Karto mapping library, and provides a ROS wrapper for using it. Karto is considered more accurate than, for example `gmapping` (note: for ROS noetic, see [`slam_karto`](https://wiki.ros.org/slam_karto)) and became [open source in 2010](https://www.ros.org/news/2010/04/karto-mapping-now-open-source-and-on-coderosorg.html).
 - [`hector_slam`](http://wiki.ros.org/hector_slam): metapackage that installs [`hector_mapping`](http://wiki.ros.org/hector_mapping) and related packages. 
-The `hector_mapping` is a SLAM approach that can be used without odometry as well as on platforms that exhibit roll/pitch motion (of the sensor, the platform or both). It leverages the high update rate of modern LIDAR systems like the Hokuyo UTM-30LX and provides 2D pose estimates at scan rate of the sensors (40Hz for the UTM-30LX). While the system does not provide explicit loop closing ability, it is sufficiently accurate for many real world scenarios. The system has successfully been used on Unmanned Ground Robots, Unmanned Surface Vehicles, Handheld Mapping Devices and logged data from quadrotor UAVs.
+The `hector_mapping` is a SLAM approach that can be used without odometry as well as on platforms that exhibit roll/pitch motion (of the sensor, the platform or both), such as drones. It leverages the high update rate of modern LIDAR systems like the Hokuyo UTM-30LX and provides 2D pose estimates at scan rate of the sensors (40Hz for the UTM-30LX). While the system does not provide explicit loop closing ability, it is sufficiently accurate for many real world scenarios. The system has successfully been used on Unmanned Ground Robots, Unmanned Surface Vehicles, Handheld Mapping Devices and logged data from quadrotor UAVs.
 
 Unlike `gmapping` which uses a [particle filter](https://en.wikipedia.org/wiki/Particle_filter), 
 `karto`, `cartographer` and `hector_slam` are all [graph-based SLAM algorithms](http://www2.informatik.uni-freiburg.de/~stachnis/pdf/grisetti10titsmag.pdf).
 The least accurate SLAM algorithm is `gmapping` but it works fine for smaller maps. Use other algorithms, such as `karto` if you operate your robot in
-larger environments.
+larger environments or you want more accuracy.
+
+Another interesing package is [`slam_toolbox`](https://github.com/SteveMacenski/slam_toolbox) which provides ROS1 and ROS2 
+support and is based on the easy to use `karto` algorithm. `karto` is the basis for many companies because it provides an excellent scan matcher
+and can operate in large environments. Additionally, `slam_toolbox` provides tools to edit a generated map and even create a high quality 
+map using stored data (offline).
+
+
+The `cartographer` package is currently supported by OpenRobotics and not by Google where it was originally developed.
+It is currently also not setup correctly for DiffBot. Using it will result in errors.
+{: .notice }
 
 
 
@@ -137,6 +151,25 @@ map into new territory until the entire environment has been explored.
 The ROS wiki provides a good [tutorial using Husky robot](http://wiki.ros.org/husky_navigation/Tutorials/Husky%20Frontier%20Exploration%20Demo) how to use the [`frontier_exploration`](http://wiki.ros.org/frontier_exploration) package. A lightweight alternative is the [`explore_lite`](http://wiki.ros.org/explore_lite) package.
 
 
+### Other SLAM Packages (for 3D Mapping)
+
+- [`hdl_graph_slam`](https://github.com/koide3/hdl_graph_slam): Open source ROS package for real-time 6DOF SLAM using a 3D LIDAR. 
+It is based on 3D Graph SLAM with 
+[NDT](https://www.researchgate.net/publication/4045903_The_Normal_Distributions_Transform_A_New_Approach_to_Laser_Scan_Matching) 
+scan matching-based odometry estimation and loop detection. This method is useful for outdoor.
+- [RTAB-Map](http://wiki.ros.org/rtabmap_ros): stands for [Real-Time Appearance-Based Mapping](http://introlab.github.io/rtabmap/) and 
+is a RGB-D SLAM approach based on a global loop closure detector with real-time constraints. 
+This package can be used to generate a 3D point clouds of the environment and/or to create a 2D occupancy grid map for navigation. 
+To do this it requires only a stereo or RGB-D camera for visual odometry. Additional wheel odometry is not required but can improve the result.
+- [Loam Velodyne](http://wiki.ros.org/loam_velodyne): Laser Odometry and Mapping (Loam) is a realtime method for state estimation and mapping using a 3D lidar, see also the forked Github repository for [`loam_velodyne`](https://github.com/laboshinl/loam_velodyne). Note that this is not supported officially anymore because it became closed source.
+- [ORB-SLAM2](https://github.com/raulmur/ORB_SLAM2): Real-Time SLAM for Monocular, Stereo and RGB-D Cameras, 
+with Loop Detection and Relocalization Capabilities. See [`orb_slam2_ros`](http://wiki.ros.org/orb_slam2_ros) for the ROS wrapper.
+- [slam_toolbox](http://wiki.ros.org/slam_toolbox): This package provides a sped up improved slam karto with updated 
+SDK and visualization and modification toolsets. It is a ROS drop in replacement to gmapping, cartographer, karto, hector, etc.
+This package supports ROS1 and ROS2 and is suitable for use in commercial products because it can map large environments. And it provides tools
+to edit the generated maps. See also the related [ROSCon 2019 video](https://vimeo.com/378682207).
+
+
 ### References
 
 - [`slam_toolbox`](http://wiki.ros.org/slam_toolbox), [Slam Toolbox ROSCon 2019 pdf](https://roscon.ros.org/2019/talks/roscon2019_slamtoolbox.pdf)
@@ -144,4 +177,10 @@ The ROS wiki provides a good [tutorial using Husky robot](http://wiki.ros.org/hu
 Papers:
 
 - [A Tutorial on Graph-Based SLAM](http://www2.informatik.uni-freiburg.de/~stachnis/pdf/grisetti10titsmag.pdf)
-- [A flexible and scalable SLAM system with full 3D motion estimation](https://www.researchgate.net/publication/228852006_A_flexible_and_scalable_SLAM_system_with_full_3D_motion_estimation) `hector_slam` paper.
+- `cartographer` [Real-Time Loop Closure in 2D LIDAR SLAM](https://static.googleusercontent.com/media/research.google.com/de//pubs/archive/45466.pdf)
+- `hector_slam` [A flexible and scalable SLAM system with full 3D motion estimation](https://www.researchgate.net/publication/228852006_A_flexible_and_scalable_SLAM_system_with_full_3D_motion_estimation).
+- [A practical introduction to to pose graph slam](https://www.sauravag.com/2017/07/an-practical-introduction-to-pose-graph-slam/)
+- [The Normal Distributions Transform: A New Approach to Laser Scan Matching](https://www.researchgate.net/publication/4045903_The_Normal_Distributions_Transform_A_New_Approach_to_Laser_Scan_Matching)
+- [RTAB-Map as an Open-Source Lidar and Visual SLAM Library for Large-Scale and Long-Term Online Operation](https://introlab.3it.usherbrooke.ca/mediawiki-introlab/images/7/7a/Labbe18JFR_preprint.pdf)
+- [LOAM: Lidar Odometry and Mapping in Real-time](https://ri.cmu.edu/pub_files/2014/7/Ji_LidarMapping_RSS2014_v8.pdf)
+- [ORB-SLAM2: an Open-Source SLAM System for Monocular, Stereo and RGB-D Cameras](https://arxiv.org/abs/1610.06475)
