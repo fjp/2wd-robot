@@ -116,6 +116,12 @@ The ROS node graph will look like the following:
 </figure>
 
 In the figure we can see that `gmapping` subscribes and publishes to `tf`. 
+
+It requires the transformation from `<the frame attached to incoming scans>` to the `base_link`, which is usually a fixed value, 
+broadcast periodically by the `robot_state_publisher`.
+Aditionally, it requires the transform from `base_link` to `odom`. This is provided by the odometry system (e.g., the driver for the mobile base).
+In the case of DiffBot the odometry system consists of EKF fusion data from the motor encoders and the IMU. 
+The provided tf transforms are `map` to `odom` that describes the current estimate of the robot's pose within the map frame.
 You can read more about the [required and provided transforms](http://wiki.ros.org/gmapping#Required_tf_Transforms) in the documentation.
 
 ### Field Tests
