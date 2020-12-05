@@ -115,6 +115,9 @@ The ROS node graph will look like the following:
     <figcaption>ROS Node graph after launching Gazebo and gmapping.</figcaption>
 </figure>
 
+In the figure we can see that `gmapping` subscribes and publishes to `tf`. 
+You can read more about the [required and provided transforms](http://wiki.ros.org/gmapping#Required_tf_Transforms) in the documentation.
+
 ### Field Tests
 
 In case you get inaccurate maps follow the official ROS [troubleshooting guide for navigation](http://wiki.ros.org/navigation/Troubleshooting).
