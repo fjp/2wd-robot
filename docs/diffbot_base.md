@@ -332,7 +332,7 @@ For more details on ROS dynamic reconfigure see [the official tutorials](http://
 
 With the use of the PID controller the robot is able to drive straight:
 
-{% include video id="fdn5Mu0Qhl8" provider="youtube" %}
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/fdn5Mu0Qhl8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 In case of using inexpensive motors like the [DG01D-E](https://www.sparkfun.com/products/16413) of DiffBot,
 you have to take inaccurate driving behaviour into account. The straight driving behaviour can be improved
