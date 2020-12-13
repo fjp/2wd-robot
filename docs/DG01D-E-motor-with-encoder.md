@@ -34,7 +34,9 @@ This section shows oscilloscope waveform measurements of the quadrature encoder 
 The motor is connected to the [Grove I2C Motor Driver](https://fjp.at/projects/diffbot/components/#control) that is powerd with 10 VDC. 
 The `motor_example.py` applies 50-100% of the 10 VDC which leads to the following output voltages on the motor:
 
-{% include video id="5GlZtQ87Co8" provider="youtube" %}
+
+<iframe src="https://www.youtube-nocookie.com/embed/5GlZtQ87Co8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 
 <details markdown="1"><summary>Voltage sweep measurements</summary>
 - 0:00 Forward Speed 50: 6.5 VDC

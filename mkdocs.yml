@@ -1,3 +1,5 @@
 site_name: DiffBot Differential Drive Mobile Robot
 theme:
   name: material
+  highlightjs: true
+  custom_dir: docs/custom_theme
