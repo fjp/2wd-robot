@@ -1,0 +1,24 @@
+typedef ... GType;
+typedef unsigned int guint8;
+typedef unsigned int guint16;
+typedef unsigned int guint32;
+typedef unsigned int guint;
+typedef int gint;
+typedef int gint32;
+typedef gint gboolean;
+typedef char gchar;
+typedef unsigned char guchar;
+typedef ... gunichar;
+typedef void* gpointer;
+typedef ... gconstpointer;
+typedef ... GObject;
+typedef ... GObjectClass;
+typedef ... GString;
+typedef ... GDestroyNotify;
+typedef ... GList;
+typedef ... GSList;
+typedef ... GError;
+typedef ... GMarkupParseContext;
+typedef ... GTypeModule;
+
+void g_object_unref (gpointer object);

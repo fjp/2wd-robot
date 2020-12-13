@@ -1,0 +1,1415 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.1.7">
+    
+    
+      
+        <title>Ros network setup - DiffBot Differential Drive Mobile Robot</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.19753c6b.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.196e0c26.min.css">
+        
+      
+    
+    
+    
+    <script src="../js/jquery-3.5.1.min.js"></script>
+    <script src="../js/jquery.fitvids.js"></script>
+
+    
+      
+        
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+      
+  
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#ros-network-setup" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href=".." title="DiffBot Differential Drive Mobile Robot" class="md-header-nav__button md-logo" aria-label="DiffBot Differential Drive Mobile Robot">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            DiffBot Differential Drive Mobile Robot
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              Ros network setup
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="DiffBot Differential Drive Mobile Robot" class="md-nav__button md-logo" aria-label="DiffBot Differential Drive Mobile Robot">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    DiffBot Differential Drive Mobile Robot
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href=".." class="md-nav__link">
+      Welcome to DiffBot Documentation
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../DG01D-E-motor-with-encoder/" class="md-nav__link">
+      DG01D E motor with encoder
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../diffbot_base/" class="md-nav__link">
+      Diffbot base
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../diffbot_bringup/" class="md-nav__link">
+      Diffbot bringup
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../diffbot_control/" class="md-nav__link">
+      Diffbot control
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../diffbot_gazebo/" class="md-nav__link">
+      Diffbot gazebo
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../diffbot_mbf/" class="md-nav__link">
+      Diffbot mbf
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../diffbot_msgs/" class="md-nav__link">
+      Diffbot msgs
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../diffbot_navigation/" class="md-nav__link">
+      Diffbot navigation
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../diffbot_robot/" class="md-nav__link">
+      Diffbot robot
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../diffbot_slam/" class="md-nav__link">
+      Diffbot slam
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../git-setup/" class="md-nav__link">
+      Git setup
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../grove_motor_driver/" class="md-nav__link">
+      Grove motor driver
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../grove_ultrasonic_ranger/" class="md-nav__link">
+      Grove ultrasonic ranger
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../hardware-interfaces/" class="md-nav__link">
+      Hardware interfaces
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../laser-range-scanner/" class="md-nav__link">
+      Laser range scanner
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../lm393_speed_sensor/" class="md-nav__link">
+      Lm393 speed sensor
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../power-supply/" class="md-nav__link">
+      Power supply
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../robot-description/" class="md-nav__link">
+      Robot description
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Ros network setup
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="./" class="md-nav__link md-nav__link--active">
+      Ros network setup
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#ros-network-setup" class="md-nav__link">
+    ROS Network Setup
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../ros-setup/" class="md-nav__link">
+      Ros setup
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../teensy-mcu/" class="md-nav__link">
+      Teensy mcu
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-23" type="checkbox" id="nav-23" >
+    <label class="md-nav__link" for="nav-23">
+      Plots
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Plots" data-md-level="1">
+      <label class="md-nav__title" for="nav-23">
+        <span class="md-nav__icon md-icon"></span>
+        Plots
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-23-1" type="checkbox" id="nav-23-1" >
+    <label class="md-nav__link" for="nav-23-1">
+      New venv
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="New venv" data-md-level="2">
+      <label class="md-nav__title" for="nav-23-1">
+        <span class="md-nav__icon md-icon"></span>
+        New venv
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-23-1-1" type="checkbox" id="nav-23-1-1" >
+    <label class="md-nav__link" for="nav-23-1-1">
+      Lib
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Lib" data-md-level="3">
+      <label class="md-nav__title" for="nav-23-1-1">
+        <span class="md-nav__icon md-icon"></span>
+        Lib
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-23-1-1-1" type="checkbox" id="nav-23-1-1-1" >
+    <label class="md-nav__link" for="nav-23-1-1-1">
+      Python3.8
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Python3.8" data-md-level="4">
+      <label class="md-nav__title" for="nav-23-1-1-1">
+        <span class="md-nav__icon md-icon"></span>
+        Python3.8
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-23-1-1-1-1" type="checkbox" id="nav-23-1-1-1-1" >
+    <label class="md-nav__link" for="nav-23-1-1-1-1">
+      Site packages
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Site packages" data-md-level="5">
+      <label class="md-nav__title" for="nav-23-1-1-1-1">
+        <span class="md-nav__icon md-icon"></span>
+        Site packages
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-23-1-1-1-1-1" type="checkbox" id="nav-23-1-1-1-1-1" >
+    <label class="md-nav__link" for="nav-23-1-1-1-1-1">
+      Scipy
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Scipy" data-md-level="6">
+      <label class="md-nav__title" for="nav-23-1-1-1-1-1">
+        <span class="md-nav__icon md-icon"></span>
+        Scipy
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-23-1-1-1-1-1-1" type="checkbox" id="nav-23-1-1-1-1-1-1" >
+    <label class="md-nav__link" for="nav-23-1-1-1-1-1-1">
+      Fft
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Fft" data-md-level="7">
+      <label class="md-nav__title" for="nav-23-1-1-1-1-1-1">
+        <span class="md-nav__icon md-icon"></span>
+        Fft
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-23-1-1-1-1-1-1-1" type="checkbox" id="nav-23-1-1-1-1-1-1-1" >
+    <label class="md-nav__link" for="nav-23-1-1-1-1-1-1-1">
+       pocketfft
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label=" pocketfft" data-md-level="8">
+      <label class="md-nav__title" for="nav-23-1-1-1-1-1-1-1">
+        <span class="md-nav__icon md-icon"></span>
+         pocketfft
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../plots/new_venv/lib/python3.8/site-packages/scipy/fft/_pocketfft/LICENSE/" class="md-nav__link">
+      LICENSE
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-23-1-2" type="checkbox" id="nav-23-1-2" >
+    <label class="md-nav__link" for="nav-23-1-2">
+      Lib64
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Lib64" data-md-level="3">
+      <label class="md-nav__title" for="nav-23-1-2">
+        <span class="md-nav__icon md-icon"></span>
+        Lib64
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-23-1-2-1" type="checkbox" id="nav-23-1-2-1" >
+    <label class="md-nav__link" for="nav-23-1-2-1">
+      Python3.8
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Python3.8" data-md-level="4">
+      <label class="md-nav__title" for="nav-23-1-2-1">
+        <span class="md-nav__icon md-icon"></span>
+        Python3.8
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-23-1-2-1-1" type="checkbox" id="nav-23-1-2-1-1" >
+    <label class="md-nav__link" for="nav-23-1-2-1-1">
+      Site packages
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Site packages" data-md-level="5">
+      <label class="md-nav__title" for="nav-23-1-2-1-1">
+        <span class="md-nav__icon md-icon"></span>
+        Site packages
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-23-1-2-1-1-1" type="checkbox" id="nav-23-1-2-1-1-1" >
+    <label class="md-nav__link" for="nav-23-1-2-1-1-1">
+      Scipy
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Scipy" data-md-level="6">
+      <label class="md-nav__title" for="nav-23-1-2-1-1-1">
+        <span class="md-nav__icon md-icon"></span>
+        Scipy
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-23-1-2-1-1-1-1" type="checkbox" id="nav-23-1-2-1-1-1-1" >
+    <label class="md-nav__link" for="nav-23-1-2-1-1-1-1">
+      Fft
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Fft" data-md-level="7">
+      <label class="md-nav__title" for="nav-23-1-2-1-1-1-1">
+        <span class="md-nav__icon md-icon"></span>
+        Fft
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-23-1-2-1-1-1-1-1" type="checkbox" id="nav-23-1-2-1-1-1-1-1" >
+    <label class="md-nav__link" for="nav-23-1-2-1-1-1-1-1">
+       pocketfft
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label=" pocketfft" data-md-level="8">
+      <label class="md-nav__title" for="nav-23-1-2-1-1-1-1-1">
+        <span class="md-nav__icon md-icon"></span>
+         pocketfft
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../plots/new_venv/lib64/python3.8/site-packages/scipy/fft/_pocketfft/LICENSE/" class="md-nav__link">
+      LICENSE
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-23-2" type="checkbox" id="nav-23-2" >
+    <label class="md-nav__link" for="nav-23-2">
+      Venv
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Venv" data-md-level="2">
+      <label class="md-nav__title" for="nav-23-2">
+        <span class="md-nav__icon md-icon"></span>
+        Venv
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-23-2-1" type="checkbox" id="nav-23-2-1" >
+    <label class="md-nav__link" for="nav-23-2-1">
+      Lib
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Lib" data-md-level="3">
+      <label class="md-nav__title" for="nav-23-2-1">
+        <span class="md-nav__icon md-icon"></span>
+        Lib
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-23-2-1-1" type="checkbox" id="nav-23-2-1-1" >
+    <label class="md-nav__link" for="nav-23-2-1-1">
+      Python3.8
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Python3.8" data-md-level="4">
+      <label class="md-nav__title" for="nav-23-2-1-1">
+        <span class="md-nav__icon md-icon"></span>
+        Python3.8
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-23-2-1-1-1" type="checkbox" id="nav-23-2-1-1-1" >
+    <label class="md-nav__link" for="nav-23-2-1-1-1">
+      Site packages
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Site packages" data-md-level="5">
+      <label class="md-nav__title" for="nav-23-2-1-1-1">
+        <span class="md-nav__icon md-icon"></span>
+        Site packages
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-23-2-1-1-1-1" type="checkbox" id="nav-23-2-1-1-1-1" >
+    <label class="md-nav__link" for="nav-23-2-1-1-1-1">
+      Scipy
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Scipy" data-md-level="6">
+      <label class="md-nav__title" for="nav-23-2-1-1-1-1">
+        <span class="md-nav__icon md-icon"></span>
+        Scipy
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-23-2-1-1-1-1-1" type="checkbox" id="nav-23-2-1-1-1-1-1" >
+    <label class="md-nav__link" for="nav-23-2-1-1-1-1-1">
+      Fft
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Fft" data-md-level="7">
+      <label class="md-nav__title" for="nav-23-2-1-1-1-1-1">
+        <span class="md-nav__icon md-icon"></span>
+        Fft
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-23-2-1-1-1-1-1-1" type="checkbox" id="nav-23-2-1-1-1-1-1-1" >
+    <label class="md-nav__link" for="nav-23-2-1-1-1-1-1-1">
+       pocketfft
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label=" pocketfft" data-md-level="8">
+      <label class="md-nav__title" for="nav-23-2-1-1-1-1-1-1">
+        <span class="md-nav__icon md-icon"></span>
+         pocketfft
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../plots/venv/lib/python3.8/site-packages/scipy/fft/_pocketfft/LICENSE/" class="md-nav__link">
+      LICENSE
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-23-2-2" type="checkbox" id="nav-23-2-2" >
+    <label class="md-nav__link" for="nav-23-2-2">
+      Lib64
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Lib64" data-md-level="3">
+      <label class="md-nav__title" for="nav-23-2-2">
+        <span class="md-nav__icon md-icon"></span>
+        Lib64
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-23-2-2-1" type="checkbox" id="nav-23-2-2-1" >
+    <label class="md-nav__link" for="nav-23-2-2-1">
+      Python3.8
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Python3.8" data-md-level="4">
+      <label class="md-nav__title" for="nav-23-2-2-1">
+        <span class="md-nav__icon md-icon"></span>
+        Python3.8
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-23-2-2-1-1" type="checkbox" id="nav-23-2-2-1-1" >
+    <label class="md-nav__link" for="nav-23-2-2-1-1">
+      Site packages
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Site packages" data-md-level="5">
+      <label class="md-nav__title" for="nav-23-2-2-1-1">
+        <span class="md-nav__icon md-icon"></span>
+        Site packages
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-23-2-2-1-1-1" type="checkbox" id="nav-23-2-2-1-1-1" >
+    <label class="md-nav__link" for="nav-23-2-2-1-1-1">
+      Scipy
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Scipy" data-md-level="6">
+      <label class="md-nav__title" for="nav-23-2-2-1-1-1">
+        <span class="md-nav__icon md-icon"></span>
+        Scipy
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-23-2-2-1-1-1-1" type="checkbox" id="nav-23-2-2-1-1-1-1" >
+    <label class="md-nav__link" for="nav-23-2-2-1-1-1-1">
+      Fft
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Fft" data-md-level="7">
+      <label class="md-nav__title" for="nav-23-2-2-1-1-1-1">
+        <span class="md-nav__icon md-icon"></span>
+        Fft
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-23-2-2-1-1-1-1-1" type="checkbox" id="nav-23-2-2-1-1-1-1-1" >
+    <label class="md-nav__link" for="nav-23-2-2-1-1-1-1-1">
+       pocketfft
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label=" pocketfft" data-md-level="8">
+      <label class="md-nav__title" for="nav-23-2-2-1-1-1-1-1">
+        <span class="md-nav__icon md-icon"></span>
+         pocketfft
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../plots/venv/lib64/python3.8/site-packages/scipy/fft/_pocketfft/LICENSE/" class="md-nav__link">
+      LICENSE
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-24" type="checkbox" id="nav-24" >
+    <label class="md-nav__link" for="nav-24">
+      Theory
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Theory" data-md-level="1">
+      <label class="md-nav__title" for="nav-24">
+        <span class="md-nav__icon md-icon"></span>
+        Theory
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../theory/motion-and-odometry/" class="md-nav__link">
+      Motion and odometry
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#ros-network-setup" class="md-nav__link">
+    ROS Network Setup
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                  <h1>Ros network setup</h1>
+                
+                <h2 id="ros-network-setup">ROS Network Setup</h2>
+<p>ROS is a distributed computing environment. This allows running compute expensive tasks such as visualization or path planning for navigation
+on machines with more performance and sending goals to robots operating on less performant hardware like DiffBot with its Raspberry Pi 4 B.</p>
+<p>For detailed instructions see <a href="http://wiki.ros.org/ROS/NetworkSetup">ROS Network Setup</a> and the 
+<a href="http://wiki.ros.org/ROS/EnvironmentVariables">ROS Environment Variables</a>.</p>
+<p>The setup between the work machine that handles compute heavy tasks and DiffBot is as follows:</p>
+<p>TODO image</p>
+<p>On DiffBot we configure the <code>ROS_MASTER_URI</code> to be the IP address of the work machine.</p>
+<pre><code class="language-console">export ROS_MASTER_URI=http://192.168.0.9:11311/
+</code></pre>
+<p>To test run the master on the work machine using the <code>roscore</code> command.
+Then run the the <code>listener</code> from the <code>roscpp_tutorials</code> package in another terminal:</p>
+<pre><code class="language-console">fjp@workmachine:~/git/diffbot/ros$ rosrun roscpp_tutorials listener
+
+</code></pre>
+<p>Then switch to a terminal on DiffBot's Raspberry Pi and run the <code>talker</code> from <code>roscpp_tutorials</code>:</p>
+<pre><code class="language-console">fjp@diffbot:~/git/diffbot/ros$ rosrun roscpp_tutorials talker 
+[ INFO] [1602018325.633133449]: hello world 0
+[ INFO] [1602018325.733137152]: hello world 1
+[ INFO] [1602018325.833112540]: hello world 2
+[ INFO] [1602018325.933114483]: hello world 3
+[ INFO] [1602018326.033114093]: hello world 4
+[ INFO] [1602018326.133112684]: hello world 5
+[ INFO] [1602018326.233112183]: hello world 6
+[ INFO] [1602018326.333113126]: hello world 7
+[ INFO] [1602018326.433113680]: hello world 8
+[ INFO] [1602018326.533113031]: hello world 9
+[ INFO] [1602018326.633110140]: hello world 10
+[ INFO] [1602018326.733108954]: hello world 11
+[ INFO] [1602018326.833113267]: hello world 12
+[ INFO] [1602018326.933164505]: hello world 13
+[ INFO] [1602018327.033119135]: hello world 14
+[ INFO] [1602018327.133113559]: hello world 15
+[ INFO] [1602018327.233111003]: hello world 16
+[ INFO] [1602018327.333110705]: hello world 17
+[ INFO] [1602018327.433126425]: hello world 18
+[ INFO] [1602018327.533111498]: hello world 19
+[ INFO] [1602018327.633107978]: hello world 20
+[ INFO] [1602018327.733110736]: hello world 21
+[ INFO] [1602018327.833107605]: hello world 22
+[ INFO] [1602018327.933111659]: hello world 23
+[ INFO] [1602018328.033108065]: hello world 24
+[ INFO] [1602018328.133110379]: hello world 25
+[ INFO] [1602018328.233150191]: hello world 26
+[ INFO] [1602018328.333135986]: hello world 27
+[ INFO] [1602018328.433153558]: hello world 28
+[ INFO] [1602018328.533154557]: hello world 29
+[ INFO] [1602018328.633151667]: hello world 30
+[ INFO] [1602018328.733128777]: hello world 31
+[ INFO] [1602018328.833170108]: hello world 32
+[ INFO] [1602018328.933172402]: hello world 33
+</code></pre>
+<p>Looking back at the terminal on the work machine you should see the output:</p>
+<pre><code class="language-console">fjp.github.io git:(master) rosrun roscpp_tutorials listener
+[ INFO] [1602018328.330070016]: I heard: [hello world 27]
+[ INFO] [1602018328.430244670]: I heard: [hello world 28]
+[ INFO] [1602018328.530173113]: I heard: [hello world 29]
+[ INFO] [1602018328.630251690]: I heard: [hello world 30]
+[ INFO] [1602018328.730334064]: I heard: [hello world 31]
+[ INFO] [1602018328.830346566]: I heard: [hello world 32]
+[ INFO] [1602018328.930009032]: I heard: [hello world 33]
+</code></pre>
+<p>Note that it can take some time receiving the messages from DiffBot on the work machine, which we can see from the time stamps in the outputs above.</p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../robot-description/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Robot description
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../ros-setup/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Ros setup
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+    
+      <script src="../assets/javascripts/vendor.0ac82a11.min.js"></script>
+      <script src="../assets/javascripts/bundle.f81dfb4d.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      
+      <script>
+        app = initialize({
+          base: "..",
+          features: [],
+          search: Object.assign({
+            worker: "../assets/javascripts/worker/search.4ac00218.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+    <script>
+        $(document).ready(function(){
+            // Target your .container, .wrapper, .post, etc.
+            $(".md-main").fitVids();
+        });
+    </script>
+
+  </body>
+</html>

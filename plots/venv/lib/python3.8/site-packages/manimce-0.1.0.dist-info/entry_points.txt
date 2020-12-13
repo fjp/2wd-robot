@@ -1,0 +1,4 @@
+[console_scripts]
+manim=manim.__main__:main
+manimcm=manim.__main__:main
+

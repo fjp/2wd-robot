@@ -1,0 +1,4 @@
+typedef void cairo_t;
+typedef void cairo_font_type_t;
+typedef void cairo_scaled_font_t;
+typedef void cairo_font_options_t;

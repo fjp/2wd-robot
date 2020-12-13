@@ -1,0 +1,64 @@
+Metadata-Version: 2.1
+Name: pangocffi
+Version: 0.6.0
+Summary: CFFI-based pango bindings for Python
+Home-page: https://github.com/leifgehrmann/pangocffi
+Author: Leif Gehrmann
+License: LGPL-2.1
+Project-URL: Code, https://github.com/leifgehrmann/pangocffi
+Project-URL: Issue tracker, https://github.com/leifgehrmann/pangocffi/issues
+Description: pangocffi
+        =========
+        
+        .. image:: https://img.shields.io/pypi/v/pangocffi.svg
+            :target: https://pypi.python.org/pypi/pangocffi
+            :alt: Latest PyPi Release
+        
+        .. image:: https://img.shields.io/pypi/pyversions/pangocffi.svg?style=flat
+            :target: https://pypi.python.org/pypi/pangocffi
+            :alt: Supported Python Versions
+        
+        .. image:: https://travis-ci.org/leifgehrmann/pangocffi.svg?branch=master
+            :target: https://travis-ci.org/leifgehrmann/pangocffi
+        
+        .. image:: https://readthedocs.org/projects/pangocffi/badge/?version=latest
+            :target: https://pangocffi.readthedocs.io/en/latest/?badge=latest
+            :alt: Documentation Status
+        
+        .. image:: https://codecov.io/gh/leifgehrmann/pangocffi/branch/master/graph/badge.svg
+            :target: https://codecov.io/gh/leifgehrmann/pangocffi
+            :alt: Code Coverage
+        
+        pangocffi is a `CFFI`_-based set of Python bindings for pango_.
+        
+        pangocffi on its own is not that useful, since it depends on a PangoFontMap
+        being declared against the PangoContext.
+        PangoFontMap instances can easily be retrieved from libraries such as
+        PangoCairo, PangoXft, PangoFT2, and PangoWin32 (See gnome's documentation
+        `Rendering with Pango`_ for a list of rendering engines).
+        
+        See pangocairocffi_ for bindings that allow you to render pango objects with
+        cairo.
+        
+        .. _pangocairocffi: https://github.com/leifgehrmann/pangocairocffi
+        .. _Rendering with Pango: https://developer.gnome.org/pango/stable/rendering.html
+        
+        
+        The bindings are currently not fully implemented. Feel free to make a pull
+        request to contribute!
+        
+        .. _CFFI: https://cffi.readthedocs.org/
+        .. _pango: https://pango.org/
+        
+Keywords: pango,cffi,binding
+Platform: UNKNOWN
+Classifier: Development Status :: 1 - Planning
+Classifier: Intended Audience :: Developers
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Topic :: Text Processing :: Fonts
+Requires-Python: >=3.5
+Description-Content-Type: text/x-rst

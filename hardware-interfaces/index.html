@@ -1,0 +1,1584 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.1.7">
+    
+    
+      
+        <title>Hardware interfaces - DiffBot Differential Drive Mobile Robot</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.19753c6b.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.196e0c26.min.css">
+        
+      
+    
+    
+    
+    <script src="../js/jquery-3.5.1.min.js"></script>
+    <script src="../js/jquery.fitvids.js"></script>
+
+    
+      
+        
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+      
+  
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#gpio" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href=".." title="DiffBot Differential Drive Mobile Robot" class="md-header-nav__button md-logo" aria-label="DiffBot Differential Drive Mobile Robot">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            DiffBot Differential Drive Mobile Robot
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              Hardware interfaces
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="DiffBot Differential Drive Mobile Robot" class="md-nav__button md-logo" aria-label="DiffBot Differential Drive Mobile Robot">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    DiffBot Differential Drive Mobile Robot
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href=".." class="md-nav__link">
+      Welcome to DiffBot Documentation
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../DG01D-E-motor-with-encoder/" class="md-nav__link">
+      DG01D E motor with encoder
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../diffbot_base/" class="md-nav__link">
+      Diffbot base
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../diffbot_bringup/" class="md-nav__link">
+      Diffbot bringup
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../diffbot_control/" class="md-nav__link">
+      Diffbot control
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../diffbot_gazebo/" class="md-nav__link">
+      Diffbot gazebo
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../diffbot_mbf/" class="md-nav__link">
+      Diffbot mbf
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../diffbot_msgs/" class="md-nav__link">
+      Diffbot msgs
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../diffbot_navigation/" class="md-nav__link">
+      Diffbot navigation
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../diffbot_robot/" class="md-nav__link">
+      Diffbot robot
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../diffbot_slam/" class="md-nav__link">
+      Diffbot slam
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../git-setup/" class="md-nav__link">
+      Git setup
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../grove_motor_driver/" class="md-nav__link">
+      Grove motor driver
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../grove_ultrasonic_ranger/" class="md-nav__link">
+      Grove ultrasonic ranger
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Hardware interfaces
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="./" class="md-nav__link md-nav__link--active">
+      Hardware interfaces
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#gpio" class="md-nav__link">
+    GPIO
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prepare-i2c-connection" class="md-nav__link">
+    Prepare I2C Connection
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usb-devices" class="md-nav__link">
+    USB Devices
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../laser-range-scanner/" class="md-nav__link">
+      Laser range scanner
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../lm393_speed_sensor/" class="md-nav__link">
+      Lm393 speed sensor
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../power-supply/" class="md-nav__link">
+      Power supply
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../robot-description/" class="md-nav__link">
+      Robot description
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../ros-network-setup/" class="md-nav__link">
+      Ros network setup
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../ros-setup/" class="md-nav__link">
+      Ros setup
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../teensy-mcu/" class="md-nav__link">
+      Teensy mcu
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-23" type="checkbox" id="nav-23" >
+    <label class="md-nav__link" for="nav-23">
+      Plots
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Plots" data-md-level="1">
+      <label class="md-nav__title" for="nav-23">
+        <span class="md-nav__icon md-icon"></span>
+        Plots
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-23-1" type="checkbox" id="nav-23-1" >
+    <label class="md-nav__link" for="nav-23-1">
+      New venv
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="New venv" data-md-level="2">
+      <label class="md-nav__title" for="nav-23-1">
+        <span class="md-nav__icon md-icon"></span>
+        New venv
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-23-1-1" type="checkbox" id="nav-23-1-1" >
+    <label class="md-nav__link" for="nav-23-1-1">
+      Lib
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Lib" data-md-level="3">
+      <label class="md-nav__title" for="nav-23-1-1">
+        <span class="md-nav__icon md-icon"></span>
+        Lib
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-23-1-1-1" type="checkbox" id="nav-23-1-1-1" >
+    <label class="md-nav__link" for="nav-23-1-1-1">
+      Python3.8
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Python3.8" data-md-level="4">
+      <label class="md-nav__title" for="nav-23-1-1-1">
+        <span class="md-nav__icon md-icon"></span>
+        Python3.8
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-23-1-1-1-1" type="checkbox" id="nav-23-1-1-1-1" >
+    <label class="md-nav__link" for="nav-23-1-1-1-1">
+      Site packages
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Site packages" data-md-level="5">
+      <label class="md-nav__title" for="nav-23-1-1-1-1">
+        <span class="md-nav__icon md-icon"></span>
+        Site packages
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-23-1-1-1-1-1" type="checkbox" id="nav-23-1-1-1-1-1" >
+    <label class="md-nav__link" for="nav-23-1-1-1-1-1">
+      Scipy
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Scipy" data-md-level="6">
+      <label class="md-nav__title" for="nav-23-1-1-1-1-1">
+        <span class="md-nav__icon md-icon"></span>
+        Scipy
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-23-1-1-1-1-1-1" type="checkbox" id="nav-23-1-1-1-1-1-1" >
+    <label class="md-nav__link" for="nav-23-1-1-1-1-1-1">
+      Fft
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Fft" data-md-level="7">
+      <label class="md-nav__title" for="nav-23-1-1-1-1-1-1">
+        <span class="md-nav__icon md-icon"></span>
+        Fft
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-23-1-1-1-1-1-1-1" type="checkbox" id="nav-23-1-1-1-1-1-1-1" >
+    <label class="md-nav__link" for="nav-23-1-1-1-1-1-1-1">
+       pocketfft
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label=" pocketfft" data-md-level="8">
+      <label class="md-nav__title" for="nav-23-1-1-1-1-1-1-1">
+        <span class="md-nav__icon md-icon"></span>
+         pocketfft
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../plots/new_venv/lib/python3.8/site-packages/scipy/fft/_pocketfft/LICENSE/" class="md-nav__link">
+      LICENSE
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-23-1-2" type="checkbox" id="nav-23-1-2" >
+    <label class="md-nav__link" for="nav-23-1-2">
+      Lib64
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Lib64" data-md-level="3">
+      <label class="md-nav__title" for="nav-23-1-2">
+        <span class="md-nav__icon md-icon"></span>
+        Lib64
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-23-1-2-1" type="checkbox" id="nav-23-1-2-1" >
+    <label class="md-nav__link" for="nav-23-1-2-1">
+      Python3.8
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Python3.8" data-md-level="4">
+      <label class="md-nav__title" for="nav-23-1-2-1">
+        <span class="md-nav__icon md-icon"></span>
+        Python3.8
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-23-1-2-1-1" type="checkbox" id="nav-23-1-2-1-1" >
+    <label class="md-nav__link" for="nav-23-1-2-1-1">
+      Site packages
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Site packages" data-md-level="5">
+      <label class="md-nav__title" for="nav-23-1-2-1-1">
+        <span class="md-nav__icon md-icon"></span>
+        Site packages
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-23-1-2-1-1-1" type="checkbox" id="nav-23-1-2-1-1-1" >
+    <label class="md-nav__link" for="nav-23-1-2-1-1-1">
+      Scipy
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Scipy" data-md-level="6">
+      <label class="md-nav__title" for="nav-23-1-2-1-1-1">
+        <span class="md-nav__icon md-icon"></span>
+        Scipy
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-23-1-2-1-1-1-1" type="checkbox" id="nav-23-1-2-1-1-1-1" >
+    <label class="md-nav__link" for="nav-23-1-2-1-1-1-1">
+      Fft
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Fft" data-md-level="7">
+      <label class="md-nav__title" for="nav-23-1-2-1-1-1-1">
+        <span class="md-nav__icon md-icon"></span>
+        Fft
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-23-1-2-1-1-1-1-1" type="checkbox" id="nav-23-1-2-1-1-1-1-1" >
+    <label class="md-nav__link" for="nav-23-1-2-1-1-1-1-1">
+       pocketfft
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label=" pocketfft" data-md-level="8">
+      <label class="md-nav__title" for="nav-23-1-2-1-1-1-1-1">
+        <span class="md-nav__icon md-icon"></span>
+         pocketfft
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../plots/new_venv/lib64/python3.8/site-packages/scipy/fft/_pocketfft/LICENSE/" class="md-nav__link">
+      LICENSE
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-23-2" type="checkbox" id="nav-23-2" >
+    <label class="md-nav__link" for="nav-23-2">
+      Venv
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Venv" data-md-level="2">
+      <label class="md-nav__title" for="nav-23-2">
+        <span class="md-nav__icon md-icon"></span>
+        Venv
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-23-2-1" type="checkbox" id="nav-23-2-1" >
+    <label class="md-nav__link" for="nav-23-2-1">
+      Lib
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Lib" data-md-level="3">
+      <label class="md-nav__title" for="nav-23-2-1">
+        <span class="md-nav__icon md-icon"></span>
+        Lib
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-23-2-1-1" type="checkbox" id="nav-23-2-1-1" >
+    <label class="md-nav__link" for="nav-23-2-1-1">
+      Python3.8
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Python3.8" data-md-level="4">
+      <label class="md-nav__title" for="nav-23-2-1-1">
+        <span class="md-nav__icon md-icon"></span>
+        Python3.8
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-23-2-1-1-1" type="checkbox" id="nav-23-2-1-1-1" >
+    <label class="md-nav__link" for="nav-23-2-1-1-1">
+      Site packages
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Site packages" data-md-level="5">
+      <label class="md-nav__title" for="nav-23-2-1-1-1">
+        <span class="md-nav__icon md-icon"></span>
+        Site packages
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-23-2-1-1-1-1" type="checkbox" id="nav-23-2-1-1-1-1" >
+    <label class="md-nav__link" for="nav-23-2-1-1-1-1">
+      Scipy
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Scipy" data-md-level="6">
+      <label class="md-nav__title" for="nav-23-2-1-1-1-1">
+        <span class="md-nav__icon md-icon"></span>
+        Scipy
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-23-2-1-1-1-1-1" type="checkbox" id="nav-23-2-1-1-1-1-1" >
+    <label class="md-nav__link" for="nav-23-2-1-1-1-1-1">
+      Fft
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Fft" data-md-level="7">
+      <label class="md-nav__title" for="nav-23-2-1-1-1-1-1">
+        <span class="md-nav__icon md-icon"></span>
+        Fft
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-23-2-1-1-1-1-1-1" type="checkbox" id="nav-23-2-1-1-1-1-1-1" >
+    <label class="md-nav__link" for="nav-23-2-1-1-1-1-1-1">
+       pocketfft
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label=" pocketfft" data-md-level="8">
+      <label class="md-nav__title" for="nav-23-2-1-1-1-1-1-1">
+        <span class="md-nav__icon md-icon"></span>
+         pocketfft
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../plots/venv/lib/python3.8/site-packages/scipy/fft/_pocketfft/LICENSE/" class="md-nav__link">
+      LICENSE
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-23-2-2" type="checkbox" id="nav-23-2-2" >
+    <label class="md-nav__link" for="nav-23-2-2">
+      Lib64
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Lib64" data-md-level="3">
+      <label class="md-nav__title" for="nav-23-2-2">
+        <span class="md-nav__icon md-icon"></span>
+        Lib64
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-23-2-2-1" type="checkbox" id="nav-23-2-2-1" >
+    <label class="md-nav__link" for="nav-23-2-2-1">
+      Python3.8
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Python3.8" data-md-level="4">
+      <label class="md-nav__title" for="nav-23-2-2-1">
+        <span class="md-nav__icon md-icon"></span>
+        Python3.8
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-23-2-2-1-1" type="checkbox" id="nav-23-2-2-1-1" >
+    <label class="md-nav__link" for="nav-23-2-2-1-1">
+      Site packages
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Site packages" data-md-level="5">
+      <label class="md-nav__title" for="nav-23-2-2-1-1">
+        <span class="md-nav__icon md-icon"></span>
+        Site packages
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-23-2-2-1-1-1" type="checkbox" id="nav-23-2-2-1-1-1" >
+    <label class="md-nav__link" for="nav-23-2-2-1-1-1">
+      Scipy
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Scipy" data-md-level="6">
+      <label class="md-nav__title" for="nav-23-2-2-1-1-1">
+        <span class="md-nav__icon md-icon"></span>
+        Scipy
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-23-2-2-1-1-1-1" type="checkbox" id="nav-23-2-2-1-1-1-1" >
+    <label class="md-nav__link" for="nav-23-2-2-1-1-1-1">
+      Fft
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Fft" data-md-level="7">
+      <label class="md-nav__title" for="nav-23-2-2-1-1-1-1">
+        <span class="md-nav__icon md-icon"></span>
+        Fft
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-23-2-2-1-1-1-1-1" type="checkbox" id="nav-23-2-2-1-1-1-1-1" >
+    <label class="md-nav__link" for="nav-23-2-2-1-1-1-1-1">
+       pocketfft
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label=" pocketfft" data-md-level="8">
+      <label class="md-nav__title" for="nav-23-2-2-1-1-1-1-1">
+        <span class="md-nav__icon md-icon"></span>
+         pocketfft
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../plots/venv/lib64/python3.8/site-packages/scipy/fft/_pocketfft/LICENSE/" class="md-nav__link">
+      LICENSE
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-24" type="checkbox" id="nav-24" >
+    <label class="md-nav__link" for="nav-24">
+      Theory
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Theory" data-md-level="1">
+      <label class="md-nav__title" for="nav-24">
+        <span class="md-nav__icon md-icon"></span>
+        Theory
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../theory/motion-and-odometry/" class="md-nav__link">
+      Motion and odometry
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#gpio" class="md-nav__link">
+    GPIO
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prepare-i2c-connection" class="md-nav__link">
+    Prepare I2C Connection
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usb-devices" class="md-nav__link">
+    USB Devices
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                  <h1>Hardware interfaces</h1>
+                
+                <p>The hardware interfaces provide an interface between the components (sensors and actuators) of the 2WD robot and
+the main processing unit, the Raspberry Pi 4 B.</p>
+<h2 id="gpio">GPIO</h2>
+<p>Currently, three GPIO pins are used to connect the ultrasonic ranger and two speed sensors.</p>
+<p>The ultrasonic ranger uses just a single GPIO pin for communicating its measured distances.
+Therefore, we can use one of the GPIO pins such as <a href="https://pinout.xyz/pinout/pin11_gpio17">physical pin 11</a>.</p>
+<p>The LM393 speed sensors also use a single digital GPIO pin each. These pins will be setup using software interrupts with the <a href="https://pypi.org/project/RPi.GPIO/">RPi.GPIO</a> library. </p>
+<h2 id="prepare-i2c-connection">Prepare I2C Connection</h2>
+<p>The I2C connections are used for multiple components such as the motor driver and the oled display.</p>
+<figure>
+    <a href="https://github.com/fjp/2wd-robot/raw/master/docs/i2c-rpi-pinout.png"><img src="https://github.com/fjp/2wd-robot/raw/master/docs/i2c-rpi-pinout.png"></a>
+    <figcaption><a href="https://pinout.xyz/pinout/i2c" title="I2C Pinout">I2C Pinout</a> on Raspberry Pi 4 B.</figcaption>
+</figure>
+
+<p>Using these ports on the Raspberry Pi 4 B, requires that we enable the I2C interface. </p>
+<p>To do so, we will use the tool <code>i2cdetect</code> which requires that we install a tool on Ubuntu called <code>i2c-tools</code>:</p>
+<pre><code class="language-bash">fjp@ubuntu:~/git/2wd-robot$ i2cdetect
+
+Command 'i2cdetect' not found, but can be installed with:
+
+sudo apt install i2c-tools
+
+fjp@ubuntu:~/git/2wd-robot$ sudo apt install i2c-tools
+</code></pre>
+<p>This <code>i2cdetect</code> tool is  a  userspace program to scan an I2C bus for devices
+given a specific i2cbus argument which indicates  the number or name of the I2C bus to be scanned, 
+and should correspond to one of the busses listed by <code>i2cdetect -l</code>. See also <code>info i2cdetect</code> for the manual page.</p>
+<p>To test if the i2c ports are working we use the following commands:</p>
+<pre><code class="language-console">$ i2cdetect -y 0
+Error: Could not open file '/dev/i2c-0' or '/dev/i2c/0': No such file or directory
+$ i2cdetect -y 1
+Error: Could not open file '/dev/i2c-1' or '/dev/i2c/1': No such file or directory
+</code></pre>
+<p>The ports are not setup correctly yet, which is why we need to enable the following two lines in the <code>/boot/firmware/config.txt</code> file:</p>
+<pre><code class="language-bash">dtparam=i2c0=on
+dtparam=i2c1=on
+</code></pre>
+<p>After rebooting the Raspberry Pi and entering the command again the following output will appear:</p>
+<pre><code class="language-console">$ i2cdetect -y 0
+Error: Could not open file `/dev/i2c-0': Permission denied
+Run as root?
+</code></pre>
+<p>Running as root using <code>sudo</code> will work (please read on, there is a better way):</p>
+<pre><code class="language-console">$ sudo i2cdetect -y 0
+[sudo] password for fjp:
+     0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f
+00:          -- -- -- -- -- -- -- -- -- -- -- -- -- 
+10: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+20: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+30: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+40: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+50: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+60: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+70: -- -- -- -- -- -- -- --
+</code></pre>
+<p>As mentioned there is a better way to access the i2c devices without using power user privileges.
+When issuing the following:</p>
+<pre><code class="language-console">ls -l /dev/i2c-0 
+crw-rw---- 1 root i2c 89, 0 Apr  1  2020 /dev/i2c-0
+</code></pre>
+<p>we see that the <code>/dev/i2c-0</code> device belongs to user <code>root</code> and <code>i2c</code> user group. 
+To get access without <code>sudo</code> we can add other users, requiering access to the <code>i2c</code> group with:</p>
+<pre><code class="language-console">sudo adduser fjp i2c
+Adding user `fjp' to group `i2c' ...
+Adding user fjp to group i2c
+Done.
+</code></pre>
+<p>After logging out and back in again the access will be granted and following output will come up:</p>
+<pre><code class="language-console">$ i2cdetect -y 0
+     0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f
+00:          -- -- -- -- -- -- -- -- -- -- -- -- -- 
+10: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+20: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+30: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+40: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+50: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+60: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+70: -- -- -- -- -- -- -- -- 
+</code></pre>
+<p>It outputs a table with the list of detected devices on the specified bus.
+In this case there are no connected devices on I2C bus 0.</p>
+<details><summary>Alternative setup using raspi-config</summary>
+
+On Raspian Buster, the official Raspberry OS, we could use the `raspi-config` tool:
+
+<pre><font color="#8AE234"><b>fjp@ubuntu</b></font>:<font color="#729FCF"><b>~/git/2wd-robot</b></font>$ sudo raspi-config</pre>
+
+<pre><span style="background-color:#75507B"><font color="#D3D7CF">Raspberry Pi 4 Model B Rev 1.1</font></span>
+
+
+
+<span style="background-color:#D3D7CF"><font color="#2E3436">┌──────────────────┤ </font></span><span style="background-color:#D3D7CF"><font color="#CC0000">Raspberry Pi Software Configuration Tool (raspi-config)</font></span><span style="background-color:#D3D7CF"><font color="#2E3436"> ├───────────────────┐</font></span>
+<span style="background-color:#D3D7CF"><font color="#2E3436">│                                                                                                │</font></span>
+<span style="background-color:#D3D7CF"><font color="#2E3436">│      1 Change User Password Change password for the current user                               │</font></span>
+<span style="background-color:#D3D7CF"><font color="#2E3436">│      2 Network Options      Configure network settings                                         │</font></span>
+<span style="background-color:#D3D7CF"><font color="#2E3436">│      3 Boot Options         Configure options for start-up                                     │</font></span>
+<span style="background-color:#D3D7CF"><font color="#2E3436">│      4 Localisation Options Set up language and regional settings to match your location       │</font></span>
+<span style="background-color:#D3D7CF"><font color="#2E3436">│      </font></span><span style="background-color:#CC0000"><font color="#D3D7CF">5 Interfacing Options  Configure connections to peripherals                        </font></span><span style="background-color:#D3D7CF"><font color="#2E3436">       │</font></span>
+<span style="background-color:#D3D7CF"><font color="#2E3436">│      6 Overclock            Configure overclocking for your Pi                                 │</font></span>
+<span style="background-color:#D3D7CF"><font color="#2E3436">│      7 Advanced Options     Configure advanced settings                                        │</font></span>
+<span style="background-color:#D3D7CF"><font color="#2E3436">│      8 Update               Update this tool to the latest version                             │</font></span>
+<span style="background-color:#D3D7CF"><font color="#2E3436">│      9 About raspi-config   Information about this configuration tool                          │</font></span>
+<span style="background-color:#D3D7CF"><font color="#2E3436">│                                                                                                │</font></span>
+<span style="background-color:#D3D7CF"><font color="#2E3436">│                                                                                                │</font></span>
+<span style="background-color:#D3D7CF"><font color="#2E3436">│                                                                                                │</font></span>
+<span style="background-color:#D3D7CF"><font color="#2E3436">│                           &lt;Select&gt;                           &lt;Finish&gt;                          │</font></span>
+<span style="background-color:#D3D7CF"><font color="#2E3436">│                                                                                                │</font></span>
+<span style="background-color:#D3D7CF"><font color="#2E3436">└────────────────────────────────────────────────────────────────────────────────────────────────┘</font></span>
+</pre>
+
+Select the i2c option:
+
+<pre>
+
+
+
+<span style="background-color:#D3D7CF"><font color="#2E3436">┌──────────────────┤ </font></span><span style="background-color:#D3D7CF"><font color="#CC0000">Raspberry Pi Software Configuration Tool (raspi-config)</font></span><span style="background-color:#D3D7CF"><font color="#2E3436"> ├───────────────────┐</font></span>
+<span style="background-color:#D3D7CF"><font color="#2E3436">│                                                                                                │</font></span>
+<span style="background-color:#D3D7CF"><font color="#2E3436">│        P1 Camera      Enable/Disable connection to the Raspberry Pi Camera                     │</font></span>
+<span style="background-color:#D3D7CF"><font color="#2E3436">│        P2 SSH         Enable/Disable remote command line access to your Pi using SSH           │</font></span>
+<span style="background-color:#D3D7CF"><font color="#2E3436">│        P3 VNC         Enable/Disable graphical remote access to your Pi using RealVNC          │</font></span>
+<span style="background-color:#D3D7CF"><font color="#2E3436">│        P4 SPI         Enable/Disable automatic loading of SPI kernel module                    │</font></span>
+<span style="background-color:#D3D7CF"><font color="#2E3436">│        </font></span><span style="background-color:#CC0000"><font color="#D3D7CF">P5 I2C         Enable/Disable automatic loading of I2C kernel module            </font></span><span style="background-color:#D3D7CF"><font color="#2E3436">        │</font></span>
+<span style="background-color:#D3D7CF"><font color="#2E3436">│        P6 Serial      Enable/Disable shell and kernel messages on the serial connection        │</font></span>
+<span style="background-color:#D3D7CF"><font color="#2E3436">│        P7 1-Wire      Enable/Disable one-wire interface                                        │</font></span>
+<span style="background-color:#D3D7CF"><font color="#2E3436">│        P8 Remote GPIO Enable/Disable remote access to GPIO pins                                │</font></span>
+<span style="background-color:#D3D7CF"><font color="#2E3436">│                                                                                                │</font></span>
+<span style="background-color:#D3D7CF"><font color="#2E3436">│                                                                                                │</font></span>
+<span style="background-color:#D3D7CF"><font color="#2E3436">│                                                                                                │</font></span>
+<span style="background-color:#D3D7CF"><font color="#2E3436">│                                                                                                │</font></span>
+<span style="background-color:#D3D7CF"><font color="#2E3436">│                           &lt;Select&gt;                           &lt;Back&gt;                            │</font></span>
+<span style="background-color:#D3D7CF"><font color="#2E3436">│                                                                                                │</font></span>
+<span style="background-color:#D3D7CF"><font color="#2E3436">└────────────────────────────────────────────────────────────────────────────────────────────────┘</font></span>
+
+
+</pre>
+
+And enable the interface:
+
+<pre>
+
+
+<span style="background-color:#75507B"><font color="#EEEEEC">                   </font></span><span style="background-color:#D3D7CF"><font color="#2E3436">┌──────────────────────────────────────────────────────────┐</font></span>
+<span style="background-color:#75507B"><font color="#EEEEEC">                   </font></span><span style="background-color:#D3D7CF"><font color="#2E3436">│                                                          │</font></span><span style="background-color:#2E3436"><font color="#EEEEEC"> </font></span>
+<span style="background-color:#75507B"><font color="#EEEEEC">                   </font></span><span style="background-color:#D3D7CF"><font color="#2E3436">│ Would you like the ARM I2C interface to be enabled?      │</font></span><span style="background-color:#2E3436"><font color="#EEEEEC"> </font></span>
+<span style="background-color:#75507B"><font color="#EEEEEC">                   </font></span><span style="background-color:#D3D7CF"><font color="#2E3436">│                                                          │</font></span><span style="background-color:#2E3436"><font color="#EEEEEC"> </font></span>
+<span style="background-color:#75507B"><font color="#EEEEEC">                   </font></span><span style="background-color:#D3D7CF"><font color="#2E3436">│                                                          │</font></span><span style="background-color:#2E3436"><font color="#EEEEEC"> </font></span>
+<span style="background-color:#75507B"><font color="#EEEEEC">                   </font></span><span style="background-color:#D3D7CF"><font color="#2E3436">│                                                          │</font></span><span style="background-color:#2E3436"><font color="#EEEEEC"> </font></span>
+<span style="background-color:#75507B"><font color="#EEEEEC">                   </font></span><span style="background-color:#D3D7CF"><font color="#2E3436">│                                                          │</font></span><span style="background-color:#2E3436"><font color="#EEEEEC"> </font></span>
+<span style="background-color:#75507B"><font color="#EEEEEC">                   </font></span><span style="background-color:#D3D7CF"><font color="#2E3436">│                                                          │</font></span><span style="background-color:#2E3436"><font color="#EEEEEC"> </font></span>
+<span style="background-color:#75507B"><font color="#EEEEEC">                   </font></span><span style="background-color:#D3D7CF"><font color="#2E3436">│                                                          │</font></span><span style="background-color:#2E3436"><font color="#EEEEEC"> </font></span>
+<span style="background-color:#75507B"><font color="#EEEEEC">                   </font></span><span style="background-color:#D3D7CF"><font color="#2E3436">│                                                          │</font></span><span style="background-color:#2E3436"><font color="#EEEEEC"> </font></span>
+<span style="background-color:#75507B"><font color="#EEEEEC">                   </font></span><span style="background-color:#D3D7CF"><font color="#2E3436">│                                                          │</font></span><span style="background-color:#2E3436"><font color="#EEEEEC"> </font></span>
+<span style="background-color:#75507B"><font color="#EEEEEC">                   </font></span><span style="background-color:#D3D7CF"><font color="#2E3436">│                                                          │</font></span><span style="background-color:#2E3436"><font color="#EEEEEC"> </font></span>
+<span style="background-color:#75507B"><font color="#EEEEEC">                   </font></span><span style="background-color:#D3D7CF"><font color="#2E3436">│                                                          │</font></span><span style="background-color:#2E3436"><font color="#EEEEEC"> </font></span>
+<span style="background-color:#75507B"><font color="#EEEEEC">                   </font></span><span style="background-color:#D3D7CF"><font color="#2E3436">│                                                          │</font></span><span style="background-color:#2E3436"><font color="#EEEEEC"> </font></span>
+<span style="background-color:#75507B"><font color="#EEEEEC">                   </font></span><span style="background-color:#D3D7CF"><font color="#2E3436">│                                                          │</font></span><span style="background-color:#2E3436"><font color="#EEEEEC"> </font></span>
+<span style="background-color:#75507B"><font color="#EEEEEC">                   </font></span><span style="background-color:#D3D7CF"><font color="#2E3436">│                                                          │</font></span><span style="background-color:#2E3436"><font color="#EEEEEC"> </font></span>
+<span style="background-color:#75507B"><font color="#EEEEEC">                   </font></span><span style="background-color:#D3D7CF"><font color="#2E3436">│                                                          │</font></span><span style="background-color:#2E3436"><font color="#EEEEEC"> </font></span>
+<span style="background-color:#75507B"><font color="#EEEEEC">                   </font></span><span style="background-color:#D3D7CF"><font color="#2E3436">│               </font></span><span style="background-color:#CC0000"><font color="#D3D7CF">&lt;Yes&gt;</font></span><span style="background-color:#D3D7CF"><font color="#2E3436">                  &lt;No&gt;                │</font></span><span style="background-color:#2E3436"><font color="#EEEEEC"> </font></span>
+<span style="background-color:#75507B"><font color="#EEEEEC">                   </font></span><span style="background-color:#D3D7CF"><font color="#2E3436">│                                                          │</font></span><span style="background-color:#2E3436"><font color="#EEEEEC"> </font></span>
+<span style="background-color:#75507B"><font color="#EEEEEC">                   </font></span><span style="background-color:#D3D7CF"><font color="#2E3436">└──────────────────────────────────────────────────────────┘</font></span><span style="background-color:#2E3436"><font color="#EEEEEC"> </font></span>
+<span style="background-color:#75507B"><font color="#EEEEEC">                    </font></span><span style="background-color:#2E3436"><font color="#EEEEEC">                                                            </font></span>
+
+</pre>
+
+Confirm the activation and restart the RPi:
+
+<pre>
+
+
+<span style="background-color:#75507B"><font color="#EEEEEC">                   </font></span><span style="background-color:#D3D7CF"><font color="#2E3436">┌──────────────────────────────────────────────────────────┐</font></span>
+<span style="background-color:#75507B"><font color="#EEEEEC">                   </font></span><span style="background-color:#D3D7CF"><font color="#2E3436">│                                                          │</font></span><span style="background-color:#2E3436"><font color="#EEEEEC"> </font></span>
+<span style="background-color:#75507B"><font color="#EEEEEC">                   </font></span><span style="background-color:#D3D7CF"><font color="#2E3436">│ The ARM I2C interface is enabled                         │</font></span><span style="background-color:#2E3436"><font color="#EEEEEC"> </font></span>
+<span style="background-color:#75507B"><font color="#EEEEEC">                   </font></span><span style="background-color:#D3D7CF"><font color="#2E3436">│                                                          │</font></span><span style="background-color:#2E3436"><font color="#EEEEEC"> </font></span>
+<span style="background-color:#75507B"><font color="#EEEEEC">                   </font></span><span style="background-color:#D3D7CF"><font color="#2E3436">│                                                          │</font></span><span style="background-color:#2E3436"><font color="#EEEEEC"> </font></span>
+<span style="background-color:#75507B"><font color="#EEEEEC">                   </font></span><span style="background-color:#D3D7CF"><font color="#2E3436">│                                                          │</font></span><span style="background-color:#2E3436"><font color="#EEEEEC"> </font></span>
+<span style="background-color:#75507B"><font color="#EEEEEC">                   </font></span><span style="background-color:#D3D7CF"><font color="#2E3436">│                                                          │</font></span><span style="background-color:#2E3436"><font color="#EEEEEC"> </font></span>
+<span style="background-color:#75507B"><font color="#EEEEEC">                   </font></span><span style="background-color:#D3D7CF"><font color="#2E3436">│                                                          │</font></span><span style="background-color:#2E3436"><font color="#EEEEEC"> </font></span>
+<span style="background-color:#75507B"><font color="#EEEEEC">                   </font></span><span style="background-color:#D3D7CF"><font color="#2E3436">│                                                          │</font></span><span style="background-color:#2E3436"><font color="#EEEEEC"> </font></span>
+<span style="background-color:#75507B"><font color="#EEEEEC">                   </font></span><span style="background-color:#D3D7CF"><font color="#2E3436">│                                                          │</font></span><span style="background-color:#2E3436"><font color="#EEEEEC"> </font></span>
+<span style="background-color:#75507B"><font color="#EEEEEC">                   </font></span><span style="background-color:#D3D7CF"><font color="#2E3436">│                                                          │</font></span><span style="background-color:#2E3436"><font color="#EEEEEC"> </font></span>
+<span style="background-color:#75507B"><font color="#EEEEEC">                   </font></span><span style="background-color:#D3D7CF"><font color="#2E3436">│                                                          │</font></span><span style="background-color:#2E3436"><font color="#EEEEEC"> </font></span>
+<span style="background-color:#75507B"><font color="#EEEEEC">                   </font></span><span style="background-color:#D3D7CF"><font color="#2E3436">│                                                          │</font></span><span style="background-color:#2E3436"><font color="#EEEEEC"> </font></span>
+<span style="background-color:#75507B"><font color="#EEEEEC">                   </font></span><span style="background-color:#D3D7CF"><font color="#2E3436">│                                                          │</font></span><span style="background-color:#2E3436"><font color="#EEEEEC"> </font></span>
+<span style="background-color:#75507B"><font color="#EEEEEC">                   </font></span><span style="background-color:#D3D7CF"><font color="#2E3436">│                                                          │</font></span><span style="background-color:#2E3436"><font color="#EEEEEC"> </font></span>
+<span style="background-color:#75507B"><font color="#EEEEEC">                   </font></span><span style="background-color:#D3D7CF"><font color="#2E3436">│                                                          │</font></span><span style="background-color:#2E3436"><font color="#EEEEEC"> </font></span>
+<span style="background-color:#75507B"><font color="#EEEEEC">                   </font></span><span style="background-color:#D3D7CF"><font color="#2E3436">│                                                          │</font></span><span style="background-color:#2E3436"><font color="#EEEEEC"> </font></span>
+<span style="background-color:#75507B"><font color="#EEEEEC">                   </font></span><span style="background-color:#D3D7CF"><font color="#2E3436">│                          </font></span><span style="background-color:#CC0000"><font color="#D3D7CF">&lt;Ok&gt;</font></span><span style="background-color:#D3D7CF"><font color="#2E3436">                            │</font></span><span style="background-color:#2E3436"><font color="#EEEEEC"> </font></span>
+<span style="background-color:#75507B"><font color="#EEEEEC">                   </font></span><span style="background-color:#D3D7CF"><font color="#2E3436">│                                                          │</font></span><span style="background-color:#2E3436"><font color="#EEEEEC"> </font></span>
+<span style="background-color:#75507B"><font color="#EEEEEC">                   </font></span><span style="background-color:#D3D7CF"><font color="#2E3436">└──────────────────────────────────────────────────────────┘</font></span><span style="background-color:#2E3436"><font color="#EEEEEC"> </font></span>
+<span style="background-color:#75507B"><font color="#EEEEEC">                    </font></span><span style="background-color:#2E3436"><font color="#EEEEEC">                                                            </font></span>
+
+</pre>
+
+</details>
+
+<h2 id="usb-devices">USB Devices</h2>
+<p>Similar to accessing <code>i2c</code> devices, a non root user can use usb connections by adding it to the the <code>dialout</code> group:</p>
+<pre><code class="language-console">sudo adduser fjp dialout
+Adding user `fjp' to group `dialout' ...
+Adding user fjp to group dialout
+Done.
+</code></pre>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../grove_ultrasonic_ranger/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Grove ultrasonic ranger
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../laser-range-scanner/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Laser range scanner
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+    
+      <script src="../assets/javascripts/vendor.0ac82a11.min.js"></script>
+      <script src="../assets/javascripts/bundle.f81dfb4d.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      
+      <script>
+        app = initialize({
+          base: "..",
+          features: [],
+          search: Object.assign({
+            worker: "../assets/javascripts/worker/search.4ac00218.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+    <script>
+        $(document).ready(function(){
+            // Target your .container, .wrapper, .post, etc.
+            $(".md-main").fitVids();
+        });
+    </script>
+
+  </body>
+</html>

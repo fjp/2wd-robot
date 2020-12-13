@@ -1,0 +1,1624 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.1.7">
+    
+    
+      
+        <title>Diffbot slam - DiffBot Differential Drive Mobile Robot</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.19753c6b.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.196e0c26.min.css">
+        
+      
+    
+    
+    
+    <script src="../js/jquery-3.5.1.min.js"></script>
+    <script src="../js/jquery.fitvids.js"></script>
+
+    
+      
+        
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+      
+  
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#diffbot-slam-package" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href=".." title="DiffBot Differential Drive Mobile Robot" class="md-header-nav__button md-logo" aria-label="DiffBot Differential Drive Mobile Robot">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            DiffBot Differential Drive Mobile Robot
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              Diffbot slam
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="DiffBot Differential Drive Mobile Robot" class="md-nav__button md-logo" aria-label="DiffBot Differential Drive Mobile Robot">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    DiffBot Differential Drive Mobile Robot
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href=".." class="md-nav__link">
+      Welcome to DiffBot Documentation
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../DG01D-E-motor-with-encoder/" class="md-nav__link">
+      DG01D E motor with encoder
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../diffbot_base/" class="md-nav__link">
+      Diffbot base
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../diffbot_bringup/" class="md-nav__link">
+      Diffbot bringup
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../diffbot_control/" class="md-nav__link">
+      Diffbot control
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../diffbot_gazebo/" class="md-nav__link">
+      Diffbot gazebo
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../diffbot_mbf/" class="md-nav__link">
+      Diffbot mbf
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../diffbot_msgs/" class="md-nav__link">
+      Diffbot msgs
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../diffbot_navigation/" class="md-nav__link">
+      Diffbot navigation
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../diffbot_robot/" class="md-nav__link">
+      Diffbot robot
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Diffbot slam
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="./" class="md-nav__link md-nav__link--active">
+      Diffbot slam
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#diffbot-slam-package" class="md-nav__link">
+    DiffBot Slam Package
+  </a>
+  
+    <nav class="md-nav" aria-label="DiffBot Slam Package">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#slam" class="md-nav__link">
+    SLAM
+  </a>
+  
+    <nav class="md-nav" aria-label="SLAM">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#launch-files" class="md-nav__link">
+    Launch files
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parameter-configurations" class="md-nav__link">
+    Parameter Configurations
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gazebo-simulation-tests" class="md-nav__link">
+    Gazebo Simulation Tests
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#field-tests" class="md-nav__link">
+    Field Tests
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#frontier-exploration" class="md-nav__link">
+    Frontier Exploration
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#other-slam-packages-for-3d-mapping" class="md-nav__link">
+    Other SLAM Packages (for 3D Mapping)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    References
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../git-setup/" class="md-nav__link">
+      Git setup
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../grove_motor_driver/" class="md-nav__link">
+      Grove motor driver
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../grove_ultrasonic_ranger/" class="md-nav__link">
+      Grove ultrasonic ranger
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../hardware-interfaces/" class="md-nav__link">
+      Hardware interfaces
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../laser-range-scanner/" class="md-nav__link">
+      Laser range scanner
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../lm393_speed_sensor/" class="md-nav__link">
+      Lm393 speed sensor
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../power-supply/" class="md-nav__link">
+      Power supply
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../robot-description/" class="md-nav__link">
+      Robot description
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../ros-network-setup/" class="md-nav__link">
+      Ros network setup
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../ros-setup/" class="md-nav__link">
+      Ros setup
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../teensy-mcu/" class="md-nav__link">
+      Teensy mcu
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-23" type="checkbox" id="nav-23" >
+    <label class="md-nav__link" for="nav-23">
+      Plots
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Plots" data-md-level="1">
+      <label class="md-nav__title" for="nav-23">
+        <span class="md-nav__icon md-icon"></span>
+        Plots
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-23-1" type="checkbox" id="nav-23-1" >
+    <label class="md-nav__link" for="nav-23-1">
+      New venv
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="New venv" data-md-level="2">
+      <label class="md-nav__title" for="nav-23-1">
+        <span class="md-nav__icon md-icon"></span>
+        New venv
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-23-1-1" type="checkbox" id="nav-23-1-1" >
+    <label class="md-nav__link" for="nav-23-1-1">
+      Lib
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Lib" data-md-level="3">
+      <label class="md-nav__title" for="nav-23-1-1">
+        <span class="md-nav__icon md-icon"></span>
+        Lib
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-23-1-1-1" type="checkbox" id="nav-23-1-1-1" >
+    <label class="md-nav__link" for="nav-23-1-1-1">
+      Python3.8
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Python3.8" data-md-level="4">
+      <label class="md-nav__title" for="nav-23-1-1-1">
+        <span class="md-nav__icon md-icon"></span>
+        Python3.8
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-23-1-1-1-1" type="checkbox" id="nav-23-1-1-1-1" >
+    <label class="md-nav__link" for="nav-23-1-1-1-1">
+      Site packages
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Site packages" data-md-level="5">
+      <label class="md-nav__title" for="nav-23-1-1-1-1">
+        <span class="md-nav__icon md-icon"></span>
+        Site packages
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-23-1-1-1-1-1" type="checkbox" id="nav-23-1-1-1-1-1" >
+    <label class="md-nav__link" for="nav-23-1-1-1-1-1">
+      Scipy
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Scipy" data-md-level="6">
+      <label class="md-nav__title" for="nav-23-1-1-1-1-1">
+        <span class="md-nav__icon md-icon"></span>
+        Scipy
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-23-1-1-1-1-1-1" type="checkbox" id="nav-23-1-1-1-1-1-1" >
+    <label class="md-nav__link" for="nav-23-1-1-1-1-1-1">
+      Fft
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Fft" data-md-level="7">
+      <label class="md-nav__title" for="nav-23-1-1-1-1-1-1">
+        <span class="md-nav__icon md-icon"></span>
+        Fft
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-23-1-1-1-1-1-1-1" type="checkbox" id="nav-23-1-1-1-1-1-1-1" >
+    <label class="md-nav__link" for="nav-23-1-1-1-1-1-1-1">
+       pocketfft
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label=" pocketfft" data-md-level="8">
+      <label class="md-nav__title" for="nav-23-1-1-1-1-1-1-1">
+        <span class="md-nav__icon md-icon"></span>
+         pocketfft
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../plots/new_venv/lib/python3.8/site-packages/scipy/fft/_pocketfft/LICENSE/" class="md-nav__link">
+      LICENSE
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-23-1-2" type="checkbox" id="nav-23-1-2" >
+    <label class="md-nav__link" for="nav-23-1-2">
+      Lib64
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Lib64" data-md-level="3">
+      <label class="md-nav__title" for="nav-23-1-2">
+        <span class="md-nav__icon md-icon"></span>
+        Lib64
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-23-1-2-1" type="checkbox" id="nav-23-1-2-1" >
+    <label class="md-nav__link" for="nav-23-1-2-1">
+      Python3.8
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Python3.8" data-md-level="4">
+      <label class="md-nav__title" for="nav-23-1-2-1">
+        <span class="md-nav__icon md-icon"></span>
+        Python3.8
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-23-1-2-1-1" type="checkbox" id="nav-23-1-2-1-1" >
+    <label class="md-nav__link" for="nav-23-1-2-1-1">
+      Site packages
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Site packages" data-md-level="5">
+      <label class="md-nav__title" for="nav-23-1-2-1-1">
+        <span class="md-nav__icon md-icon"></span>
+        Site packages
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-23-1-2-1-1-1" type="checkbox" id="nav-23-1-2-1-1-1" >
+    <label class="md-nav__link" for="nav-23-1-2-1-1-1">
+      Scipy
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Scipy" data-md-level="6">
+      <label class="md-nav__title" for="nav-23-1-2-1-1-1">
+        <span class="md-nav__icon md-icon"></span>
+        Scipy
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-23-1-2-1-1-1-1" type="checkbox" id="nav-23-1-2-1-1-1-1" >
+    <label class="md-nav__link" for="nav-23-1-2-1-1-1-1">
+      Fft
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Fft" data-md-level="7">
+      <label class="md-nav__title" for="nav-23-1-2-1-1-1-1">
+        <span class="md-nav__icon md-icon"></span>
+        Fft
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-23-1-2-1-1-1-1-1" type="checkbox" id="nav-23-1-2-1-1-1-1-1" >
+    <label class="md-nav__link" for="nav-23-1-2-1-1-1-1-1">
+       pocketfft
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label=" pocketfft" data-md-level="8">
+      <label class="md-nav__title" for="nav-23-1-2-1-1-1-1-1">
+        <span class="md-nav__icon md-icon"></span>
+         pocketfft
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../plots/new_venv/lib64/python3.8/site-packages/scipy/fft/_pocketfft/LICENSE/" class="md-nav__link">
+      LICENSE
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-23-2" type="checkbox" id="nav-23-2" >
+    <label class="md-nav__link" for="nav-23-2">
+      Venv
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Venv" data-md-level="2">
+      <label class="md-nav__title" for="nav-23-2">
+        <span class="md-nav__icon md-icon"></span>
+        Venv
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-23-2-1" type="checkbox" id="nav-23-2-1" >
+    <label class="md-nav__link" for="nav-23-2-1">
+      Lib
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Lib" data-md-level="3">
+      <label class="md-nav__title" for="nav-23-2-1">
+        <span class="md-nav__icon md-icon"></span>
+        Lib
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-23-2-1-1" type="checkbox" id="nav-23-2-1-1" >
+    <label class="md-nav__link" for="nav-23-2-1-1">
+      Python3.8
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Python3.8" data-md-level="4">
+      <label class="md-nav__title" for="nav-23-2-1-1">
+        <span class="md-nav__icon md-icon"></span>
+        Python3.8
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-23-2-1-1-1" type="checkbox" id="nav-23-2-1-1-1" >
+    <label class="md-nav__link" for="nav-23-2-1-1-1">
+      Site packages
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Site packages" data-md-level="5">
+      <label class="md-nav__title" for="nav-23-2-1-1-1">
+        <span class="md-nav__icon md-icon"></span>
+        Site packages
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-23-2-1-1-1-1" type="checkbox" id="nav-23-2-1-1-1-1" >
+    <label class="md-nav__link" for="nav-23-2-1-1-1-1">
+      Scipy
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Scipy" data-md-level="6">
+      <label class="md-nav__title" for="nav-23-2-1-1-1-1">
+        <span class="md-nav__icon md-icon"></span>
+        Scipy
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-23-2-1-1-1-1-1" type="checkbox" id="nav-23-2-1-1-1-1-1" >
+    <label class="md-nav__link" for="nav-23-2-1-1-1-1-1">
+      Fft
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Fft" data-md-level="7">
+      <label class="md-nav__title" for="nav-23-2-1-1-1-1-1">
+        <span class="md-nav__icon md-icon"></span>
+        Fft
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-23-2-1-1-1-1-1-1" type="checkbox" id="nav-23-2-1-1-1-1-1-1" >
+    <label class="md-nav__link" for="nav-23-2-1-1-1-1-1-1">
+       pocketfft
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label=" pocketfft" data-md-level="8">
+      <label class="md-nav__title" for="nav-23-2-1-1-1-1-1-1">
+        <span class="md-nav__icon md-icon"></span>
+         pocketfft
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../plots/venv/lib/python3.8/site-packages/scipy/fft/_pocketfft/LICENSE/" class="md-nav__link">
+      LICENSE
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-23-2-2" type="checkbox" id="nav-23-2-2" >
+    <label class="md-nav__link" for="nav-23-2-2">
+      Lib64
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Lib64" data-md-level="3">
+      <label class="md-nav__title" for="nav-23-2-2">
+        <span class="md-nav__icon md-icon"></span>
+        Lib64
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-23-2-2-1" type="checkbox" id="nav-23-2-2-1" >
+    <label class="md-nav__link" for="nav-23-2-2-1">
+      Python3.8
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Python3.8" data-md-level="4">
+      <label class="md-nav__title" for="nav-23-2-2-1">
+        <span class="md-nav__icon md-icon"></span>
+        Python3.8
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-23-2-2-1-1" type="checkbox" id="nav-23-2-2-1-1" >
+    <label class="md-nav__link" for="nav-23-2-2-1-1">
+      Site packages
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Site packages" data-md-level="5">
+      <label class="md-nav__title" for="nav-23-2-2-1-1">
+        <span class="md-nav__icon md-icon"></span>
+        Site packages
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-23-2-2-1-1-1" type="checkbox" id="nav-23-2-2-1-1-1" >
+    <label class="md-nav__link" for="nav-23-2-2-1-1-1">
+      Scipy
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Scipy" data-md-level="6">
+      <label class="md-nav__title" for="nav-23-2-2-1-1-1">
+        <span class="md-nav__icon md-icon"></span>
+        Scipy
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-23-2-2-1-1-1-1" type="checkbox" id="nav-23-2-2-1-1-1-1" >
+    <label class="md-nav__link" for="nav-23-2-2-1-1-1-1">
+      Fft
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Fft" data-md-level="7">
+      <label class="md-nav__title" for="nav-23-2-2-1-1-1-1">
+        <span class="md-nav__icon md-icon"></span>
+        Fft
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-23-2-2-1-1-1-1-1" type="checkbox" id="nav-23-2-2-1-1-1-1-1" >
+    <label class="md-nav__link" for="nav-23-2-2-1-1-1-1-1">
+       pocketfft
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label=" pocketfft" data-md-level="8">
+      <label class="md-nav__title" for="nav-23-2-2-1-1-1-1-1">
+        <span class="md-nav__icon md-icon"></span>
+         pocketfft
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../plots/venv/lib64/python3.8/site-packages/scipy/fft/_pocketfft/LICENSE/" class="md-nav__link">
+      LICENSE
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-24" type="checkbox" id="nav-24" >
+    <label class="md-nav__link" for="nav-24">
+      Theory
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Theory" data-md-level="1">
+      <label class="md-nav__title" for="nav-24">
+        <span class="md-nav__icon md-icon"></span>
+        Theory
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../theory/motion-and-odometry/" class="md-nav__link">
+      Motion and odometry
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#diffbot-slam-package" class="md-nav__link">
+    DiffBot Slam Package
+  </a>
+  
+    <nav class="md-nav" aria-label="DiffBot Slam Package">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#slam" class="md-nav__link">
+    SLAM
+  </a>
+  
+    <nav class="md-nav" aria-label="SLAM">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#launch-files" class="md-nav__link">
+    Launch files
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parameter-configurations" class="md-nav__link">
+    Parameter Configurations
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gazebo-simulation-tests" class="md-nav__link">
+    Gazebo Simulation Tests
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#field-tests" class="md-nav__link">
+    Field Tests
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#frontier-exploration" class="md-nav__link">
+    Frontier Exploration
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#other-slam-packages-for-3d-mapping" class="md-nav__link">
+    Other SLAM Packages (for 3D Mapping)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    References
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                  <h1>Diffbot slam</h1>
+                
+                <h2 id="diffbot-slam-package">DiffBot Slam Package</h2>
+<p>This package contains launch files and configurations for different 
+<a href="https://en.wikipedia.org/wiki/Simultaneous_localization_and_mapping">simultaneous localization and mapping (SLAM)</a> algorithms
+to map the environment of the robot in 2D, although some of these algorithms can be used to map in 3D.</p>
+<pre><code class="language-console">fjp@diffbot:~/catkin_ws/src/diffbot$ catkin create pkg diffbot_slam --catkin-deps diffbot_navigation gmapping
+Creating package &quot;diffbot_slam&quot; in &quot;/home/fjp/git/ros_ws/src/diffbot&quot;...
+Created file diffbot_slam/package.xml
+Created file diffbot_slam/CMakeLists.txt
+Successfully created package files in /home/fjp/git/ros_ws/src/diffbot/diffbot_slam.
+</code></pre>
+<p>Additional runtime dependencies are: <code>cartographer_ros</code>, <code>hector_slam</code>, <code>frontier_exploration</code> and <code>explore_lite</code>. These
+are added to this workspace using <a href="https://github.com/dirk-thomas/vcstool"><code>vcstool</code></a> (TODO).</p>
+<p>As you can see this package has lots of dependencies to test different slam implementations and frontier exploration approaches.
+To run this package these dependencies need to be installed and are set as <code>exec_depend</code> in the <code>package.xml</code>. Currently only <code>gmapping</code> provides a ROS Noetic Ubuntu package that can be installed directly with:</p>
+<pre><code class="language-console">sudo apt install ros-noetic-gmapping
+</code></pre>
+<p>In case you want to try more advanced SLAM algorithms, such as <code>karto_slam</code> or <code>cartographer_ros</code> you need the following Ubuntu package dependencies.
+Alternatively you can install from source by building the cloned git repository in your catkin workspace.</p>
+<p>Take the required installation size into account. For example <code>karto_slam</code> needs approximately 125MB because it will also install <code>ros-noetic-open-karto</code>.
+{: .notice }</p>
+<pre><code class="language-console">sudo apt install ros-noetic-slam-karto
+</code></pre>
+<h3 id="slam">SLAM</h3>
+<p>SLAM stands for Simultaneous Localization and Mapping sometimes refered to as Concurrent Localization and Mappping (CLAM). The SLAM algorithm combines localization and mapping, where a robot has access only to its own movement and sensory data. The robot must build a map while simultaneously localizing itself relative to the map. See also this <a href="https://fjp.at/posts/slam/fastslam/">blog post on FastSLAM</a>.</p>
+<p>To use the following slam algorithms, we need a mobile robot that provides odometry data and is equipped with a horizontally-mounted, 
+fixed, laser range-finder. Viewed on a higher level, every specific slam node of these algorithms will attempt to transform each incoming scan into the odom (odometry) <a href="http://wiki.ros.org/tf2">tf</a> frame. Therefore the node will subscribe to the laser <code>/scan</code> and the <code>/tf</code> topics. 
+Transforms are necessary to relate frames for laser, base, and odometry. The only exception is <code>hector_slam</code> which doesn't require odometry for mapping.</p>
+<p>The following SLAM implementations are offered using the launch files explained in the next section. It is suggested to start with <code>gmapping</code> which is used by default.</p>
+<ul>
+<li><a href="http://wiki.ros.org/gmapping"><code>gmapping</code></a>: This package contains a ROS wrapper for <a href="https://openslam-org.github.io/">OpenSlam's Gmapping</a>. 
+The gmapping package provides laser-based SLAM (Simultaneous Localization and Mapping), as a ROS node called <code>slam_gmapping</code>. 
+Using <code>slam_gmapping</code>, you can create a 2-D occupancy grid map (like a building floorplan) from laser and pose data collected by a mobile robot.</li>
+<li><a href="http://wiki.ros.org/cartographer"><code>cartographer</code></a>: <a href="https://google-cartographer-ros.readthedocs.io/en/latest/">Cartographer</a> is a system that provides real-time simultaneous localization and mapping (SLAM) in 2D and 3D across multiple platforms and sensor configurations. See the documentation for an 
+<a href="https://google-cartographer-ros.readthedocs.io/en/latest/algo_walkthrough.html">algorithm walkthrough</a>.</li>
+<li><a href="http://wiki.ros.org/karto"><code>karto</code></a>: This package pulls in the Karto mapping library, and provides a ROS wrapper for using it. Karto is considered more accurate than, for example <code>gmapping</code> (note: for ROS noetic, see <a href="https://wiki.ros.org/slam_karto"><code>slam_karto</code></a>) and became <a href="https://www.ros.org/news/2010/04/karto-mapping-now-open-source-and-on-coderosorg.html">open source in 2010</a>.</li>
+<li><a href="http://wiki.ros.org/hector_slam"><code>hector_slam</code></a>: metapackage that installs <a href="http://wiki.ros.org/hector_mapping"><code>hector_mapping</code></a> and related packages. 
+The <code>hector_mapping</code> is a SLAM approach that can be used without odometry as well as on platforms that exhibit roll/pitch motion (of the sensor, the platform or both), such as drones. It leverages the high update rate of modern LIDAR systems like the Hokuyo UTM-30LX and provides 2D pose estimates at scan rate of the sensors (40Hz for the UTM-30LX). While the system does not provide explicit loop closing ability, it is sufficiently accurate for many real world scenarios. The system has successfully been used on Unmanned Ground Robots, Unmanned Surface Vehicles, Handheld Mapping Devices and logged data from quadrotor UAVs.</li>
+</ul>
+<p>Unlike <code>gmapping</code> which uses a <a href="https://en.wikipedia.org/wiki/Particle_filter">particle filter</a>, 
+<code>karto</code>, <code>cartographer</code> and <code>hector_slam</code> are all <a href="http://www2.informatik.uni-freiburg.de/~stachnis/pdf/grisetti10titsmag.pdf">graph-based SLAM algorithms</a>.
+The least accurate SLAM algorithm is <code>gmapping</code> but it works fine for smaller maps. Use other algorithms, such as <code>karto</code> if you operate your robot in
+larger environments or you want more accuracy.</p>
+<p>Another interesing package is <a href="https://github.com/SteveMacenski/slam_toolbox"><code>slam_toolbox</code></a> which provides ROS1 and ROS2 
+support and is based on the easy to use <code>karto</code> algorithm. <code>karto</code> is the basis for many companies because it provides an excellent scan matcher
+and can operate in large environments. Additionally, <code>slam_toolbox</code> provides tools to edit a generated map and even create a high quality 
+map using stored data (offline).</p>
+<p>The <code>cartographer</code> package is currently supported by OpenRobotics and not by Google where it was originally developed.
+It is currently also not setup correctly for DiffBot. Using it will result in errors.
+{: .notice }</p>
+<h4 id="launch-files">Launch files</h4>
+<p>This package provides a main launch file named <code>diffbot_slam.launch</code> which accepts an argument <code>slam_method</code>.
+Depending on its value, different launch files will be included that execute the specified SLAM algorithm using its configuration in the <code>config</code> folder.</p>
+<p>As mentioned above, every ROS slam package requries messages from the laser-range finder topic. Usually this topic is named <code>/scan</code>.
+To distinguish possible multiple lidars, the topic of DiffBot resides in its namespace <code>/diffbot/scan</code>.
+Therefore, its necessary to remap the <code>/scan</code> topic to <code>/diffbot/scan</code>. The following shows how this was done for the <code>gmapping</code> launch file.</p>
+<p>Inside this package in the <a href="https://github.com/fjp/diffbot/blob/noetic-devel/diffbot_slam/launch/diffbot_gmapping.launch"><code>launch/gmapping.launch</code></a> 
+it is important to map the <code>scan</code> topic to laser scanner topic published by Diffbot.
+Remappings are done in the <a href="http://wiki.ros.org/roslaunch/XML/node">node tag</a>. Here, for the <code>gmapping.launch</code> in the <code>gmapping</code> node: </p>
+<pre><code class="language-xml">&lt;launch&gt;
+  &lt;!-- Arguments --&gt;
+  &lt;arg name=&quot;scan_topic&quot;  default=&quot;diffbot/scan&quot;/&gt;
+...
+  &lt;!-- Gmapping --&gt;
+  &lt;node pkg=&quot;gmapping&quot; type=&quot;slam_gmapping&quot; name=&quot;diffbot_slam_gmapping&quot; output=&quot;screen&quot;&gt;
+    ...
+    &lt;!-- remapping of gmapping node --&gt;
+    &lt;remap from=&quot;scan&quot; to=&quot;$(arg scan_topic)&quot;/&gt;
+  &lt;/node&gt;
+&lt;/launch&gt;
+</code></pre>
+<h4 id="parameter-configurations">Parameter Configurations</h4>
+<p>Most of the configrations are the same as <a href="https://github.com/ROBOTIS-GIT/turtlebot3/tree/master/turtlebot3_slam/config"><code>turtlebot3_slam/config</code></a>.
+For detailed description of what each parameter does, please check the individual package documentation of the different SLAM methods. </p>
+<h3 id="gazebo-simulation-tests">Gazebo Simulation Tests</h3>
+<p>To test SLAM in the Gazebo simulator run the following two launch files in separate terminals.</p>
+<p>First run the simulation with:</p>
+<pre><code class="language-console">roslaunch diffbot_gazebo diffbot.launch world_name:='$(find diffbot_gazebo)/worlds/turtlebot3_world.world'
+</code></pre>
+<p>and in a second terminal execute the SLAM algorithm:</p>
+<pre><code class="language-console">roslaunch diffbot_slam diffbot_slam.launch slam_method:=gmapping
+</code></pre>
+<p>Here you can choose between different algorithms by changing the value of the <code>slam_method</code> argument.
+Possible values are <code>gmapping</code> (the default), <code>karto</code>, <code>hector</code> and <code>cartographer</code>.</p>
+<p>The ROS node graph will look like the following:</p>
+<figure>
+    <a href="https://raw.githubusercontent.com/fjp/diffbot/noetic-devel/docs/resources/slam/nodegraph-gmapping.svg"><img src="https://raw.githubusercontent.com/fjp/diffbot/noetic-devel/docs/resources/slam/nodegraph-gmapping.svg"></a>
+    <figcaption>ROS Node graph after launching Gazebo and gmapping.</figcaption>
+</figure>
+
+<p>In the figure we can see that <code>gmapping</code> subscribes and publishes to <code>tf</code>. </p>
+<p>It requires the transformation from <code>&lt;the frame attached to incoming scans&gt;</code> to the <code>base_link</code>, which is usually a fixed value, 
+broadcast periodically by the <code>robot_state_publisher</code>.
+Aditionally, it requires the transform from <code>base_link</code> to <code>odom</code>. This is provided by the odometry system (e.g., the driver for the mobile base).
+In the case of DiffBot the odometry system consists of EKF fusion data from the motor encoders and the IMU. 
+The provided tf transforms are <code>map</code> to <code>odom</code> that describes the current estimate of the robot's pose within the map frame.
+You can read more about the <a href="http://wiki.ros.org/gmapping#Required_tf_Transforms">required and provided transforms</a> in the documentation.</p>
+<h3 id="field-tests">Field Tests</h3>
+<p>In case you get inaccurate maps follow the official ROS <a href="http://wiki.ros.org/navigation/Troubleshooting">troubleshooting guide for navigation</a>.</p>
+<h3 id="frontier-exploration">Frontier Exploration</h3>
+<p>The so far described mapping approaches require manually steering the robot in the unknown environment.
+<a href="http://www.robotfrontier.com/papers/cira97.pdf">Frontier exploration</a> is an approach to move a mobile robot on its own to new frontiers to extend its 
+map into new territory until the entire environment has been explored. </p>
+<p>The ROS wiki provides a good <a href="http://wiki.ros.org/husky_navigation/Tutorials/Husky%20Frontier%20Exploration%20Demo">tutorial using Husky robot</a> how to use the <a href="http://wiki.ros.org/frontier_exploration"><code>frontier_exploration</code></a> package. A lightweight alternative is the <a href="http://wiki.ros.org/explore_lite"><code>explore_lite</code></a> package.</p>
+<h3 id="other-slam-packages-for-3d-mapping">Other SLAM Packages (for 3D Mapping)</h3>
+<ul>
+<li><a href="https://github.com/koide3/hdl_graph_slam"><code>hdl_graph_slam</code></a>: Open source ROS package for real-time 6DOF SLAM using a 3D LIDAR. 
+It is based on 3D Graph SLAM with 
+<a href="https://www.researchgate.net/publication/4045903_The_Normal_Distributions_Transform_A_New_Approach_to_Laser_Scan_Matching">NDT</a> 
+scan matching-based odometry estimation and loop detection. This method is useful for outdoor.</li>
+<li><a href="http://wiki.ros.org/rtabmap_ros">RTAB-Map</a>: stands for <a href="http://introlab.github.io/rtabmap/">Real-Time Appearance-Based Mapping</a> and 
+is a RGB-D SLAM approach based on a global loop closure detector with real-time constraints. 
+This package can be used to generate a 3D point clouds of the environment and/or to create a 2D occupancy grid map for navigation. 
+To do this it requires only a stereo or RGB-D camera for visual odometry. Additional wheel odometry is not required but can improve the result.</li>
+<li><a href="http://wiki.ros.org/loam_velodyne">Loam Velodyne</a>: Laser Odometry and Mapping (Loam) is a realtime method for state estimation and mapping using a 3D lidar, see also the forked Github repository for <a href="https://github.com/laboshinl/loam_velodyne"><code>loam_velodyne</code></a>. Note that this is not supported officially anymore because it became closed source.</li>
+<li><a href="https://github.com/raulmur/ORB_SLAM2">ORB-SLAM2</a>: Real-Time SLAM for Monocular, Stereo and RGB-D Cameras, 
+with Loop Detection and Relocalization Capabilities. See <a href="http://wiki.ros.org/orb_slam2_ros"><code>orb_slam2_ros</code></a> for the ROS wrapper.</li>
+<li><a href="http://wiki.ros.org/slam_toolbox">slam_toolbox</a>: This package provides a sped up improved slam karto with updated 
+SDK and visualization and modification toolsets. It is a ROS drop in replacement to gmapping, cartographer, karto, hector, etc.
+This package supports ROS1 and ROS2 and is suitable for use in commercial products because it can map large environments. And it provides tools
+to edit the generated maps. See also the related <a href="https://vimeo.com/378682207">ROSCon 2019 video</a>.</li>
+</ul>
+<h3 id="references">References</h3>
+<ul>
+<li><a href="http://wiki.ros.org/slam_toolbox"><code>slam_toolbox</code></a>, <a href="https://roscon.ros.org/2019/talks/roscon2019_slamtoolbox.pdf">Slam Toolbox ROSCon 2019 pdf</a></li>
+</ul>
+<p>Papers:</p>
+<ul>
+<li><a href="http://www2.informatik.uni-freiburg.de/~stachnis/pdf/grisetti10titsmag.pdf">A Tutorial on Graph-Based SLAM</a></li>
+<li><code>cartographer</code> <a href="https://static.googleusercontent.com/media/research.google.com/de//pubs/archive/45466.pdf">Real-Time Loop Closure in 2D LIDAR SLAM</a></li>
+<li><code>hector_slam</code> <a href="https://www.researchgate.net/publication/228852006_A_flexible_and_scalable_SLAM_system_with_full_3D_motion_estimation">A flexible and scalable SLAM system with full 3D motion estimation</a>.</li>
+<li><a href="https://www.sauravag.com/2017/07/an-practical-introduction-to-pose-graph-slam/">A practical introduction to to pose graph slam</a></li>
+<li><a href="https://www.researchgate.net/publication/4045903_The_Normal_Distributions_Transform_A_New_Approach_to_Laser_Scan_Matching">The Normal Distributions Transform: A New Approach to Laser Scan Matching</a></li>
+<li><a href="https://introlab.3it.usherbrooke.ca/mediawiki-introlab/images/7/7a/Labbe18JFR_preprint.pdf">RTAB-Map as an Open-Source Lidar and Visual SLAM Library for Large-Scale and Long-Term Online Operation</a></li>
+<li><a href="https://ri.cmu.edu/pub_files/2014/7/Ji_LidarMapping_RSS2014_v8.pdf">LOAM: Lidar Odometry and Mapping in Real-time</a></li>
+<li><a href="https://arxiv.org/abs/1610.06475">ORB-SLAM2: an Open-Source SLAM System for Monocular, Stereo and RGB-D Cameras</a></li>
+</ul>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../diffbot_robot/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Diffbot robot
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../git-setup/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Git setup
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+    
+      <script src="../assets/javascripts/vendor.0ac82a11.min.js"></script>
+      <script src="../assets/javascripts/bundle.f81dfb4d.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      
+      <script>
+        app = initialize({
+          base: "..",
+          features: [],
+          search: Object.assign({
+            worker: "../assets/javascripts/worker/search.4ac00218.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+    <script>
+        $(document).ready(function(){
+            // Target your .container, .wrapper, .post, etc.
+            $(".md-main").fitVids();
+        });
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,1900 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.1.7">
+    
+    
+      
+        <title>Diffbot base - DiffBot Differential Drive Mobile Robot</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.19753c6b.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.196e0c26.min.css">
+        
+      
+    
+    
+    
+    <script src="../js/jquery-3.5.1.min.js"></script>
+    <script src="../js/jquery.fitvids.js"></script>
+
+    
+      
+        
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+      
+  
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#diffbot-base-package" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href=".." title="DiffBot Differential Drive Mobile Robot" class="md-header-nav__button md-logo" aria-label="DiffBot Differential Drive Mobile Robot">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            DiffBot Differential Drive Mobile Robot
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              Diffbot base
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="DiffBot Differential Drive Mobile Robot" class="md-nav__button md-logo" aria-label="DiffBot Differential Drive Mobile Robot">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    DiffBot Differential Drive Mobile Robot
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href=".." class="md-nav__link">
+      Welcome to DiffBot Documentation
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../DG01D-E-motor-with-encoder/" class="md-nav__link">
+      DG01D E motor with encoder
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Diffbot base
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="./" class="md-nav__link md-nav__link--active">
+      Diffbot base
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#diffbot-base-package" class="md-nav__link">
+    DiffBot Base Package
+  </a>
+  
+    <nav class="md-nav" aria-label="DiffBot Base Package">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diffbot_base-package" class="md-nav__link">
+    diffbot_base Package
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hardware-interface" class="md-nav__link">
+    Hardware Interface
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pid-controller" class="md-nav__link">
+    PID Controller
+  </a>
+  
+    <nav class="md-nav" aria-label="PID Controller">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#launch-file" class="md-nav__link">
+    Launch File
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#additional-requirements" class="md-nav__link">
+    Additional Requirements
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#simulation" class="md-nav__link">
+    Simulation
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../diffbot_bringup/" class="md-nav__link">
+      Diffbot bringup
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../diffbot_control/" class="md-nav__link">
+      Diffbot control
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../diffbot_gazebo/" class="md-nav__link">
+      Diffbot gazebo
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../diffbot_mbf/" class="md-nav__link">
+      Diffbot mbf
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../diffbot_msgs/" class="md-nav__link">
+      Diffbot msgs
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../diffbot_navigation/" class="md-nav__link">
+      Diffbot navigation
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../diffbot_robot/" class="md-nav__link">
+      Diffbot robot
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../diffbot_slam/" class="md-nav__link">
+      Diffbot slam
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../git-setup/" class="md-nav__link">
+      Git setup
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../grove_motor_driver/" class="md-nav__link">
+      Grove motor driver
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../grove_ultrasonic_ranger/" class="md-nav__link">
+      Grove ultrasonic ranger
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../hardware-interfaces/" class="md-nav__link">
+      Hardware interfaces
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../laser-range-scanner/" class="md-nav__link">
+      Laser range scanner
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../lm393_speed_sensor/" class="md-nav__link">
+      Lm393 speed sensor
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../power-supply/" class="md-nav__link">
+      Power supply
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../robot-description/" class="md-nav__link">
+      Robot description
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../ros-network-setup/" class="md-nav__link">
+      Ros network setup
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../ros-setup/" class="md-nav__link">
+      Ros setup
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../teensy-mcu/" class="md-nav__link">
+      Teensy mcu
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-23" type="checkbox" id="nav-23" >
+    <label class="md-nav__link" for="nav-23">
+      Plots
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Plots" data-md-level="1">
+      <label class="md-nav__title" for="nav-23">
+        <span class="md-nav__icon md-icon"></span>
+        Plots
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-23-1" type="checkbox" id="nav-23-1" >
+    <label class="md-nav__link" for="nav-23-1">
+      New venv
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="New venv" data-md-level="2">
+      <label class="md-nav__title" for="nav-23-1">
+        <span class="md-nav__icon md-icon"></span>
+        New venv
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-23-1-1" type="checkbox" id="nav-23-1-1" >
+    <label class="md-nav__link" for="nav-23-1-1">
+      Lib
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Lib" data-md-level="3">
+      <label class="md-nav__title" for="nav-23-1-1">
+        <span class="md-nav__icon md-icon"></span>
+        Lib
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-23-1-1-1" type="checkbox" id="nav-23-1-1-1" >
+    <label class="md-nav__link" for="nav-23-1-1-1">
+      Python3.8
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Python3.8" data-md-level="4">
+      <label class="md-nav__title" for="nav-23-1-1-1">
+        <span class="md-nav__icon md-icon"></span>
+        Python3.8
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-23-1-1-1-1" type="checkbox" id="nav-23-1-1-1-1" >
+    <label class="md-nav__link" for="nav-23-1-1-1-1">
+      Site packages
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Site packages" data-md-level="5">
+      <label class="md-nav__title" for="nav-23-1-1-1-1">
+        <span class="md-nav__icon md-icon"></span>
+        Site packages
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-23-1-1-1-1-1" type="checkbox" id="nav-23-1-1-1-1-1" >
+    <label class="md-nav__link" for="nav-23-1-1-1-1-1">
+      Scipy
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Scipy" data-md-level="6">
+      <label class="md-nav__title" for="nav-23-1-1-1-1-1">
+        <span class="md-nav__icon md-icon"></span>
+        Scipy
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-23-1-1-1-1-1-1" type="checkbox" id="nav-23-1-1-1-1-1-1" >
+    <label class="md-nav__link" for="nav-23-1-1-1-1-1-1">
+      Fft
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Fft" data-md-level="7">
+      <label class="md-nav__title" for="nav-23-1-1-1-1-1-1">
+        <span class="md-nav__icon md-icon"></span>
+        Fft
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-23-1-1-1-1-1-1-1" type="checkbox" id="nav-23-1-1-1-1-1-1-1" >
+    <label class="md-nav__link" for="nav-23-1-1-1-1-1-1-1">
+       pocketfft
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label=" pocketfft" data-md-level="8">
+      <label class="md-nav__title" for="nav-23-1-1-1-1-1-1-1">
+        <span class="md-nav__icon md-icon"></span>
+         pocketfft
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../plots/new_venv/lib/python3.8/site-packages/scipy/fft/_pocketfft/LICENSE/" class="md-nav__link">
+      LICENSE
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-23-1-2" type="checkbox" id="nav-23-1-2" >
+    <label class="md-nav__link" for="nav-23-1-2">
+      Lib64
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Lib64" data-md-level="3">
+      <label class="md-nav__title" for="nav-23-1-2">
+        <span class="md-nav__icon md-icon"></span>
+        Lib64
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-23-1-2-1" type="checkbox" id="nav-23-1-2-1" >
+    <label class="md-nav__link" for="nav-23-1-2-1">
+      Python3.8
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Python3.8" data-md-level="4">
+      <label class="md-nav__title" for="nav-23-1-2-1">
+        <span class="md-nav__icon md-icon"></span>
+        Python3.8
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-23-1-2-1-1" type="checkbox" id="nav-23-1-2-1-1" >
+    <label class="md-nav__link" for="nav-23-1-2-1-1">
+      Site packages
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Site packages" data-md-level="5">
+      <label class="md-nav__title" for="nav-23-1-2-1-1">
+        <span class="md-nav__icon md-icon"></span>
+        Site packages
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-23-1-2-1-1-1" type="checkbox" id="nav-23-1-2-1-1-1" >
+    <label class="md-nav__link" for="nav-23-1-2-1-1-1">
+      Scipy
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Scipy" data-md-level="6">
+      <label class="md-nav__title" for="nav-23-1-2-1-1-1">
+        <span class="md-nav__icon md-icon"></span>
+        Scipy
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-23-1-2-1-1-1-1" type="checkbox" id="nav-23-1-2-1-1-1-1" >
+    <label class="md-nav__link" for="nav-23-1-2-1-1-1-1">
+      Fft
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Fft" data-md-level="7">
+      <label class="md-nav__title" for="nav-23-1-2-1-1-1-1">
+        <span class="md-nav__icon md-icon"></span>
+        Fft
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-23-1-2-1-1-1-1-1" type="checkbox" id="nav-23-1-2-1-1-1-1-1" >
+    <label class="md-nav__link" for="nav-23-1-2-1-1-1-1-1">
+       pocketfft
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label=" pocketfft" data-md-level="8">
+      <label class="md-nav__title" for="nav-23-1-2-1-1-1-1-1">
+        <span class="md-nav__icon md-icon"></span>
+         pocketfft
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../plots/new_venv/lib64/python3.8/site-packages/scipy/fft/_pocketfft/LICENSE/" class="md-nav__link">
+      LICENSE
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-23-2" type="checkbox" id="nav-23-2" >
+    <label class="md-nav__link" for="nav-23-2">
+      Venv
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Venv" data-md-level="2">
+      <label class="md-nav__title" for="nav-23-2">
+        <span class="md-nav__icon md-icon"></span>
+        Venv
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-23-2-1" type="checkbox" id="nav-23-2-1" >
+    <label class="md-nav__link" for="nav-23-2-1">
+      Lib
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Lib" data-md-level="3">
+      <label class="md-nav__title" for="nav-23-2-1">
+        <span class="md-nav__icon md-icon"></span>
+        Lib
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-23-2-1-1" type="checkbox" id="nav-23-2-1-1" >
+    <label class="md-nav__link" for="nav-23-2-1-1">
+      Python3.8
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Python3.8" data-md-level="4">
+      <label class="md-nav__title" for="nav-23-2-1-1">
+        <span class="md-nav__icon md-icon"></span>
+        Python3.8
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-23-2-1-1-1" type="checkbox" id="nav-23-2-1-1-1" >
+    <label class="md-nav__link" for="nav-23-2-1-1-1">
+      Site packages
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Site packages" data-md-level="5">
+      <label class="md-nav__title" for="nav-23-2-1-1-1">
+        <span class="md-nav__icon md-icon"></span>
+        Site packages
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-23-2-1-1-1-1" type="checkbox" id="nav-23-2-1-1-1-1" >
+    <label class="md-nav__link" for="nav-23-2-1-1-1-1">
+      Scipy
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Scipy" data-md-level="6">
+      <label class="md-nav__title" for="nav-23-2-1-1-1-1">
+        <span class="md-nav__icon md-icon"></span>
+        Scipy
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-23-2-1-1-1-1-1" type="checkbox" id="nav-23-2-1-1-1-1-1" >
+    <label class="md-nav__link" for="nav-23-2-1-1-1-1-1">
+      Fft
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Fft" data-md-level="7">
+      <label class="md-nav__title" for="nav-23-2-1-1-1-1-1">
+        <span class="md-nav__icon md-icon"></span>
+        Fft
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-23-2-1-1-1-1-1-1" type="checkbox" id="nav-23-2-1-1-1-1-1-1" >
+    <label class="md-nav__link" for="nav-23-2-1-1-1-1-1-1">
+       pocketfft
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label=" pocketfft" data-md-level="8">
+      <label class="md-nav__title" for="nav-23-2-1-1-1-1-1-1">
+        <span class="md-nav__icon md-icon"></span>
+         pocketfft
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../plots/venv/lib/python3.8/site-packages/scipy/fft/_pocketfft/LICENSE/" class="md-nav__link">
+      LICENSE
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-23-2-2" type="checkbox" id="nav-23-2-2" >
+    <label class="md-nav__link" for="nav-23-2-2">
+      Lib64
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Lib64" data-md-level="3">
+      <label class="md-nav__title" for="nav-23-2-2">
+        <span class="md-nav__icon md-icon"></span>
+        Lib64
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-23-2-2-1" type="checkbox" id="nav-23-2-2-1" >
+    <label class="md-nav__link" for="nav-23-2-2-1">
+      Python3.8
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Python3.8" data-md-level="4">
+      <label class="md-nav__title" for="nav-23-2-2-1">
+        <span class="md-nav__icon md-icon"></span>
+        Python3.8
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-23-2-2-1-1" type="checkbox" id="nav-23-2-2-1-1" >
+    <label class="md-nav__link" for="nav-23-2-2-1-1">
+      Site packages
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Site packages" data-md-level="5">
+      <label class="md-nav__title" for="nav-23-2-2-1-1">
+        <span class="md-nav__icon md-icon"></span>
+        Site packages
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-23-2-2-1-1-1" type="checkbox" id="nav-23-2-2-1-1-1" >
+    <label class="md-nav__link" for="nav-23-2-2-1-1-1">
+      Scipy
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Scipy" data-md-level="6">
+      <label class="md-nav__title" for="nav-23-2-2-1-1-1">
+        <span class="md-nav__icon md-icon"></span>
+        Scipy
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-23-2-2-1-1-1-1" type="checkbox" id="nav-23-2-2-1-1-1-1" >
+    <label class="md-nav__link" for="nav-23-2-2-1-1-1-1">
+      Fft
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Fft" data-md-level="7">
+      <label class="md-nav__title" for="nav-23-2-2-1-1-1-1">
+        <span class="md-nav__icon md-icon"></span>
+        Fft
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-23-2-2-1-1-1-1-1" type="checkbox" id="nav-23-2-2-1-1-1-1-1" >
+    <label class="md-nav__link" for="nav-23-2-2-1-1-1-1-1">
+       pocketfft
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label=" pocketfft" data-md-level="8">
+      <label class="md-nav__title" for="nav-23-2-2-1-1-1-1-1">
+        <span class="md-nav__icon md-icon"></span>
+         pocketfft
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../plots/venv/lib64/python3.8/site-packages/scipy/fft/_pocketfft/LICENSE/" class="md-nav__link">
+      LICENSE
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-24" type="checkbox" id="nav-24" >
+    <label class="md-nav__link" for="nav-24">
+      Theory
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Theory" data-md-level="1">
+      <label class="md-nav__title" for="nav-24">
+        <span class="md-nav__icon md-icon"></span>
+        Theory
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../theory/motion-and-odometry/" class="md-nav__link">
+      Motion and odometry
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#diffbot-base-package" class="md-nav__link">
+    DiffBot Base Package
+  </a>
+  
+    <nav class="md-nav" aria-label="DiffBot Base Package">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diffbot_base-package" class="md-nav__link">
+    diffbot_base Package
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hardware-interface" class="md-nav__link">
+    Hardware Interface
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pid-controller" class="md-nav__link">
+    PID Controller
+  </a>
+  
+    <nav class="md-nav" aria-label="PID Controller">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#launch-file" class="md-nav__link">
+    Launch File
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#additional-requirements" class="md-nav__link">
+    Additional Requirements
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#simulation" class="md-nav__link">
+    Simulation
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                  <h1>Diffbot base</h1>
+                
+                <h2 id="diffbot-base-package">DiffBot Base Package</h2>
+<p>This package contains the so called hardware interface of DiffBot which represents the real hardware in software to work with 
+<a href="http://wiki.ros.org/ros_control">ROS Control</a>. </p>
+<figure>
+    <a href="https://raw.githubusercontent.com/fjp/diffbot/master/docs/resources/ros_control_overview.png"><img src="https://raw.githubusercontent.com/fjp/diffbot/master/docs/resources/ros_control_overview.png"></a>
+    <figcaption><a href="http://wiki.ros.org/ros_control#Overview" title="ROS Control">ROS Control</a> Overview.</figcaption>
+</figure>
+
+<p>In the simpleste case all that is needed in this package is to write a class that inherits from <code>hardware_interface::RobotHW</code> and provide a launch
+file. The launch file will </p>
+<ul>
+<li>Load the robot description from <code>diffbot_description</code> to the paramter server</li>
+<li>Run the hardware interface of this package <code>diffbot_base</code></li>
+<li>Load the controller configuration yaml from the <code>diffbot_control</code> package to the parameter server</li>
+<li>Load the controllers with the <a href="http://wiki.ros.org/controller_manager?distro=noetic">controller manager</a></li>
+</ul>
+<h3 id="diffbot_base-package">diffbot_base Package</h3>
+<p>The <code>diffbot_base</code> package is created with <code>catkin-tools</code>:</p>
+<pre><code class="language-console">fjp@diffbot:/home/fjp/catkin_ws/src$ catkin create pkg diffbot_base --catkin-deps diff_drive_controller hardware_interface roscpp sensor_msgs rosparam_shortcuts                 
+Creating package &quot;diffbot_base&quot; in &quot;/home/fjp/catkin_ws/src&quot;...
+Created file diffbot_base/package.xml
+Created file diffbot_base/CMakeLists.txt
+Created folder diffbot_base/include/diffbot_base
+Created folder diffbot_base/src
+Successfully created package files in /home/fjp/catkin_ws/src/diffbot_base.
+</code></pre>
+<p>To work with this package the specified dependencies must be installed either using the available Ubuntu/Debian packages for ROS Noetic or they have to be built from source first. The following table lists the dependencies that we have to install because they are not already part of the ROS Noetic desktop full installation. Refer to the section <a href="https://fjp.at/projects/diffbot/ros-noetic/">ROS Noetic Setup</a> for how this was done. </p>
+<table>
+<thead>
+<tr>
+<th align="center">Dependency</th>
+<th align="center">Source</th>
+<th align="center">Ubuntu/Debian Package</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><code>rosparam_shortcuts</code></td>
+<td align="center">https://github.com/PickNikRobotics/rosparam_shortcuts</td>
+<td align="center"><code>ros-noetic-rosparam-shortcuts</code></td>
+</tr>
+<tr>
+<td align="center"><code>hardware_interface</code></td>
+<td align="center">https://github.com/ros-controls/ros_control</td>
+<td align="center"><code>ros-noetic-ros-control</code></td>
+</tr>
+<tr>
+<td align="center"><code>diff_drive_controller</code></td>
+<td align="center">https://github.com/ros-controls/ros_controllers</td>
+<td align="center"><code>ros-noetic-ros-controllers</code></td>
+</tr>
+</tbody>
+</table>
+<p>To install a package from source clone (using git) or download the source files from where they are located (commonly hosted on GitHub) into the <code>src</code> folder of a ros catkin workspace and execute the <a href="https://catkin-tools.readthedocs.io/en/latest/verbs/catkin_build.html"><code>catkin build</code></a> command. Also make sure to source the workspace after building new packages with <code>source devel/setup.bash</code>.</p>
+<pre><code class="language-console">cd /homw/fjp/git/diffbot/ros/  # Navigate to the workspace
+catkin build              # Build all the packages in the workspace
+ls build                  # Show the resulting build space
+ls devel                  # Show the resulting devel space
+</code></pre>
+<p>Make sure to clone/download the source files suitable for the ROS distribtion you are using. If the sources are not available for the distribution you are working with, it is worth to try building anyway. Chances are that the package you want to use is suitable for multiple ROS distros. For example if a package states in its docs, that it is only available for <a href="http://wiki.ros.org/kinetic">kinetic</a> it is possible that it will work with a ROS <a href="http://wiki.ros.org/noetic">noetic</a> install.
+{: .notice }</p>
+<h3 id="hardware-interface">Hardware Interface</h3>
+<p>See the <a href="../diffbot_base/include"><code>include</code></a> and <a href="../diffbot_base/src"><code>src</code></a> folders of this package and the details on the hardware interface implementation.
+For more details on the hardware interface also refer to the section <a href="https://fjp.at/projects/diffbot/ros-integration/#ros-control">ROS Integration: Control</a>, it gives more details and also this <a href="https://fjp.at/posts/ros/ros-control/">overview article about ROS Control</a>.</p>
+<p>The hardware interface provides an interface between the real robot hardware and the controllers provided by ROS Control (or even custom controllers).
+DiffBot works with the <code>diff_drive_controller</code> that is configured in the <code>diffbot_control</code> package, which is also relevant for the simulation in Gazebo.
+Remember that the simulation uses the <code>gazebo_ros_control</code> package to communicate with the <code>diff_drive_controller</code>. For the real robot hardware,
+ROS Control uses an instance of type <a href="http://docs.ros.org/en/noetic/api/hardware_interface/html/c++/"><code>hardware_interface::RobotHW</code></a> that is passed to the <code>controller_manager</code> to handle the resources, meaning that the actuated robot joints are not in use by multiple controllers that might be loaded.</p>
+<p>The skeleton of DiffBot's hardware interface looks like following, where the constructor is used to read loaded configuration values from 
+the robot's description from the ROS parameter server:</p>
+<pre><code class="language-cpp">namespace diffbot_base
+{
+    DiffBotHWInterface::DiffBotHWInterface(ros::NodeHandle &amp;nh, urdf::Model *urdf_model)
+        : name_(&quot;hardware_interface&quot;)
+        , nh_(nh)
+    { 
+        // Initialization of the robot's resources (joints, sensors, actuators) and
+        // interfaces can be done here or inside init().
+        // E.g. parse the URDF for joint names &amp; interfaces, then initialize them
+        // Check if the URDF model needs to be loaded
+        if (urdf_model == NULL)
+            loadURDF(nh, &quot;robot_description&quot;);
+        else
+            urdf_model_ = urdf_model;
+
+        // Load rosparams
+        ros::NodeHandle rpnh(nh_, name_);
+        std::size_t error = 0;
+        // Code API of rosparam_shortcuts:
+        // http://docs.ros.org/en/noetic/api/rosparam_shortcuts/html/namespacerosparam__shortcuts.html#aa6536fe0130903960b1de4872df68d5d
+        error += !rosparam_shortcuts::get(name_, rpnh, &quot;joints&quot;, joint_names_);
+        error += !rosparam_shortcuts::get(name_, nh_, &quot;mobile_base_controller/wheel_radius&quot;, wheel_radius_);
+        error += !rosparam_shortcuts::get(name_, nh_, &quot;mobile_base_controller/linear/x/max_velocity&quot;, max_velocity_);
+        rosparam_shortcuts::shutdownIfError(name_, error);
+
+        wheel_diameter_ = 2.0 * wheel_radius_;
+        //max_velocity_ = 0.2; // m/s
+        // ros_control RobotHW needs velocity in rad/s but in the config its given in m/s
+        max_velocity_ = linearToAngular(max_velocity_);
+
+        // Setup publisher for the motor driver 
+        pub_left_motor_value_ = nh_.advertise&lt;std_msgs::Int32&gt;(&quot;motor_left&quot;, 1);
+        pub_right_motor_value_ = nh_.advertise&lt;std_msgs::Int32&gt;(&quot;motor_right&quot;, 1);
+
+        // Setup subscriber for the wheel encoders
+        sub_left_encoder_ticks_ = nh_.subscribe(&quot;ticks_left&quot;, 1, &amp;DiffBotHWInterface::leftEncoderTicksCallback, this);
+        sub_right_encoder_ticks_ = nh_.subscribe(&quot;ticks_right&quot;, 1, &amp;DiffBotHWInterface::rightEncoderTicksCallback, this);
+
+        // Initialize the hardware interface
+        init(nh_, nh_);
+    }
+
+
+    bool DiffBotHWInterface::init(ros::NodeHandle &amp;root_nh, ros::NodeHandle &amp;robot_hw_nh)
+    {
+        ROS_INFO(&quot;Initializing DiffBot Hardware Interface ...&quot;);
+        num_joints_ = joint_names_.size();
+        ROS_INFO(&quot;Number of joints: %d&quot;, (int)num_joints_);
+        std::array&lt;std::string, NUM_JOINTS&gt; motor_names = {&quot;left_motor&quot;, &quot;right_motor&quot;};
+        for (unsigned int i = 0; i &lt; num_joints_; i++)
+        {
+            // Create a JointStateHandle for each joint and register them with the 
+            // JointStateInterface.
+            hardware_interface::JointStateHandle joint_state_handle(joint_names_[i],
+                                                                    &amp;joint_positions_[i], 
+                                                                    &amp;joint_velocities_[i],
+                                                                    &amp;joint_efforts_[i]);
+            joint_state_interface_.registerHandle(joint_state_handle);
+
+            // Create a JointHandle (read and write) for each controllable joint
+            // using the read-only joint handles within the JointStateInterface and 
+            // register them with the JointVelocityInterface.
+            hardware_interface::JointHandle joint_handle(joint_state_handle, &amp;joint_velocity_commands_[i]);
+            velocity_joint_interface_.registerHandle(joint_handle);
+
+            // Initialize joint states with zero values
+            joint_positions_[i] = 0.0;
+            joint_velocities_[i] = 0.0;
+            joint_efforts_[i] = 0.0; // unused with diff_drive_controller
+
+            joint_velocity_commands_[i] = 0.0;
+
+            // Initialize the pid controllers for the motors using the robot namespace
+            std::string pid_namespace = &quot;pid/&quot; + motor_names[i];
+            ROS_INFO_STREAM(&quot;pid namespace: &quot; &lt;&lt; pid_namespace);
+            ros::NodeHandle nh(root_nh, pid_namespace);
+            // TODO implement builder pattern to initialize values otherwise it is hard to see which parameter is what.
+            pids_[i].init(nh, 0.0, 10.0, 1.0, 1.0, 0.0, 0.0, false, -max_velocity_, max_velocity_);
+            pids_[i].setOutputLimits(-max_velocity_, max_velocity_);
+        }
+
+        // Register the JointStateInterface containing the read only joints
+        // with this robot's hardware_interface::RobotHW.
+        registerInterface(&amp;joint_state_interface_);
+
+        // Register the JointVelocityInterface containing the read/write joints
+        // with this robot's hardware_interface::RobotHW.
+        registerInterface(&amp;velocity_joint_interface_);
+
+        ROS_INFO(&quot;... Done Initializing DiffBot Hardware Interface&quot;);
+        return true;
+    }
+
+    // The read method is part of the control loop cycle (read, update, write) and is used to 
+    // populate the robot state from the robot's hardware resources (joints, sensors, actuators). 
+    // This method should be called before controller_manager::ControllerManager::update() and write.
+    void DiffBotHWInterface::read(const ros::Time&amp; time, const ros::Duration&amp; period)
+    {
+        ros::Duration elapsed_time = period;
+
+        // Read from robot hw (motor encoders)
+        // Fill joint_state_* members with read values
+        double wheel_angles[2];
+        double wheel_angle_deltas[2];
+        for (std::size_t i = 0; i &lt; num_joints_; ++i)
+        {
+            wheel_angles[i] = ticksToAngle(encoder_ticks_[i]);
+            //double wheel_angle_normalized = normalizeAngle(wheel_angle);
+            wheel_angle_deltas[i] = wheel_angles[i] - joint_positions_[i];
+
+            joint_positions_[i] += wheel_angle_deltas[i];
+            joint_velocities_[i] = wheel_angle_deltas[i] / period.toSec();
+            joint_efforts_[i] = 0.0; // unused with diff_drive_controller
+        }
+    }
+
+    // The write method is part of the control loop cycle (read, update, write) and is used to 
+    // send out commands to the robot's hardware resources (joints, actuators). 
+    // This method should be called after read and controller_manager::ControllerManager::update.
+    void DiffBotHWInterface::write(const ros::Time&amp; time, const ros::Duration&amp; period)
+    {
+        ros::Duration elapsed_time = period;
+        // Write to robot hw
+        // joint velocity commands from ros_control's RobotHW are in rad/s
+        // Convert the velocity command to a percentage value for the motor
+        // This maps the velocity to a percentage value which is used to apply
+        // a percentage of the highest possible battery voltage to each motor.
+        std_msgs::Int32 left_motor;
+        std_msgs::Int32 right_motor;
+
+        double output_left = pids_[0](joint_velocities_[0], joint_velocity_commands_[0], period);
+        double output_right = pids_[1](joint_velocities_[1], joint_velocity_commands_[1], period);
+
+        left_motor.data = output_left / max_velocity_ * 100.0;
+        right_motor.data = output_right / max_velocity_ * 100.0;
+
+    // Publish the PID computed motor commands to the left and right motors
+    pub_left_motor_value_.publish(left_motor);
+        pub_right_motor_value_.publish(right_motor);
+    }
+
+    // Process updates from encoders using a subscriber
+    void DiffBotHWInterface::leftEncoderTicksCallback(const std_msgs::Int32::ConstPtr&amp; msg)
+    {
+        encoder_ticks_[0] = msg-&gt;data;
+        ROS_DEBUG_STREAM_THROTTLE(1, &quot;Left encoder ticks: &quot; &lt;&lt; msg-&gt;data);
+    }
+
+    void DiffBotHWInterface::rightEncoderTicksCallback(const std_msgs::Int32::ConstPtr&amp; msg)
+    {
+        encoder_ticks_[1] = msg-&gt;data;
+        ROS_DEBUG_STREAM_THROTTLE(1, &quot;Right encoder ticks: &quot; &lt;&lt; msg-&gt;data);
+    }
+
+    double DiffBotHWInterface::ticksToAngle(const int &amp;ticks) const
+    {
+        // Convert number of encoder ticks to angle in radians
+        double angle = (double)ticks * (2.0*M_PI / 542.0);
+        ROS_DEBUG_STREAM_THROTTLE(1, ticks &lt;&lt; &quot; ticks correspond to an angle of &quot; &lt;&lt; angle);
+    return angle;
+    }
+
+};
+</code></pre>
+<p>The functions above are designed to give the controller manager (and the controllers inside the controller manager) access to the joint state of custom robot, 
+and to command it. When the controller manager runs, the controllers will read from the pos, vel and eff variables of the custom robot hardware interface, and the controller will write the desired command into the cmd variable. It's mandatory to make sure the pos, vel and eff variables always have the latest joint state available, and to make sure that whatever is written into the cmd variable gets executed by the robot. This can be done by implementing hardware_interface::RobotHW::read() and a hardware_interface::RobotHW::write() methods.</p>
+<p>The main node that will be executed uses the <code>controller_manager</code> to operate the so called control loop. In the case of  DiffBot a simple example looks like 
+the following, refer to the <a href="https://github.com/fjp/diffbot/blob/master/diffbot_base/src/diffbot_base.cpp"><code>diffbot_base.cpp</code></a> for the complete implementation:</p>
+<pre><code class="language-cpp">#include &lt;ros/ros.h&gt;
+#include &lt;diffbot_base/diffbot_hw_interface.h&gt;
+#include &lt;controller_manager/controller_manager.h&gt;
+
+int main(int argc, char **argv)
+{
+    // Initialize the ROS node
+    ros::init(argc, argv, &quot;diffbot_hw_interface&quot;);
+    ros::NodeHandle nh;
+
+    // Create an instance of your robot so that this instance knows about all 
+    // the resources that are available.
+    diffbot_base::DiffBotHWInterface diffBot(nh);
+
+    // Create an instance of the controller manager and pass it the robot, 
+    // so that it can handle its resources.
+    controller_manager::ControllerManager cm(&amp;diffBot);
+
+    // Setup a separate thread that will be used to service ROS callbacks.
+    // NOTE: We run the ROS loop in a separate thread as external calls such
+    // as service callbacks to load controllers can block the (main) control loop
+    ros::AsyncSpinner spinner(1);
+    spinner.start();
+
+    // Setup for the control loop.
+    ros::Time prev_time = ros::Time::now();
+    ros::Rate rate(10.0); // 10 Hz rate
+
+    // Blocks until shutdown signal recieved
+    while (ros::ok())
+    {
+        // Basic bookkeeping to get the system time in order to compute the control period.
+        const ros::Time     time   = ros::Time::now();
+        const ros::Duration period = time - prev_time;
+
+        // Execution of the actual control loop.
+        diffBot.read(time, period);
+        // If needed, its possible to define transmissions in software by calling the 
+        // transmission_interface::ActuatorToJointPositionInterface::propagate()
+        // after reading the joint states.
+        cm.update(time, period);
+        // In case of software transmissions, use 
+        // transmission_interface::JointToActuatorEffortHandle::propagate()
+        // to convert from the joint space to the actuator space.
+        diffBot.write(time, period);
+
+        // All these steps keep getting repeated with the specified rate.
+        rate.sleep();
+    }
+    return 0;
+}
+</code></pre>
+<p>As we can see, the basic steps are to initialize the node, instantiate the hardware interface, pass it to a new controller manager and run the
+control loop that does the following:</p>
+<ul>
+<li>Read joint states from the real robot hardware</li>
+<li>Update the <code>diff_drive_controller</code> with read values and compute the joint velocities using the target <code>cmd_vel</code></li>
+<li>Write the computed values </li>
+</ul>
+<p>You may be wondering why the read values aren't returned from the <code>diffbot.read()</code> method and nothing is passed to the <code>diffbot.write()</code>.
+This is because the <code>RobotHW::init()</code> method, shown in the first code snippet, is used to register the actuated joint names (described in the <code>diffbot_description</code>) to the <code>joint_position</code>, <code>joint_velocity</code> and <code>joint_effort</code> member variables of the custom robot hardware interface.
+The class that registers the variables of the controller with the hardware interface member variables and thereby gives read access to all joint values 
+without conflicting with other controllers, is the <a href="http://docs.ros.org/en/noetic/api/hardware_interface/html/c++/classhardware__interface_1_1JointStateInterface.html"><code>hardware_interface::JointStateInterface</code></a>. 
+ROS Control uses the <code>hardware_interface::VelocityJointInterface</code> (part of the <a href="http://docs.ros.org/en/noetic/api/hardware_interface/html/c++/joint__command__interface_8h_source.html"><code>joint_command_interface.h</code></a>) 
+that registers the command member variable of the controller with the hardware interface to provide it the command that should be written to the actuators.</p>
+<p>When the controller manager runs, the controllers will read from the <code>joint_position</code>, <code>joint_velocity</code> and <code>joint_effort</code> variables of the custom robot hardware interface, and the controller will write the desired command into the <code>joint_velocity_command</code> variable. It's mandatory to make sure the position, velocity and effort (effort is not needed in the case of the <code>diff_drive_controller</code>) variables always have the latest joint state available, and to make sure that whatever is written into the <code>joint_velocity_command</code> variable gets executed by the robot. As mentioned this can be done by implementing <code>hardware_interface::RobotHW::read()</code> and a <code>hardware_interface::RobotHW::write()</code> methods.</p>
+<p>In the control loop the <a href="https://github.com/fjp/diffbot/blob/522cba34117ea4cf90e3e0b5b9b70f0824e226fc/diffbot_base/src/diffbot_hw_interface.cpp#L106">overriden <code>hardware_interface::RobotHW::read()</code> method of DiffBot</a> is used to read the joint states. The <code>diff_drive_controller</code> works with a VelocityInterface which is why the <code>joint_position</code>, defined in rad, and <code>joint_velocity</code>, defined in rad/s, are calculated from the encoder ticks.</p>
+<h2 id="pid-controller">PID Controller</h2>
+<p>Note the two PID controllers inside the hardware interface, where each PID is passed the error between velocity measured by the encoders 
+and the target velocity computed by the <code>diff_drive_controller</code> for a specific wheel joint. 
+The <code>diff_drive_controller</code> doesn't have a PID controller integrated, and doesn't take care if the wheels of the robot are actually turning.
+As mentioned above, ROS Control expects that the commands sent by the controller are actually implemented on the real robot hardware and that the
+joint states are always up to date. This means that the <code>diff_drive_controller</code> just uses the <code>twist_msg</code> on the <code>cmd_vel</code> topic for example from the <code>rqt_robot_steering</code> and converts it to a velocity command for the motors. It doesn't take the actual velocity of the motors into account. 
+See <a href="https://github.com/ros-controls/ros_controllers/blob/698f85b2c3467dfcc3ca5743d68deba03f3fcff2/diff_drive_controller/src/diff_drive_controller.cpp#L460">the code of <code>diff_drive_controller</code></a> where the <code>joint_command_velocity</code> is calculated. 
+{: .notice :}</p>
+<p>This is why a PID controller is needed to avoid situations like the following where the robot moves not straigth although it is commanded to do so:</p>
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/chUPeWXtim4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<p>The PID used here inherits from the ROS Control <a href="http://wiki.ros.org/control_toolbox"><code>control_toolbox::Pid</code></a> that provides Dynamic Reconfigure out of the box to tune the proportional, integral and derivative gains. The behaviour when using only the P, I and D gains is that the output can overshoot and even change between positive and negative motor percent values because of a P gain that is too high. To avoid this, a feed forward gain can help to reach the setpoint faster.
+To add this feed forward gain to the dynamic reconfigure parameters it is necessary to add a new parameter configuration file in this package inside a <code>cfg</code> folder. </p>
+<p>For more details on ROS dynamic reconfigure see <a href="http://wiki.ros.org/dynamic_reconfigure/Tutorials">the official tutorials</a>.</p>
+<p>With the use of the PID controller the robot is able to drive straight:</p>
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/fdn5Mu0Qhl8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<p>In case of using inexpensive motors like the <a href="https://www.sparkfun.com/products/16413">DG01D-E</a> of DiffBot,
+you have to take inaccurate driving behaviour into account. The straight driving behaviour can be improved
+with motors that start spinning at the same voltage levels. To find suitable motors do a voltage sweep test by slightly increasing the voltage and
+note the voltage level where each motor starts to rotate. Such a test was done on DiffBot's motors. </p>
+<p>Using six <a href="https://www.sparkfun.com/products/16413">DG01D-E</a> motors the following values were recorded (sorted by increasing voltage):</p>
+<table>
+<thead>
+<tr>
+<th align="center">Motor</th>
+<th align="center">Voltage (V)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">01</td>
+<td align="center">2.5</td>
+</tr>
+<tr>
+<td align="center">02</td>
+<td align="center">2.8 - 3.0</td>
+</tr>
+<tr>
+<td align="center">03</td>
+<td align="center">3.1</td>
+</tr>
+<tr>
+<td align="center">04</td>
+<td align="center">3.2</td>
+</tr>
+<tr>
+<td align="center">05</td>
+<td align="center">3.2</td>
+</tr>
+<tr>
+<td align="center">06</td>
+<td align="center">3.3</td>
+</tr>
+</tbody>
+</table>
+<p>In the videos above, motors numbered 01 and 03 were used coincidencely and I wasn't aware of the remarkable differences in voltage levels.
+Using the motors 04 and 05 improved the driving behaviour significantly. 
+{: .notice } </p>
+<p>To deal with significant differences in the motors it would also help to tune the two PIDs individually,
+which is not shown in the <a href="https://youtu.be/fdn5Mu0Qhl8">video above</a>.</p>
+<p>Make also sure that the motor driver outputs the same voltage level on both channels when the robot is commanded to move straight.
+The used Grove i2c motor driver was tested to do this.
+Another problem of not driving straight can be weight distribution or the orientation of the caster wheel.
+{: .notice }</p>
+<p>A good test to check the accuracy is to fix two meters of adhesive tape on the floor in a straight line. 
+Then, place the robot on one end oriented in the direction to the other end. Now command it to move straight along the line
+and stop it when it reaches the end of the tape. Record the lateral displacement from the tape. 
+Measuring a value below 10 cm is considered precise for these motors.</p>
+<h3 id="launch-file">Launch File</h3>
+<p>To run a single controller_manager, the one from the <code>diffbot_base</code> package defined inside <code>difbot_base.cpp</code> use the 
+launch file from <a href="https://github.com/fjp/diffbot/blob/master/ros/src/diffbot_base/launch/diffbot.launch"><code>diffbot_base/launch/diffbot.launch</code></a>:</p>
+<pre><code class="language-xml">&lt;!-- https://github.com/ros-controls/ros_controllers/tree/kinetic-devel/diff_drive_controller/test --&gt;
+&lt;launch&gt;
+    &lt;!-- Load DiffBot model --&gt;
+    &lt;param name=&quot;robot_description&quot;
+       command=&quot;$(find xacro)/xacro '$(find diffbot_description)/urdf/diffbot.xacro'&quot;/&gt;
+
+    &lt;node name=&quot;diffbot_base&quot; pkg=&quot;diffbot_base&quot; type=&quot;diffbot_base&quot;/&gt;
+
+    &lt;!-- Load controller config to the parameter server --&gt;
+    &lt;rosparam command=&quot;load&quot; 
+              file=&quot;$(find diffbot_control)/config/diffbot_control.yaml&quot;/&gt;
+
+    &lt;!-- Load the controllers --&gt;
+    &lt;node name=&quot;controller_spawner&quot; pkg=&quot;controller_manager&quot; type=&quot;spawner&quot; respawn=&quot;false&quot;
+        output=&quot;screen&quot; ns=&quot;diffbot&quot; args=&quot;joint_state_controller
+                                            mobile_base_controller&quot;/&gt;
+&lt;/launch&gt;
+</code></pre>
+<p>This will load the DiffBot robot description onto the parameter server which is required  for the hardware interface that gets created inside the next
+node <code>diffbot_base</code>. It creates the hardware interface and instantiates a new controller manager in the <code>diffbot_base.cpp</code>.
+Finally the <code>spawner</code> from the <code>controller_manager</code> package is used to initialize and start the controllers defined in the <code>diffbot_control/config/diffbot_control.yaml</code>. The last step in this launch file is required to get the controllers initialized and started.
+Another way would be to use <code>controller_manager::ControllerManager::loadControllers()</code> inside the <code>diffbot_base.cpp</code>.</p>
+<p>After launching this launch file on DiffBot (Raspberry Pi) with </p>
+<pre><code class="language-console">roslaunch diffbot_base diffbot.launch
+</code></pre>
+<p>the following parameters are stored on the parameter server:</p>
+<pre><code class="language-console">$ rosparam list
+/diffbot/hardware_interface/joints
+/diffbot/joint_state_controller/extra_joints
+/diffbot/joint_state_controller/publish_rate
+/diffbot/joint_state_controller/type
+/diffbot/mobile_base_controller/base_frame_id
+/diffbot/mobile_base_controller/left_wheel
+/diffbot/mobile_base_controller/pose_covariance_diagonal
+/diffbot/mobile_base_controller/publish_rate
+/diffbot/mobile_base_controller/right_wheel
+/diffbot/mobile_base_controller/twist_covariance_diagonal
+/diffbot/mobile_base_controller/type
+/diffbot/mobile_base_controller/wheel_radius
+/diffbot/mobile_base_controller/wheel_separation
+/robot_description
+/rosdistro
+/roslaunch/uris/host_tensorbook__46157
+/roslaunch/uris/host_ubuntu__33729
+/rosversion
+/run_id
+</code></pre>
+<h2 id="additional-requirements">Additional Requirements</h2>
+<p>Because the hardware interface subscribes to the encoders, that are connected to the Teensy MCU, and publishes to the motors via the motr driver node,
+another launch will be required to run these additional nodes. See the <code>diffbot_bringup</code> package for this setup.</p>
+<h2 id="simulation">Simulation</h2>
+<p>To have a simulation showing DiffBot, the second step is to use the <a href="https://github.com/fjp/diffbot/blob/master/ros/src/diffbot_gazebo/launch/diffbot_base.launch"><code>diffbot_gazebo/launch/diffbot_base.launch</code></a> on the work pc:</p>
+<pre><code class="language-console">$ roslaunch diffbot_gazebo diffbot_base.launch
+</code></pre>
+<p>This will launch the gazebo simulation, which can make use of the running controllers inside the controller manager too:</p>
+<figure>
+    <a href="https://raw.githubusercontent.com/fjp/diffbot/master/docs/resources/ros_control_gazebo.png"><img src="https://raw.githubusercontent.com/fjp/diffbot/master/docs/resources/ros_control_gazebo.png"></a>
+    <figcaption><a href="http://gazebosim.org/tutorials/?tut=ros_control" title="ROS Control with Gazebo">ROS Control with Gazebo</a> Overview.</figcaption>
+</figure>
+
+<p>After launching the Gazebo simulation the controllers got uninitialized.
+(It is assumed that the <a href="https://github.com/ros-simulation/gazebo_ros_pkgs/tree/kinetic-devel/gazebo_ros_control"><code>gazebo_ros_control</code></a> plugin that gets launched). Because of this the controllers have to be initialized and started again. For this the <a href="https://github.com/fjp/diffbot/blob/master/ros/src/diffbot_base/launch/controllers.launch"><code>diffbot_base/launch/controllers.launch</code></a> should be used.
+This launch file is just loading and starting all controllers again. Note that using the <code>spawner</code> from the <code>controller_manager</code> package, like in the <code>diffbot_base/launch/diffbot.launch</code> results in an error. (TODO this needs some more testing).</p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../DG01D-E-motor-with-encoder/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                DG01D E motor with encoder
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../diffbot_bringup/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Diffbot bringup
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+    
+      <script src="../assets/javascripts/vendor.0ac82a11.min.js"></script>
+      <script src="../assets/javascripts/bundle.f81dfb4d.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      
+      <script>
+        app = initialize({
+          base: "..",
+          features: [],
+          search: Object.assign({
+            worker: "../assets/javascripts/worker/search.4ac00218.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+    <script>
+        $(document).ready(function(){
+            // Target your .container, .wrapper, .post, etc.
+            $(".md-main").fitVids();
+        });
+    </script>
+
+  </body>
+</html>
