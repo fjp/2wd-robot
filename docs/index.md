@@ -1,6 +1,6 @@
 # Welcome to DiffBot Documentation
 
-This project provides guidance on how to build an autonomous two wheel differential drive robot. [![image](https://img.shields.io/github/stars/fjp/diffbot?style=social)](https://github.com/fjp/diffbot)
+This project guides you on how to build an autonomous two wheel differential drive robot. [![image](https://img.shields.io/github/stars/fjp/diffbot?style=social)](https://github.com/fjp/diffbot)
 The robot is equipped with a [Raspberry Pi 4 B](https://de.aliexpress.com/item/32858825148.html?spm=a2g0o.productlist.0.0.5d232e8bvlKM7l&algo_pvid=2c45d347-5783-49a6-a0a8-f104d0b78232&algo_expid=2c45d347-5783-49a6-a0a8-f104d0b78232-0&btsid=0100feb4-37d7-453a-8ff8-47a0e2fbdef7&ws_ab_test=searchweb0_0,searchweb201602_9,searchweb201603_52) running [ROS Noetic](http://wiki.ros.org/noetic) middleware on Ubuntu Mate 20.04.
 With a motor driver and two actuators it can drive autonomously to a desired location while sensing its environment using sensors, 
 such as a camera and an ultrasonic ranger to avoid obstacles. Speed sensors combined with an inertial measurement unit (IMU) are used for localization.
