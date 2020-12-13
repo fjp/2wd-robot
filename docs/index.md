@@ -16,6 +16,9 @@ The project is split into multiple parts, to adress the following main aspects o
 
 Use the menu on the left to learn more about the ROS packages and other components of the robot.
 
+Using a Jetson Nano instead of a Raspberry Pi is also possible.
+{. notice }
+
 ## Source Code
 
 The source code for this project can be found in [this GitHub repository](https://github.com/fjp/diffbot).
