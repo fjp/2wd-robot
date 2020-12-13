@@ -56,7 +56,8 @@ roslaunch diffbot_control diffbot.launch
 This launch file makes use of `diffbot_gazebo/launch/diffbot.launch`, `diffbot_control/launch/diffbot_control.launch` to run gazebo and the `diff_drive_controller`. It also opens RViz with the configuration stored in `diffbot_control/rviz/diffbot.rviz`. 
 The following video shows the result of launching. Note the video may be outdated when you read this and the model has improved.
 
-{% include video id="gfhgfU8zUOs" provider="youtube" %}
+
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/gfhgfU8zUOs" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 
 ### ROS Control on the Real Hardware
