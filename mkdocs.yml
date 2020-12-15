@@ -3,3 +3,10 @@ theme:
   name: material
   highlightjs: true
   custom_dir: docs/custom_theme
+  
+  
+  
+repo_url: https://github.com/fjp/diffbot
+
+
+edit_uri: blob/master/docs
