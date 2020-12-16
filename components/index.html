@@ -1,0 +1,1530 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.1.7">
+    
+    
+      
+        <title>Components - DiffBot Differential Drive Mobile Robot</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.19753c6b.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.196e0c26.min.css">
+        
+      
+    
+    
+    
+    <script src="../js/jquery-3.5.1.min.js"></script>
+    <script src="../js/jquery.fitvids.js"></script>
+
+    
+      
+        
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+      
+  
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#board-raspberry-pi-4-b" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href=".." title="DiffBot Differential Drive Mobile Robot" class="md-header-nav__button md-logo" aria-label="DiffBot Differential Drive Mobile Robot">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            DiffBot Differential Drive Mobile Robot
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              Components
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header-nav__source">
+        
+<a href="https://github.com/fjp/diffbot/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="DiffBot Differential Drive Mobile Robot" class="md-nav__button md-logo" aria-label="DiffBot Differential Drive Mobile Robot">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    DiffBot Differential Drive Mobile Robot
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/fjp/diffbot/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href=".." class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Components
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="./" class="md-nav__link md-nav__link--active">
+      Components
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#board-raspberry-pi-4-b" class="md-nav__link">
+    Board - Raspberry Pi 4 B
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#accessories-and-electronics" class="md-nav__link">
+    Accessories and Electronics
+  </a>
+  
+    <nav class="md-nav" aria-label="Accessories and Electronics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#case-and-cooling" class="md-nav__link">
+    Case and Cooling
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sd-card" class="md-nav__link">
+    SD Card
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#robot-base" class="md-nav__link">
+    Robot Base
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#power-supplies" class="md-nav__link">
+    Power Supplies
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#i2c-hub" class="md-nav__link">
+    I2C Hub
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#breadboard-and-gpio-extension-cable" class="md-nav__link">
+    Breadboard and GPIO Extension Cable
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sensors" class="md-nav__link">
+    Sensors
+  </a>
+  
+    <nav class="md-nav" aria-label="Sensors">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#perception" class="md-nav__link">
+    Perception
+  </a>
+  
+    <nav class="md-nav" aria-label="Perception">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ultrasonic-ranger" class="md-nav__link">
+    Ultrasonic Ranger
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#camera" class="md-nav__link">
+    Camera
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#localization" class="md-nav__link">
+    Localization
+  </a>
+  
+    <nav class="md-nav" aria-label="Localization">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#inertial-measurement-unit" class="md-nav__link">
+    Inertial Measurement Unit
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#odometry" class="md-nav__link">
+    Odometry
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#actuators" class="md-nav__link">
+    Actuators
+  </a>
+  
+    <nav class="md-nav" aria-label="Actuators">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#control" class="md-nav__link">
+    Control
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#motor-and-wheel-encoder" class="md-nav__link">
+    Motor and Wheel Encoder
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#human-machine-interface-hmi" class="md-nav__link">
+    Human Machine Interface (HMI)
+  </a>
+  
+    <nav class="md-nav" aria-label="Human Machine Interface (HMI)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#oled-display" class="md-nav__link">
+    OLED Display
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" >
+    <label class="md-nav__link" for="nav-3">
+      Hardware and Theory
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Hardware and Theory" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon"></span>
+        Hardware and Theory
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../theory/motion-and-odometry/" class="md-nav__link">
+      Motion and Odometry
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../power-supply/" class="md-nav__link">
+      Power Supply
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../laser-range-scanner/" class="md-nav__link">
+      Laser Range Scanner
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" >
+    <label class="md-nav__link" for="nav-4">
+      Processing Units
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Processing Units" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon"></span>
+        Processing Units
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../ros-network-setup/" class="md-nav__link">
+      Raspberry Pi Setup
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../git-setup/" class="md-nav__link">
+      Git Setup
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../ros-setup/" class="md-nav__link">
+      ROS Setup
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../teensy-mcu/" class="md-nav__link">
+      Teensy MCU
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../hardware-interfaces/" class="md-nav__link">
+      Hardware Interfaces
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../ros-network-setup/" class="md-nav__link">
+      ROS Network Setup
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5" >
+    <label class="md-nav__link" for="nav-5">
+      Packages
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Packages" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        <span class="md-nav__icon md-icon"></span>
+        Packages
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../diffbot_robot/" class="md-nav__link">
+      Robot Package
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../robot-description/" class="md-nav__link">
+      Robot Description
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../diffbot_gazebo/" class="md-nav__link">
+      Simulation
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../diffbot_control/" class="md-nav__link">
+      Control
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../diffbot_base/" class="md-nav__link">
+      Base Hardware Interface
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../diffbot_msgs/" class="md-nav__link">
+      Messages
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../grove_motor_driver/" class="md-nav__link">
+      Motor Driver
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../DG01D-E-motor-with-encoder/" class="md-nav__link">
+      Motor and Encoder
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../diffbot_navigation/" class="md-nav__link">
+      Navigation
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../diffbot_slam/" class="md-nav__link">
+      SLAM
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../diffbot_mbf/" class="md-nav__link">
+      Move Base Flex
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../diffbot_bringup/" class="md-nav__link">
+      Hardware Bringup
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#board-raspberry-pi-4-b" class="md-nav__link">
+    Board - Raspberry Pi 4 B
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#accessories-and-electronics" class="md-nav__link">
+    Accessories and Electronics
+  </a>
+  
+    <nav class="md-nav" aria-label="Accessories and Electronics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#case-and-cooling" class="md-nav__link">
+    Case and Cooling
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sd-card" class="md-nav__link">
+    SD Card
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#robot-base" class="md-nav__link">
+    Robot Base
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#power-supplies" class="md-nav__link">
+    Power Supplies
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#i2c-hub" class="md-nav__link">
+    I2C Hub
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#breadboard-and-gpio-extension-cable" class="md-nav__link">
+    Breadboard and GPIO Extension Cable
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sensors" class="md-nav__link">
+    Sensors
+  </a>
+  
+    <nav class="md-nav" aria-label="Sensors">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#perception" class="md-nav__link">
+    Perception
+  </a>
+  
+    <nav class="md-nav" aria-label="Perception">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ultrasonic-ranger" class="md-nav__link">
+    Ultrasonic Ranger
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#camera" class="md-nav__link">
+    Camera
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#localization" class="md-nav__link">
+    Localization
+  </a>
+  
+    <nav class="md-nav" aria-label="Localization">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#inertial-measurement-unit" class="md-nav__link">
+    Inertial Measurement Unit
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#odometry" class="md-nav__link">
+    Odometry
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#actuators" class="md-nav__link">
+    Actuators
+  </a>
+  
+    <nav class="md-nav" aria-label="Actuators">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#control" class="md-nav__link">
+    Control
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#motor-and-wheel-encoder" class="md-nav__link">
+    Motor and Wheel Encoder
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#human-machine-interface-hmi" class="md-nav__link">
+    Human Machine Interface (HMI)
+  </a>
+  
+    <nav class="md-nav" aria-label="Human Machine Interface (HMI)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#oled-display" class="md-nav__link">
+    OLED Display
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/fjp/diffbot/blob/master/docs/components.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                  <h1>Components</h1>
+                
+                <p>Part list and assembly of the robot platform and the components.</p>
+<table>
+<thead>
+<tr>
+<th align="center">Category</th>
+<th align="center">Hardware</th>
+<th align="center">Part Number</th>
+<th align="center">Data Sheet &amp; Info</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">Accessories</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">Case for Raspberry Pi 4 B</td>
+<td align="center">Slim acrylic case for Raspberry Pi 4, stackable, rainbow/transparent</td>
+<td align="center"><a href="https://www.berrybase.de/en/new/slim-acrylic-case-for-raspberry-pi-4-stackable-rainbow">BerryBase</a></td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">Micro SD Card</td>
+<td align="center">SanDisk 64GB Class 10</td>
+<td align="center"><a href="">SanDisk</a>, Ubuntu 18.04 Image</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">Robot Car Kit 2WD</td>
+<td align="center"><a href="https://joy-it.net/en/products/robot05">robot05</a></td>
+<td align="center"><a href="https://joy-it.net/files/files/Produkte/robot05/Robot05-Anleitung.pdf">Instructions manual</a></td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">Power bank</td>
+<td align="center">Intenso Powerbank S10000</td>
+<td align="center"><a href="https://www.intenso.de/en/products/powerbanks/powerbank-s10000">Intenso</a></td>
+</tr>
+<tr>
+<td align="center">Actuator</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">(Deprecated) Gearbox motor</td>
+<td align="center">DC Gearbox motor - "TT Motor" - 200RPM - 3 to 6VDC</td>
+<td align="center"><a href="https://www.adafruit.com/product/3777">Adafruit</a></td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">DG01E-E Motor with encoder</td>
+<td align="center">DG01E-E Hobby motor with quadrature encoder</td>
+<td align="center"><a href="https://www.sparkfun.com/products/16413">Sparkfun</a></td>
+</tr>
+<tr>
+<td align="center">Board</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">Raspberry Pi 4 B</td>
+<td align="center">Raspberry Pi 4 B - 4 GB</td>
+<td align="center"><a href="https://www.raspberrypi.org/products/raspberry-pi-4-model-b/">OEM Website</a></td>
+</tr>
+<tr>
+<td align="center">Cables</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">Jumper - Female to Female</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">Jumper - Male to Male</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">Micro USB - USB Cable</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">Camera extension cable</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">I2C 4 pin cable</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">Electronics</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">Fan</td>
+<td align="center">Fan 30x30x7mm 5V DC with Dupont connector</td>
+<td align="center"><a href="https://www.berrybase.de/en/raspberry-pi-co/raspberry-pi/components/fan-30x30x7mm-5v-dc-with-dupont-connector">BerryBase</a></td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">I2C motor driver</td>
+<td align="center">Grove - I2C Motor Driver</td>
+<td align="center"><a href="http://wiki.seeedstudio.com/Grove-I2C_Motor_Driver_V1.3/">Seeed Studio</a></td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">I2C Hub</td>
+<td align="center">Grove - I2C Hub</td>
+<td align="center"><a href="http://wiki.seeedstudio.com/Grove-I2C_Hub/">Seeed Studio</a></td>
+</tr>
+<tr>
+<td align="center">Human Machine Interface</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">OLED Display</td>
+<td align="center">Grove OLED Display 0.96"</td>
+<td align="center"><a href="http://wiki.seeedstudio.com/Grove-OLED_Display_0.96inch/">Seeed Studio</a></td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">LED Ring</td>
+<td align="center">NeoPixel Ring 12x5050 RGB LED</td>
+<td align="center"><a href="https://www.adafruit.com/product/1643">Adafruit</a></td>
+</tr>
+<tr>
+<td align="center">Sensors</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">Camera module</td>
+<td align="center">Raspberry Pi - camera module v2.1</td>
+<td align="center"><a href="https://www.raspberrypi.org/documentation/usage/camera/">Raspberry Pi</a></td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">Ultrasonic ranger</td>
+<td align="center">Grove - Ultrasonic Ranger</td>
+<td align="center"><a href="http://wiki.seeedstudio.com/Grove-Ultrasonic_Ranger/">Seeed Studio</a></td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">IMU</td>
+<td align="center">Adafruit 9-DOF Absolute Orientation IMU Fusion Breakout - BNO055</td>
+<td align="center"><a href="https://www.adafruit.com/product/2472">Adafruit</a></td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">Odometry</td>
+<td align="center">Joy-IT - LM393 Speed Sensor with H206 slot-type opto interrupter</td>
+<td align="center"><a href="https://joy-it.net/en/products/SEN-Speed">Joy-IT</a></td>
+</tr>
+</tbody>
+</table>
+<p>Order list</p>
+<table>
+<thead>
+<tr>
+<th align="left">Part</th>
+<th align="center">Store</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">Raspberry Pi 4 B (4 Gb)</td>
+<td align="center"><a href="https://amzn.to/3ltuJUo">Amazon.com</a>, <a href="https://amzn.to/2IchIAc">Amazon.de</a></td>
+</tr>
+<tr>
+<td align="left">SanDisk 64 GB SD Card Class 10</td>
+<td align="center"><a href="https://amzn.to/2GLOyr0">Amazon.com</a>, <a href="https://amzn.to/3dcFmYE">Amazon.de</a></td>
+</tr>
+<tr>
+<td align="left">Robot Smart Chassis Kit</td>
+<td align="center"><a href="https://amzn.to/34GXNAK">Amazon.com</a>, <a href="https://amzn.to/2Gy3CJ4">Amazon.de</a></td>
+</tr>
+<tr>
+<td align="left">SLAMTEC RPLidar A2M8 (12 m)</td>
+<td align="center"><a href="https://amzn.to/3lthTFz">Amazon.com</a>, <a href="https://amzn.to/30MyImR">Amazon.de</a></td>
+</tr>
+<tr>
+<td align="left">Grove Ultrasonic Ranger</td>
+<td align="center"><a href="https://amzn.to/36M9TLS">Amazon.com</a>, <a href="https://amzn.to/34GZmyC">Amazon.de</a></td>
+</tr>
+<tr>
+<td align="left">Raspi Camera Module V2, 8 MP, 1080p</td>
+<td align="center"><a href="https://amzn.to/2Ib9fgG">Amazon.com</a>, <a href="https://amzn.to/2FdVDQF">Amazon.de</a></td>
+</tr>
+<tr>
+<td align="left">Grove Motor Driver</td>
+<td align="center"><a href="https://www.seeedstudio.com/Grove-I2C-Motor-Driver-with-L298.html">seeedstudio.com</a>, <a href="https://amzn.to/36M8O6M">Amazon.de</a></td>
+</tr>
+<tr>
+<td align="left">I2C Hub</td>
+<td align="center"><a href="https://www.seeedstudio.com/Grove-I2C-Hub.html">seeedstudio.com</a>, <a href="https://amzn.to/34CGEbz">Amazon.de</a></td>
+</tr>
+</tbody>
+</table>
+<p>Additional (Optional) Equipment</p>
+<table>
+<thead>
+<tr>
+<th align="left">Part</th>
+<th align="center">Store</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">PicoScope 3000 Series Oscilloscope 2CH</td>
+<td align="center"><a href="https://amzn.to/33I5tUb">Amazon.de</a></td>
+</tr>
+<tr>
+<td align="left">VOLTCRAFT PPS-16005</td>
+<td align="center"><a href="https://amzn.to/3iKsI4a">Amazon.de</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="board-raspberry-pi-4-b">Board - Raspberry Pi 4 B</h2>
+<p>The main processing unit of the robot is a <a href="https://www.raspberrypi.org/products/raspberry-pi-4-model-b/">Raspberry Pi 4 B</a> 
+with 4 GB of RAM. </p>
+<figure class="half">
+    <a href="/assets/collections/diffbot/components/raspberry-pi-4.jpg"><img src="/assets/collections/diffbot/components/raspberry-pi-4.jpg"></a>
+    <a href="/assets/collections/diffbot/components/raspberry-pi-4-ports.jpg"><img src="/assets/collections/diffbot/components/raspberry-pi-4-ports.jpg"></a>
+    <figcaption>Raspberry Pi 4 B - 4 GB RAM variant.</figcaption>
+</figure>
+
+<h2 id="accessories-and-electronics">Accessories and Electronics</h2>
+<h3 id="case-and-cooling">Case and Cooling</h3>
+<p>To protect the Rasbperry Pi 4 B we choose a case that provides access to all its ports.
+The following images show a stackable acrylic case in rainbow colors.</p>
+<figure class="half">
+    <a href="/assets/collections/diffbot/components/case_side_raspberry4_rainbow.jpg"><img src="/assets/collections/diffbot/components/case_side_raspberry4_rainbow.jpg"></a>
+    <a href="/assets/collections/diffbot/components/case_bottom_raspberry4_rainbow.jpg"><img src="/assets/collections/diffbot/components/case_bottom_raspberry4_rainbow.jpg"></a>
+    <figcaption>Stackable Rainbow Case for Raspberry Pi 4 B.</figcaption>
+</figure>
+
+<p>With this case it is possible to install four heatsinks and apply a fan as cooling equipment for the electronics of the Raspberry Pi 4 B such as its ARM processor.</p>
+<figure class="half">
+    <a href="/assets/collections/diffbot/components/heatsink.jpg"><img src="/assets/collections/diffbot/components/heatsink.jpg"></a>
+    <a href="/assets/collections/diffbot/components/case_fan_side_raspberry4_rainbow.jpg"><img src="/assets/collections/diffbot/components/case_fan_side_raspberry4_rainbow.jpg"></a>
+    <figcaption>Heatsinks and cooling fan for Raspberry Pi 4 B.</figcaption>
+</figure>
+
+<h3 id="sd-card">SD Card</h3>
+<p>The Raspberry Pi requires a medium to boot from. 
+For this we will use a micro sd card because it is lightweight and easy to flash new operating systems. </p>
+<figure>
+    <a href="/assets/collections/diffbot/components/sdcard.jpg"><img src="/assets/collections/diffbot/components/sdcard.jpg"></a>
+    <figcaption>SanDisk Micro SD Card Class 10.</figcaption>
+</figure>
+
+<p>Although a micro sd card won't last that long compared to an hard disk drive (HDD) or solid state disk (SSD) it is well suited for testing. Because sd cards are slower when reading and writing data you should make sure to choose a micro sd card with high 
+performance ratings. For the Raspberry Pi a Class 10 micro sd card is recommended. 
+Regarding speed, the Pi has a limited bus speed of approximately 20 MB/s (<a href="https://raspberrypi.stackexchange.com/questions/43618/raspberry-pi-3-micro-sd-card-speed">source</a>)</p>
+<h3 id="robot-base">Robot Base</h3>
+<p>The <a href="https://joy-it.net/en/products/robot05">Robot Car Kit 2WD</a> from Joy-IT (article no.: robot05) is used as the base for the autonomous mobile robot. </p>
+<figure>
+    <a href="/assets/collections/diffbot/car-kit05.jpg"><img src="/assets/collections/diffbot/car-kit05.jpg"></a>
+    <figcaption>Parts of the 2WD Robot Car Kit 05 from Joy-IT.</figcaption>
+</figure>
+
+<p>The acrylic chassis has many holes which allow to mount a mounting plate that can hold different development boards.
+It allows also to mount a Raspberry Pi 4 B, which will be used in this project. Two wheels, hence 2WD, are included in the kit which can be attached to the motors that are provided too. A third caster wheel is provided which allows the robot to spin on the spot. This means the robot can be described by a holonomic model. </p>
+<p>The motors operate in a range between 3 to 6 Volts DC and make it possible to mount a punched disk for speed measurements. 
+With that punched disk and additional speed sensors it is possible to implement odometry in ROS. 
+To power the motors a battery compartment is available together with a switch to turn the robot on or off.</p>
+<h3 id="power-supplies">Power Supplies</h3>
+<p>As mentioned the robot will be equipped with a 5V/2.1A USB-C powerbank to supply the Raspberry Pi 4 B with 5 V.</p>
+<figure class="half">
+    <a href="/assets/collections/diffbot/components/powerbank_top.jpg"><img src="/assets/collections/diffbot/components/powerbank_top.jpg"></a>
+    <a href="/assets/collections/diffbot/components/powerbank_bottom.jpg"><img src="/assets/collections/diffbot/components/powerbank_bottom.jpg"></a>
+    <figcaption>Power bank with 10.000 mAh from Intenso.</figcaption>
+</figure>
+
+<p>To power the motors the provided battery compartment will be used, which holds four AA batteries $4 \cdot 1.5\text{V} = 6\text{V}$.</p>
+<h3 id="i2c-hub">I2C Hub</h3>
+<p>The Raspberry Pi provides just two I2C ports, which is why we will use a I2C hub. With the four port I2C hub from Grove it is possible to connect three I2C devices to a single I2C port of the Raspberry Pi</p>
+<figure class="half">
+    <a href="/assets/collections/diffbot/components/i2c-hub-front.jpg"><img src="/assets/collections/diffbot/components/i2c-hub-front.jpg"></a>
+    <a href="/assets/collections/diffbot/components/i2c-hub-back.jpg"><img src="/assets/collections/diffbot/components/i2c-hub-back.jpg"></a>
+    <figcaption>Grove I2C Hub.</figcaption>
+</figure>
+
+<h3 id="breadboard-and-gpio-extension-cable">Breadboard and GPIO Extension Cable</h3>
+<p>Optional but helpful for testing is a breadboard and a GPIO extension cable suitable for the Raspberry Pi 4 B.</p>
+<figure>
+    <a href="/assets/collections/diffbot/components/bread-board-gpio-extension.jpg"><img src="/assets/collections/diffbot/components/bread-board-gpio-extension.jpg"></a>
+    <figcaption>Breadboard with GPIO extension cable.</figcaption>
+</figure>
+
+<h2 id="sensors">Sensors</h2>
+<p>Sensors are used to sense the environment and to collect information of the current state.
+For this 2WD robot the sensors are categorized into perception and localization which are explained in the following two sections.</p>
+<h3 id="perception">Perception</h3>
+<p>Perception sensors of the 2WD robot will be used to avoid collisions using ultrasonic rangers.
+Another use case is to detect and follow objects using a camera.</p>
+<h4 id="ultrasonic-ranger">Ultrasonic Ranger</h4>
+<p>To avoid obstacles the robot will carry a <a href="http://wiki.seeedstudio.com/Grove-Ultrasonic_Ranger/">Grove - Ultrasonic Ranger</a>
+at the front. </p>
+<figure class="half">
+    <a href="/assets/collections/diffbot/components/ultrasonic-side.jpg"><img src="/assets/collections/diffbot/components/ultrasonic-side.jpg"></a>
+    <a href="/assets/collections/diffbot/components/ultrasonic-front.jpg"><img src="/assets/collections/diffbot/components/ultrasonic-front.jpg"></a>
+    <figcaption>Grove Ultrasonic Ranger for obstacle avoidance.</figcaption>
+</figure>
+
+<p>It is a non-contact distance measurement module which works at 40KHz and can be interfaced via a single <a href="https://www.raspberrypi.org/documentation/usage/gpio/">GPIO</a>. For example <a href="https://pinout.xyz/pinout/pin11_gpio17">physical pin 11</a> of the Raspberry Pi connected to the <code>SIG</code> pin on the sensor can provide the PWM communication.</p>
+<table>
+<thead>
+<tr>
+<th align="left">Parameter</th>
+<th align="left">Value/Range</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">Operating voltage</td>
+<td align="left">3.2~5.2V</td>
+</tr>
+<tr>
+<td align="left">Operating current</td>
+<td align="left">8mA</td>
+</tr>
+<tr>
+<td align="left">Ultrasonic frequency</td>
+<td align="left">40kHz</td>
+</tr>
+<tr>
+<td align="left">Measuring range</td>
+<td align="left">2-350cm</td>
+</tr>
+<tr>
+<td align="left">Resolution</td>
+<td align="left">1cm</td>
+</tr>
+<tr>
+<td align="left">Output</td>
+<td align="left">PWM</td>
+</tr>
+<tr>
+<td align="left">Size</td>
+<td align="left">50mm X 25mm X 16mm</td>
+</tr>
+<tr>
+<td align="left">Weight</td>
+<td align="left">13g</td>
+</tr>
+<tr>
+<td align="left">Measurement angle</td>
+<td align="left">15 degree</td>
+</tr>
+<tr>
+<td align="left">Working temperature</td>
+<td align="left">-10~60 degree C</td>
+</tr>
+<tr>
+<td align="left">Trigger signal</td>
+<td align="left">10uS TTL</td>
+</tr>
+<tr>
+<td align="left">Echo signal</td>
+<td align="left">TTL</td>
+</tr>
+</tbody>
+</table>
+<p>The code that will be used to wrap this sensor as a ROS node can be found in the <a href="https://github.com/Seeed-Studio/Grove-RaspberryPi/blob/master/Grove%20-%20Ultrasonic%20Ranger/ultrasonic.py">Grove Raspberry Pi</a> repository on GitHub.</p>
+<p>As an alternative we could use the <a href="https://www.seeedstudio.com/blog/2019/11/04/hc-sr04-features-arduino-raspberrypi-guide/">HC SR04</a>.</p>
+<h4 id="camera">Camera</h4>
+<figure>
+    <a href="/assets/collections/diffbot/components/rpi-camera.jpg"><img src="/assets/collections/diffbot/components/rpi-camera.jpg"></a>
+    <figcaption>RPi Camera v2.</figcaption>
+</figure>
+
+<h3 id="localization">Localization</h3>
+<h4 id="inertial-measurement-unit">Inertial Measurement Unit</h4>
+<p>An intertial measurement unit (IMU) measures the acceleration and orientation through gyroscopes directly.
+Other states such as the velocity can then be calculated.
+For this the <a href="(https://www.adafruit.com/product/2472)">Adafruit 9-DOF Absolute Orientation IMU Fusion Breakout - BNO055</a> is used.</p>
+<figure>
+    <a href="/assets/collections/diffbot/components/bno055.jpg"><img src="/assets/collections/diffbot/components/bno055.jpg"></a>
+    <figcaption>9-DOF Absolute Orientation IMU Fusion Breakout - BNO055 from Adafruit.</figcaption>
+</figure>
+
+<h4 id="odometry">Odometry</h4>
+<p>For the used odometry sensor see the section below <a href="/projects/diffbot/components/#motor-and-wheel-encoder">Motor and Wheel Encoder</a></p>
+<details><summary>Alternative Optical Sensor</summary>
+
+To estimate the change in position over time ([odometry](https://en.wikipedia.org/wiki/Odometry)) the robot will
+utilize an [optical speed sensor](https://en.wikipedia.org/wiki/Wheel_speed_sensor#Optical_sensor). 
+Specifically the [Joy-IT Speed Sensor](https://joy-it.net/en/products/SEN-Speed) which combines a LM393 ([datasheet](http://www.ti.com/lit/ds/symlink/lm2903-n.pdf)) [comperator](https://en.wikipedia.org/wiki/Comparator) and a H206 slot-type opto interrupter.
+
+<figure class="half">
+    <a href="/assets/collections/diffbot/components/speed-sensor-front.jpg"><img src="/assets/collections/diffbot/components/speed-sensor-front.jpg"></a>
+    <a href="/assets/collections/diffbot/components/speed-sensor-back.jpg"><img src="/assets/collections/diffbot/components/speed-sensor-back.jpg"></a>
+    <figcaption>LM393 Speed Sensor from Joy-IT.</figcaption>
+</figure>
+
+Technical Specifications:
+
+- Dimensions: 32 x 14 x 7mm 
+- Operating voltage: 3.3V to 5V (we will use 3.3V)
+- Two outputs: Digital (D0) and Analog (A0)
+
+
+References:
+https://dronebotworkshop.com/robot-car-with-speed-sensors/
+
+</details>
+
+<h2 id="actuators">Actuators</h2>
+<ul>
+<li><a href="http://wiki.seeedstudio.com/Grove-I2C_Motor_Driver_V1.3/">Grove - I2C Motor Driver V1.3</a></li>
+</ul>
+<h3 id="control">Control</h3>
+<p>To drive the two motors of the car kit we use the 
+<a href="http://wiki.seeedstudio.com/Grove-I2C_Motor_Driver_V1.3/">Grove - I2C Motor Driver V1.3</a> from Seeed Studio.</p>
+<figure>
+    <a href="/assets/collections/diffbot/components/motor-driver.jpg"><img src="/assets/collections/diffbot/components/motor-driver.jpg"></a>
+    <figcaption>Grove - I2C Motor Driver.</figcaption>
+</figure>
+
+<h3 id="motor-and-wheel-encoder">Motor and Wheel Encoder</h3>
+<p>The <a href="https://www.sparkfun.com/products/16413">DG01E-E Hobby Motor</a> has a quadrature encoder built in, 
+which makes it easy to assemble the robot and saves space because of no additional
+(optical or magnetic) wheel encoders.</p>
+<figure class="half">
+    <a href="/assets/collections/diffbot/components/dg01d-e-motor-with-encoder.jpg"><img src="/assets/collections/diffbot/components/dg01d-e-motor-with-encoder.jpg"></a>
+    <a href="/assets/collections/diffbot/components/dg01d-e-motor-with-encoder-pins.png"><img src="/assets/collections/diffbot/components/dg01d-e-motor-with-encoder-pins.png"></a>
+    <figcaption>DG01D-E Motor with wheel encoders.</figcaption>
+</figure>
+
+<details><summary>Alternative Brushed Gear Motor</summary>
+
+### Brushed Gearbox Motor
+
+<figure>
+    <a href="/assets/collections/diffbot/components/gearbox-motor-close.jpg"><img src="/assets/collections/diffbot/components/gearbox-motor-close.jpg"></a>
+    <figcaption>DC Gearbox motor - "TT Motor" - 200RPM - 3 to 6VDC.</figcaption>
+</figure>
+
+</details>
+
+<h2 id="human-machine-interface-hmi">Human Machine Interface (HMI)</h2>
+<p>The human machine interface is the layer between the user and the robot. </p>
+<h3 id="oled-display">OLED Display</h3>
+<p>To update the user with status messages the robot has a 0.96 inch oled (organic ligth emitting diode) display.
+The oled display used is the <a href="http://wiki.seeedstudio.com/Grove-OLED_Display_0.96inch/">Grove I2C 0.96 inch OLED display</a> 
+from Seeed Studio.</p>
+<figure class="third">
+    <a href="/assets/collections/diffbot/components/oled-01.jpg"><img src="/assets/collections/diffbot/components/oled-01.jpg"></a>
+    <a href="/assets/collections/diffbot/components/oled-02.jpg"><img src="/assets/collections/diffbot/components/oled-02.jpg"></a>
+    <a href="/assets/collections/diffbot/components/oled-03.jpg"><img src="/assets/collections/diffbot/components/oled-03.jpg"></a>
+    <figcaption>Grove - I2C 0.96 inch OLED Display.</figcaption>
+</figure>
+
+<p>The display is connected to the RPi via I2C on the physical pins 27 (scl) and 28 (sda), refere to the <a href="https://pinout.xyz/pinout/i2c">pinout</a>.</p>
+<p><a href="https://github.com/DexterInd/GrovePi/blob/master/Software/Python/grove_i2c_oled_128_64/grove_128_64_oled.py">Library</a></p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href=".." class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Home
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../theory/motion-and-odometry/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Motion and Odometry
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+    
+      <script src="../assets/javascripts/vendor.0ac82a11.min.js"></script>
+      <script src="../assets/javascripts/bundle.f81dfb4d.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      
+      <script>
+        app = initialize({
+          base: "..",
+          features: [],
+          search: Object.assign({
+            worker: "../assets/javascripts/worker/search.4ac00218.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+    <script>
+        $(document).ready(function(){
+            // Target your .container, .wrapper, .post, etc.
+            $(".md-main").fitVids();
+        });
+    </script>
+    <script data-ad-client="ca-pub-2214309606626131" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+  </body>
+</html>

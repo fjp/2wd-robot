@@ -1,3 +1,0 @@
-# This file is used internally by FFMPEG.
-file 'file:/home/fjp/git/ros_ws/src/diffbot/docs/plots/media/videos/pid/480p15/partial_movie_files/ExampleSineCurve/3435788854_8-5_3358096191.mp4'
-file 'file:/home/fjp/git/ros_ws/src/diffbot/docs/plots/media/videos/pid/480p15/partial_movie_files/ExampleSineCurve/266167252_1-0_4109148314.mp4'
