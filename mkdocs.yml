@@ -10,3 +10,31 @@ repo_url: https://github.com/fjp/diffbot
 
 
 edit_uri: blob/master/docs
+
+nav:
+  - Home: index.md
+  - Components: components.md
+  - Hardware and Theory:
+    - Motion and Odometry: theory/motion-and-odometry.md
+    - Power Supply: power-supply.md
+    - Laser Range Scanner: laser-range-scanner.md
+  - Processing Units:
+    - Raspberry Pi Setup: ros-network-setup.md
+    - Git Setup: git-setup.md
+    - ROS Setup: ros-setup.md
+    - Teensy MCU: teensy-mcu.md
+    - Hardware Interfaces: hardware-interfaces.md
+    - ROS Network Setup: ros-network-setup.md
+  - Packages:
+    - Robot Package: diffbot_robot.md
+    - Robot Description: robot-description.md
+    - Simulation: diffbot_gazebo.md
+    - Control: diffbot_control.md
+    - Base Hardware Interface: diffbot_base.md
+    - Messages: diffbot_msgs.md
+    - Motor Driver: grove_motor_driver.md
+    - Motor and Encoder: DG01D-E-motor-with-encoder.md
+    - Navigation: diffbot_navigation.md
+    - SLAM: diffbot_slam.md
+    - Move Base Flex: diffbot_mbf.md
+    - Hardware Bringup: diffbot_bringup.md 
