@@ -9,6 +9,11 @@ repo_url: https://github.com/fjp/diffbot
 
 edit_uri: blob/master/docs
 
+markdown_extensions:
+  - admonition
+  - pymdownx.arithmatex:
+      generic: true
+
 nav:
   - Home: index.md
   - Components: components.md
