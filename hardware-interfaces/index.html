@@ -29,9 +29,12 @@
     
     <script src="../js/jquery-3.5.1.min.js"></script>
     <script src="../js/jquery.fitvids.js"></script>
+    <!-- Arithmatex -->
     <script src="../js/config.js"></script>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <!-- UML diagrams using Mermaid -->
+    <script src="https://unpkg.com/mermaid@8.6.4/dist/mermaid.min.js"></script>
 
     
       
@@ -666,69 +669,69 @@ Therefore, we can use one of the GPIO pins such as <a href="https://pinout.xyz/p
 
 <p>Using these ports on the Raspberry Pi 4 B, requires that we enable the I2C interface. </p>
 <p>To do so, we will use the tool <code>i2cdetect</code> which requires that we install a tool on Ubuntu called <code>i2c-tools</code>:</p>
-<pre><code class="language-bash">fjp@ubuntu:~/git/2wd-robot$ i2cdetect
+<div class="highlight"><pre><span></span><code>fjp@ubuntu:~/git/2wd-robot$ i2cdetect
 
-Command 'i2cdetect' not found, but can be installed with:
+Command <span class="s1">&#39;i2cdetect&#39;</span> not found, but can be installed with:
 
 sudo apt install i2c-tools
 
 fjp@ubuntu:~/git/2wd-robot$ sudo apt install i2c-tools
-</code></pre>
+</code></pre></div>
 <p>This <code>i2cdetect</code> tool is  a  userspace program to scan an I2C bus for devices
 given a specific i2cbus argument which indicates  the number or name of the I2C bus to be scanned, 
 and should correspond to one of the busses listed by <code>i2cdetect -l</code>. See also <code>info i2cdetect</code> for the manual page.</p>
 <p>To test if the i2c ports are working we use the following commands:</p>
-<pre><code class="language-console">$ i2cdetect -y 0
-Error: Could not open file '/dev/i2c-0' or '/dev/i2c/0': No such file or directory
-$ i2cdetect -y 1
-Error: Could not open file '/dev/i2c-1' or '/dev/i2c/1': No such file or directory
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="gp">$</span> i2cdetect -y <span class="m">0</span>
+<span class="go">Error: Could not open file &#39;/dev/i2c-0&#39; or &#39;/dev/i2c/0&#39;: No such file or directory</span>
+<span class="gp">$</span> i2cdetect -y <span class="m">1</span>
+<span class="go">Error: Could not open file &#39;/dev/i2c-1&#39; or &#39;/dev/i2c/1&#39;: No such file or directory</span>
+</code></pre></div>
 <p>The ports are not setup correctly yet, which is why we need to enable the following two lines in the <code>/boot/firmware/config.txt</code> file:</p>
-<pre><code class="language-bash">dtparam=i2c0=on
-dtparam=i2c1=on
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nv">dtparam</span><span class="o">=</span><span class="nv">i2c0</span><span class="o">=</span>on
+<span class="nv">dtparam</span><span class="o">=</span><span class="nv">i2c1</span><span class="o">=</span>on
+</code></pre></div>
 <p>After rebooting the Raspberry Pi and entering the command again the following output will appear:</p>
-<pre><code class="language-console">$ i2cdetect -y 0
-Error: Could not open file `/dev/i2c-0': Permission denied
-Run as root?
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="gp">$</span> i2cdetect -y <span class="m">0</span>
+<span class="go">Error: Could not open file `/dev/i2c-0&#39;: Permission denied</span>
+<span class="go">Run as root?</span>
+</code></pre></div>
 <p>Running as root using <code>sudo</code> will work (please read on, there is a better way):</p>
-<pre><code class="language-console">$ sudo i2cdetect -y 0
-[sudo] password for fjp:
-     0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f
-00:          -- -- -- -- -- -- -- -- -- -- -- -- -- 
-10: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
-20: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
-30: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
-40: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
-50: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
-60: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
-70: -- -- -- -- -- -- -- --
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="gp">$</span> sudo i2cdetect -y <span class="m">0</span>
+<span class="go">[sudo] password for fjp:</span>
+<span class="go">     0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f</span>
+<span class="go">00:          -- -- -- -- -- -- -- -- -- -- -- -- -- </span>
+<span class="go">10: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- </span>
+<span class="go">20: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- </span>
+<span class="go">30: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- </span>
+<span class="go">40: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- </span>
+<span class="go">50: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- </span>
+<span class="go">60: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- </span>
+<span class="go">70: -- -- -- -- -- -- -- --</span>
+</code></pre></div>
 <p>As mentioned there is a better way to access the i2c devices without using power user privileges.
 When issuing the following:</p>
-<pre><code class="language-console">ls -l /dev/i2c-0 
-crw-rw---- 1 root i2c 89, 0 Apr  1  2020 /dev/i2c-0
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="go">ls -l /dev/i2c-0 </span>
+<span class="go">crw-rw---- 1 root i2c 89, 0 Apr  1  2020 /dev/i2c-0</span>
+</code></pre></div>
 <p>we see that the <code>/dev/i2c-0</code> device belongs to user <code>root</code> and <code>i2c</code> user group. 
 To get access without <code>sudo</code> we can add other users, requiering access to the <code>i2c</code> group with:</p>
-<pre><code class="language-console">sudo adduser fjp i2c
-Adding user `fjp' to group `i2c' ...
-Adding user fjp to group i2c
-Done.
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="go">sudo adduser fjp i2c</span>
+<span class="go">Adding user `fjp&#39; to group `i2c&#39; ...</span>
+<span class="go">Adding user fjp to group i2c</span>
+<span class="go">Done.</span>
+</code></pre></div>
 <p>After logging out and back in again the access will be granted and following output will come up:</p>
-<pre><code class="language-console">$ i2cdetect -y 0
-     0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f
-00:          -- -- -- -- -- -- -- -- -- -- -- -- -- 
-10: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
-20: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
-30: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
-40: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
-50: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
-60: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
-70: -- -- -- -- -- -- -- -- 
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="gp">$</span> i2cdetect -y <span class="m">0</span>
+<span class="go">     0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f</span>
+<span class="go">00:          -- -- -- -- -- -- -- -- -- -- -- -- -- </span>
+<span class="go">10: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- </span>
+<span class="go">20: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- </span>
+<span class="go">30: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- </span>
+<span class="go">40: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- </span>
+<span class="go">50: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- </span>
+<span class="go">60: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- </span>
+<span class="go">70: -- -- -- -- -- -- -- -- </span>
+</code></pre></div>
 <p>It outputs a table with the list of detected devices on the specified bus.
 In this case there are no connected devices on I2C bus 0.</p>
 <details><summary>Alternative setup using raspi-config</summary>
@@ -849,11 +852,11 @@ Confirm the activation and restart the RPi:
 
 <h2 id="usb-devices">USB Devices</h2>
 <p>Similar to accessing <code>i2c</code> devices, a non root user can use usb connections by adding it to the the <code>dialout</code> group:</p>
-<pre><code class="language-console">sudo adduser fjp dialout
-Adding user `fjp' to group `dialout' ...
-Adding user fjp to group dialout
-Done.
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="go">sudo adduser fjp dialout</span>
+<span class="go">Adding user `fjp&#39; to group `dialout&#39; ...</span>
+<span class="go">Adding user fjp to group dialout</span>
+<span class="go">Done.</span>
+</code></pre></div>
                 
               
               

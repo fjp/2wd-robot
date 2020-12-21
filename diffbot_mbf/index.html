@@ -29,9 +29,12 @@
     
     <script src="../js/jquery-3.5.1.min.js"></script>
     <script src="../js/jquery.fitvids.js"></script>
+    <!-- Arithmatex -->
     <script src="../js/config.js"></script>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <!-- UML diagrams using Mermaid -->
+    <script src="https://unpkg.com/mermaid@8.6.4/dist/mermaid.min.js"></script>
 
     
       
@@ -628,15 +631,15 @@
 <a href="http://wiki.ros.org/mbf_costmap_nav"><code>mbf_costmap_nav</code></a> and 
 <a href="http://wiki.ros.org/mbf_costmap_core"><code>mbf_costmap_core</code></a>.</p>
 <p>This <code>diffbot_mbf</code> package was created using <code>catkin-tools</code> using the following command:</p>
-<pre><code class="language-console">catkin create pkg diffbot_mbf                                       
-Creating package &quot;diffbot_mbf&quot; in &quot;/home/fjp/git/ros_ws/src/diffbot&quot;...
-Created file diffbot_mbf/package.xml
-Created file diffbot_mbf/CMakeLists.txt
-Successfully created package files in /home/fjp/git/ros_ws/src/diffbot/diffbot_mbf.
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="go">catkin create pkg diffbot_mbf                                       </span>
+<span class="go">Creating package &quot;diffbot_mbf&quot; in &quot;/home/fjp/git/ros_ws/src/diffbot&quot;...</span>
+<span class="go">Created file diffbot_mbf/package.xml</span>
+<span class="go">Created file diffbot_mbf/CMakeLists.txt</span>
+<span class="go">Successfully created package files in /home/fjp/git/ros_ws/src/diffbot/diffbot_mbf.</span>
+</code></pre></div>
 <p>Additionally the following Ubuntu packages are required dependencies of <code>move_base_flex</code>:</p>
-<pre><code class="language-console">sudo apt install ros-noetic-mbf-costmap-nav
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="go">sudo apt install ros-noetic-mbf-costmap-nav</span>
+</code></pre></div>
 <p>Another working example for turtlebot3 can be found in the <a href="https://github.com/Rayman/turtlebot3_mbf"><code>turtlebot3_mbf</code></a> package.</p>
                 
               

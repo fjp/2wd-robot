@@ -29,9 +29,12 @@
     
     <script src="../js/jquery-3.5.1.min.js"></script>
     <script src="../js/jquery.fitvids.js"></script>
+    <!-- Arithmatex -->
     <script src="../js/config.js"></script>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <!-- UML diagrams using Mermaid -->
+    <script src="https://unpkg.com/mermaid@8.6.4/dist/mermaid.min.js"></script>
 
     
       
@@ -625,12 +628,12 @@
                 <h2 id="diffbot-bring-up-package">DiffBot Bring Up Package</h2>
 <p>The bringup package is used to initialize the real hardware of DiffBot and to actually drive the robot around.
 First the package is created using <code>catkin-tools</code>:</p>
-<pre><code class="language-console">fjp@diffbot:~/git/diffbot/ros/src$ catkin create pkg diffbot_bringup
-Creating package &quot;diffbot_bringup&quot; in &quot;/home/fjp/git/diffbot/ros/src&quot;...
-Created file diffbot_bringup/package.xml
-Created file diffbot_bringup/CMakeLists.txt
-Successfully created package files in /home/fjp/git/diffbot/ros/src/diffbot_bringup.
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="gp">fjp@diffbot:~/git/diffbot/ros/src$</span> catkin create pkg diffbot_bringup
+<span class="go">Creating package &quot;diffbot_bringup&quot; in &quot;/home/fjp/git/diffbot/ros/src&quot;...</span>
+<span class="go">Created file diffbot_bringup/package.xml</span>
+<span class="go">Created file diffbot_bringup/CMakeLists.txt</span>
+<span class="go">Successfully created package files in /home/fjp/git/diffbot/ros/src/diffbot_bringup.</span>
+</code></pre></div>
 <p>The package provides a <code>launch</code> folder which includes <code>minimal.launch</code> and <code>bringup.launch</code>.</p>
 <p>The <code>minimal.launch</code> is used to load DiffBot's robot descripton and the controller configuration
 onto the ROS parameter server using the launch file from the <a href="https://fjp.at/projects/diffbot/ros-packages/base/"><code>diffbot_base</code> package</a>. 
@@ -638,28 +641,28 @@ It will also setup the ROS <a href="http://wiki.ros.org/controller_manager">cont
 <a href="https://fjp.at/projects/diffbot/ros-packages/base/#hardware-interface">DiffBot's hardware interface</a>.</p>
 <p>For the motor driver the node <code>motor_driver.py</code> from the <code>grove_motor_driver</code> package is started.
 And for the encoders rosserial communicates with the Teensy microcontroller to publish the encoder ticks. </p>
-<pre><code class="language-xml">&lt;launch&gt;
-    &lt;!-- Including the following launch file from diffbot_base package will --&gt;
-    &lt;!-- Load the robot description onto the parameter server --&gt;
-    &lt;!-- Run the controller manager with DiffBot's hardware interface --&gt;
-    &lt;!-- Load the controller config onto the parameter server --&gt;
-    &lt;include file=&quot;$(find diffbot_base)/launch/diffbot.launch&quot;&gt;
-        &lt;!-- arg name=&quot;model&quot; value=&quot;$(arg model)&quot; /--&gt;
-    &lt;/include&gt;
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;launch&gt;</span>
+    <span class="c">&lt;!-- Including the following launch file from diffbot_base package will --&gt;</span>
+    <span class="c">&lt;!-- Load the robot description onto the parameter server --&gt;</span>
+    <span class="c">&lt;!-- Run the controller manager with DiffBot&#39;s hardware interface --&gt;</span>
+    <span class="c">&lt;!-- Load the controller config onto the parameter server --&gt;</span>
+    <span class="nt">&lt;include</span> <span class="na">file=</span><span class="s">&quot;$(find diffbot_base)/launch/diffbot.launch&quot;</span><span class="nt">&gt;</span>
+        <span class="c">&lt;!-- arg name=&quot;model&quot; value=&quot;$(arg model)&quot; /--&gt;</span>
+    <span class="nt">&lt;/include&gt;</span>
 
 
-    &lt;!-- Motors --&gt;
-    &lt;!-- --&gt;
-    &lt;node name=&quot;motor_driver&quot; pkg=&quot;grove_motor_driver&quot; type=&quot;motor_driver.py&quot; respawn=&quot;false&quot;
-        output=&quot;screen&quot; ns=&quot;diffbot&quot; /&gt;
+    <span class="c">&lt;!-- Motors --&gt;</span>
+    <span class="c">&lt;!-- --&gt;</span>
+    <span class="nt">&lt;node</span> <span class="na">name=</span><span class="s">&quot;motor_driver&quot;</span> <span class="na">pkg=</span><span class="s">&quot;grove_motor_driver&quot;</span> <span class="na">type=</span><span class="s">&quot;motor_driver.py&quot;</span> <span class="na">respawn=</span><span class="s">&quot;false&quot;</span>
+        <span class="na">output=</span><span class="s">&quot;screen&quot;</span> <span class="na">ns=</span><span class="s">&quot;diffbot&quot;</span> <span class="nt">/&gt;</span>
 
-    &lt;!-- Encoders --&gt;
-    &lt;!-- Run rosserial to connect with the Teensy 3.2 board connected to the motor encoders --&gt;
-    &lt;node name=&quot;rosserial_teensy&quot; pkg=&quot;rosserial_python&quot; type=&quot;serial_node.py&quot; respawn=&quot;false&quot;
-        output=&quot;screen&quot; ns=&quot;diffbot&quot; args=&quot;_port:=/dev/ttyACM0
-                                            _baud:=115200&quot;/&gt;
-&lt;/launch&gt;
-</code></pre>
+    <span class="c">&lt;!-- Encoders --&gt;</span>
+    <span class="c">&lt;!-- Run rosserial to connect with the Teensy 3.2 board connected to the motor encoders --&gt;</span>
+    <span class="nt">&lt;node</span> <span class="na">name=</span><span class="s">&quot;rosserial_teensy&quot;</span> <span class="na">pkg=</span><span class="s">&quot;rosserial_python&quot;</span> <span class="na">type=</span><span class="s">&quot;serial_node.py&quot;</span> <span class="na">respawn=</span><span class="s">&quot;false&quot;</span>
+        <span class="na">output=</span><span class="s">&quot;screen&quot;</span> <span class="na">ns=</span><span class="s">&quot;diffbot&quot;</span> <span class="na">args=</span><span class="s">&quot;_port:=/dev/ttyACM0</span>
+<span class="s">                                            _baud:=115200&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/launch&gt;</span>
+</code></pre></div>
 <p>As mentioned, the ROS controller used for DiffBot is the <a href="http://wiki.ros.org/diff_drive_controller?distro=noetic"><code>diff_drive_controller</code></a>. 
 This controller publishes a transform message (see its <a href="http://wiki.ros.org/diff_drive_controller?distro=noetic#Published_Topics">published topics</a>), 
 via the <code>/tf</code> topic, between the <code>odom</code> frame and the frame configured in the <a href="http://wiki.ros.org/diff_drive_controller?distro=noetic#Complete_description">controller's configuration</a> specified by the <code>base_frame_id</code>. 
@@ -668,19 +671,19 @@ In the case of DiffBot this is the <code>base_footprint</code>, a conventional l
 It is the well known <a href="http://wiki.ros.org/robot_state_publisher"><code>robot_state_publisher</code></a>, which uses the joint states published by the ROS controller <a href="http://wiki.ros.org/joint_state_controller"><code>joint_state_controller</code></a> (not to be confused with <a href="http://wiki.ros.org/joint_state_publisher"><code>joint_state_publisher</code></a> - it is not used here, see <a href="https://answers.ros.org/question/303358/what-is-the-difference-between-joint_state_publisher-and-joint_state_controller/">this answer</a> for the difference) to create the transforms
 between the links.</p>
 <p>To do this the <code>bringup.launch</code> includes the <code>minimal.launch</code> and then runs the <code>robot_state_publisher</code>:</p>
-<pre><code class="language-xml">&lt;launch&gt;
-    &lt;include file=&quot;$(find diffbot_bringup)/launch/minimal.launch&quot;&gt;
-        &lt;!-- arg name=&quot;model&quot; value=&quot;$(arg model)&quot; /--&gt;
-    &lt;/include&gt;
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;launch&gt;</span>
+    <span class="nt">&lt;include</span> <span class="na">file=</span><span class="s">&quot;$(find diffbot_bringup)/launch/minimal.launch&quot;</span><span class="nt">&gt;</span>
+        <span class="c">&lt;!-- arg name=&quot;model&quot; value=&quot;$(arg model)&quot; /--&gt;</span>
+    <span class="nt">&lt;/include&gt;</span>
 
-    &lt;!-- Starting robot state publish which will publish tf --&gt;
-    &lt;!-- This is needed to publish transforms between all links --&gt;
-    &lt;!-- diff_drive_controller publishes only a single transfrom between odom and base_footprint --&gt;
-    &lt;!-- The robot_state_publisher reads the joint states published by ros control's joint_state_controller --&gt;
-    &lt;node name=&quot;robot_state_publisher&quot; pkg=&quot;robot_state_publisher&quot; type=&quot;robot_state_publisher&quot;
-        output=&quot;screen&quot; ns=&quot;diffbot&quot; /&gt;
-&lt;/launch&gt;
-</code></pre>
+    <span class="c">&lt;!-- Starting robot state publish which will publish tf --&gt;</span>
+    <span class="c">&lt;!-- This is needed to publish transforms between all links --&gt;</span>
+    <span class="c">&lt;!-- diff_drive_controller publishes only a single transfrom between odom and base_footprint --&gt;</span>
+    <span class="c">&lt;!-- The robot_state_publisher reads the joint states published by ros control&#39;s joint_state_controller --&gt;</span>
+    <span class="nt">&lt;node</span> <span class="na">name=</span><span class="s">&quot;robot_state_publisher&quot;</span> <span class="na">pkg=</span><span class="s">&quot;robot_state_publisher&quot;</span> <span class="na">type=</span><span class="s">&quot;robot_state_publisher&quot;</span>
+        <span class="na">output=</span><span class="s">&quot;screen&quot;</span> <span class="na">ns=</span><span class="s">&quot;diffbot&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/launch&gt;</span>
+</code></pre></div>
                 
               
               

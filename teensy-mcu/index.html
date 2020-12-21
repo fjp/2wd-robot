@@ -29,9 +29,12 @@
     
     <script src="../js/jquery-3.5.1.min.js"></script>
     <script src="../js/jquery.fitvids.js"></script>
+    <!-- Arithmatex -->
     <script src="../js/config.js"></script>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <!-- UML diagrams using Mermaid -->
+    <script src="https://unpkg.com/mermaid@8.6.4/dist/mermaid.min.js"></script>
 
     
       
@@ -641,8 +644,8 @@
 and <code>/diffbot/ticks_right</code> ropics. For this rosserial is running on the Teensy MCU which allows it to create a node on the Teensy that can communicate with
 the ROS Master running on the Raspberry Pi.</p>
 <p>To setup rosserial on the work PC and the Raspberry Pi the following package has to be installed:</p>
-<pre><code class="language-console">sudo apt install ros-noetic-rosserial
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="go">sudo apt install ros-noetic-rosserial</span>
+</code></pre></div>
 <p>To program the Teensy board with the work PC the Arduino IDE with the Teensyduino add-on can be used. Other options are to use PlatformIO plugin for VSCode.
 How to install the Arduino IDE and Teensyduino is listed in the <a href="https://www.pjrc.com/teensy/td_download.html">instructions on the Teensy website</a>.
 Here the instructions to setup Teensyduino in Linux are listed:</p>
@@ -663,16 +666,16 @@ Step two of these instructions are only necessary on the work PC to actually pro
 <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/k56e-KBiP-w" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 <p>To check if the connection to the Teensy board works use these commands on the Raspberry Pi:</p>
-<pre><code class="language-console">$ lsusb
-Bus 002 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
-Bus 001 Device 003: ID 16c0:0483 Van Ooijen Technische Informatica Teensyduino Serial
-Bus 001 Device 002: ID 2109:3431 VIA Labs, Inc. Hub
-Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="gp">$</span> lsusb
+<span class="go">Bus 002 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub</span>
+<span class="go">Bus 001 Device 003: ID 16c0:0483 Van Ooijen Technische Informatica Teensyduino Serial</span>
+<span class="go">Bus 001 Device 002: ID 2109:3431 VIA Labs, Inc. Hub</span>
+<span class="go">Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub</span>
+</code></pre></div>
 <p>And to see on which serial port it is connected use:</p>
-<pre><code class="language-console">$ ls /dev | grep ttyACM0
-ttyACM0
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="gp">$</span> ls /dev <span class="p">|</span> grep ttyACM0
+<span class="go">ttyACM0</span>
+</code></pre></div>
 <p>If the output is empty it might be the case that the board is connected to another port like <code>ttyUSB0</code>.  </p>
 <h2 id="encoder-program">Encoder Program</h2>
 <p>When installing Teensyduino new example programs are provided. One of them is to test Encoders. 
@@ -683,19 +686,19 @@ The code for the motor encoders uses it as basis together with a pubsub example 
 <li>Start a ROS <a href="http://wiki.ros.org/Master">master</a> by executing <a href="http://wiki.ros.org/roscore"><code>roscore</code></a> in a new terminal.</li>
 <li>Create a rosserial node using <code>rosserial_python</code> package:</li>
 </ol>
-<pre><code class="language-console">$ rosrun rosserial_python serial_node.py _port:=/dev/ttyACM0 _baud:=115200
-[INFO] [1602784903.659869]: ROS Serial Python Node
-[INFO] [1602784903.692366]: Connecting to /dev/ttyACM0 at 115200 baud
-[INFO] [1602784905.809722]: Requesting topics...
-[INFO] [1602784905.824418]: Note: publish buffer size is 512 bytes
-[INFO] [1602784905.829712]: Setup publisher on /diffbot/ticks_left [std_msgs/Int32]
-[INFO] [1602784905.839914]: Setup publisher on /diffbot/ticks_right [std_msgs/Int32]
-[INFO] [1602784905.856772]: Note: subscribe buffer size is 512 bytes
-[INFO] [1602784905.861749]: Setup subscriber on /reset [std_msgs/Empty]
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="gp">$</span> rosrun rosserial_python serial_node.py _port:<span class="o">=</span>/dev/ttyACM0 _baud:<span class="o">=</span><span class="m">115200</span>
+<span class="go">[INFO] [1602784903.659869]: ROS Serial Python Node</span>
+<span class="go">[INFO] [1602784903.692366]: Connecting to /dev/ttyACM0 at 115200 baud</span>
+<span class="go">[INFO] [1602784905.809722]: Requesting topics...</span>
+<span class="go">[INFO] [1602784905.824418]: Note: publish buffer size is 512 bytes</span>
+<span class="go">[INFO] [1602784905.829712]: Setup publisher on /diffbot/ticks_left [std_msgs/Int32]</span>
+<span class="go">[INFO] [1602784905.839914]: Setup publisher on /diffbot/ticks_right [std_msgs/Int32]</span>
+<span class="go">[INFO] [1602784905.856772]: Note: subscribe buffer size is 512 bytes</span>
+<span class="go">[INFO] [1602784905.861749]: Setup subscriber on /reset [std_msgs/Empty]</span>
+</code></pre></div>
 <p>In case of the following error, probably the wrong program is flashed to the Teensy board:</p>
-<pre><code class="language-console">[ERROR] [1602782376.724880]: Unable to sync with device; possible link problem or link software version mismatch such as hydro rosserial_python with groovy Arduino
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="go">[ERROR] [1602782376.724880]: Unable to sync with device; possible link problem or link software version mismatch such as hydro rosserial_python with groovy Arduino</span>
+</code></pre></div>
 <p>Note that the rosserial node needs to be stopped to flash new sketches to the Teensy board.
 {: .notice }</p>
 <p>Each <a href="https://www.sparkfun.com/products/16413">DG01D-E</a> motor has two signal pins for its built-in encoder. For these, the Teensy pins 5, 6 are used for the left encoder and 7, 8 are used for the right one, see also the <a href="https://www.pjrc.com/teensy/pinout.html">Teensy pinout</a>.</p>

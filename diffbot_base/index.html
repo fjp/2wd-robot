@@ -29,9 +29,12 @@
     
     <script src="../js/jquery-3.5.1.min.js"></script>
     <script src="../js/jquery.fitvids.js"></script>
+    <!-- Arithmatex -->
     <script src="../js/config.js"></script>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <!-- UML diagrams using Mermaid -->
+    <script src="https://unpkg.com/mermaid@8.6.4/dist/mermaid.min.js"></script>
 
     
       
@@ -748,14 +751,14 @@ file. The launch file will </p>
 </ul>
 <h3 id="diffbot_base-package">diffbot_base Package</h3>
 <p>The <code>diffbot_base</code> package is created with <code>catkin-tools</code>:</p>
-<pre><code class="language-console">fjp@diffbot:/home/fjp/catkin_ws/src$ catkin create pkg diffbot_base --catkin-deps diff_drive_controller hardware_interface roscpp sensor_msgs rosparam_shortcuts                 
-Creating package &quot;diffbot_base&quot; in &quot;/home/fjp/catkin_ws/src&quot;...
-Created file diffbot_base/package.xml
-Created file diffbot_base/CMakeLists.txt
-Created folder diffbot_base/include/diffbot_base
-Created folder diffbot_base/src
-Successfully created package files in /home/fjp/catkin_ws/src/diffbot_base.
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="gp">fjp@diffbot:/home/fjp/catkin_ws/src$</span> catkin create pkg diffbot_base --catkin-deps diff_drive_controller hardware_interface roscpp sensor_msgs rosparam_shortcuts                 
+<span class="go">Creating package &quot;diffbot_base&quot; in &quot;/home/fjp/catkin_ws/src&quot;...</span>
+<span class="go">Created file diffbot_base/package.xml</span>
+<span class="go">Created file diffbot_base/CMakeLists.txt</span>
+<span class="go">Created folder diffbot_base/include/diffbot_base</span>
+<span class="go">Created folder diffbot_base/src</span>
+<span class="go">Successfully created package files in /home/fjp/catkin_ws/src/diffbot_base.</span>
+</code></pre></div>
 <p>To work with this package the specified dependencies must be installed either using the available Ubuntu/Debian packages for ROS Noetic or they have to be built from source first. The following table lists the dependencies that we have to install because they are not already part of the ROS Noetic desktop full installation. Refer to the section <a href="https://fjp.at/projects/diffbot/ros-noetic/">ROS Noetic Setup</a> for how this was done. </p>
 <table>
 <thead>
@@ -784,11 +787,11 @@ Successfully created package files in /home/fjp/catkin_ws/src/diffbot_base.
 </tbody>
 </table>
 <p>To install a package from source clone (using git) or download the source files from where they are located (commonly hosted on GitHub) into the <code>src</code> folder of a ros catkin workspace and execute the <a href="https://catkin-tools.readthedocs.io/en/latest/verbs/catkin_build.html"><code>catkin build</code></a> command. Also make sure to source the workspace after building new packages with <code>source devel/setup.bash</code>.</p>
-<pre><code class="language-console">cd /homw/fjp/git/diffbot/ros/  # Navigate to the workspace
-catkin build              # Build all the packages in the workspace
-ls build                  # Show the resulting build space
-ls devel                  # Show the resulting devel space
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="go">cd /homw/fjp/git/diffbot/ros/  # Navigate to the workspace</span>
+<span class="go">catkin build              # Build all the packages in the workspace</span>
+<span class="go">ls build                  # Show the resulting build space</span>
+<span class="go">ls devel                  # Show the resulting devel space</span>
+</code></pre></div>
 <p>Make sure to clone/download the source files suitable for the ROS distribtion you are using. If the sources are not available for the distribution you are working with, it is worth to try building anyway. Chances are that the package you want to use is suitable for multiple ROS distros. For example if a package states in its docs, that it is only available for <a href="http://wiki.ros.org/kinetic">kinetic</a> it is possible that it will work with a ROS <a href="http://wiki.ros.org/noetic">noetic</a> install.
 {: .notice }</p>
 <h3 id="hardware-interface">Hardware Interface</h3>
@@ -800,226 +803,226 @@ Remember that the simulation uses the <code>gazebo_ros_control</code> package to
 ROS Control uses an instance of type <a href="http://docs.ros.org/en/noetic/api/hardware_interface/html/c++/"><code>hardware_interface::RobotHW</code></a> that is passed to the <code>controller_manager</code> to handle the resources, meaning that the actuated robot joints are not in use by multiple controllers that might be loaded.</p>
 <p>The skeleton of DiffBot's hardware interface looks like following, where the constructor is used to read loaded configuration values from 
 the robot's description from the ROS parameter server:</p>
-<pre><code class="language-cpp">namespace diffbot_base
-{
-    DiffBotHWInterface::DiffBotHWInterface(ros::NodeHandle &amp;nh, urdf::Model *urdf_model)
-        : name_(&quot;hardware_interface&quot;)
-        , nh_(nh)
-    { 
-        // Initialization of the robot's resources (joints, sensors, actuators) and
-        // interfaces can be done here or inside init().
-        // E.g. parse the URDF for joint names &amp; interfaces, then initialize them
-        // Check if the URDF model needs to be loaded
-        if (urdf_model == NULL)
-            loadURDF(nh, &quot;robot_description&quot;);
-        else
-            urdf_model_ = urdf_model;
+<div class="highlight"><pre><span></span><code><span class="k">namespace</span> <span class="n">diffbot_base</span>
+<span class="p">{</span>
+    <span class="n">DiffBotHWInterface</span><span class="o">::</span><span class="n">DiffBotHWInterface</span><span class="p">(</span><span class="n">ros</span><span class="o">::</span><span class="n">NodeHandle</span> <span class="o">&amp;</span><span class="n">nh</span><span class="p">,</span> <span class="n">urdf</span><span class="o">::</span><span class="n">Model</span> <span class="o">*</span><span class="n">urdf_model</span><span class="p">)</span>
+        <span class="o">:</span> <span class="n">name_</span><span class="p">(</span><span class="s">&quot;hardware_interface&quot;</span><span class="p">)</span>
+        <span class="p">,</span> <span class="n">nh_</span><span class="p">(</span><span class="n">nh</span><span class="p">)</span>
+    <span class="p">{</span> 
+        <span class="c1">// Initialization of the robot&#39;s resources (joints, sensors, actuators) and</span>
+        <span class="c1">// interfaces can be done here or inside init().</span>
+        <span class="c1">// E.g. parse the URDF for joint names &amp; interfaces, then initialize them</span>
+        <span class="c1">// Check if the URDF model needs to be loaded</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">urdf_model</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span>
+            <span class="n">loadURDF</span><span class="p">(</span><span class="n">nh</span><span class="p">,</span> <span class="s">&quot;robot_description&quot;</span><span class="p">);</span>
+        <span class="k">else</span>
+            <span class="n">urdf_model_</span> <span class="o">=</span> <span class="n">urdf_model</span><span class="p">;</span>
 
-        // Load rosparams
-        ros::NodeHandle rpnh(nh_, name_);
-        std::size_t error = 0;
-        // Code API of rosparam_shortcuts:
-        // http://docs.ros.org/en/noetic/api/rosparam_shortcuts/html/namespacerosparam__shortcuts.html#aa6536fe0130903960b1de4872df68d5d
-        error += !rosparam_shortcuts::get(name_, rpnh, &quot;joints&quot;, joint_names_);
-        error += !rosparam_shortcuts::get(name_, nh_, &quot;mobile_base_controller/wheel_radius&quot;, wheel_radius_);
-        error += !rosparam_shortcuts::get(name_, nh_, &quot;mobile_base_controller/linear/x/max_velocity&quot;, max_velocity_);
-        rosparam_shortcuts::shutdownIfError(name_, error);
+        <span class="c1">// Load rosparams</span>
+        <span class="n">ros</span><span class="o">::</span><span class="n">NodeHandle</span> <span class="n">rpnh</span><span class="p">(</span><span class="n">nh_</span><span class="p">,</span> <span class="n">name_</span><span class="p">);</span>
+        <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">error</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="c1">// Code API of rosparam_shortcuts:</span>
+        <span class="c1">// http://docs.ros.org/en/noetic/api/rosparam_shortcuts/html/namespacerosparam__shortcuts.html#aa6536fe0130903960b1de4872df68d5d</span>
+        <span class="n">error</span> <span class="o">+=</span> <span class="o">!</span><span class="n">rosparam_shortcuts</span><span class="o">::</span><span class="n">get</span><span class="p">(</span><span class="n">name_</span><span class="p">,</span> <span class="n">rpnh</span><span class="p">,</span> <span class="s">&quot;joints&quot;</span><span class="p">,</span> <span class="n">joint_names_</span><span class="p">);</span>
+        <span class="n">error</span> <span class="o">+=</span> <span class="o">!</span><span class="n">rosparam_shortcuts</span><span class="o">::</span><span class="n">get</span><span class="p">(</span><span class="n">name_</span><span class="p">,</span> <span class="n">nh_</span><span class="p">,</span> <span class="s">&quot;mobile_base_controller/wheel_radius&quot;</span><span class="p">,</span> <span class="n">wheel_radius_</span><span class="p">);</span>
+        <span class="n">error</span> <span class="o">+=</span> <span class="o">!</span><span class="n">rosparam_shortcuts</span><span class="o">::</span><span class="n">get</span><span class="p">(</span><span class="n">name_</span><span class="p">,</span> <span class="n">nh_</span><span class="p">,</span> <span class="s">&quot;mobile_base_controller/linear/x/max_velocity&quot;</span><span class="p">,</span> <span class="n">max_velocity_</span><span class="p">);</span>
+        <span class="n">rosparam_shortcuts</span><span class="o">::</span><span class="n">shutdownIfError</span><span class="p">(</span><span class="n">name_</span><span class="p">,</span> <span class="n">error</span><span class="p">);</span>
 
-        wheel_diameter_ = 2.0 * wheel_radius_;
-        //max_velocity_ = 0.2; // m/s
-        // ros_control RobotHW needs velocity in rad/s but in the config its given in m/s
-        max_velocity_ = linearToAngular(max_velocity_);
+        <span class="n">wheel_diameter_</span> <span class="o">=</span> <span class="mf">2.0</span> <span class="o">*</span> <span class="n">wheel_radius_</span><span class="p">;</span>
+        <span class="c1">//max_velocity_ = 0.2; // m/s</span>
+        <span class="c1">// ros_control RobotHW needs velocity in rad/s but in the config its given in m/s</span>
+        <span class="n">max_velocity_</span> <span class="o">=</span> <span class="n">linearToAngular</span><span class="p">(</span><span class="n">max_velocity_</span><span class="p">);</span>
 
-        // Setup publisher for the motor driver 
-        pub_left_motor_value_ = nh_.advertise&lt;std_msgs::Int32&gt;(&quot;motor_left&quot;, 1);
-        pub_right_motor_value_ = nh_.advertise&lt;std_msgs::Int32&gt;(&quot;motor_right&quot;, 1);
+        <span class="c1">// Setup publisher for the motor driver </span>
+        <span class="n">pub_left_motor_value_</span> <span class="o">=</span> <span class="n">nh_</span><span class="p">.</span><span class="n">advertise</span><span class="o">&lt;</span><span class="n">std_msgs</span><span class="o">::</span><span class="n">Int32</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;motor_left&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+        <span class="n">pub_right_motor_value_</span> <span class="o">=</span> <span class="n">nh_</span><span class="p">.</span><span class="n">advertise</span><span class="o">&lt;</span><span class="n">std_msgs</span><span class="o">::</span><span class="n">Int32</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;motor_right&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
 
-        // Setup subscriber for the wheel encoders
-        sub_left_encoder_ticks_ = nh_.subscribe(&quot;ticks_left&quot;, 1, &amp;DiffBotHWInterface::leftEncoderTicksCallback, this);
-        sub_right_encoder_ticks_ = nh_.subscribe(&quot;ticks_right&quot;, 1, &amp;DiffBotHWInterface::rightEncoderTicksCallback, this);
+        <span class="c1">// Setup subscriber for the wheel encoders</span>
+        <span class="n">sub_left_encoder_ticks_</span> <span class="o">=</span> <span class="n">nh_</span><span class="p">.</span><span class="n">subscribe</span><span class="p">(</span><span class="s">&quot;ticks_left&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">DiffBotHWInterface</span><span class="o">::</span><span class="n">leftEncoderTicksCallback</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
+        <span class="n">sub_right_encoder_ticks_</span> <span class="o">=</span> <span class="n">nh_</span><span class="p">.</span><span class="n">subscribe</span><span class="p">(</span><span class="s">&quot;ticks_right&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">DiffBotHWInterface</span><span class="o">::</span><span class="n">rightEncoderTicksCallback</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
 
-        // Initialize the hardware interface
-        init(nh_, nh_);
-    }
+        <span class="c1">// Initialize the hardware interface</span>
+        <span class="n">init</span><span class="p">(</span><span class="n">nh_</span><span class="p">,</span> <span class="n">nh_</span><span class="p">);</span>
+    <span class="p">}</span>
 
 
-    bool DiffBotHWInterface::init(ros::NodeHandle &amp;root_nh, ros::NodeHandle &amp;robot_hw_nh)
-    {
-        ROS_INFO(&quot;Initializing DiffBot Hardware Interface ...&quot;);
-        num_joints_ = joint_names_.size();
-        ROS_INFO(&quot;Number of joints: %d&quot;, (int)num_joints_);
-        std::array&lt;std::string, NUM_JOINTS&gt; motor_names = {&quot;left_motor&quot;, &quot;right_motor&quot;};
-        for (unsigned int i = 0; i &lt; num_joints_; i++)
-        {
-            // Create a JointStateHandle for each joint and register them with the 
-            // JointStateInterface.
-            hardware_interface::JointStateHandle joint_state_handle(joint_names_[i],
-                                                                    &amp;joint_positions_[i], 
-                                                                    &amp;joint_velocities_[i],
-                                                                    &amp;joint_efforts_[i]);
-            joint_state_interface_.registerHandle(joint_state_handle);
+    <span class="kt">bool</span> <span class="n">DiffBotHWInterface</span><span class="o">::</span><span class="n">init</span><span class="p">(</span><span class="n">ros</span><span class="o">::</span><span class="n">NodeHandle</span> <span class="o">&amp;</span><span class="n">root_nh</span><span class="p">,</span> <span class="n">ros</span><span class="o">::</span><span class="n">NodeHandle</span> <span class="o">&amp;</span><span class="n">robot_hw_nh</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">ROS_INFO</span><span class="p">(</span><span class="s">&quot;Initializing DiffBot Hardware Interface ...&quot;</span><span class="p">);</span>
+        <span class="n">num_joints_</span> <span class="o">=</span> <span class="n">joint_names_</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
+        <span class="n">ROS_INFO</span><span class="p">(</span><span class="s">&quot;Number of joints: %d&quot;</span><span class="p">,</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">num_joints_</span><span class="p">);</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">array</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span> <span class="n">NUM_JOINTS</span><span class="o">&gt;</span> <span class="n">motor_names</span> <span class="o">=</span> <span class="p">{</span><span class="s">&quot;left_motor&quot;</span><span class="p">,</span> <span class="s">&quot;right_motor&quot;</span><span class="p">};</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">num_joints_</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="c1">// Create a JointStateHandle for each joint and register them with the </span>
+            <span class="c1">// JointStateInterface.</span>
+            <span class="n">hardware_interface</span><span class="o">::</span><span class="n">JointStateHandle</span> <span class="n">joint_state_handle</span><span class="p">(</span><span class="n">joint_names_</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
+                                                                    <span class="o">&amp;</span><span class="n">joint_positions_</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> 
+                                                                    <span class="o">&amp;</span><span class="n">joint_velocities_</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
+                                                                    <span class="o">&amp;</span><span class="n">joint_efforts_</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+            <span class="n">joint_state_interface_</span><span class="p">.</span><span class="n">registerHandle</span><span class="p">(</span><span class="n">joint_state_handle</span><span class="p">);</span>
 
-            // Create a JointHandle (read and write) for each controllable joint
-            // using the read-only joint handles within the JointStateInterface and 
-            // register them with the JointVelocityInterface.
-            hardware_interface::JointHandle joint_handle(joint_state_handle, &amp;joint_velocity_commands_[i]);
-            velocity_joint_interface_.registerHandle(joint_handle);
+            <span class="c1">// Create a JointHandle (read and write) for each controllable joint</span>
+            <span class="c1">// using the read-only joint handles within the JointStateInterface and </span>
+            <span class="c1">// register them with the JointVelocityInterface.</span>
+            <span class="n">hardware_interface</span><span class="o">::</span><span class="n">JointHandle</span> <span class="n">joint_handle</span><span class="p">(</span><span class="n">joint_state_handle</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">joint_velocity_commands_</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+            <span class="n">velocity_joint_interface_</span><span class="p">.</span><span class="n">registerHandle</span><span class="p">(</span><span class="n">joint_handle</span><span class="p">);</span>
 
-            // Initialize joint states with zero values
-            joint_positions_[i] = 0.0;
-            joint_velocities_[i] = 0.0;
-            joint_efforts_[i] = 0.0; // unused with diff_drive_controller
+            <span class="c1">// Initialize joint states with zero values</span>
+            <span class="n">joint_positions_</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span>
+            <span class="n">joint_velocities_</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span>
+            <span class="n">joint_efforts_</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span> <span class="c1">// unused with diff_drive_controller</span>
 
-            joint_velocity_commands_[i] = 0.0;
+            <span class="n">joint_velocity_commands_</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span>
 
-            // Initialize the pid controllers for the motors using the robot namespace
-            std::string pid_namespace = &quot;pid/&quot; + motor_names[i];
-            ROS_INFO_STREAM(&quot;pid namespace: &quot; &lt;&lt; pid_namespace);
-            ros::NodeHandle nh(root_nh, pid_namespace);
-            // TODO implement builder pattern to initialize values otherwise it is hard to see which parameter is what.
-            pids_[i].init(nh, 0.0, 10.0, 1.0, 1.0, 0.0, 0.0, false, -max_velocity_, max_velocity_);
-            pids_[i].setOutputLimits(-max_velocity_, max_velocity_);
-        }
+            <span class="c1">// Initialize the pid controllers for the motors using the robot namespace</span>
+            <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">pid_namespace</span> <span class="o">=</span> <span class="s">&quot;pid/&quot;</span> <span class="o">+</span> <span class="n">motor_names</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+            <span class="n">ROS_INFO_STREAM</span><span class="p">(</span><span class="s">&quot;pid namespace: &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">pid_namespace</span><span class="p">);</span>
+            <span class="n">ros</span><span class="o">::</span><span class="n">NodeHandle</span> <span class="n">nh</span><span class="p">(</span><span class="n">root_nh</span><span class="p">,</span> <span class="n">pid_namespace</span><span class="p">);</span>
+            <span class="c1">// TODO implement builder pattern to initialize values otherwise it is hard to see which parameter is what.</span>
+            <span class="n">pids_</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">init</span><span class="p">(</span><span class="n">nh</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="nb">false</span><span class="p">,</span> <span class="o">-</span><span class="n">max_velocity_</span><span class="p">,</span> <span class="n">max_velocity_</span><span class="p">);</span>
+            <span class="n">pids_</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">setOutputLimits</span><span class="p">(</span><span class="o">-</span><span class="n">max_velocity_</span><span class="p">,</span> <span class="n">max_velocity_</span><span class="p">);</span>
+        <span class="p">}</span>
 
-        // Register the JointStateInterface containing the read only joints
-        // with this robot's hardware_interface::RobotHW.
-        registerInterface(&amp;joint_state_interface_);
+        <span class="c1">// Register the JointStateInterface containing the read only joints</span>
+        <span class="c1">// with this robot&#39;s hardware_interface::RobotHW.</span>
+        <span class="n">registerInterface</span><span class="p">(</span><span class="o">&amp;</span><span class="n">joint_state_interface_</span><span class="p">);</span>
 
-        // Register the JointVelocityInterface containing the read/write joints
-        // with this robot's hardware_interface::RobotHW.
-        registerInterface(&amp;velocity_joint_interface_);
+        <span class="c1">// Register the JointVelocityInterface containing the read/write joints</span>
+        <span class="c1">// with this robot&#39;s hardware_interface::RobotHW.</span>
+        <span class="n">registerInterface</span><span class="p">(</span><span class="o">&amp;</span><span class="n">velocity_joint_interface_</span><span class="p">);</span>
 
-        ROS_INFO(&quot;... Done Initializing DiffBot Hardware Interface&quot;);
-        return true;
-    }
+        <span class="n">ROS_INFO</span><span class="p">(</span><span class="s">&quot;... Done Initializing DiffBot Hardware Interface&quot;</span><span class="p">);</span>
+        <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+    <span class="p">}</span>
 
-    // The read method is part of the control loop cycle (read, update, write) and is used to 
-    // populate the robot state from the robot's hardware resources (joints, sensors, actuators). 
-    // This method should be called before controller_manager::ControllerManager::update() and write.
-    void DiffBotHWInterface::read(const ros::Time&amp; time, const ros::Duration&amp; period)
-    {
-        ros::Duration elapsed_time = period;
+    <span class="c1">// The read method is part of the control loop cycle (read, update, write) and is used to </span>
+    <span class="c1">// populate the robot state from the robot&#39;s hardware resources (joints, sensors, actuators). </span>
+    <span class="c1">// This method should be called before controller_manager::ControllerManager::update() and write.</span>
+    <span class="kt">void</span> <span class="n">DiffBotHWInterface</span><span class="o">::</span><span class="n">read</span><span class="p">(</span><span class="k">const</span> <span class="n">ros</span><span class="o">::</span><span class="n">Time</span><span class="o">&amp;</span> <span class="n">time</span><span class="p">,</span> <span class="k">const</span> <span class="n">ros</span><span class="o">::</span><span class="n">Duration</span><span class="o">&amp;</span> <span class="n">period</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">ros</span><span class="o">::</span><span class="n">Duration</span> <span class="n">elapsed_time</span> <span class="o">=</span> <span class="n">period</span><span class="p">;</span>
 
-        // Read from robot hw (motor encoders)
-        // Fill joint_state_* members with read values
-        double wheel_angles[2];
-        double wheel_angle_deltas[2];
-        for (std::size_t i = 0; i &lt; num_joints_; ++i)
-        {
-            wheel_angles[i] = ticksToAngle(encoder_ticks_[i]);
-            //double wheel_angle_normalized = normalizeAngle(wheel_angle);
-            wheel_angle_deltas[i] = wheel_angles[i] - joint_positions_[i];
+        <span class="c1">// Read from robot hw (motor encoders)</span>
+        <span class="c1">// Fill joint_state_* members with read values</span>
+        <span class="kt">double</span> <span class="n">wheel_angles</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
+        <span class="kt">double</span> <span class="n">wheel_angle_deltas</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
+        <span class="k">for</span> <span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">num_joints_</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">wheel_angles</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">ticksToAngle</span><span class="p">(</span><span class="n">encoder_ticks_</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+            <span class="c1">//double wheel_angle_normalized = normalizeAngle(wheel_angle);</span>
+            <span class="n">wheel_angle_deltas</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">wheel_angles</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">joint_positions_</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
 
-            joint_positions_[i] += wheel_angle_deltas[i];
-            joint_velocities_[i] = wheel_angle_deltas[i] / period.toSec();
-            joint_efforts_[i] = 0.0; // unused with diff_drive_controller
-        }
-    }
+            <span class="n">joint_positions_</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="n">wheel_angle_deltas</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+            <span class="n">joint_velocities_</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">wheel_angle_deltas</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">/</span> <span class="n">period</span><span class="p">.</span><span class="n">toSec</span><span class="p">();</span>
+            <span class="n">joint_efforts_</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span> <span class="c1">// unused with diff_drive_controller</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
 
-    // The write method is part of the control loop cycle (read, update, write) and is used to 
-    // send out commands to the robot's hardware resources (joints, actuators). 
-    // This method should be called after read and controller_manager::ControllerManager::update.
-    void DiffBotHWInterface::write(const ros::Time&amp; time, const ros::Duration&amp; period)
-    {
-        ros::Duration elapsed_time = period;
-        // Write to robot hw
-        // joint velocity commands from ros_control's RobotHW are in rad/s
-        // Convert the velocity command to a percentage value for the motor
-        // This maps the velocity to a percentage value which is used to apply
-        // a percentage of the highest possible battery voltage to each motor.
-        std_msgs::Int32 left_motor;
-        std_msgs::Int32 right_motor;
+    <span class="c1">// The write method is part of the control loop cycle (read, update, write) and is used to </span>
+    <span class="c1">// send out commands to the robot&#39;s hardware resources (joints, actuators). </span>
+    <span class="c1">// This method should be called after read and controller_manager::ControllerManager::update.</span>
+    <span class="kt">void</span> <span class="n">DiffBotHWInterface</span><span class="o">::</span><span class="n">write</span><span class="p">(</span><span class="k">const</span> <span class="n">ros</span><span class="o">::</span><span class="n">Time</span><span class="o">&amp;</span> <span class="n">time</span><span class="p">,</span> <span class="k">const</span> <span class="n">ros</span><span class="o">::</span><span class="n">Duration</span><span class="o">&amp;</span> <span class="n">period</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">ros</span><span class="o">::</span><span class="n">Duration</span> <span class="n">elapsed_time</span> <span class="o">=</span> <span class="n">period</span><span class="p">;</span>
+        <span class="c1">// Write to robot hw</span>
+        <span class="c1">// joint velocity commands from ros_control&#39;s RobotHW are in rad/s</span>
+        <span class="c1">// Convert the velocity command to a percentage value for the motor</span>
+        <span class="c1">// This maps the velocity to a percentage value which is used to apply</span>
+        <span class="c1">// a percentage of the highest possible battery voltage to each motor.</span>
+        <span class="n">std_msgs</span><span class="o">::</span><span class="n">Int32</span> <span class="n">left_motor</span><span class="p">;</span>
+        <span class="n">std_msgs</span><span class="o">::</span><span class="n">Int32</span> <span class="n">right_motor</span><span class="p">;</span>
 
-        double output_left = pids_[0](joint_velocities_[0], joint_velocity_commands_[0], period);
-        double output_right = pids_[1](joint_velocities_[1], joint_velocity_commands_[1], period);
+        <span class="kt">double</span> <span class="n">output_left</span> <span class="o">=</span> <span class="n">pids_</span><span class="p">[</span><span class="mi">0</span><span class="p">](</span><span class="n">joint_velocities_</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">joint_velocity_commands_</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">period</span><span class="p">);</span>
+        <span class="kt">double</span> <span class="n">output_right</span> <span class="o">=</span> <span class="n">pids_</span><span class="p">[</span><span class="mi">1</span><span class="p">](</span><span class="n">joint_velocities_</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">joint_velocity_commands_</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">period</span><span class="p">);</span>
 
-        left_motor.data = output_left / max_velocity_ * 100.0;
-        right_motor.data = output_right / max_velocity_ * 100.0;
+        <span class="n">left_motor</span><span class="p">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">output_left</span> <span class="o">/</span> <span class="n">max_velocity_</span> <span class="o">*</span> <span class="mf">100.0</span><span class="p">;</span>
+        <span class="n">right_motor</span><span class="p">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">output_right</span> <span class="o">/</span> <span class="n">max_velocity_</span> <span class="o">*</span> <span class="mf">100.0</span><span class="p">;</span>
 
-    // Publish the PID computed motor commands to the left and right motors
-    pub_left_motor_value_.publish(left_motor);
-        pub_right_motor_value_.publish(right_motor);
-    }
+    <span class="c1">// Publish the PID computed motor commands to the left and right motors</span>
+    <span class="n">pub_left_motor_value_</span><span class="p">.</span><span class="n">publish</span><span class="p">(</span><span class="n">left_motor</span><span class="p">);</span>
+        <span class="n">pub_right_motor_value_</span><span class="p">.</span><span class="n">publish</span><span class="p">(</span><span class="n">right_motor</span><span class="p">);</span>
+    <span class="p">}</span>
 
-    // Process updates from encoders using a subscriber
-    void DiffBotHWInterface::leftEncoderTicksCallback(const std_msgs::Int32::ConstPtr&amp; msg)
-    {
-        encoder_ticks_[0] = msg-&gt;data;
-        ROS_DEBUG_STREAM_THROTTLE(1, &quot;Left encoder ticks: &quot; &lt;&lt; msg-&gt;data);
-    }
+    <span class="c1">// Process updates from encoders using a subscriber</span>
+    <span class="kt">void</span> <span class="n">DiffBotHWInterface</span><span class="o">::</span><span class="n">leftEncoderTicksCallback</span><span class="p">(</span><span class="k">const</span> <span class="n">std_msgs</span><span class="o">::</span><span class="n">Int32</span><span class="o">::</span><span class="n">ConstPtr</span><span class="o">&amp;</span> <span class="n">msg</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">encoder_ticks_</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">msg</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">;</span>
+        <span class="n">ROS_DEBUG_STREAM_THROTTLE</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s">&quot;Left encoder ticks: &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">msg</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">);</span>
+    <span class="p">}</span>
 
-    void DiffBotHWInterface::rightEncoderTicksCallback(const std_msgs::Int32::ConstPtr&amp; msg)
-    {
-        encoder_ticks_[1] = msg-&gt;data;
-        ROS_DEBUG_STREAM_THROTTLE(1, &quot;Right encoder ticks: &quot; &lt;&lt; msg-&gt;data);
-    }
+    <span class="kt">void</span> <span class="n">DiffBotHWInterface</span><span class="o">::</span><span class="n">rightEncoderTicksCallback</span><span class="p">(</span><span class="k">const</span> <span class="n">std_msgs</span><span class="o">::</span><span class="n">Int32</span><span class="o">::</span><span class="n">ConstPtr</span><span class="o">&amp;</span> <span class="n">msg</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">encoder_ticks_</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">msg</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">;</span>
+        <span class="n">ROS_DEBUG_STREAM_THROTTLE</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s">&quot;Right encoder ticks: &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">msg</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">);</span>
+    <span class="p">}</span>
 
-    double DiffBotHWInterface::ticksToAngle(const int &amp;ticks) const
-    {
-        // Convert number of encoder ticks to angle in radians
-        double angle = (double)ticks * (2.0*M_PI / 542.0);
-        ROS_DEBUG_STREAM_THROTTLE(1, ticks &lt;&lt; &quot; ticks correspond to an angle of &quot; &lt;&lt; angle);
-    return angle;
-    }
+    <span class="kt">double</span> <span class="n">DiffBotHWInterface</span><span class="o">::</span><span class="n">ticksToAngle</span><span class="p">(</span><span class="k">const</span> <span class="kt">int</span> <span class="o">&amp;</span><span class="n">ticks</span><span class="p">)</span> <span class="k">const</span>
+    <span class="p">{</span>
+        <span class="c1">// Convert number of encoder ticks to angle in radians</span>
+        <span class="kt">double</span> <span class="n">angle</span> <span class="o">=</span> <span class="p">(</span><span class="kt">double</span><span class="p">)</span><span class="n">ticks</span> <span class="o">*</span> <span class="p">(</span><span class="mf">2.0</span><span class="o">*</span><span class="n">M_PI</span> <span class="o">/</span> <span class="mf">542.0</span><span class="p">);</span>
+        <span class="n">ROS_DEBUG_STREAM_THROTTLE</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">ticks</span> <span class="o">&lt;&lt;</span> <span class="s">&quot; ticks correspond to an angle of &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">angle</span><span class="p">);</span>
+    <span class="k">return</span> <span class="n">angle</span><span class="p">;</span>
+    <span class="p">}</span>
 
-};
-</code></pre>
+<span class="p">};</span>
+</code></pre></div>
 <p>The functions above are designed to give the controller manager (and the controllers inside the controller manager) access to the joint state of custom robot, 
 and to command it. When the controller manager runs, the controllers will read from the pos, vel and eff variables of the custom robot hardware interface, and the controller will write the desired command into the cmd variable. It's mandatory to make sure the pos, vel and eff variables always have the latest joint state available, and to make sure that whatever is written into the cmd variable gets executed by the robot. This can be done by implementing hardware_interface::RobotHW::read() and a hardware_interface::RobotHW::write() methods.</p>
 <p>The main node that will be executed uses the <code>controller_manager</code> to operate the so called control loop. In the case of  DiffBot a simple example looks like 
 the following, refer to the <a href="https://github.com/fjp/diffbot/blob/master/diffbot_base/src/diffbot_base.cpp"><code>diffbot_base.cpp</code></a> for the complete implementation:</p>
-<pre><code class="language-cpp">#include &lt;ros/ros.h&gt;
-#include &lt;diffbot_base/diffbot_hw_interface.h&gt;
-#include &lt;controller_manager/controller_manager.h&gt;
+<div class="highlight"><pre><span></span><code><span class="cp">#include</span> <span class="cpf">&lt;ros/ros.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;diffbot_base/diffbot_hw_interface.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;controller_manager/controller_manager.h&gt;</span><span class="cp"></span>
 
-int main(int argc, char **argv)
-{
-    // Initialize the ROS node
-    ros::init(argc, argv, &quot;diffbot_hw_interface&quot;);
-    ros::NodeHandle nh;
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">argv</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">// Initialize the ROS node</span>
+    <span class="n">ros</span><span class="o">::</span><span class="n">init</span><span class="p">(</span><span class="n">argc</span><span class="p">,</span> <span class="n">argv</span><span class="p">,</span> <span class="s">&quot;diffbot_hw_interface&quot;</span><span class="p">);</span>
+    <span class="n">ros</span><span class="o">::</span><span class="n">NodeHandle</span> <span class="n">nh</span><span class="p">;</span>
 
-    // Create an instance of your robot so that this instance knows about all 
-    // the resources that are available.
-    diffbot_base::DiffBotHWInterface diffBot(nh);
+    <span class="c1">// Create an instance of your robot so that this instance knows about all </span>
+    <span class="c1">// the resources that are available.</span>
+    <span class="n">diffbot_base</span><span class="o">::</span><span class="n">DiffBotHWInterface</span> <span class="n">diffBot</span><span class="p">(</span><span class="n">nh</span><span class="p">);</span>
 
-    // Create an instance of the controller manager and pass it the robot, 
-    // so that it can handle its resources.
-    controller_manager::ControllerManager cm(&amp;diffBot);
+    <span class="c1">// Create an instance of the controller manager and pass it the robot, </span>
+    <span class="c1">// so that it can handle its resources.</span>
+    <span class="n">controller_manager</span><span class="o">::</span><span class="n">ControllerManager</span> <span class="n">cm</span><span class="p">(</span><span class="o">&amp;</span><span class="n">diffBot</span><span class="p">);</span>
 
-    // Setup a separate thread that will be used to service ROS callbacks.
-    // NOTE: We run the ROS loop in a separate thread as external calls such
-    // as service callbacks to load controllers can block the (main) control loop
-    ros::AsyncSpinner spinner(1);
-    spinner.start();
+    <span class="c1">// Setup a separate thread that will be used to service ROS callbacks.</span>
+    <span class="c1">// NOTE: We run the ROS loop in a separate thread as external calls such</span>
+    <span class="c1">// as service callbacks to load controllers can block the (main) control loop</span>
+    <span class="n">ros</span><span class="o">::</span><span class="n">AsyncSpinner</span> <span class="n">spinner</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+    <span class="n">spinner</span><span class="p">.</span><span class="n">start</span><span class="p">();</span>
 
-    // Setup for the control loop.
-    ros::Time prev_time = ros::Time::now();
-    ros::Rate rate(10.0); // 10 Hz rate
+    <span class="c1">// Setup for the control loop.</span>
+    <span class="n">ros</span><span class="o">::</span><span class="n">Time</span> <span class="n">prev_time</span> <span class="o">=</span> <span class="n">ros</span><span class="o">::</span><span class="n">Time</span><span class="o">::</span><span class="n">now</span><span class="p">();</span>
+    <span class="n">ros</span><span class="o">::</span><span class="n">Rate</span> <span class="n">rate</span><span class="p">(</span><span class="mf">10.0</span><span class="p">);</span> <span class="c1">// 10 Hz rate</span>
 
-    // Blocks until shutdown signal recieved
-    while (ros::ok())
-    {
-        // Basic bookkeeping to get the system time in order to compute the control period.
-        const ros::Time     time   = ros::Time::now();
-        const ros::Duration period = time - prev_time;
+    <span class="c1">// Blocks until shutdown signal recieved</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">ros</span><span class="o">::</span><span class="n">ok</span><span class="p">())</span>
+    <span class="p">{</span>
+        <span class="c1">// Basic bookkeeping to get the system time in order to compute the control period.</span>
+        <span class="k">const</span> <span class="n">ros</span><span class="o">::</span><span class="n">Time</span>     <span class="n">time</span>   <span class="o">=</span> <span class="n">ros</span><span class="o">::</span><span class="n">Time</span><span class="o">::</span><span class="n">now</span><span class="p">();</span>
+        <span class="k">const</span> <span class="n">ros</span><span class="o">::</span><span class="n">Duration</span> <span class="n">period</span> <span class="o">=</span> <span class="n">time</span> <span class="o">-</span> <span class="n">prev_time</span><span class="p">;</span>
 
-        // Execution of the actual control loop.
-        diffBot.read(time, period);
-        // If needed, its possible to define transmissions in software by calling the 
-        // transmission_interface::ActuatorToJointPositionInterface::propagate()
-        // after reading the joint states.
-        cm.update(time, period);
-        // In case of software transmissions, use 
-        // transmission_interface::JointToActuatorEffortHandle::propagate()
-        // to convert from the joint space to the actuator space.
-        diffBot.write(time, period);
+        <span class="c1">// Execution of the actual control loop.</span>
+        <span class="n">diffBot</span><span class="p">.</span><span class="n">read</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">period</span><span class="p">);</span>
+        <span class="c1">// If needed, its possible to define transmissions in software by calling the </span>
+        <span class="c1">// transmission_interface::ActuatorToJointPositionInterface::propagate()</span>
+        <span class="c1">// after reading the joint states.</span>
+        <span class="n">cm</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">period</span><span class="p">);</span>
+        <span class="c1">// In case of software transmissions, use </span>
+        <span class="c1">// transmission_interface::JointToActuatorEffortHandle::propagate()</span>
+        <span class="c1">// to convert from the joint space to the actuator space.</span>
+        <span class="n">diffBot</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">period</span><span class="p">);</span>
 
-        // All these steps keep getting repeated with the specified rate.
-        rate.sleep();
-    }
-    return 0;
-}
-</code></pre>
+        <span class="c1">// All these steps keep getting repeated with the specified rate.</span>
+        <span class="n">rate</span><span class="p">.</span><span class="n">sleep</span><span class="p">();</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
 <p>As we can see, the basic steps are to initialize the node, instantiate the hardware interface, pass it to a new controller manager and run the
 control loop that does the following:</p>
 <ul>
@@ -1107,60 +1110,60 @@ Measuring a value below 10 cm is considered precise for these motors.</p>
 <h3 id="launch-file">Launch File</h3>
 <p>To run a single controller_manager, the one from the <code>diffbot_base</code> package defined inside <code>difbot_base.cpp</code> use the 
 launch file from <a href="https://github.com/fjp/diffbot/blob/master/ros/src/diffbot_base/launch/diffbot.launch"><code>diffbot_base/launch/diffbot.launch</code></a>:</p>
-<pre><code class="language-xml">&lt;!-- https://github.com/ros-controls/ros_controllers/tree/kinetic-devel/diff_drive_controller/test --&gt;
-&lt;launch&gt;
-    &lt;!-- Load DiffBot model --&gt;
-    &lt;param name=&quot;robot_description&quot;
-       command=&quot;$(find xacro)/xacro '$(find diffbot_description)/urdf/diffbot.xacro'&quot;/&gt;
+<div class="highlight"><pre><span></span><code><span class="c">&lt;!-- https://github.com/ros-controls/ros_controllers/tree/kinetic-devel/diff_drive_controller/test --&gt;</span>
+<span class="nt">&lt;launch&gt;</span>
+    <span class="c">&lt;!-- Load DiffBot model --&gt;</span>
+    <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">&quot;robot_description&quot;</span>
+       <span class="na">command=</span><span class="s">&quot;$(find xacro)/xacro &#39;$(find diffbot_description)/urdf/diffbot.xacro&#39;&quot;</span><span class="nt">/&gt;</span>
 
-    &lt;node name=&quot;diffbot_base&quot; pkg=&quot;diffbot_base&quot; type=&quot;diffbot_base&quot;/&gt;
+    <span class="nt">&lt;node</span> <span class="na">name=</span><span class="s">&quot;diffbot_base&quot;</span> <span class="na">pkg=</span><span class="s">&quot;diffbot_base&quot;</span> <span class="na">type=</span><span class="s">&quot;diffbot_base&quot;</span><span class="nt">/&gt;</span>
 
-    &lt;!-- Load controller config to the parameter server --&gt;
-    &lt;rosparam command=&quot;load&quot; 
-              file=&quot;$(find diffbot_control)/config/diffbot_control.yaml&quot;/&gt;
+    <span class="c">&lt;!-- Load controller config to the parameter server --&gt;</span>
+    <span class="nt">&lt;rosparam</span> <span class="na">command=</span><span class="s">&quot;load&quot;</span> 
+              <span class="na">file=</span><span class="s">&quot;$(find diffbot_control)/config/diffbot_control.yaml&quot;</span><span class="nt">/&gt;</span>
 
-    &lt;!-- Load the controllers --&gt;
-    &lt;node name=&quot;controller_spawner&quot; pkg=&quot;controller_manager&quot; type=&quot;spawner&quot; respawn=&quot;false&quot;
-        output=&quot;screen&quot; ns=&quot;diffbot&quot; args=&quot;joint_state_controller
-                                            mobile_base_controller&quot;/&gt;
-&lt;/launch&gt;
-</code></pre>
+    <span class="c">&lt;!-- Load the controllers --&gt;</span>
+    <span class="nt">&lt;node</span> <span class="na">name=</span><span class="s">&quot;controller_spawner&quot;</span> <span class="na">pkg=</span><span class="s">&quot;controller_manager&quot;</span> <span class="na">type=</span><span class="s">&quot;spawner&quot;</span> <span class="na">respawn=</span><span class="s">&quot;false&quot;</span>
+        <span class="na">output=</span><span class="s">&quot;screen&quot;</span> <span class="na">ns=</span><span class="s">&quot;diffbot&quot;</span> <span class="na">args=</span><span class="s">&quot;joint_state_controller</span>
+<span class="s">                                            mobile_base_controller&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/launch&gt;</span>
+</code></pre></div>
 <p>This will load the DiffBot robot description onto the parameter server which is required  for the hardware interface that gets created inside the next
 node <code>diffbot_base</code>. It creates the hardware interface and instantiates a new controller manager in the <code>diffbot_base.cpp</code>.
 Finally the <code>spawner</code> from the <code>controller_manager</code> package is used to initialize and start the controllers defined in the <code>diffbot_control/config/diffbot_control.yaml</code>. The last step in this launch file is required to get the controllers initialized and started.
 Another way would be to use <code>controller_manager::ControllerManager::loadControllers()</code> inside the <code>diffbot_base.cpp</code>.</p>
 <p>After launching this launch file on DiffBot (Raspberry Pi) with </p>
-<pre><code class="language-console">roslaunch diffbot_base diffbot.launch
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="go">roslaunch diffbot_base diffbot.launch</span>
+</code></pre></div>
 <p>the following parameters are stored on the parameter server:</p>
-<pre><code class="language-console">$ rosparam list
-/diffbot/hardware_interface/joints
-/diffbot/joint_state_controller/extra_joints
-/diffbot/joint_state_controller/publish_rate
-/diffbot/joint_state_controller/type
-/diffbot/mobile_base_controller/base_frame_id
-/diffbot/mobile_base_controller/left_wheel
-/diffbot/mobile_base_controller/pose_covariance_diagonal
-/diffbot/mobile_base_controller/publish_rate
-/diffbot/mobile_base_controller/right_wheel
-/diffbot/mobile_base_controller/twist_covariance_diagonal
-/diffbot/mobile_base_controller/type
-/diffbot/mobile_base_controller/wheel_radius
-/diffbot/mobile_base_controller/wheel_separation
-/robot_description
-/rosdistro
-/roslaunch/uris/host_tensorbook__46157
-/roslaunch/uris/host_ubuntu__33729
-/rosversion
-/run_id
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="gp">$</span> rosparam list
+<span class="go">/diffbot/hardware_interface/joints</span>
+<span class="go">/diffbot/joint_state_controller/extra_joints</span>
+<span class="go">/diffbot/joint_state_controller/publish_rate</span>
+<span class="go">/diffbot/joint_state_controller/type</span>
+<span class="go">/diffbot/mobile_base_controller/base_frame_id</span>
+<span class="go">/diffbot/mobile_base_controller/left_wheel</span>
+<span class="go">/diffbot/mobile_base_controller/pose_covariance_diagonal</span>
+<span class="go">/diffbot/mobile_base_controller/publish_rate</span>
+<span class="go">/diffbot/mobile_base_controller/right_wheel</span>
+<span class="go">/diffbot/mobile_base_controller/twist_covariance_diagonal</span>
+<span class="go">/diffbot/mobile_base_controller/type</span>
+<span class="go">/diffbot/mobile_base_controller/wheel_radius</span>
+<span class="go">/diffbot/mobile_base_controller/wheel_separation</span>
+<span class="go">/robot_description</span>
+<span class="go">/rosdistro</span>
+<span class="go">/roslaunch/uris/host_tensorbook__46157</span>
+<span class="go">/roslaunch/uris/host_ubuntu__33729</span>
+<span class="go">/rosversion</span>
+<span class="go">/run_id</span>
+</code></pre></div>
 <h2 id="additional-requirements">Additional Requirements</h2>
 <p>Because the hardware interface subscribes to the encoders, that are connected to the Teensy MCU, and publishes to the motors via the motr driver node,
 another launch will be required to run these additional nodes. See the <code>diffbot_bringup</code> package for this setup.</p>
 <h2 id="simulation">Simulation</h2>
 <p>To have a simulation showing DiffBot, the second step is to use the <a href="https://github.com/fjp/diffbot/blob/master/ros/src/diffbot_gazebo/launch/diffbot_base.launch"><code>diffbot_gazebo/launch/diffbot_base.launch</code></a> on the work pc:</p>
-<pre><code class="language-console">$ roslaunch diffbot_gazebo diffbot_base.launch
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="gp">$</span> roslaunch diffbot_gazebo diffbot_base.launch
+</code></pre></div>
 <p>This will launch the gazebo simulation, which can make use of the running controllers inside the controller manager too:</p>
 <figure>
     <a href="https://raw.githubusercontent.com/fjp/diffbot/master/docs/resources/ros_control_gazebo.png"><img src="https://raw.githubusercontent.com/fjp/diffbot/master/docs/resources/ros_control_gazebo.png"></a>

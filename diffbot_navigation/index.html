@@ -29,9 +29,12 @@
     
     <script src="../js/jquery-3.5.1.min.js"></script>
     <script src="../js/jquery.fitvids.js"></script>
+    <!-- Arithmatex -->
     <script src="../js/config.js"></script>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <!-- UML diagrams using Mermaid -->
+    <script src="https://unpkg.com/mermaid@8.6.4/dist/mermaid.min.js"></script>
 
     
       
@@ -696,28 +699,28 @@
     <figcaption>Navigation Stack Overview.</figcaption>
 </figure>
 
-<pre><code class="language-console">fjp@diffbot:~/catkin_ws/src/diffbot$ catkin create pkg diffbot_navigation --catkin-deps amcl map_server move_base diffbot_bringup                           
-Creating package &quot;diffbot_navigation&quot; in &quot;/home/fjp/git/ros_ws/src/diffbot&quot;...
-Created file diffbot_navigation/package.xml
-Created file diffbot_navigation/CMakeLists.txt
-Successfully created package files in /home/fjp/git/ros_ws/src/diffbot/diffbot_navigation.
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="gp">fjp@diffbot:~/catkin_ws/src/diffbot$</span> catkin create pkg diffbot_navigation --catkin-deps amcl map_server move_base diffbot_bringup                           
+<span class="go">Creating package &quot;diffbot_navigation&quot; in &quot;/home/fjp/git/ros_ws/src/diffbot&quot;...</span>
+<span class="go">Created file diffbot_navigation/package.xml</span>
+<span class="go">Created file diffbot_navigation/CMakeLists.txt</span>
+<span class="go">Successfully created package files in /home/fjp/git/ros_ws/src/diffbot/diffbot_navigation.</span>
+</code></pre></div>
 <p>We also need the following ROS packages that can be installed from the ROS Ubuntu packages:</p>
-<pre><code class="language-console">$ sudo apt install ros-noetic-dwa-local-planner ros-noetic-amcl ros-noetic-map-server ros-noetic-move-base
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="gp">$</span> sudo apt install ros-noetic-dwa-local-planner ros-noetic-amcl ros-noetic-map-server ros-noetic-move-base
+</code></pre></div>
 <p>After this we create the required launch files and parameter configurations. These will be used for the simulation and the real robot.
 First we focus on the simulation in Gazebo.</p>
 <h3 id="launch-files">Launch files</h3>
 <p>All launch files are in the folder named <code>launch</code> of the <code>diffbot_navigation</code> package.</p>
 <p>Inside the <code>move_base.launch</code> it is important to remap the following topics:</p>
-<pre><code class="language-xml">  &lt;!-- Arguments --&gt;
-  &lt;arg name=&quot;cmd_vel_topic&quot; default=&quot;/diffbot/mobile_base_controller/cmd_vel&quot; /&gt;
-  &lt;arg name=&quot;odom_topic&quot; default=&quot;/diffbot/mobile_base_controller/odom&quot; /&gt;
+<div class="highlight"><pre><span></span><code>  <span class="c">&lt;!-- Arguments --&gt;</span>
+  <span class="nt">&lt;arg</span> <span class="na">name=</span><span class="s">&quot;cmd_vel_topic&quot;</span> <span class="na">default=</span><span class="s">&quot;/diffbot/mobile_base_controller/cmd_vel&quot;</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;arg</span> <span class="na">name=</span><span class="s">&quot;odom_topic&quot;</span> <span class="na">default=</span><span class="s">&quot;/diffbot/mobile_base_controller/odom&quot;</span> <span class="nt">/&gt;</span>
 ...
-    &lt;!-- remappings of move_base node --&gt;
-    &lt;remap from=&quot;cmd_vel&quot; to=&quot;$(arg cmd_vel_topic)&quot;/&gt;
-    &lt;remap from=&quot;odom&quot; to=&quot;$(arg odom_topic)&quot;/&gt;
-</code></pre>
+    <span class="c">&lt;!-- remappings of move_base node --&gt;</span>
+    <span class="nt">&lt;remap</span> <span class="na">from=</span><span class="s">&quot;cmd_vel&quot;</span> <span class="na">to=</span><span class="s">&quot;$(arg cmd_vel_topic)&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;remap</span> <span class="na">from=</span><span class="s">&quot;odom&quot;</span> <span class="na">to=</span><span class="s">&quot;$(arg odom_topic)&quot;</span><span class="nt">/&gt;</span>
+</code></pre></div>
 <h3 id="parameter-configuration">Parameter Configuration</h3>
 <p>The parameters for the navigation package go into the <code>config</code> (for some robots named <code>param</code>) folder.
 Most of them can be changed during runtime using <a href="http://wiki.ros.org/dynamic_reconfigure">dynamic reconfigure</a> with the <a href="http://wiki.ros.org/rqt_reconfigure"><code>rqt_reconfigure</code> gui</a>.</p>
@@ -759,8 +762,8 @@ Using slam_gmapping, you can create a 2-D occupancy grid map (like a building fl
 <p>To navigate the robot in the simulation run the following command but make sure to first download the 
 <a href="https://github.com/ROBOTIS-GIT/turtlebot3_simulations/tree/master/turtlebot3_gazebo/models/turtlebot3_world">turtlebot3_world</a><br />
 to your <code>~/.gazebo/models/</code> folder. This is required because the <code>turtlebot3_world.world</code> file references the <code>turtlebot3_world</code> model.</p>
-<pre><code class="language-console">roslaunch diffbot_navigation diffbot.launch world_name:='$(find diffbot_gazebo)/worlds/turtlebot3_world.world'
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="go">roslaunch diffbot_navigation diffbot.launch world_name:=&#39;$(find diffbot_gazebo)/worlds/turtlebot3_world.world&#39;</span>
+</code></pre></div>
 <p>This will spawn DiffBot inside the turtlebot3 world inside Gazebo and visualize the elements of the navigation stack in RViz.</p>
 <figure>
     <a href="https://youtu.be/2SwFTrJ1Ofg"><img src="https://github.com/fjp/diffbot/blob/master/docs/resources/navigation/diffbot-navigation-gazebo-turtlebot3-world-small.gif"></a>
