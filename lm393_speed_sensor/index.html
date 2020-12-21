@@ -640,14 +640,14 @@ This provides an easy to extend interface for the speed sensor (<a href="https:/
 The code consists of a class LM393SpeedSensor which has two interrupt service routines (ISR) methods.
 Using the RPi.GPIO interrupt capabilities, these ISR methods are used as callback functions when the sensor measures a falling
 edge. This is the case when the rotary disk spins and the optocoupler measures a high to low signal due to the spinning disk. </p>
-<p>The sensor API is implemented in the <a href="https://github.com/fjp/2wd-robot/blob/master/ros/src/lm393_speed_sensor/src/lm393_speed_sensor.py"><code>lm393_speed_sensor.py</code></a> python module. Executing the module will result in the following output when the motors are spinning freely with full speed and using some force to slow them down. We see that the <a href="https://en.wikipedia.org/wiki/Rotational_speed">rotational speed</a> $\omega$, measured in RPM (<a href="https://en.wikipedia.org/wiki/Revolutions_per_minute">revolutions per minute</a>) changes.</p>
+<p>The sensor API is implemented in the <a href="https://github.com/fjp/2wd-robot/blob/master/ros/src/lm393_speed_sensor/src/lm393_speed_sensor.py"><code>lm393_speed_sensor.py</code></a> python module. Executing the module will result in the following output when the motors are spinning freely with full speed and using some force to slow them down. We see that the <a href="https://en.wikipedia.org/wiki/Rotational_speed">rotational speed</a> <span class="arithmatex">\(\omega\)</span>, measured in RPM (<a href="https://en.wikipedia.org/wiki/Revolutions_per_minute">revolutions per minute</a>) changes.</p>
 <pre><code class="language-bash">fjp@ubuntu:~/git/2wd-robot/ros/src/lm393_speed_sensor/src$ sudo python lm393_speed_sensor.py
 TODO
 </code></pre>
-<p>The <a href="https://en.wikipedia.org/wiki/Rotational_speed">rotational speed</a> $\omega$ values will be converted to tangential velocity values using the radius $r$ of the wheels.</p>
-<p>$$
+<p>The <a href="https://en.wikipedia.org/wiki/Rotational_speed">rotational speed</a> <span class="arithmatex">\(\omega\)</span> values will be converted to tangential velocity values using the radius <span class="arithmatex">\(r\)</span> of the wheels.</p>
+<div class="arithmatex">\[
 v = \omega \cdot r = 2 \pi n \cdot r
-$$</p>
+\]</div>
 <h4 id="ros-node-for-lm393-speed-sensor">ROS Node for LM393 Speed Sensor</h4>
 <p>ROS provides the <a href="http://docs.ros.org/api/nav_msgs/html/msg/Odometry.html">Odometry Message</a> in the 
 <a href="https://wiki.ros.org/sensor_msgs">nav_msgs header</a>. 
