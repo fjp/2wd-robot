@@ -694,6 +694,16 @@ which measure the actual number of revolutions of the wheels.</p>
 <p>Velocity is speed in a direction. A robot can be moving 10cm/s forwards or backwards; in both cases, the speed is the same but the velocity is different.</p>
 </div>
 <h3 id="acceleration-as-change-in-velocity">Acceleration as Change in Velocity</h3>
+<p>To get a true picture of the motion of a robot, we need to divide its motion into
+small segments <span class="arithmatex">\(s_1,s_2,\dots\)</span> and measure the distance and time for each segment individually. 
+Then, we can compute the velocities for each segment. In symbols, if we denote the length of the
+segment si by <span class="arithmatex">\(\Delta s_i = x_{i+1} − x_i\)</span> and the time it takes the robot to cross segment si by
+<span class="arithmatex">\(\Delta t_i = t_{i+1} − t_i\)</span> , then <span class="arithmatex">\(v_i\)</span> , the velocity in segment <span class="arithmatex">\(s_i\)</span> is given by:</p>
+<div class="arithmatex">\[
+v_i = \frac{\Delta s_i}{\Delta t_i}
+\]</div>
+<p>Acceleration is defined as the change in velocity over a period of time</p>
+<div class="arithmatex">\[a_i = \frac{\Delta v_i}{\Delta t_i}\]</div>
                 
               
               
