@@ -78,7 +78,7 @@ int32[2] encoders
 The generated messages in this packages are used on the Teensy microcontroller, which is using [`rosserial`](http://wiki.ros.org/rosserial).
 Integrating these messages requires the following steps.
 
-- Generate rosserial libraries in a temporary folder
+- Generate rosserial libraries in a temporary folder using the [`make_libraries`](http://wiki.ros.org/rosserial/Tutorials/Adding%20Other%20Messages) script:
 
 ```console
 rosrun rosserial_client make_libraries ~/Arduino/tmp/
@@ -91,3 +91,9 @@ rosrun rosserial_client make_libraries ~/Arduino/tmp/
 ### Usage
 
 The new messages, specific to DiffBot, can be used by including the generated header, for example `#include <diffbot_msgs/Encoder.h>`.
+
+
+
+### References
+
+- [Tutorials Arduino IDE Setup](http://wiki.ros.org/rosserial_arduino/Tutorials/Arduino%20IDE%20Setup)

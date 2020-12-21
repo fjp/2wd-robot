@@ -26,8 +26,17 @@ Here the instructions to setup Teensyduino in Linux are listed:
 The first step can be used on the work PC and the Raspberry Pi to enable the USB communication with the Teensy board.
 Step two of these instructions are only necessary on the work PC to actually program the Teensy board.
 
+!!! note
+    Make sure to download the Arduino IDE from the website and don't install it from the Ubuntu repositories.
+
+
+The following video shows installation process, 
+more instructions to setup the Arduino IDE can be found in the [ROS wiki](http://wiki.ros.org/rosserial_arduino/Tutorials/Arduino%20IDE%20Setup).
+
 
 <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/k56e-KBiP-w" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+
 
 
 To check if the connection to the Teensy board works use these commands on the Raspberry Pi:
@@ -85,4 +94,11 @@ Note that the rosserial node needs to be stopped to flash new sketches to the Te
 
 Each [DG01D-E](https://www.sparkfun.com/products/16413) motor has two signal pins for its built-in encoder. For these, the Teensy pins 5, 6 are used for the left encoder and 7, 8 are used for the right one, see also the [Teensy pinout](https://www.pjrc.com/teensy/pinout.html).
 
-TODO add teensy pinout image and connection schematic
+
+<figure>
+    <a href="hhttps://raw.githubusercontent.com/fjp/diffbot/master/docs/resources/datasheets/teensy40-pinout01.png"><img src="https://raw.githubusercontent.com/fjp/diffbot/master/docs/resources/datasheets/teensy40-pinout01.png"></a>
+    <figcaption>Teensy 4.0 Pins.</figcaption>
+</figure>
+
+
+TODO add connection schematic
