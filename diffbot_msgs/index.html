@@ -516,6 +516,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    References
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -655,6 +662,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    References
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -738,7 +752,7 @@ where both are definitions from the <a href="https://wiki.ros.org/sensor_msgs"><
 <p>The generated messages in this packages are used on the Teensy microcontroller, which is using <a href="http://wiki.ros.org/rosserial"><code>rosserial</code></a>.
 Integrating these messages requires the following steps.</p>
 <ul>
-<li>Generate rosserial libraries in a temporary folder</li>
+<li>Generate rosserial libraries in a temporary folder using the <a href="http://wiki.ros.org/rosserial/Tutorials/Adding%20Other%20Messages"><code>make_libraries</code></a> script:</li>
 </ul>
 <div class="highlight"><pre><span></span><code><span class="go">rosrun rosserial_client make_libraries ~/Arduino/tmp/</span>
 </code></pre></div>
@@ -748,6 +762,10 @@ Integrating these messages requires the following steps.</p>
 </ul>
 <h3 id="usage">Usage</h3>
 <p>The new messages, specific to DiffBot, can be used by including the generated header, for example <code>#include &lt;diffbot_msgs/Encoder.h&gt;</code>.</p>
+<h3 id="references">References</h3>
+<ul>
+<li><a href="http://wiki.ros.org/rosserial_arduino/Tutorials/Arduino%20IDE%20Setup">Tutorials Arduino IDE Setup</a></li>
+</ul>
                 
               
               
