@@ -28,15 +28,31 @@ The following video from Sparkfun gives an overview of Encoders
 
 ### Distance, Velocity and Time
 
-In general, if a robot moves at a constant applied to the motors it causes the wheels to rotate, which in turn causes the robot velocity $v$ for a period of time $t$, the distance $s$ it moves is $s = vt$. When power is to move at some velocity. However, we cannot specify that a certain power causes a certain velocity
+In general, if a robot moves at a constant applied to the motors it causes the wheels to rotate, which in turn causes the robot velocity $v$ for a period of time $t$, the distance $s$ it moves is $s = v \cdot t$. When power is to move at some velocity. However, we cannot specify that a certain power causes a certain velocity
 
 - No two electrical or mechanical components are ever precisely identical.
 - The environment affects the velocity of a robot because of different friction of the surface
 - External forces can affect the velocity of a robot. It needs more power to sustain a specific velocity when moving uphill and less power when moving downhill, because the force of gravity decreases and increases the velocity.
 
 
-Velocity is speed in a direction. A robot can be moving 10cm/s forwards or backwards; in both cases, the speed is the same but the velocity is different.
-{: .notice }
+!!! note
+    Velocity is speed in a direction. A robot can be moving 10cm/s forwards or backwards; in both cases, the speed is the same but the velocity is different.
+
 
 ### Acceleration as Change in Velocity
+
+To get a true picture of the motion of a robot, we need to divide its motion into
+small segments $s_1,s_2,\dots$ and measure the distance and time for each segment individually. 
+Then, we can compute the velocities for each segment. In symbols, if we denote the length of the
+segment si by $\Delta s_i = x_{i+1} − x_i$ and the time it takes the robot to cross segment si by
+$\Delta t_i = t_{i+1} − t_i$ , then $v_i$ , the velocity in segment $s_i$ is given by:
+
+$$
+v_i = \frac{\Delta s_i}{\Delta t_i}
+$$
+
+
+Acceleration is defined as the change in velocity over a period of time
+
+$$a_i = \frac{\Delta v_i}{\Delta t_i}$$
 
