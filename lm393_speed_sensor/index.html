@@ -625,7 +625,13 @@ the software. Howerver, this won't be as accurate as using a quadrature encoder 
 {: .notice }</p>
 <p>To measure how far the robot has driven, we use the <a href="https://joy-it.net/en/products/SEN-Speed">LM393 speed sensor</a> from Joy-IT as <a href="https://en.wikipedia.org/wiki/Odometry">odometry</a> sensor. 
 First, we will create a ROS package with <a href="https://catkin-tools.readthedocs.io/en/latest/verbs/catkin_create.html#catkin-create-pkg"><code>catkin create pkg PKG_NAME [--catkin-deps [DEP [DEP ...]]]</code></a>:</p>
-<div class="highlight"><pre><span></span><code>fjp@ubuntu:~/git/2wd-robot/ros/src$ catkin create pkg lm393_speed_sensor --catkin-deps rospy roscpp nav_msgs
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>fjp@ubuntu:~/git/2wd-robot/ros/src$ catkin create pkg lm393_speed_sensor --catkin-deps rospy roscpp nav_msgs
 Creating package <span class="s2">&quot;lm393_speed_sensor&quot;</span> in <span class="s2">&quot;/home/fjp/git/2wd-robot/ros/src&quot;</span>...
 Created file lm393_speed_sensor/CMakeLists.txt
 Created file lm393_speed_sensor/package.xml
@@ -633,6 +639,7 @@ Created folder lm393_speed_sensor/include/lm393_speed_sensor
 Created folder lm393_speed_sensor/src
 Successfully created package files in /home/fjp/git/2wd-robot/ros/src/lm393_speed_sensor.
 </code></pre></div>
+</td></tr></table>
 <p>The package depends on the two ROS <a href="http://wiki.ros.org/Client%20Libraries">client libraries</a> <a href="http://wiki.ros.org/rospy"><code>rospy</code></a> and <a href="http://wiki.ros.org/roscpp"><code>roscpp</code></a>. The current implementation uses python and the RPi.GPIO library for interrupts. To achieve more percise results, C++ should be used instead. 
 To signalise the current pose of the robot in the odometry frame, the <a href="http://docs.ros.org/melodic/api/sensor_msgs/html/msg/Range.html"><code>nav_msgs/Range</code></a> message is used.</p>
 <h4 id="connection">Connection</h4>
@@ -644,9 +651,11 @@ The code consists of a class LM393SpeedSensor which has two interrupt service ro
 Using the RPi.GPIO interrupt capabilities, these ISR methods are used as callback functions when the sensor measures a falling
 edge. This is the case when the rotary disk spins and the optocoupler measures a high to low signal due to the spinning disk. </p>
 <p>The sensor API is implemented in the <a href="https://github.com/fjp/2wd-robot/blob/master/ros/src/lm393_speed_sensor/src/lm393_speed_sensor.py"><code>lm393_speed_sensor.py</code></a> python module. Executing the module will result in the following output when the motors are spinning freely with full speed and using some force to slow them down. We see that the <a href="https://en.wikipedia.org/wiki/Rotational_speed">rotational speed</a> <span class="arithmatex">\(\omega\)</span>, measured in RPM (<a href="https://en.wikipedia.org/wiki/Revolutions_per_minute">revolutions per minute</a>) changes.</p>
-<div class="highlight"><pre><span></span><code>fjp@ubuntu:~/git/2wd-robot/ros/src/lm393_speed_sensor/src$ sudo python lm393_speed_sensor.py
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>fjp@ubuntu:~/git/2wd-robot/ros/src/lm393_speed_sensor/src$ sudo python lm393_speed_sensor.py
 TODO
 </code></pre></div>
+</td></tr></table>
 <p>The <a href="https://en.wikipedia.org/wiki/Rotational_speed">rotational speed</a> <span class="arithmatex">\(\omega\)</span> values will be converted to tangential velocity values using the radius <span class="arithmatex">\(r\)</span> of the wheels.</p>
 <div class="arithmatex">\[
 v = \omega \cdot r = 2 \pi n \cdot r
@@ -658,26 +667,36 @@ This message type can be used to write a wrapper that will act as a ROS node for
 <p>To design this node we will send out measurements periodically over a topic of type <code>nav_msgs/Odometry</code>.
 The code for this node is in <a href="https://github.com/fjp/2wd-robot/blob/master/ros/src/lm393_speed_sensor/src/speed_sensor.py"><code>speed_sensor.py</code></a>.</p>
 <p>After writing the node we need to build the packages in the workspace with <a href="https://catkin-tools.readthedocs.io/en/latest/verbs/catkin_build.html"><code>catkin build</code></a>.</p>
-<div class="highlight"><pre><span></span><code>fjp@ubuntu:~/git/2wd-robot/ros$ catkin build
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>fjp@ubuntu:~/git/2wd-robot/ros$ catkin build
 TODO
 </code></pre></div>
+</td></tr></table>
 <p>As the final note of the build output suggests, we have to <code>source</code> the <code>setup.bash</code> files in the <code>devel</code> space.</p>
-<div class="highlight"><pre><span></span><code>fjp@ubuntu:~/git/2wd-robot/ros$ <span class="nb">source</span> devel/setup.bash
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>fjp@ubuntu:~/git/2wd-robot/ros$ <span class="nb">source</span> devel/setup.bash
 </code></pre></div>
+</td></tr></table>
 <p>To make the <code>speed_sensor</code> node executable we have to modify the <code>speed_sensor.py</code> file:</p>
-<div class="highlight"><pre><span></span><code>fjp@ubuntu:~/git/2wd-robot/ros/src/grove_ultrasonic_ranger/src$ sudo chmod a+x speed_sensor.py
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>fjp@ubuntu:~/git/2wd-robot/ros/src/grove_ultrasonic_ranger/src$ sudo chmod a+x speed_sensor.py
 </code></pre></div>
+</td></tr></table>
 <p>Then we can test the node using <code>rosrun</code>:</p>
-<div class="highlight"><pre><span></span><code>fjp@ubuntu:~/git/2wd-robot/ros$ sudo su
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>fjp@ubuntu:~/git/2wd-robot/ros$ sudo su
 <span class="o">[</span>sudo<span class="o">]</span> password <span class="k">for</span> fjp:
 root@ubuntu:/home/fjp/git/2wd-robot/ros# <span class="nb">source</span> devel/setup.bash 
 root@ubuntu:/home/fjp/git/2wd-robot/ros# rosrun lm393_speed_sensor speed_sensor.py 
 </code></pre></div>
+</td></tr></table>
 <p>This lets the node publish range messages which we can capture in another terminal window using <code>rostopic</code>.
 First we use <code>rostopic list</code> to find the name of the topic we are interested in:</p>
-<div class="highlight"><pre><span></span><code>fjp@ubuntu:~/git/2wd-robot/ros$ rostopic list
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>fjp@ubuntu:~/git/2wd-robot/ros$ rostopic list
 TODO
 </code></pre></div>
+</td></tr></table>
 <p>We named our topic <code>/odom</code> which we can use with the <code>rostopic echo</code> command to see the published messages:</p>
                 
               

@@ -670,8 +670,9 @@
                 <h2 id="ros-installation">ROS Installation</h2>
 <p>The robot setup is supposed to run on Ubuntu Mate 20.04 Focal Fossa. <a href="http://wiki.ros.org/melodic">ROS Noetic</a> is intended to run with this Ubuntu version.</p>
 <p>Another program that is required to run ROS nodes written with the <code>rospy</code> client library is <code>python-is-python3</code>. Install it with:</p>
-<div class="highlight"><pre><span></span><code><span class="go">sudo apt install python-is-python3</span>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="go">sudo apt install python-is-python3</span>
 </code></pre></div>
+</td></tr></table>
 <h2 id="build-tool-catkin_tools">Build Tool: <code>catkin_tools</code></h2>
 <p>To work with ROS we will use <a href="https://catkin-tools.readthedocs.io/en/latest/index.html"><code>catkin_tools</code></a> 
 instead of <a href="http://wiki.ros.org/catkin/commands/catkin_make"><code>catkin_make</code></a>. <code>catkin_tools</code> provide commands such as <a href="https://catkin-tools.readthedocs.io/en/latest/verbs/catkin_build.html"><code>catkin build</code></a> which we will use instead of <a href="https://wiki.ros.org/catkin/commands/catkin_make"><code>catkin_make</code></a> because the <code>catkin_tools</code> are more actively developed than <code>catkin_make</code>
@@ -679,7 +680,36 @@ instead of <a href="http://wiki.ros.org/catkin/commands/catkin_make"><code>catki
 <p>Follow the <a href="https://catkin-tools.readthedocs.io/en/latest/installing.html#installing-on-ubuntu-with-apt-get">instructions to insall</a> <code>catkin_tools</code> from a Ubuntu package repository. After sucessfully installing <code>catkin_tools</code> we can create and initialize a workspace (called <code>ros</code> for this project) with the <a href="https://catkin-tools.readthedocs.io/en/latest/quick_start.html">commands listed in the build_tools documentation</a>:</p>
 <p>Note that we already <code>source</code>d the <code>setup.bash</code> while following the <a href="http://wiki.ros.org/melodic/Installation/Ubuntu">ROS installation instructions</a>.
 {: .notice }</p>
-<div class="highlight"><pre><span></span><code>fjp@ubuntu:~/git/2wd-robot/ros$ mkdir -p ~/git/2wd-robot/ros/src    <span class="c1"># Make a new workspace and source space</span>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>fjp@ubuntu:~/git/2wd-robot/ros$ mkdir -p ~/git/2wd-robot/ros/src    <span class="c1"># Make a new workspace and source space</span>
 fjp@ubuntu:~/git/2wd-robot/ros$ <span class="nb">cd</span> ~/git/2wd-robot/ros              <span class="c1"># Navigate to the workspace root</span>
 fjp@ubuntu:~/git/2wd-robot/ros$ catkin init                         <span class="c1"># Initialize it with a hidden marker file</span>
 Initializing catkin workspace in <span class="sb">`</span>/home/fjp/git/2wd-robot/ros<span class="sb">`</span>.
@@ -710,10 +740,50 @@ Blacklisted Packages:        None
 Workspace configuration appears valid.
 ----------------------------------------------------------------
 </code></pre></div>
+</td></tr></table>
 <h2 id="command-overview-of-catkin_tools">Command Overview of <code>catkin_tools</code></h2>
 <p>To <a href="https://catkin-tools.readthedocs.io/en/latest/quick_start.html#adding-packages-to-the-workspace">create packages</a>, which will be covered in the next posts in more depth, we will use <a href="https://catkin-tools.readthedocs.io/en/latest/verbs/catkin_create.html#catkin-create-pkg"><code>catkin create pkg PKG_NAME</code></a>.</p>
 <p>Building the workspace is done with <a href="https://catkin-tools.readthedocs.io/en/latest/quick_start.html#building-the-workspace"><code>catkin build</code></a>.</p>
-<div class="highlight"><pre><span></span><code>fjp@ubuntu:~/git/2wd-robot/ros$ catkin build
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>fjp@ubuntu:~/git/2wd-robot/ros$ catkin build
 ----------------------------------------------------------------
 Profile:                     default
 Extending:             <span class="o">[</span>env<span class="o">]</span> /opt/ros/melodic
@@ -754,9 +824,11 @@ Finished  <span class="o">&lt;&lt;&lt;</span> catkin_tools_prebuild             
 <span class="o">[</span>build<span class="o">]</span>   Failed:    None.
 <span class="o">[</span>build<span class="o">]</span> Runtime: <span class="m">10</span>.1 seconds total.
 </code></pre></div>
+</td></tr></table>
 <p>Finally the newly built packages have to be <a href="https://catkin-tools.readthedocs.io/en/latest/quick_start.html#loading-the-workspace-environment">loaded in the environment</a> using <code>source</code>.</p>
-<div class="highlight"><pre><span></span><code>fjp@ubuntu:~/git/2wd-robot/ros$ <span class="nb">source</span> ~/git/2wd-robot/ros/devel/setup.bash <span class="c1"># Load the workspace&#39;s environment</span>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>fjp@ubuntu:~/git/2wd-robot/ros$ <span class="nb">source</span> ~/git/2wd-robot/ros/devel/setup.bash <span class="c1"># Load the workspace&#39;s environment</span>
 </code></pre></div>
+</td></tr></table>
 <h2 id="resources">Resources</h2>
 <p>Although the <a href="https://wiki.ros.org/catkin/Tutorials">catkin tutorial</a> uses <code>catkin_make</code> it provides a helpful guide to create a workspace</p>
                 

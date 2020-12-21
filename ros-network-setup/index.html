@@ -633,14 +633,50 @@ on machines with more performance and sending goals to robots operating on less 
 <p>The setup between the work machine that handles compute heavy tasks and DiffBot is as follows:</p>
 <p>TODO image</p>
 <p>On DiffBot we configure the <code>ROS_MASTER_URI</code> to be the IP address of the work machine.</p>
-<div class="highlight"><pre><span></span><code><span class="go">export ROS_MASTER_URI=http://192.168.0.9:11311/</span>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="go">export ROS_MASTER_URI=http://192.168.0.9:11311/</span>
 </code></pre></div>
+</td></tr></table>
 <p>To test run the master on the work machine using the <code>roscore</code> command.
 Then run the the <code>listener</code> from the <code>roscpp_tutorials</code> package in another terminal:</p>
-<div class="highlight"><pre><span></span><code><span class="gp">fjp@workmachine:~/git/diffbot/ros$</span> rosrun roscpp_tutorials listener
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="gp">fjp@workmachine:~/git/diffbot/ros$</span> rosrun roscpp_tutorials listener
 </code></pre></div>
+</td></tr></table>
 <p>Then switch to a terminal on DiffBot's Raspberry Pi and run the <code>talker</code> from <code>roscpp_tutorials</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="gp">fjp@diffbot:~/git/diffbot/ros$</span> rosrun roscpp_tutorials talker 
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="gp">fjp@diffbot:~/git/diffbot/ros$</span> rosrun roscpp_tutorials talker 
 <span class="go">[ INFO] [1602018325.633133449]: hello world 0</span>
 <span class="go">[ INFO] [1602018325.733137152]: hello world 1</span>
 <span class="go">[ INFO] [1602018325.833112540]: hello world 2</span>
@@ -676,8 +712,16 @@ Then run the the <code>listener</code> from the <code>roscpp_tutorials</code> pa
 <span class="go">[ INFO] [1602018328.833170108]: hello world 32</span>
 <span class="go">[ INFO] [1602018328.933172402]: hello world 33</span>
 </code></pre></div>
+</td></tr></table>
 <p>Looking back at the terminal on the work machine you should see the output:</p>
-<div class="highlight"><pre><span></span><code><span class="go">fjp.github.io git:(master) rosrun roscpp_tutorials listener</span>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5
+6
+7
+8</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="go">fjp.github.io git:(master) rosrun roscpp_tutorials listener</span>
 <span class="go">[ INFO] [1602018328.330070016]: I heard: [hello world 27]</span>
 <span class="go">[ INFO] [1602018328.430244670]: I heard: [hello world 28]</span>
 <span class="go">[ INFO] [1602018328.530173113]: I heard: [hello world 29]</span>
@@ -686,6 +730,7 @@ Then run the the <code>listener</code> from the <code>roscpp_tutorials</code> pa
 <span class="go">[ INFO] [1602018328.830346566]: I heard: [hello world 32]</span>
 <span class="go">[ INFO] [1602018328.930009032]: I heard: [hello world 33]</span>
 </code></pre></div>
+</td></tr></table>
 <p>Note that it can take some time receiving the messages from DiffBot on the work machine, which we can see from the time stamps in the outputs above.</p>
                 
               

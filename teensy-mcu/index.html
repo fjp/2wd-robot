@@ -644,8 +644,9 @@
 and <code>/diffbot/ticks_right</code> ropics. For this rosserial is running on the Teensy MCU which allows it to create a node on the Teensy that can communicate with
 the ROS Master running on the Raspberry Pi.</p>
 <p>To setup rosserial on the work PC and the Raspberry Pi the following package has to be installed:</p>
-<div class="highlight"><pre><span></span><code><span class="go">sudo apt install ros-noetic-rosserial</span>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="go">sudo apt install ros-noetic-rosserial</span>
 </code></pre></div>
+</td></tr></table>
 <p>To program the Teensy board with the work PC the Arduino IDE with the Teensyduino add-on can be used. Other options are to use PlatformIO plugin for VSCode.
 How to install the Arduino IDE and Teensyduino is listed in the <a href="https://www.pjrc.com/teensy/td_download.html">instructions on the Teensy website</a>.
 Here the instructions to setup Teensyduino in Linux are listed:</p>
@@ -672,16 +673,23 @@ more instructions to setup the Arduino IDE can be found in the <a href="http://w
 <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/k56e-KBiP-w" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 <p>To check if the connection to the Teensy board works use these commands on the Raspberry Pi:</p>
-<div class="highlight"><pre><span></span><code><span class="gp">$</span> lsusb
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="gp">$</span> lsusb
 <span class="go">Bus 002 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub</span>
 <span class="go">Bus 001 Device 003: ID 16c0:0483 Van Ooijen Technische Informatica Teensyduino Serial</span>
 <span class="go">Bus 001 Device 002: ID 2109:3431 VIA Labs, Inc. Hub</span>
 <span class="go">Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub</span>
 </code></pre></div>
+</td></tr></table>
 <p>And to see on which serial port it is connected use:</p>
-<div class="highlight"><pre><span></span><code><span class="gp">$</span> ls /dev <span class="p">|</span> grep ttyACM0
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="gp">$</span> ls /dev <span class="p">|</span> grep ttyACM0
 <span class="go">ttyACM0</span>
 </code></pre></div>
+</td></tr></table>
 <p>If the output is empty it might be the case that the board is connected to another port like <code>ttyUSB0</code>.  </p>
 <h2 id="encoder-program">Encoder Program</h2>
 <p>When installing Teensyduino new example programs are provided. One of them is to test Encoders. 
@@ -692,7 +700,15 @@ The code for the motor encoders uses it as basis together with a pubsub example 
 <li>Start a ROS <a href="http://wiki.ros.org/Master">master</a> by executing <a href="http://wiki.ros.org/roscore"><code>roscore</code></a> in a new terminal.</li>
 <li>Create a rosserial node using <code>rosserial_python</code> package:</li>
 </ol>
-<div class="highlight"><pre><span></span><code><span class="gp">$</span> rosrun rosserial_python serial_node.py _port:<span class="o">=</span>/dev/ttyACM0 _baud:<span class="o">=</span><span class="m">115200</span>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="gp">$</span> rosrun rosserial_python serial_node.py _port:<span class="o">=</span>/dev/ttyACM0 _baud:<span class="o">=</span><span class="m">115200</span>
 <span class="go">[INFO] [1602784903.659869]: ROS Serial Python Node</span>
 <span class="go">[INFO] [1602784903.692366]: Connecting to /dev/ttyACM0 at 115200 baud</span>
 <span class="go">[INFO] [1602784905.809722]: Requesting topics...</span>
@@ -702,18 +718,109 @@ The code for the motor encoders uses it as basis together with a pubsub example 
 <span class="go">[INFO] [1602784905.856772]: Note: subscribe buffer size is 512 bytes</span>
 <span class="go">[INFO] [1602784905.861749]: Setup subscriber on /reset [std_msgs/Empty]</span>
 </code></pre></div>
+</td></tr></table>
 <p>In case of the following error, probably the wrong program is flashed to the Teensy board:</p>
-<div class="highlight"><pre><span></span><code><span class="go">[ERROR] [1602782376.724880]: Unable to sync with device; possible link problem or link software version mismatch such as hydro rosserial_python with groovy Arduino</span>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="go">[ERROR] [1602782376.724880]: Unable to sync with device; possible link problem or link software version mismatch such as hydro rosserial_python with groovy Arduino</span>
 </code></pre></div>
-<p>Note that the rosserial node needs to be stopped to flash new sketches to the Teensy board.
-{: .notice }</p>
+</td></tr></table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Note that the rosserial node needs to be stopped to flash new sketches to the Teensy board.</p>
+</div>
 <p>Each <a href="https://www.sparkfun.com/products/16413">DG01D-E</a> motor has two signal pins for its built-in encoder. For these, the Teensy pins 5, 6 are used for the left encoder and 7, 8 are used for the right one, see also the <a href="https://www.pjrc.com/teensy/pinout.html">Teensy pinout</a>.</p>
 <figure>
-    <a href="hhttps://raw.githubusercontent.com/fjp/diffbot/master/docs/resources/datasheets/teensy40-pinout01.png"><img src="https://raw.githubusercontent.com/fjp/diffbot/master/docs/resources/datasheets/teensy40-pinout01.png"></a>
+    <a href="hhttps://raw.githubusercontent.com/fjp/diffbot/noetic-devel/docs/resources/datasheets/teensy40-pinout01.png"><img src="https://raw.githubusercontent.com/fjp/diffbot/noetic-devel/docs/resources/datasheets/teensy40-pinout01.png"></a>
     <figcaption>Teensy 4.0 Pins.</figcaption>
 </figure>
 
 <p>TODO add connection schematic</p>
+<p>With one motor encoder connected to pins 5, 6, echo the <code>/encoder_ticks</code> topic:</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="go">rostopic echo /encoder_ticks</span>
+</code></pre></div>
+</td></tr></table>
+<p>Rotating a wheel attached to the motor shaft 360 degree (one full turn) will increase the first value of the encoders array:</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="go">---</span>
+<span class="go">header: </span>
+<span class="go">  seq: 190323</span>
+<span class="go">  stamp: </span>
+<span class="go">    secs: 0</span>
+<span class="go">    nsecs:         0</span>
+<span class="go">  frame_id: &#39;&#39;</span>
+<span class="go">encoders: [0, 0]</span>
+<span class="go">---</span>
+<span class="go">header: </span>
+<span class="go">  seq: 190324</span>
+<span class="go">  stamp: </span>
+<span class="go">    secs: 0</span>
+<span class="go">    nsecs:         0</span>
+<span class="go">  frame_id: &#39;&#39;</span>
+<span class="go">encoders: [230, 0]</span>
+<span class="go">---</span>
+<span class="go">header: </span>
+<span class="go">  seq: 190325</span>
+<span class="go">  stamp: </span>
+<span class="go">    secs: 0</span>
+<span class="go">    nsecs:         0</span>
+<span class="go">  frame_id: &#39;&#39;</span>
+<span class="go">encoders: [350, 0]</span>
+<span class="go">---</span>
+<span class="go">header: </span>
+<span class="go">  seq: 190326</span>
+<span class="go">  stamp: </span>
+<span class="go">    secs: 0</span>
+<span class="go">    nsecs:         0</span>
+<span class="go">  frame_id: &#39;&#39;</span>
+<span class="go">encoders: [480, 0]</span>
+<span class="go">---</span>
+<span class="go">header: </span>
+<span class="go">  seq: 190327</span>
+<span class="go">  stamp: </span>
+<span class="go">    secs: 0</span>
+<span class="go">    nsecs:         0</span>
+<span class="go">  frame_id: &#39;&#39;</span>
+<span class="go">encoders: [540, 0]</span>
+</code></pre></div>
+</td></tr></table>
+<p>The found value 540 for a full turn of the wheel is important for the hardware interface.</p>
                 
               
               

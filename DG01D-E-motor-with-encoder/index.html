@@ -716,19 +716,23 @@ To download and install Pico Scope software on Linux refer to the <a href="https
 <details markdown="1"><summary>Summary of installation instructions</summary>
 
 1. Add repository to the updater
-<div class="highlight"><pre><span></span><code><span class="go">sudo bash -c &#39;echo &quot;deb https://labs.picotech.com/debian/ picoscope main&quot; &gt;/etc/apt/sources.list.d/picoscope.list&#39;</span>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="go">sudo bash -c &#39;echo &quot;deb https://labs.picotech.com/debian/ picoscope main&quot; &gt;/etc/apt/sources.list.d/picoscope.list&#39;</span>
 </code></pre></div>
+</td></tr></table>
 2. Import public key
-<div class="highlight"><pre><span></span><code><span class="go">wget -O - https://labs.picotech.com/debian/dists/picoscope/Release.gpg.key | sudo apt-key add -</span>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="go">wget -O - https://labs.picotech.com/debian/dists/picoscope/Release.gpg.key | sudo apt-key add -</span>
 </code></pre></div>
+</td></tr></table>
 3. Update package manager cache
-<div class="highlight"><pre><span></span><code><span class="go">sudo apt-get update</span>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="go">sudo apt-get update</span>
 </code></pre></div>
+</td></tr></table>
 
 4. Install PicoScope
 
-<div class="highlight"><pre><span></span><code><span class="go">sudo apt-get install picoscope</span>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="go">sudo apt-get install picoscope</span>
 </code></pre></div>
+</td></tr></table>
 
 </details>
                 

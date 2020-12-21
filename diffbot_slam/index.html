@@ -765,24 +765,31 @@
 <p>This package contains launch files and configurations for different 
 <a href="https://en.wikipedia.org/wiki/Simultaneous_localization_and_mapping">simultaneous localization and mapping (SLAM)</a> algorithms
 to map the environment of the robot in 2D, although some of these algorithms can be used to map in 3D.</p>
-<div class="highlight"><pre><span></span><code><span class="gp">fjp@diffbot:~/catkin_ws/src/diffbot$</span> catkin create pkg diffbot_slam --catkin-deps diffbot_navigation gmapping
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="gp">fjp@diffbot:~/catkin_ws/src/diffbot$</span> catkin create pkg diffbot_slam --catkin-deps diffbot_navigation gmapping
 <span class="go">Creating package &quot;diffbot_slam&quot; in &quot;/home/fjp/git/ros_ws/src/diffbot&quot;...</span>
 <span class="go">Created file diffbot_slam/package.xml</span>
 <span class="go">Created file diffbot_slam/CMakeLists.txt</span>
 <span class="go">Successfully created package files in /home/fjp/git/ros_ws/src/diffbot/diffbot_slam.</span>
 </code></pre></div>
+</td></tr></table>
 <p>Additional runtime dependencies are: <code>cartographer_ros</code>, <code>hector_slam</code>, <code>frontier_exploration</code> and <code>explore_lite</code>. These
 are added to this workspace using <a href="https://github.com/dirk-thomas/vcstool"><code>vcstool</code></a> (TODO).</p>
 <p>As you can see this package has lots of dependencies to test different slam implementations and frontier exploration approaches.
 To run this package these dependencies need to be installed and are set as <code>exec_depend</code> in the <code>package.xml</code>. Currently only <code>gmapping</code> provides a ROS Noetic Ubuntu package that can be installed directly with:</p>
-<div class="highlight"><pre><span></span><code><span class="go">sudo apt install ros-noetic-gmapping</span>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="go">sudo apt install ros-noetic-gmapping</span>
 </code></pre></div>
+</td></tr></table>
 <p>In case you want to try more advanced SLAM algorithms, such as <code>karto_slam</code> or <code>cartographer_ros</code> you need the following Ubuntu package dependencies.
 Alternatively you can install from source by building the cloned git repository in your catkin workspace.</p>
 <p>Take the required installation size into account. For example <code>karto_slam</code> needs approximately 125MB because it will also install <code>ros-noetic-open-karto</code>.
 {: .notice }</p>
-<div class="highlight"><pre><span></span><code><span class="go">sudo apt install ros-noetic-slam-karto</span>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="go">sudo apt install ros-noetic-slam-karto</span>
 </code></pre></div>
+</td></tr></table>
 <h3 id="slam">SLAM</h3>
 <p>SLAM stands for Simultaneous Localization and Mapping sometimes refered to as Concurrent Localization and Mappping (CLAM). The SLAM algorithm combines localization and mapping, where a robot has access only to its own movement and sensory data. The robot must build a map while simultaneously localizing itself relative to the map. See also this <a href="https://fjp.at/posts/slam/fastslam/">blog post on FastSLAM</a>.</p>
 <p>To use the following slam algorithms, we need a mobile robot that provides odometry data and is equipped with a horizontally-mounted, 
@@ -819,7 +826,17 @@ Therefore, its necessary to remap the <code>/scan</code> topic to <code>/diffbot
 <p>Inside this package in the <a href="https://github.com/fjp/diffbot/blob/noetic-devel/diffbot_slam/launch/diffbot_gmapping.launch"><code>launch/gmapping.launch</code></a> 
 it is important to map the <code>scan</code> topic to laser scanner topic published by Diffbot.
 Remappings are done in the <a href="http://wiki.ros.org/roslaunch/XML/node">node tag</a>. Here, for the <code>gmapping.launch</code> in the <code>gmapping</code> node: </p>
-<div class="highlight"><pre><span></span><code><span class="nt">&lt;launch&gt;</span>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="nt">&lt;launch&gt;</span>
   <span class="c">&lt;!-- Arguments --&gt;</span>
   <span class="nt">&lt;arg</span> <span class="na">name=</span><span class="s">&quot;scan_topic&quot;</span>  <span class="na">default=</span><span class="s">&quot;diffbot/scan&quot;</span><span class="nt">/&gt;</span>
 ...
@@ -831,17 +848,20 @@ Remappings are done in the <a href="http://wiki.ros.org/roslaunch/XML/node">node
   <span class="nt">&lt;/node&gt;</span>
 <span class="nt">&lt;/launch&gt;</span>
 </code></pre></div>
+</td></tr></table>
 <h4 id="parameter-configurations">Parameter Configurations</h4>
 <p>Most of the configrations are the same as <a href="https://github.com/ROBOTIS-GIT/turtlebot3/tree/master/turtlebot3_slam/config"><code>turtlebot3_slam/config</code></a>.
 For detailed description of what each parameter does, please check the individual package documentation of the different SLAM methods. </p>
 <h3 id="gazebo-simulation-tests">Gazebo Simulation Tests</h3>
 <p>To test SLAM in the Gazebo simulator run the following two launch files in separate terminals.</p>
 <p>First run the simulation with:</p>
-<div class="highlight"><pre><span></span><code><span class="go">roslaunch diffbot_gazebo diffbot.launch world_name:=&#39;$(find diffbot_gazebo)/worlds/turtlebot3_world.world&#39;</span>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="go">roslaunch diffbot_gazebo diffbot.launch world_name:=&#39;$(find diffbot_gazebo)/worlds/turtlebot3_world.world&#39;</span>
 </code></pre></div>
+</td></tr></table>
 <p>and in a second terminal execute the SLAM algorithm:</p>
-<div class="highlight"><pre><span></span><code><span class="go">roslaunch diffbot_slam diffbot_slam.launch slam_method:=gmapping</span>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="go">roslaunch diffbot_slam diffbot_slam.launch slam_method:=gmapping</span>
 </code></pre></div>
+</td></tr></table>
 <p>Here you can choose between different algorithms by changing the value of the <code>slam_method</code> argument.
 Possible values are <code>gmapping</code> (the default), <code>karto</code>, <code>hector</code> and <code>cartographer</code>.</p>
 <p>The ROS node graph will look like the following:</p>

@@ -751,7 +751,13 @@ file. The launch file will </p>
 </ul>
 <h3 id="diffbot_base-package">diffbot_base Package</h3>
 <p>The <code>diffbot_base</code> package is created with <code>catkin-tools</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="gp">fjp@diffbot:/home/fjp/catkin_ws/src$</span> catkin create pkg diffbot_base --catkin-deps diff_drive_controller hardware_interface roscpp sensor_msgs rosparam_shortcuts                 
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="gp">fjp@diffbot:/home/fjp/catkin_ws/src$</span> catkin create pkg diffbot_base --catkin-deps diff_drive_controller hardware_interface roscpp sensor_msgs rosparam_shortcuts                 
 <span class="go">Creating package &quot;diffbot_base&quot; in &quot;/home/fjp/catkin_ws/src&quot;...</span>
 <span class="go">Created file diffbot_base/package.xml</span>
 <span class="go">Created file diffbot_base/CMakeLists.txt</span>
@@ -759,6 +765,7 @@ file. The launch file will </p>
 <span class="go">Created folder diffbot_base/src</span>
 <span class="go">Successfully created package files in /home/fjp/catkin_ws/src/diffbot_base.</span>
 </code></pre></div>
+</td></tr></table>
 <p>To work with this package the specified dependencies must be installed either using the available Ubuntu/Debian packages for ROS Noetic or they have to be built from source first. The following table lists the dependencies that we have to install because they are not already part of the ROS Noetic desktop full installation. Refer to the section <a href="https://fjp.at/projects/diffbot/ros-noetic/">ROS Noetic Setup</a> for how this was done. </p>
 <table>
 <thead>
@@ -787,11 +794,15 @@ file. The launch file will </p>
 </tbody>
 </table>
 <p>To install a package from source clone (using git) or download the source files from where they are located (commonly hosted on GitHub) into the <code>src</code> folder of a ros catkin workspace and execute the <a href="https://catkin-tools.readthedocs.io/en/latest/verbs/catkin_build.html"><code>catkin build</code></a> command. Also make sure to source the workspace after building new packages with <code>source devel/setup.bash</code>.</p>
-<div class="highlight"><pre><span></span><code><span class="go">cd /homw/fjp/git/diffbot/ros/  # Navigate to the workspace</span>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="go">cd /homw/fjp/git/diffbot/ros/  # Navigate to the workspace</span>
 <span class="go">catkin build              # Build all the packages in the workspace</span>
 <span class="go">ls build                  # Show the resulting build space</span>
 <span class="go">ls devel                  # Show the resulting devel space</span>
 </code></pre></div>
+</td></tr></table>
 <p>Make sure to clone/download the source files suitable for the ROS distribtion you are using. If the sources are not available for the distribution you are working with, it is worth to try building anyway. Chances are that the package you want to use is suitable for multiple ROS distros. For example if a package states in its docs, that it is only available for <a href="http://wiki.ros.org/kinetic">kinetic</a> it is possible that it will work with a ROS <a href="http://wiki.ros.org/noetic">noetic</a> install.
 {: .notice }</p>
 <h3 id="hardware-interface">Hardware Interface</h3>
@@ -803,7 +814,169 @@ Remember that the simulation uses the <code>gazebo_ros_control</code> package to
 ROS Control uses an instance of type <a href="http://docs.ros.org/en/noetic/api/hardware_interface/html/c++/"><code>hardware_interface::RobotHW</code></a> that is passed to the <code>controller_manager</code> to handle the resources, meaning that the actuated robot joints are not in use by multiple controllers that might be loaded.</p>
 <p>The skeleton of DiffBot's hardware interface looks like following, where the constructor is used to read loaded configuration values from 
 the robot's description from the ROS parameter server:</p>
-<div class="highlight"><pre><span></span><code><span class="k">namespace</span> <span class="n">diffbot_base</span>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>  1
+  2
+  3
+  4
+  5
+  6
+  7
+  8
+  9
+ 10
+ 11
+ 12
+ 13
+ 14
+ 15
+ 16
+ 17
+ 18
+ 19
+ 20
+ 21
+ 22
+ 23
+ 24
+ 25
+ 26
+ 27
+ 28
+ 29
+ 30
+ 31
+ 32
+ 33
+ 34
+ 35
+ 36
+ 37
+ 38
+ 39
+ 40
+ 41
+ 42
+ 43
+ 44
+ 45
+ 46
+ 47
+ 48
+ 49
+ 50
+ 51
+ 52
+ 53
+ 54
+ 55
+ 56
+ 57
+ 58
+ 59
+ 60
+ 61
+ 62
+ 63
+ 64
+ 65
+ 66
+ 67
+ 68
+ 69
+ 70
+ 71
+ 72
+ 73
+ 74
+ 75
+ 76
+ 77
+ 78
+ 79
+ 80
+ 81
+ 82
+ 83
+ 84
+ 85
+ 86
+ 87
+ 88
+ 89
+ 90
+ 91
+ 92
+ 93
+ 94
+ 95
+ 96
+ 97
+ 98
+ 99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="k">namespace</span> <span class="n">diffbot_base</span>
 <span class="p">{</span>
     <span class="n">DiffBotHWInterface</span><span class="o">::</span><span class="n">DiffBotHWInterface</span><span class="p">(</span><span class="n">ros</span><span class="o">::</span><span class="n">NodeHandle</span> <span class="o">&amp;</span><span class="n">nh</span><span class="p">,</span> <span class="n">urdf</span><span class="o">::</span><span class="n">Model</span> <span class="o">*</span><span class="n">urdf_model</span><span class="p">)</span>
         <span class="o">:</span> <span class="n">name_</span><span class="p">(</span><span class="s">&quot;hardware_interface&quot;</span><span class="p">)</span>
@@ -967,11 +1140,62 @@ the robot's description from the ROS parameter server:</p>
 
 <span class="p">};</span>
 </code></pre></div>
+</td></tr></table>
 <p>The functions above are designed to give the controller manager (and the controllers inside the controller manager) access to the joint state of custom robot, 
 and to command it. When the controller manager runs, the controllers will read from the pos, vel and eff variables of the custom robot hardware interface, and the controller will write the desired command into the cmd variable. It's mandatory to make sure the pos, vel and eff variables always have the latest joint state available, and to make sure that whatever is written into the cmd variable gets executed by the robot. This can be done by implementing hardware_interface::RobotHW::read() and a hardware_interface::RobotHW::write() methods.</p>
 <p>The main node that will be executed uses the <code>controller_manager</code> to operate the so called control loop. In the case of  DiffBot a simple example looks like 
 the following, refer to the <a href="https://github.com/fjp/diffbot/blob/master/diffbot_base/src/diffbot_base.cpp"><code>diffbot_base.cpp</code></a> for the complete implementation:</p>
-<div class="highlight"><pre><span></span><code><span class="cp">#include</span> <span class="cpf">&lt;ros/ros.h&gt;</span><span class="cp"></span>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="cp">#include</span> <span class="cpf">&lt;ros/ros.h&gt;</span><span class="cp"></span>
 <span class="cp">#include</span> <span class="cpf">&lt;diffbot_base/diffbot_hw_interface.h&gt;</span><span class="cp"></span>
 <span class="cp">#include</span> <span class="cpf">&lt;controller_manager/controller_manager.h&gt;</span><span class="cp"></span>
 
@@ -1023,6 +1247,7 @@ the following, refer to the <a href="https://github.com/fjp/diffbot/blob/master/
     <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
+</td></tr></table>
 <p>As we can see, the basic steps are to initialize the node, instantiate the hardware interface, pass it to a new controller manager and run the
 control loop that does the following:</p>
 <ul>
@@ -1110,7 +1335,23 @@ Measuring a value below 10 cm is considered precise for these motors.</p>
 <h3 id="launch-file">Launch File</h3>
 <p>To run a single controller_manager, the one from the <code>diffbot_base</code> package defined inside <code>difbot_base.cpp</code> use the 
 launch file from <a href="https://github.com/fjp/diffbot/blob/master/ros/src/diffbot_base/launch/diffbot.launch"><code>diffbot_base/launch/diffbot.launch</code></a>:</p>
-<div class="highlight"><pre><span></span><code><span class="c">&lt;!-- https://github.com/ros-controls/ros_controllers/tree/kinetic-devel/diff_drive_controller/test --&gt;</span>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="c">&lt;!-- https://github.com/ros-controls/ros_controllers/tree/kinetic-devel/diff_drive_controller/test --&gt;</span>
 <span class="nt">&lt;launch&gt;</span>
     <span class="c">&lt;!-- Load DiffBot model --&gt;</span>
     <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">&quot;robot_description&quot;</span>
@@ -1128,15 +1369,36 @@ launch file from <a href="https://github.com/fjp/diffbot/blob/master/ros/src/dif
 <span class="s">                                            mobile_base_controller&quot;</span><span class="nt">/&gt;</span>
 <span class="nt">&lt;/launch&gt;</span>
 </code></pre></div>
+</td></tr></table>
 <p>This will load the DiffBot robot description onto the parameter server which is required  for the hardware interface that gets created inside the next
 node <code>diffbot_base</code>. It creates the hardware interface and instantiates a new controller manager in the <code>diffbot_base.cpp</code>.
 Finally the <code>spawner</code> from the <code>controller_manager</code> package is used to initialize and start the controllers defined in the <code>diffbot_control/config/diffbot_control.yaml</code>. The last step in this launch file is required to get the controllers initialized and started.
 Another way would be to use <code>controller_manager::ControllerManager::loadControllers()</code> inside the <code>diffbot_base.cpp</code>.</p>
 <p>After launching this launch file on DiffBot (Raspberry Pi) with </p>
-<div class="highlight"><pre><span></span><code><span class="go">roslaunch diffbot_base diffbot.launch</span>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="go">roslaunch diffbot_base diffbot.launch</span>
 </code></pre></div>
+</td></tr></table>
 <p>the following parameters are stored on the parameter server:</p>
-<div class="highlight"><pre><span></span><code><span class="gp">$</span> rosparam list
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="gp">$</span> rosparam list
 <span class="go">/diffbot/hardware_interface/joints</span>
 <span class="go">/diffbot/joint_state_controller/extra_joints</span>
 <span class="go">/diffbot/joint_state_controller/publish_rate</span>
@@ -1157,13 +1419,15 @@ Another way would be to use <code>controller_manager::ControllerManager::loadCon
 <span class="go">/rosversion</span>
 <span class="go">/run_id</span>
 </code></pre></div>
+</td></tr></table>
 <h2 id="additional-requirements">Additional Requirements</h2>
 <p>Because the hardware interface subscribes to the encoders, that are connected to the Teensy MCU, and publishes to the motors via the motr driver node,
 another launch will be required to run these additional nodes. See the <code>diffbot_bringup</code> package for this setup.</p>
 <h2 id="simulation">Simulation</h2>
 <p>To have a simulation showing DiffBot, the second step is to use the <a href="https://github.com/fjp/diffbot/blob/master/ros/src/diffbot_gazebo/launch/diffbot_base.launch"><code>diffbot_gazebo/launch/diffbot_base.launch</code></a> on the work pc:</p>
-<div class="highlight"><pre><span></span><code><span class="gp">$</span> roslaunch diffbot_gazebo diffbot_base.launch
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="gp">$</span> roslaunch diffbot_gazebo diffbot_base.launch
 </code></pre></div>
+</td></tr></table>
 <p>This will launch the gazebo simulation, which can make use of the running controllers inside the controller manager too:</p>
 <figure>
     <a href="https://raw.githubusercontent.com/fjp/diffbot/master/docs/resources/ros_control_gazebo.png"><img src="https://raw.githubusercontent.com/fjp/diffbot/master/docs/resources/ros_control_gazebo.png"></a>

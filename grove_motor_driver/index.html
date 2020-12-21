@@ -707,7 +707,13 @@
                 
                 <h2 id="grove-i2c-motor-driver-v13">Grove - I2C Motor Driver V1.3</h2>
 <p>The package for the <a href="http://wiki.seeedstudio.com/Grove-I2C_Motor_Driver_V1.3/">Grove I2C Motor Driver V1.3</a> from Seeed Studio is created with <a href="https://catkin-tools.readthedocs.io/en/latest/verbs/catkin_create.html#catkin-create-pkg"><code>catkin create pkg PKG_NAME [--catkin-deps [DEP [DEP ...]]]</code></a>:</p>
-<div class="highlight"><pre><span></span><code><span class="gp">fjp@ubuntu:~/git/diffbot/ros/src$</span> catkin create pkg grove_motor_driver --catkin-deps rospy roscpp geometry_msgs
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="gp">fjp@ubuntu:~/git/diffbot/ros/src$</span> catkin create pkg grove_motor_driver --catkin-deps rospy roscpp geometry_msgs
 <span class="go">Creating package &quot;grove_motor_driver&quot; in &quot;/home/fjp/git/diffbot/ros/src&quot;...</span>
 <span class="go">Created file grove_motor_driver/CMakeLists.txt</span>
 <span class="go">Created file grove_motor_driver/package.xml</span>
@@ -715,6 +721,7 @@
 <span class="go">Created folder grove_motor_driver/src</span>
 <span class="go">Successfully created package files in /home/fjp/git/diffbot/ros/src/grove_motor_driver.</span>
 </code></pre></div>
+</td></tr></table>
 <p>The package depends on the two ROS <a href="http://wiki.ros.org/Client%20Libraries">client libraries</a> <a href="http://wiki.ros.org/rospy"><code>rospy</code></a> and <a href="http://wiki.ros.org/roscpp"><code>roscpp</code></a>. 
 To control the two motors the package will use the <a href="https://docs.ros.org/api/geometry_msgs/html/msg/Twist.html"><code>geometry_msgs/Twist</code></a> message.
 The interface to the motor driver is done with the <a href="https://github.com/DexterInd/GrovePi/blob/master/Software/Python/grove_i2c_motor_driver">Python library from DexterInd</a> 
@@ -725,9 +732,11 @@ which is a rewerite of the <a href="https://github.com/Seeed-Studio/Grove_I2C_Mo
 <li><a href="https://pypi.org/project/smbus/">smbus</a> SMBus (System Management Bus) is a subset from the I2C protocol</li>
 </ul>
 <p>These libraries should be installed with <code>pip3</code>, Python's package manager:</p>
-<div class="highlight"><pre><span></span><code><span class="go">pip3 install RPi.GPIO</span>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="go">pip3 install RPi.GPIO</span>
 <span class="go">pip3 install smbus</span>
 </code></pre></div>
+</td></tr></table>
 <p>Note that this will install these packages system wide. This is ok because they are installed on the Raspberry Pi which is dedicated to 
 operate for this purpose. For a development environment it is best practice to use a python virtual environment like 
 <a href="https://docs.python.org/3/library/venv.html"><code>venv</code></a> and install the packages inside it.
@@ -741,7 +750,16 @@ Only the SDA (data) and SCL (clock) wires are required.</p>
 in the library files.</p>
 <p>To test the physical I2C connection use <code>i2cdetect</code> described in <a href="https://fjp.at/projects/diffbot/hardware-interfaces/#prepare-i2c-connection">Hardware Interfaces</a>:
 The output should list <code>0f</code> in the address table:</p>
-<div class="highlight"><pre><span></span><code><span class="gp">$</span> i2cdetect -y <span class="m">1</span>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="gp">$</span> i2cdetect -y <span class="m">1</span>
 <span class="go">     0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f</span>
 <span class="go">00:          -- -- -- -- -- -- -- -- -- -- -- -- 0f </span>
 <span class="go">10: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- </span>
@@ -752,9 +770,69 @@ The output should list <code>0f</code> in the address table:</p>
 <span class="go">60: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- </span>
 <span class="go">70: -- -- -- -- -- -- -- --</span>
 </code></pre></div>
+</td></tr></table>
 <h3 id="test-motor-driver">Test Motor Driver</h3>
 <p>Test the motor driver by running one of the python files:</p>
-<div class="highlight"><pre><span></span><code><span class="gp">fjp@ubuntu:~/git/diffbot/ros/src/grove_motor_driver/src$</span> python3 motor_example.py 
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="gp">fjp@ubuntu:~/git/diffbot/ros/src/grove_motor_driver/src$</span> python3 motor_example.py 
 <span class="go">Forward</span>
 <span class="go">Back</span>
 <span class="go">Stop</span>
@@ -815,11 +893,25 @@ The output should list <code>0f</code> in the address table:</p>
 <span class="go">Speed: 99</span>
 <span class="go">Stop</span>
 </code></pre></div>
+</td></tr></table>
 <h4 id="troubleshooting">Troubleshooting</h4>
 <p>If you get errors like the following, make sure the I2C cables from the motor driver to the 
 Raspberry Pi are connected (see <a href="https://fjp.at/projects/diffbot/hardware-interfaces/#prepare-i2c-connection">Hardware Interfaces</a> for more infos) 
 and use the <code>RESET</code> button on the motor driver.</p>
-<div class="highlight"><pre><span></span><code><span class="gp">fjp@ubuntu:~/git/2wd-robot/ros/src/control$</span> sudo python grove_i2c_motor_driver.py 
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="gp">fjp@ubuntu:~/git/2wd-robot/ros/src/control$</span> sudo python grove_i2c_motor_driver.py 
 <span class="go">Traceback (most recent call last):</span>
 <span class="go">  File &quot;grove_i2c_motor_driver.py&quot;, line 68, in &lt;module&gt;</span>
 <span class="go">    m.MotorSpeedSetAB(100,100)</span>
@@ -834,9 +926,19 @@ and use the <code>RESET</code> button on the motor driver.</p>
 <span class="go">    bus.write_i2c_block_data(self.I2CMotorDriverAdd, self.MotorSpeedSet, [MotorSpeedA,MotorSpeedB])</span>
 <span class="go">IOError: [Errno 121] Remote I/O error</span>
 </code></pre></div>
+</td></tr></table>
 <p>Try pressing the <code>RESET</code> button and release it right before executing one of the scripts.
 You should also be able to detect the motor driver with <code>i2cdetect -y 1</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="gp">fjp@ubuntu:~/git/2wd-robot/ros/src/control/src$</span> sudo i2cdetect -y <span class="m">1</span>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="gp">fjp@ubuntu:~/git/2wd-robot/ros/src/control/src$</span> sudo i2cdetect -y <span class="m">1</span>
 <span class="go">     0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f</span>
 <span class="go">00:          -- -- -- -- -- -- -- -- -- -- -- -- 0f </span>
 <span class="go">10: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- </span>
@@ -847,10 +949,20 @@ You should also be able to detect the motor driver with <code>i2cdetect -y 1</co
 <span class="go">60: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- </span>
 <span class="go">70: -- -- -- -- -- -- -- --</span>
 </code></pre></div>
+</td></tr></table>
 <p>As you can see the address of the motor driver is detected at <code>0x0f</code>.</p>
 <p>In case of the following output, where every address of the I2C bus seems to be taken
 it is most likely that the SDA (data) and SCL (clock) signal cables are switched:</p>
-<div class="highlight"><pre><span></span><code><span class="go">i2cdetect -y 1</span>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="go">i2cdetect -y 1</span>
 <span class="go">     0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f</span>
 <span class="go">00:          03 04 05 06 07 08 09 0a 0b 0c 0d 0e 0f </span>
 <span class="go">10: 10 11 12 13 14 15 16 17 18 19 1a 1b 1c 1d 1e 1f </span>
@@ -861,6 +973,7 @@ it is most likely that the SDA (data) and SCL (clock) signal cables are switched
 <span class="go">60: 60 61 62 63 64 65 66 67 68 69 6a 6b 6c 6d 6e 6f </span>
 <span class="go">70: 70 71 72 73 74 75 76 77</span>
 </code></pre></div>
+</td></tr></table>
 <p>To solve this make sure the SDA and SCL cables are connected to the right pins on the Raspberry Pi.
 See <a href="https://fjp.at/projects/diffbot/hardware-interfaces/#prepare-i2c-connection">Hardware Interfaces</a> for more infos.</p>
 <h3 id="ros-node-for-motor-driver">ROS Node for Motor Driver</h3>
@@ -871,7 +984,45 @@ To send commands to the motor the . These topics can be published with nodes fro
 <p>https://en.wikipedia.org/wiki/Differential_wheeled_robot</p>
 <p>http://wiki.ros.org/differential_drive</p>
 <p>After the node has been implemented, we need to build the workspace with <a href="https://catkin-tools.readthedocs.io/en/latest/verbs/catkin_build.html"><code>catkin build</code></a>:</p>
-<div class="highlight"><pre><span></span><code><span class="gp">fjp@ubuntu:~/git/2wd-robot/ros$</span> catkin build
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="gp">fjp@ubuntu:~/git/2wd-robot/ros$</span> catkin build
 <span class="go">----------------------------------------------------------------</span>
 <span class="go">Profile:                     default</span>
 <span class="go">Extending:          [cached] /opt/ros/melodic</span>
@@ -911,12 +1062,15 @@ To send commands to the motor the . These topics can be published with nodes fro
 <span class="go">[build]   Failed:    None.                                                                                          </span>
 <span class="go">[build] Runtime: 2.0 seconds total. </span>
 </code></pre></div>
+</td></tr></table>
 <p>As the final note of the build output suggests, we have to <code>source</code> the <code>setup.bash</code> files in the <code>devel</code> space.</p>
-<div class="highlight"><pre><span></span><code><span class="gp">fjp@ubuntu:~/git/2wd-robot/ros$</span> <span class="nb">source</span> devel/setup.bash
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="gp">fjp@ubuntu:~/git/2wd-robot/ros$</span> <span class="nb">source</span> devel/setup.bash
 </code></pre></div>
+</td></tr></table>
 <p>To make the <code>ranger</code> node executable we have to modify the <code>ranger.py</code> file:</p>
-<div class="highlight"><pre><span></span><code><span class="gp">fjp@ubuntu:~/git/2wd-robot/ros/src/grove_ultrasonic_ranger/src$</span> sudo chmod a+x ranger.py
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="gp">fjp@ubuntu:~/git/2wd-robot/ros/src/grove_ultrasonic_ranger/src$</span> sudo chmod a+x ranger.py
 </code></pre></div>
+</td></tr></table>
                 
               
               

@@ -749,17 +749,23 @@
                 
                 <h2 id="simulate-diffbot-in-gazebo">Simulate DiffBot in Gazebo</h2>
 <p>As described in the <a href="http://gazebosim.org/tutorials?tut=ros_roslaunch#CreatingyourownGazeboROSPackage">Creating your own Gazebo ROS Package</a>, it is common in ROS to create a package that contains all the world files and launch files used with Gazebo. These files are located in a ROS package named <code>/MYROBOT_gazebo</code>. For DiffBot the package is named <code>diffbot_gazebo</code>. Another example that follows best pratices is <code>rrbot</code> which can be found in the <a href="https://github.com/ros-simulation/gazebo_ros_demos">gazebo_ros_demos</a> repository.</p>
-<div class="highlight"><pre><span></span><code><span class="gp">fjp@ubuntu:~/git/diffbot/ros/src$</span> catkin create pkg diffbot_gazebo
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="gp">fjp@ubuntu:~/git/diffbot/ros/src$</span> catkin create pkg diffbot_gazebo
 <span class="go">Creating package &quot;diffbot_gazebo&quot; in &quot;/home/fjp/git/diffbot/ros/src&quot;...</span>
 <span class="go">Created file diffbot_gazebo/package.xml</span>
 <span class="go">Created file diffbot_gazebo/CMakeLists.txt</span>
 <span class="go">Successfully created package files in /home/fjp/git/diffbot/ros/src/diffbot_gazebo.</span>
 </code></pre></div>
+</td></tr></table>
 <p>The <code>diffbot_gazebo</code> package contains a launch file to lauch a world in Gazebo and spawn the robot model, 
 which is defined in the previously created <code>diffbot_description</code> package. 
 For the launch files the convention is to have a folder named <code>launch</code> and for Gazebo world files a folder named <code>world</code> inside a package.</p>
-<div class="highlight"><pre><span></span><code><span class="gp">fjp@ubuntu:~/git/diffbot/ros/src/diffbot_gazebo$</span> mkdir launch world
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="gp">fjp@ubuntu:~/git/diffbot/ros/src/diffbot_gazebo$</span> mkdir launch world
 </code></pre></div>
+</td></tr></table>
 <p>Inside the <code>launch</code> folder is the <code>diffbot.launch</code>.</p>
 <p>```xml
 <launch>
@@ -769,16 +775,25 @@ For the launch files the convention is to have a folder named <code>launch</code
     <arg name="gui" default="true"/>
     <arg name="headless" default="false"/>
     <arg name="debug" default="false"/></p>
-<pre><code>&lt;!-- We resume the logic in empty_world.launch, changing only the name of the world to be launched --&gt;
-&lt;include file="$(find gazebo_ros)/launch/empty_world.launch"&gt;
-    &lt;arg name="world_name" value="$(find diffbot_gazebo)/worlds/diffbot.world"/&gt;
-    &lt;arg name="debug" value="$(arg debug)" /&gt;
-    &lt;arg name="gui" value="$(arg gui)" /&gt;
-    &lt;arg name="paused" value="$(arg paused)"/&gt;
-    &lt;arg name="use_sim_time" value="$(arg use_sim_time)"/&gt;
-    &lt;arg name="headless" value="$(arg headless)"/&gt;
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>&lt;!-- We resume the logic in empty_world.launch, changing only the name of the world to be launched --&gt;
+&lt;include file=&quot;$(find gazebo_ros)/launch/empty_world.launch&quot;&gt;
+    &lt;arg name=&quot;world_name&quot; value=&quot;$(find diffbot_gazebo)/worlds/diffbot.world&quot;/&gt;
+    &lt;arg name=&quot;debug&quot; value=&quot;$(arg debug)&quot; /&gt;
+    &lt;arg name=&quot;gui&quot; value=&quot;$(arg gui)&quot; /&gt;
+    &lt;arg name=&quot;paused&quot; value=&quot;$(arg paused)&quot;/&gt;
+    &lt;arg name=&quot;use_sim_time&quot; value=&quot;$(arg use_sim_time)&quot;/&gt;
+    &lt;arg name=&quot;headless&quot; value=&quot;$(arg headless)&quot;/&gt;
 &lt;/include&gt;
-</code></pre>
+</code></pre></div>
+</td></tr></table>
 <p></launch>
 <code>In the `world` folder of the `diffbot_gazebo` package is the `diffbot.world` file:</code>xml
 &lt;?xml version="1.0" ?&gt;
@@ -799,14 +814,48 @@ For the launch files the convention is to have a folder named <code>launch</code
 </sdf>
 ```</p>
 <p>With these files build the catkin workspace and source it to make the new <code>diffbot_gazebo</code> package visible to <code>roslaunch</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="go">catkin build</span>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="go">catkin build</span>
 <span class="go">source devel/setup.zsh</span>
 </code></pre></div>
+</td></tr></table>
 <p>Then its possible to launch the <code>diffbot.launch</code> with:</p>
-<div class="highlight"><pre><span></span><code><span class="go">roslaunch diffbot_gazebo diffbot.launch</span>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="go">roslaunch diffbot_gazebo diffbot.launch</span>
 </code></pre></div>
+</td></tr></table>
 <p>This will lead to the following output:</p>
-<div class="highlight"><pre><span></span><code><span class="go">roslaunch diffbot_gazebo diffbot.launch </span>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="go">roslaunch diffbot_gazebo diffbot.launch </span>
 <span class="go">... logging to /home/fjp/.ros/log/6be90ef2-fdd8-11ea-9cb3-317fd602d5f2/roslaunch-tensorbook-393333.log</span>
 <span class="go">Checking log directory for disk usage. This may take a while.</span>
 <span class="go">Press Ctrl-C to interrupt</span>
@@ -839,6 +888,7 @@ For the launch files the convention is to have a folder named <code>launch</code
 <span class="go">[ INFO] [1600950166.640929113]: waitForService: Service [/gazebo/set_physics_properties] is now available.</span>
 <span class="go">[ INFO] [1600950166.659917502, 0.007000000]: Physics dynamic reconfigure ready.</span>
 </code></pre></div>
+</td></tr></table>
 <p>Also, the Gazebo simulator will open a new window with the objects defined in <code>diffbot.world</code> except for the Gas station because it is a model 
 that has to be downloaded first, which is happening in the background. TODO: gas station is not showing this way.</p>
 <figure>
@@ -847,13 +897,20 @@ that has to be downloaded first, which is happening in the background. TODO: gas
 </figure>
 
 <p>To get the Gas station or other available models it is possible to clone the <a href="https://github.com/osrf/gazebo_models">gazebo models repository</a> into your <code>/home/your_username/.gazebo</code> folder, e.g.:</p>
-<p><div class="highlight"><pre><span></span><code><span class="go">/home/fjp/.gazeb$ git clone osrf/gazebo_models</span>
+<p><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="go">/home/fjp/.gazeb$ git clone osrf/gazebo_models</span>
 </code></pre></div>
+</td></tr></table>
 Then add this path inside Gazebo to insert these models into your world file.</p>
 <p>### Using ROS launch to Spawn URDF Robots</p>
 <p>According to the <a href="http://gazebosim.org/tutorials?tut=ros_roslaunch#UsingroslaunchtoSpawnURDFRobots">Gazebo roslaunch tutorial</a> the recommended way
  to spawn a robot into Gazebo is to use a launch file. Therefore, edit the <code>diffbot.launch</code> inside the <code>diffbot_gazebo</code> package by adding the following inside the <code>&lt;launch&gt; &lt;/launch</code> tag:</p>
-<div class="highlight"><pre><span></span><code><span class="go">   &lt;!-- Load the URDF into the ROS Parameter Server --&gt;</span>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="go">   &lt;!-- Load the URDF into the ROS Parameter Server --&gt;</span>
 <span class="go">   &lt;param name=&quot;robot_description&quot;</span>
 <span class="go">       command=&quot;$(find xacro)/xacro --inorder &#39;$(find diffbot_description)/urdf/diffbot.xacro&#39;&quot; /&gt;</span>
 
@@ -861,6 +918,7 @@ Then add this path inside Gazebo to insert these models into your world file.</p
 <span class="go">   &lt;node name=&quot;urdf_spawner&quot; pkg=&quot;gazebo_ros&quot; type=&quot;spawn_model&quot; respawn=&quot;false&quot; output=&quot;screen&quot;</span>
 <span class="go">       args=&quot;-urdf -model diffbot -param robot_description&quot;/&gt;</span>
 </code></pre></div>
+</td></tr></table>
 <p>See also the complete <a href="https://github.com/fjp/diffbot/blob/master/ros/src/diffbot_gazebo/launch/diffbot.launch"><code>diffbot.launch</code></a> file.</p>
 <p>This will open Gazebo simulator and show the DiffBot model:</p>
 <p><figure>
@@ -890,15 +948,279 @@ for using ROS with the Gazebo simulator.</p>
 <h2 id="troubleshooting">Troubleshooting</h2>
 <p>A quick way to verify if the conversion from <a href="http://wiki.ros.org/xacro">xacro</a> to <a href="http://wiki.ros.org/urdf">urdf</a> to <a href="http://sdformat.org/">sdf</a> is working is the following (<a href="http://gazebosim.org/tutorials/?tut=ros_urdf#VerifyingtheGazeboModelWorks">source: Tutorial URDF in Gazebo</a>):
 First convert the xacro model to a urdf model with the <code>xacro</code> command:</p>
-<div class="highlight"><pre><span></span><code><span class="go">xacro src/diffbot_description/urdf/diffbot.xacro -o diffbot.urdf</span>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="go">xacro src/diffbot_description/urdf/diffbot.xacro -o diffbot.urdf</span>
 </code></pre></div>
+</td></tr></table>
 <p>This will output the urdf into a file named <code>diffbot.urdf</code> in the current working directory.</p>
 <p>Then use the <code>gz</code> command to create a sdf:</p>
-<div class="highlight"><pre><span></span><code># gazebo3 and above
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code># gazebo3 and above
 gz sdf -p MODEL.urdf
 </code></pre></div>
+</td></tr></table>
 <details markdown="1"><summary>DiffBot sdf.</summary>
-<div class="highlight"><pre><span></span><code><span class="nt">&lt;sdf</span> <span class="na">version=</span><span class="s">&#39;1.7&#39;</span><span class="nt">&gt;</span>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>  1
+  2
+  3
+  4
+  5
+  6
+  7
+  8
+  9
+ 10
+ 11
+ 12
+ 13
+ 14
+ 15
+ 16
+ 17
+ 18
+ 19
+ 20
+ 21
+ 22
+ 23
+ 24
+ 25
+ 26
+ 27
+ 28
+ 29
+ 30
+ 31
+ 32
+ 33
+ 34
+ 35
+ 36
+ 37
+ 38
+ 39
+ 40
+ 41
+ 42
+ 43
+ 44
+ 45
+ 46
+ 47
+ 48
+ 49
+ 50
+ 51
+ 52
+ 53
+ 54
+ 55
+ 56
+ 57
+ 58
+ 59
+ 60
+ 61
+ 62
+ 63
+ 64
+ 65
+ 66
+ 67
+ 68
+ 69
+ 70
+ 71
+ 72
+ 73
+ 74
+ 75
+ 76
+ 77
+ 78
+ 79
+ 80
+ 81
+ 82
+ 83
+ 84
+ 85
+ 86
+ 87
+ 88
+ 89
+ 90
+ 91
+ 92
+ 93
+ 94
+ 95
+ 96
+ 97
+ 98
+ 99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="nt">&lt;sdf</span> <span class="na">version=</span><span class="s">&#39;1.7&#39;</span><span class="nt">&gt;</span>
   <span class="nt">&lt;model</span> <span class="na">name=</span><span class="s">&#39;diffbot&#39;</span><span class="nt">&gt;</span>
     <span class="nt">&lt;link</span> <span class="na">name=</span><span class="s">&#39;base_footprint&#39;</span><span class="nt">&gt;</span>
       <span class="nt">&lt;inertial&gt;</span>
@@ -1161,6 +1483,7 @@ gz sdf -p MODEL.urdf
   <span class="nt">&lt;/model&gt;</span>
 <span class="nt">&lt;/sdf&gt;</span>
 </code></pre></div>
+</td></tr></table>
 </details>
                 
               

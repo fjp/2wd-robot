@@ -705,13 +705,19 @@ For ease of documentation and collaboration, we recommend that existing messages
 </div>
 <p>Therefore, we create a package that contains message definitions specific to DiffBot. 
 The following command uses <code>catkin-tools</code> to create the <code>diffbot_msgs</code> package:</p>
-<div class="highlight"><pre><span></span><code><span class="go">ros_ws/src$ catkin create pkg diffbot_msgs --catkin-deps message_generation std_msgs                                                           </span>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="go">ros_ws/src$ catkin create pkg diffbot_msgs --catkin-deps message_generation std_msgs                                                           </span>
 <span class="go">Creating package &quot;diffbot_msgs&quot; in &quot;/home/fjp/git/ros_ws/src&quot;...</span>
 <span class="go">WARNING: Packages with messages or services should depend on both message_generation and message_runtime</span>
 <span class="go">Created file diffbot_msgs/package.xml</span>
 <span class="go">Created file diffbot_msgs/CMakeLists.txt</span>
 <span class="go">Successfully created package files in /home/fjp/git/ros_ws/src/diffbot_msgs.</span>
 </code></pre></div>
+</td></tr></table>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>The following is based on <a href="https://wiki.ros.org/ROS/Tutorials/CreatingMsgAndSrv#Creating_a_msg">ROS Tutorials Creating Msg And Srv</a>.
@@ -720,7 +726,14 @@ In this tutorial you can find the required configurations for the <code>package.
 <p>Currently there is no encoder message definition in ROS (see the <a href="https://wiki.ros.org/sensor_msgs"><code>sensor_msgs</code></a> package) 
 which is why a dedicated message is created for the encoders. For this, a simple <a href="http://wiki.ros.org/msg">msg</a> description file,
 named <code>Encoder.msg</code> is created in the <code>msg/</code> subdirectory of this <code>diffbot_msgs</code> package:</p>
-<div class="highlight"><pre><span></span><code># This is a message to hold number of ticks from Encoders
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5
+6
+7
+8</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code># This is a message to hold number of ticks from Encoders
 Header header
 
 # Use an array of size two of type int32 for the two encoders.
@@ -729,6 +742,7 @@ Header header
 # motor with encoder because of its low encoder resolution
 int32[2] encoders
 </code></pre></div>
+</td></tr></table>
 <p>The message includes the message type <a href="http://docs.ros.org/en/api/std_msgs/html/msg/Header.html"><code>Header</code></a> 
 (see also <a href="http://wiki.ros.org/msg#headerSect">Header msg</a>) which includes common metadata fileds such as timestamp that is automatically 
 set by <a href="http://wiki.ros.org/Client%20Libraries">ROS client libraries</a>.</p>
@@ -741,21 +755,28 @@ and <code>sensor_msgs/LaserScan</code>](http://docs.ros.org/en/api/sensor_msgs/h
 where both are definitions from the <a href="https://wiki.ros.org/sensor_msgs"><code>sensor_msgs</code></a> package.</p>
 <h3 id="using-rosmsg">Using rosmsg</h3>
 <p>After building the package and its messages using <code>catkin build</code> let's make sure that ROS can see it using the rosmsg show command.</p>
-<div class="highlight"><pre><span></span><code><span class="gp">$</span> rosmsg show diffbot_msgs/Encoder
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="gp">$</span> rosmsg show diffbot_msgs/Encoder
 <span class="go">std_msgs/Header header</span>
 <span class="go">  uint32 seq</span>
 <span class="go">  time stamp</span>
 <span class="go">  string frame_id</span>
 <span class="go">int32[2] encoders</span>
 </code></pre></div>
+</td></tr></table>
 <h3 id="rosserial">ROSSerial</h3>
 <p>The generated messages in this packages are used on the Teensy microcontroller, which is using <a href="http://wiki.ros.org/rosserial"><code>rosserial</code></a>.
 Integrating these messages requires the following steps.</p>
 <ul>
 <li>Generate rosserial libraries in a temporary folder using the <a href="http://wiki.ros.org/rosserial/Tutorials/Adding%20Other%20Messages"><code>make_libraries</code></a> script:</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="go">rosrun rosserial_client make_libraries ~/Arduino/tmp/</span>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="go">rosrun rosserial_client make_libraries ~/Arduino/tmp/</span>
 </code></pre></div>
+</td></tr></table>
 <ul>
 <li>Copy the generated <code>~/Arduino/tmp/diffbot_msgs</code> message folder to the <code>src</code> folder of the <code>rosserial</code> Arduino library.
   When <code>rosserial</code> was installed with the Arduino Library Manager, the location is <code>~/Arduino/libraries/Rosserial_Arduino_Library/</code>.</li>

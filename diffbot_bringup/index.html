@@ -628,12 +628,17 @@
                 <h2 id="diffbot-bring-up-package">DiffBot Bring Up Package</h2>
 <p>The bringup package is used to initialize the real hardware of DiffBot and to actually drive the robot around.
 First the package is created using <code>catkin-tools</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="gp">fjp@diffbot:~/git/diffbot/ros/src$</span> catkin create pkg diffbot_bringup
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="gp">fjp@diffbot:~/git/diffbot/ros/src$</span> catkin create pkg diffbot_bringup
 <span class="go">Creating package &quot;diffbot_bringup&quot; in &quot;/home/fjp/git/diffbot/ros/src&quot;...</span>
 <span class="go">Created file diffbot_bringup/package.xml</span>
 <span class="go">Created file diffbot_bringup/CMakeLists.txt</span>
 <span class="go">Successfully created package files in /home/fjp/git/diffbot/ros/src/diffbot_bringup.</span>
 </code></pre></div>
+</td></tr></table>
 <p>The package provides a <code>launch</code> folder which includes <code>minimal.launch</code> and <code>bringup.launch</code>.</p>
 <p>The <code>minimal.launch</code> is used to load DiffBot's robot descripton and the controller configuration
 onto the ROS parameter server using the launch file from the <a href="https://fjp.at/projects/diffbot/ros-packages/base/"><code>diffbot_base</code> package</a>. 
@@ -641,7 +646,27 @@ It will also setup the ROS <a href="http://wiki.ros.org/controller_manager">cont
 <a href="https://fjp.at/projects/diffbot/ros-packages/base/#hardware-interface">DiffBot's hardware interface</a>.</p>
 <p>For the motor driver the node <code>motor_driver.py</code> from the <code>grove_motor_driver</code> package is started.
 And for the encoders rosserial communicates with the Teensy microcontroller to publish the encoder ticks. </p>
-<div class="highlight"><pre><span></span><code><span class="nt">&lt;launch&gt;</span>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="nt">&lt;launch&gt;</span>
     <span class="c">&lt;!-- Including the following launch file from diffbot_base package will --&gt;</span>
     <span class="c">&lt;!-- Load the robot description onto the parameter server --&gt;</span>
     <span class="c">&lt;!-- Run the controller manager with DiffBot&#39;s hardware interface --&gt;</span>
@@ -663,6 +688,7 @@ And for the encoders rosserial communicates with the Teensy microcontroller to p
 <span class="s">                                            _baud:=115200&quot;</span><span class="nt">/&gt;</span>
 <span class="nt">&lt;/launch&gt;</span>
 </code></pre></div>
+</td></tr></table>
 <p>As mentioned, the ROS controller used for DiffBot is the <a href="http://wiki.ros.org/diff_drive_controller?distro=noetic"><code>diff_drive_controller</code></a>. 
 This controller publishes a transform message (see its <a href="http://wiki.ros.org/diff_drive_controller?distro=noetic#Published_Topics">published topics</a>), 
 via the <code>/tf</code> topic, between the <code>odom</code> frame and the frame configured in the <a href="http://wiki.ros.org/diff_drive_controller?distro=noetic#Complete_description">controller's configuration</a> specified by the <code>base_frame_id</code>. 
@@ -671,7 +697,18 @@ In the case of DiffBot this is the <code>base_footprint</code>, a conventional l
 It is the well known <a href="http://wiki.ros.org/robot_state_publisher"><code>robot_state_publisher</code></a>, which uses the joint states published by the ROS controller <a href="http://wiki.ros.org/joint_state_controller"><code>joint_state_controller</code></a> (not to be confused with <a href="http://wiki.ros.org/joint_state_publisher"><code>joint_state_publisher</code></a> - it is not used here, see <a href="https://answers.ros.org/question/303358/what-is-the-difference-between-joint_state_publisher-and-joint_state_controller/">this answer</a> for the difference) to create the transforms
 between the links.</p>
 <p>To do this the <code>bringup.launch</code> includes the <code>minimal.launch</code> and then runs the <code>robot_state_publisher</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="nt">&lt;launch&gt;</span>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="nt">&lt;launch&gt;</span>
     <span class="nt">&lt;include</span> <span class="na">file=</span><span class="s">&quot;$(find diffbot_bringup)/launch/minimal.launch&quot;</span><span class="nt">&gt;</span>
         <span class="c">&lt;!-- arg name=&quot;model&quot; value=&quot;$(arg model)&quot; /--&gt;</span>
     <span class="nt">&lt;/include&gt;</span>
@@ -684,6 +721,7 @@ between the links.</p>
         <span class="na">output=</span><span class="s">&quot;screen&quot;</span> <span class="na">ns=</span><span class="s">&quot;diffbot&quot;</span> <span class="nt">/&gt;</span>
 <span class="nt">&lt;/launch&gt;</span>
 </code></pre></div>
+</td></tr></table>
                 
               
               

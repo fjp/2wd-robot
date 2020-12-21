@@ -618,19 +618,62 @@
                 
                 <h3 id="grove-ultrasonic-ranger">Grove - Ultrasonic Ranger</h3>
 <p>To avoid obstacles the <a href="http://wiki.seeedstudio.com/Grove-Ultrasonic_Ranger/">Grove ultrasonic ranger</a> from Seeed Studio is used. We will create a ROS package with <a href="https://catkin-tools.readthedocs.io/en/latest/verbs/catkin_create.html#catkin-create-pkg"><code>catkin create pkg PKG_NAME [--catkin-deps [DEP [DEP ...]]]</code></a>:</p>
-<p><div class="highlight"><pre><span></span><code>fjp@ubuntu:~/git/2wd-robot/ros/src$ catkin create pkg grove_ultrasonic_ranger --catkin-deps rospy roscpp sensor_msgs
+<p><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>fjp@ubuntu:~/git/2wd-robot/ros/src$ catkin create pkg grove_ultrasonic_ranger --catkin-deps rospy roscpp sensor_msgs
 Creating package <span class="s2">&quot;grove_ultrasonic_ranger&quot;</span> in <span class="s2">&quot;/home/fjp/git/2wd-robot/ros/src&quot;</span>...
 Created file grove_ultrasonic_ranger/CMakeLists.txt
 Created file grove_ultrasonic_ranger/package.xml
 Created folder grove_ultrasonic_ranger/include/grove_ultrasonic_ranger
 Created folder grove_ultrasonic_ranger/src
 </code></pre></div>
+</td></tr></table>
 The package depends on the two ROS <a href="http://wiki.ros.org/Client%20Libraries">client libraries</a> <a href="http://wiki.ros.org/rospy"><code>rospy</code></a> and <a href="http://wiki.ros.org/roscpp"><code>roscpp</code></a>. 
 To signalise the current distance to obstacles the <a href="http://docs.ros.org/melodic/api/sensor_msgs/html/msg/Range.html"><code>sensor_msgs/Range</code></a> message is used.</p>
 <p>After connecting the signal pin of the sensor to <a href="https://pinout.xyz/pinout/pin11_gpio17#">(physical) GPIO 11</a> of the Raspberry Pi 4 B and power it with 5V and ground, we can test its functionality with the available 
 python script <a href="https://github.com/Seeed-Studio/Grove-RaspberryPi/blob/master/Grove%20-%20Ultrasonic%20Ranger/ultrasonic.py"><code>ultrasonic.py</code></a> from Seed Studio.</p>
 <p>The following shows the truncated output of the <code>ultrasonic.py</code> script when moving an obstacle in front of the sensor. We see that the distance value changes as expected. </p>
-<div class="highlight"><pre><span></span><code>fjp@ubuntu:~/git/2wd-robot/ros/src/grove_ultrasonic_ranger/src$ sudo python ultrasonic.py
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>fjp@ubuntu:~/git/2wd-robot/ros/src/grove_ultrasonic_ranger/src$ sudo python ultrasonic.py
 SeeedStudio Grove Ultrasonic get data and print
 Ultrasonic Measurement
 Distance : <span class="m">2</span>.0 CM
@@ -669,12 +712,26 @@ Ultrasonic Measurement
 Distance : <span class="m">159</span>.4 CM
 ...
 </code></pre></div>
+</td></tr></table>
 <h4 id="modified-groveultrasonicranger-library">Modified GroveUltrasonicRanger Library</h4>
 <p>To use the ultrasonic ranger as a ROS node it is convenient to wrap the sensor functionality in a class.
 This provides an easy to extend interface for the ultrasonic ranger (<a href="https://en.wikipedia.org/wiki/Application_programming_interface">API</a>)
 Therefore I copied the core functionality of the <a href="https://github.com/Seeed-Studio/Grove-RaspberryPi/blob/master/Grove%20-%20Ultrasonic%20Ranger/ultrasonic.py"><code>ultrasonic.py</code></a> script from Seeed Studio in a class named <a href="https://github.com/fjp/2wd-robot/blob/master/ros/src/grove_ultrasonic_ranger/src/grove_ultrasonic_ranger.py"><code>GroveUltrasonicRanger</code></a>.</p>
 <p>Executing the <code>grove_ultrasonic_ranger.py</code> will result in the following output:</p>
-<div class="highlight"><pre><span></span><code>fjp@ubuntu:~/git/2wd-robot/ros/src/grove_ultrasonic_ranger/src$ sudo python grove_ultrasonic_ranger.py 
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>fjp@ubuntu:~/git/2wd-robot/ros/src/grove_ultrasonic_ranger/src$ sudo python grove_ultrasonic_ranger.py 
 SeeedStudio Grove Ultrasonic get data and print
 Distance : <span class="m">0</span>.051 m
 Distance : <span class="m">0</span>.069 m
@@ -689,12 +746,54 @@ Distance : <span class="m">0</span>.256 m
 GPIO.cleanup<span class="o">()</span>
 GPIO.cleanup<span class="o">()</span> <span class="k">done</span>
 </code></pre></div>
+</td></tr></table>
 <h4 id="ros-node-for-ultrasonic-ranger">ROS Node for Ultrasonic Ranger</h4>
 <p>ROS provides the <a href="http://docs.ros.org/melodic/api/sensor_msgs/html/msg/Range.html">Range Message</a> in the <a href="https://wiki.ros.org/sensor_msgs">sensor_msgs header</a>. This message type can be used to write a wrapper that will act as a ROS node for the Grove ultrasonic sensor.</p>
 <p>To design this node we will send out measurements periodically over a topic of type <code>sensor_msgs/Range</code>.
 The code for this node is in <a href="https://github.com/fjp/2wd-robot/blob/master/ros/src/grove_ultrasonic_ranger/src/ranger.py"><code>ranger.py</code></a>.</p>
 <p>After writing the node we need to build the packages in the workspace with <a href="https://catkin-tools.readthedocs.io/en/latest/verbs/catkin_build.html"><code>catkin build</code></a>.</p>
-<div class="highlight"><pre><span></span><code>fjp@ubuntu:~/git/2wd-robot/ros$ catkin build
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>fjp@ubuntu:~/git/2wd-robot/ros$ catkin build
 ----------------------------------------------------------------
 Profile:                     default
 Extending:             <span class="o">[</span>env<span class="o">]</span> /opt/ros/melodic
@@ -737,14 +836,26 @@ Finished  <span class="o">&lt;&lt;&lt;</span> grove_ultrasonic_ranger           
 <span class="o">[</span>build<span class="o">]</span> Runtime: <span class="m">21</span>.9 seconds total.                                                                                                      
 <span class="o">[</span>build<span class="o">]</span> Note: Workspace packages have changed, please re-source setup files to use them.
 </code></pre></div>
+</td></tr></table>
 <p>As the final note of the build output suggests, we have to <code>source</code> the <code>setup.bash</code> files in the <code>devel</code> space.</p>
-<div class="highlight"><pre><span></span><code>fjp@ubuntu:~/git/2wd-robot/ros$ <span class="nb">source</span> devel/setup.bash
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>fjp@ubuntu:~/git/2wd-robot/ros$ <span class="nb">source</span> devel/setup.bash
 </code></pre></div>
+</td></tr></table>
 <p>To make the <code>ranger</code> node executable we have to modify the <code>ranger.py</code> file:</p>
-<div class="highlight"><pre><span></span><code>fjp@ubuntu:~/git/2wd-robot/ros/src/grove_ultrasonic_ranger/src$ sudo chmod a+x ranger.py
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>fjp@ubuntu:~/git/2wd-robot/ros/src/grove_ultrasonic_ranger/src$ sudo chmod a+x ranger.py
 </code></pre></div>
+</td></tr></table>
 <p>Then we can test the node using <code>rosrun</code>:</p>
-<div class="highlight"><pre><span></span><code>fjp@ubuntu:~/git/2wd-robot/ros$ sudo su
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>fjp@ubuntu:~/git/2wd-robot/ros$ sudo su
 <span class="o">[</span>sudo<span class="o">]</span> password <span class="k">for</span> fjp:
 root@ubuntu:/home/fjp/git/2wd-robot/ros# <span class="nb">source</span> devel/setup.bash 
 root@ubuntu:/home/fjp/git/2wd-robot/ros# rosrun grove_ultrasonic_ranger ranger.py 
@@ -755,15 +866,80 @@ Distance : <span class="m">0</span>.108 m
 Distance : <span class="m">0</span>.092 m
 Distance : <span class="m">0</span>.099 m
 </code></pre></div>
+</td></tr></table>
 <p>This lets the node publish range messages which we can capture in another terminal window using <code>rostopic</code>.
 First we use <code>rostopic list</code> to find the name of the topic we are interested in:</p>
-<div class="highlight"><pre><span></span><code>fjp@ubuntu:~/git/2wd-robot/ros$ rostopic list
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>fjp@ubuntu:~/git/2wd-robot/ros$ rostopic list
 /distance
 /rosout
 /rosout_agg
 </code></pre></div>
+</td></tr></table>
 <p>We named our topic <code>/distance</code> which we can use with the <code>rostopic echo</code> command to see the published messages:</p>
-<div class="highlight"><pre><span></span><code>fjp@ubuntu:~/git/2wd-robot/ros$ rostopic <span class="nb">echo</span> /distance
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>fjp@ubuntu:~/git/2wd-robot/ros$ rostopic <span class="nb">echo</span> /distance
 header: 
   seq: <span class="m">1</span>
   stamp: 
@@ -825,11 +1001,22 @@ max_range: <span class="m">3</span>.5
 range: <span class="m">1</span>.67693090439
 ---
 </code></pre></div>
+</td></tr></table>
 <h4 id="informational-distance-measurements">Informational Distance Measurements</h4>
 <p>To provide additional information when an obstacle is too close or the robot has no obstacle in front of it we use
 <a href="https://www.ros.org/reps/rep-0117.html">REP-117</a> as guideline.</p>
 <p>To successfully implement this REP, checks for valid measurements should use floating-point standards and follow this form:</p>
-<div class="highlight"><pre><span></span><code><span class="k">if</span><span class="p">(</span><span class="n">minimum_range</span> <span class="o">&lt;=</span> <span class="n">value</span> <span class="o">&amp;&amp;</span> <span class="n">value</span> <span class="o">&lt;=</span> <span class="n">maximum_range</span><span class="p">){</span>  <span class="c1">// Represents expected pre-REP logic and is the only necessary condition for most applications.</span>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="k">if</span><span class="p">(</span><span class="n">minimum_range</span> <span class="o">&lt;=</span> <span class="n">value</span> <span class="o">&amp;&amp;</span> <span class="n">value</span> <span class="o">&lt;=</span> <span class="n">maximum_range</span><span class="p">){</span>  <span class="c1">// Represents expected pre-REP logic and is the only necessary condition for most applications.</span>
     <span class="c1">// This is a valid measurement.</span>
 <span class="p">}</span> <span class="k">else</span> <span class="k">if</span><span class="p">(</span> <span class="o">!</span><span class="n">isfinite</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="n">value</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">){</span>
     <span class="c1">// Object too close to measure.</span>
@@ -841,6 +1028,7 @@ range: <span class="m">1</span>.67693090439
     <span class="c1">// The sensor reported these measurements as valid, but they are discarded per the limits defined by minimum_range and maximum_range.</span>
 <span class="p">}</span>
 </code></pre></div>
+</td></tr></table>
                 
               
               

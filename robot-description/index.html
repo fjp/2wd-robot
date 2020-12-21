@@ -669,16 +669,22 @@
 <p>The description of the 2WD robot will be created in its own package named <code>diffbot_description</code>. 
 The description uses <a href="https://wiki.ros.org/urdf">URDF</a> and <a href="https://wiki.ros.org/xacro">xacro</a>. 
 For this we create a package with <a href="https://catkin-tools.readthedocs.io/en/latest/verbs/catkin_create.html#catkin-create-pkg"><code>catkin create pkg PKG_NAME [--catkin-deps [DEP [DEP ...]]]</code></a>:</p>
-<div class="highlight"><pre><span></span><code><span class="gp">fjp@ubuntu:~/git/diffbot/ros/src$</span> catkin create pkg diffbot_description
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="gp">fjp@ubuntu:~/git/diffbot/ros/src$</span> catkin create pkg diffbot_description
 <span class="go">Creating package &quot;diffbot_description&quot; in &quot;/home/fjp/git/diffbot/ros/src&quot;...</span>
 <span class="go">Created file diffbot_description/CMakeLists.txt</span>
 <span class="go">Created file diffbot_description/package.xml</span>
 <span class="go">Successfully created package files in /home/fjp/git/diffbot/ros/src/diffbot_description.</span>
 </code></pre></div>
+</td></tr></table>
 <p>Because this package contains only descriptions and launch files it doesn't require any dependencies. </p>
 <p>According to ROS conventions we create the following folders where the individual files realted to the robot description will be placed:</p>
-<div class="highlight"><pre><span></span><code><span class="gp">fjp@ubuntu:~/git/diffbot/ros/src/robot_description$</span> mkdir urdf meshes launch
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="gp">fjp@ubuntu:~/git/diffbot/ros/src/robot_description$</span> mkdir urdf meshes launch
 </code></pre></div>
+</td></tr></table>
 <p>The <code>urdf</code> folder will be used to keep the <code>urdf</code> and <code>xacro</code> files. 
 The <code>meshes</code> folder keeps the <code>meshes</code> that are included in the <code>urdf</code> file, and the <code>launch</code> folder keeps the ROS launch files.</p>
 <h3 id="robot-model">Robot Model</h3>
@@ -687,13 +693,22 @@ It states to use a <code>base_link</code> and a <code>base_footprint</code>. The
 <h3 id="required-tools">Required Tools</h3>
 <p>To check a <a href="https://wiki.ros.org/urdf">urdf</a> file we can make use of the tools <code>check_urdf</code> and <code>urdf_to_graphiz</code> in the <code>liburdfdom-tools</code> debian package. 
 Install it with the following command:</p>
-<div class="highlight"><pre><span></span><code><span class="go">sudo apt install liburdfdom-tools</span>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="go">sudo apt install liburdfdom-tools</span>
 </code></pre></div>
+</td></tr></table>
 <p>First we need to convert the robot description of DiffBot, which is present as <code>xacro</code> file, to a <code>urdf</code> file by issuing the following command: </p>
-<div class="highlight"><pre><span></span><code><span class="gp">fjp@ubuntu:~/git/diffbot/ros$</span> rosrun xacro xacro <span class="sb">`</span>rospack find diffbot_description<span class="sb">`</span>/urdf/diffbot.urdf.xacro -o /tmp/diffbot.urdf
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="gp">fjp@ubuntu:~/git/diffbot/ros$</span> rosrun xacro xacro <span class="sb">`</span>rospack find diffbot_description<span class="sb">`</span>/urdf/diffbot.urdf.xacro -o /tmp/diffbot.urdf
 </code></pre></div>
+</td></tr></table>
 <p>After we've created the <code>urdf</code> from the <code>xacro</code> file we can check the <code>urdf</code> files for errors with:</p>
-<div class="highlight"><pre><span></span><code><span class="gp">fjp@ubuntu:/tmp$</span> check_urdf diffbot.urdf 
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5
+6
+7
+8</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="gp">fjp@ubuntu:/tmp$</span> check_urdf diffbot.urdf 
 <span class="go">robot name is: diffbot</span>
 <span class="go">---------- Successfully Parsed XML ---------------</span>
 <span class="go">root Link: base_footprint has 1 child(ren)</span>
@@ -702,23 +717,30 @@ Install it with the following command:</p>
 <span class="go">        child(2):  front_left_wheel</span>
 <span class="go">        child(3):  front_right_wheel</span>
 </code></pre></div>
+</td></tr></table>
 <p>It is also helpful to output a graphviz diagram of the robot model:</p>
-<div class="highlight"><pre><span></span><code><span class="gp">fjp@ubuntu:/tmp$</span> urdf_to_graphiz diffbot.urdf 
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="gp">fjp@ubuntu:/tmp$</span> urdf_to_graphiz diffbot.urdf 
 <span class="go">Created file diffbot.gv</span>
 <span class="go">Created file diffbot.pdf</span>
 <span class="gp">fjp@ubuntu:/tmp$</span> evince diffbot.pdf
 </code></pre></div>
+</td></tr></table>
 <figure>
     <a href="https://raw.githubusercontent.com/fjp/diffbot/master/docs/resources/diffbot-tf-tree.png"><img src="https://raw.githubusercontent.com/fjp/diffbot/master/docs/resources/diffbot-tf-tree.png"></a>
     <figcaption>Graphviz diagram of DiffBot URDF robot description.</figcaption>
 </figure>
 
 <p>To visualize the 3D model in RViz we first need to install the <code>joint-state-publisher-gui</code> which was separated from non-gui <code>joint-state-publisher</code>. There exists a debian package which can be installed with the following command:</p>
-<div class="highlight"><pre><span></span><code><span class="gp">fjp@ubuntu:~/git/diffbot/ros$</span> sudo apt install ros-noetic-joint-state-publisher-gui
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="gp">fjp@ubuntu:~/git/diffbot/ros$</span> sudo apt install ros-noetic-joint-state-publisher-gui
 </code></pre></div>
+</td></tr></table>
 <p>After installing the required dependency, the <code>view_diffbot.launch</code> launch file can be executed using <a href="http://wiki.ros.org/roslaunch"><code>roslaunch</code></a> command:</p>
-<div class="highlight"><pre><span></span><code><span class="gp">fjp@ubuntu:~/git/diffbot/ros$</span> roslaunch diffbot_description view_diffbot.launch
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="gp">fjp@ubuntu:~/git/diffbot/ros$</span> roslaunch diffbot_description view_diffbot.launch
 </code></pre></div>
+</td></tr></table>
 <p>According to the launch file's configuration, this will show the robot in RViz together with the <code>joint-state-publisher-gui</code> to set the joint values:</p>
 <figure>
     <a href="https://raw.githubusercontent.com/fjp/diffbot/master/docs/resources/rviz_diffbot_meshes.png"><img src="https://raw.githubusercontent.com/fjp/diffbot/master/docs/resources/rviz_diffbot_meshes.png"></a>
