@@ -4,8 +4,6 @@ theme:
   highlightjs: true
   custom_dir: docs/custom_theme
   
-  
-  
 repo_url: https://github.com/fjp/diffbot
 
 
