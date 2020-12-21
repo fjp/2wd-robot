@@ -5,11 +5,11 @@ As mentioned before, the nodes in ROS communicate with each other by publishing 
 ROS provides the [`std_msgs`](http://wiki.ros.org/std_msgs) package that includes ROS' common message types to represent primitive data types (see the ROS [msg specification](http://wiki.ros.org/msg) for primitive types) and other basic message constructs, such as multiarrays. 
 Note howerver, the following from the [`std_msgs` documentation](http://wiki.ros.org/std_msgs):
 
+!!! quote
+    The types in `std_msgs` do not convey semantic meaning about their contents: every message simply has a field called "data". 
+    Therefore, while the messages in this package can be useful for quick prototyping, they are NOT intended for "long-term" usage. 
+    For ease of documentation and collaboration, we recommend that existing messages be used, or new messages created, that provide meaningful field name(s).
 
-The types in `std_msgs` do not convey semantic meaning about their contents: every message simply has a field called "data". 
-Therefore, while the messages in this package can be useful for quick prototyping, they are NOT intended for "long-term" usage. 
-For ease of documentation and collaboration, we recommend that existing messages be used, or new messages created, that provide meaningful field name(s).
-{: .notice }
 
 Therefore, we create a package that contains message definitions specific to DiffBot. 
 The following command uses `catkin-tools` to create the `diffbot_msgs` package:
@@ -23,6 +23,9 @@ Created file diffbot_msgs/CMakeLists.txt
 Successfully created package files in /home/fjp/git/ros_ws/src/diffbot_msgs.
 ```
 
+!!! note
+    The following is based on [ROS Tutorials Creating Msg And Srv](https://wiki.ros.org/ROS/Tutorials/CreatingMsgAndSrv#Creating_a_msg).
+    In this tutorial you can find the required configurations for the `package.xml` and `CMakeLists.txt`.
 
 Currently there is no encoder message definition in ROS (see the [`sensor_msgs`](https://wiki.ros.org/sensor_msgs) package) 
 which is why a dedicated message is created for the encoders. For this, a simple [msg](http://wiki.ros.org/msg) description file,
@@ -55,3 +58,36 @@ and `sensor_msgs/LaserScan`](http://docs.ros.org/en/api/sensor_msgs/html/msg/Las
 where both are definitions from the [`sensor_msgs`](https://wiki.ros.org/sensor_msgs) package.
 
 
+### Using rosmsg
+
+After building the package and its messages using `catkin build` let's make sure that ROS can see it using the rosmsg show command.
+
+```console
+$ rosmsg show diffbot_msgs/Encoder
+std_msgs/Header header
+  uint32 seq
+  time stamp
+  string frame_id
+int32[2] encoders
+
+```
+
+
+### ROSSerial
+
+The generated messages in this packages are used on the Teensy microcontroller, which is using [`rosserial`](http://wiki.ros.org/rosserial).
+Integrating these messages requires the following steps.
+
+- Generate rosserial libraries in a temporary folder
+
+```console
+rosrun rosserial_client make_libraries ~/Arduino/tmp/
+``` 
+
+- Copy the generated `~/Arduino/tmp/diffbot_msgs` message folder to the `src` folder of the `rosserial` Arduino library.
+  When `rosserial` was installed with the Arduino Library Manager, the location is `~/Arduino/libraries/Rosserial_Arduino_Library/`.
+
+
+### Usage
+
+The new messages, specific to DiffBot, can be used by including the generated header, for example `#include <diffbot_msgs/Encoder.h>`.
