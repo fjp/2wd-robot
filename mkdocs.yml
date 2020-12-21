@@ -12,6 +12,9 @@ edit_uri: blob/master/docs
 markdown_extensions:
   - admonition
   - pymdownx.details
+  - pymdownx.snippets
+  - pymdownx.highlight:
+      linenums: true
   - pymdownx.superfences:
       custom_fences:
         - name: mermaid

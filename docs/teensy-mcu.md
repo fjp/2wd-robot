@@ -65,6 +65,8 @@ The code for the motor encoders uses it as basis together with a pubsub example 
 
 TODO link to code encoders.ino
 
+--8<-- "../diffbot_base/scripts/encoders/encoders/encoders.ino"
+
 
 After the program is flashed to the Teensy board it can be tested with the following procedure:
 
@@ -89,16 +91,71 @@ In case of the following error, probably the wrong program is flashed to the Tee
 [ERROR] [1602782376.724880]: Unable to sync with device; possible link problem or link software version mismatch such as hydro rosserial_python with groovy Arduino
 ```
 
-Note that the rosserial node needs to be stopped to flash new sketches to the Teensy board.
-{: .notice }
+!!! note
+    Note that the rosserial node needs to be stopped to flash new sketches to the Teensy board.
 
 Each [DG01D-E](https://www.sparkfun.com/products/16413) motor has two signal pins for its built-in encoder. For these, the Teensy pins 5, 6 are used for the left encoder and 7, 8 are used for the right one, see also the [Teensy pinout](https://www.pjrc.com/teensy/pinout.html).
 
 
 <figure>
-    <a href="hhttps://raw.githubusercontent.com/fjp/diffbot/master/docs/resources/datasheets/teensy40-pinout01.png"><img src="https://raw.githubusercontent.com/fjp/diffbot/master/docs/resources/datasheets/teensy40-pinout01.png"></a>
+    <a href="hhttps://raw.githubusercontent.com/fjp/diffbot/noetic-devel/docs/resources/datasheets/teensy40-pinout01.png"><img src="https://raw.githubusercontent.com/fjp/diffbot/noetic-devel/docs/resources/datasheets/teensy40-pinout01.png"></a>
     <figcaption>Teensy 4.0 Pins.</figcaption>
 </figure>
 
 
 TODO add connection schematic
+
+
+With one motor encoder connected to pins 5, 6, echo the `/encoder_ticks` topic:
+
+```console
+rostopic echo /encoder_ticks
+```
+
+Rotating a wheel attached to the motor shaft 360 degree (one full turn) will increase the first value of the encoders array:
+
+```console
+---
+header: 
+  seq: 190323
+  stamp: 
+    secs: 0
+    nsecs:         0
+  frame_id: ''
+encoders: [0, 0]
+---
+header: 
+  seq: 190324
+  stamp: 
+    secs: 0
+    nsecs:         0
+  frame_id: ''
+encoders: [230, 0]
+---
+header: 
+  seq: 190325
+  stamp: 
+    secs: 0
+    nsecs:         0
+  frame_id: ''
+encoders: [350, 0]
+---
+header: 
+  seq: 190326
+  stamp: 
+    secs: 0
+    nsecs:         0
+  frame_id: ''
+encoders: [480, 0]
+---
+header: 
+  seq: 190327
+  stamp: 
+    secs: 0
+    nsecs:         0
+  frame_id: ''
+encoders: [540, 0]
+
+```
+
+The found value 540 for a full turn of the wheel is important for the hardware interface.
