@@ -49,4 +49,8 @@ nav:
     - Navigation: diffbot_navigation.md
     - SLAM: diffbot_slam.md
     - Move Base Flex: diffbot_mbf.md
-    - Hardware Bringup: diffbot_bringup.md 
+    - Hardware Bringup: diffbot_bringup.md
+
+google_analytics:
+  - 256960219
+  - auto
