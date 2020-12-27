@@ -98,7 +98,7 @@ Each [DG01D-E](https://www.sparkfun.com/products/16413) motor has two signal pin
 
 
 <figure>
-    <a href="hhttps://raw.githubusercontent.com/fjp/diffbot/noetic-devel/docs/resources/datasheets/teensy40-pinout01.png"><img src="https://raw.githubusercontent.com/fjp/diffbot/noetic-devel/docs/resources/datasheets/teensy40-pinout01.png"></a>
+    <a href="hhttps://raw.githubusercontent.com/fjp/diffbot/noetic-devel/docs/resources/hardware/teensy40-pinout01.png"><img src="https://raw.githubusercontent.com/fjp/diffbot/noetic-devel/docs/resources/hardware/teensy40-pinout01.png"></a>
     <figcaption>Teensy 4.0 Pins.</figcaption>
 </figure>
 
