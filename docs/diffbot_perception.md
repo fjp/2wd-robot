@@ -4,5 +4,8 @@ To provide perception capabilities to your mobile robot you need a sensor like a
 [OpenCV](https://opencv.org/) or [PCL](https://pointclouds.org/).
 
 
-When working with ROS we have to install required dependency using `ros-noetic-cv-bridge`. This will install additional dependencies like oopencv (`libopencv-dv`).
-There is no need to install OpenCV from source or the Ubuntu binaries (deb package).
+When working with ROS we have to install required dependency using `ros-noetic-vision-opencv`. This will install additional dependencies like OpenCV (`libopencv-dv`) and `ros-noetic-cv-bridge`. There is no need to install OpenCV from source or the Ubuntu binaries (deb package).
+
+If you want to use OpenCV without ROS you should consider installing it from [source using CMake](https://docs.opencv.org/master/d7/d9f/tutorial_linux_install.html). 
+This will allow you to configure what features should be installed, e.g., example code.
+{: .notice }
