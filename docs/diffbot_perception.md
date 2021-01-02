@@ -30,3 +30,6 @@ To work with PCL without ROS you should consider installing it from [source usin
 This will allow you to configure what features should be installed, e.g., example code.
 Otherwise you can install a pre compiled binary `libpcl-dev`.
 {: .notice }
+
+[`perception_pcl`](https://wiki.ros.org/perception_pcl) is a meta package for PCL (Point Cloud Library) ROS interface stack. 
+PCL-ROS is the preferred bridge for 3D applications involving n-D Point Clouds and 3D geometry processing in ROS.
