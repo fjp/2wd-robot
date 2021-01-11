@@ -3,6 +3,8 @@ theme:
   name: material
   highlightjs: true
   custom_dir: docs/custom_theme
+  features:
+    - navigation.tabs
   
 repo_url: https://github.com/fjp/diffbot
 
@@ -12,6 +14,7 @@ edit_uri: blob/master/docs
 markdown_extensions:
   - admonition
   - pymdownx.details
+  - abbr
   - pymdownx.snippets
   - pymdownx.highlight:
       linenums: true
@@ -22,6 +25,7 @@ markdown_extensions:
           format: !!python/name:pymdownx.superfences.fence_div_format
   - pymdownx.arithmatex:
       generic: true
+
 
 nav:
   - Home: index.md
