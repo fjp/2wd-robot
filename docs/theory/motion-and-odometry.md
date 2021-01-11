@@ -56,3 +56,7 @@ Acceleration is defined as the change in velocity over a period of time
 
 $$a_i = \frac{\Delta v_i}{\Delta t_i}$$
 
+
+### References
+
+- [Kinematics equations for Differential Drive and Articulated Steering](https://www8.cs.umu.se/kurser/5DV122/HT13/material/Hellstrom-ForwardKinematics.pdf)
