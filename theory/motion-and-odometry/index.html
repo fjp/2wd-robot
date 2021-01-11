@@ -166,6 +166,89 @@
       
       
         
+          
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../.." class="md-tabs__link">
+      Home
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../components/" class="md-tabs__link">
+      Components
+    </a>
+  </li>
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="./" class="md-tabs__link md-tabs__link--active">
+        Hardware and Theory
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../ros-network-setup/" class="md-tabs__link">
+        Processing Units
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../diffbot_robot/" class="md-tabs__link">
+        Packages
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+        
       
       <main class="md-main" data-md-component="main">
         <div class="md-main__inner md-grid">
@@ -179,8 +262,10 @@
 
 
 
+  
 
-<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href="../.." title="DiffBot Differential Drive Mobile Robot" class="md-nav__button md-logo" aria-label="DiffBot Differential Drive Mobile Robot">
       
@@ -309,6 +394,13 @@
           <li class="md-nav__item">
   <a href="#acceleration-as-change-in-velocity" class="md-nav__link">
     Acceleration as Change in Velocity
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    References
   </a>
   
 </li>
@@ -692,6 +784,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    References
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -758,6 +857,10 @@ v_i = \frac{\Delta s_i}{\Delta t_i}
 \]</div>
 <p>Acceleration is defined as the change in velocity over a period of time</p>
 <div class="arithmatex">\[a_i = \frac{\Delta v_i}{\Delta t_i}\]</div>
+<h3 id="references">References</h3>
+<ul>
+<li><a href="https://www8.cs.umu.se/kurser/5DV122/HT13/material/Hellstrom-ForwardKinematics.pdf">Kinematics equations for Differential Drive and Articulated Steering</a></li>
+</ul>
                 
               
               
@@ -831,7 +934,7 @@ v_i = \frac{\Delta s_i}{\Delta t_i}
       <script>
         app = initialize({
           base: "../..",
-          features: [],
+          features: ['navigation.tabs'],
           search: Object.assign({
             worker: "../../assets/javascripts/worker/search.8c7e0a7e.min.js"
           }, typeof search !== "undefined" && search)

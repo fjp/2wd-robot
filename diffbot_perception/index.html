@@ -9,28 +9,28 @@
       
       
       
-      <link rel="shortcut icon" href="/assets/images/favicon.png">
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.2.3">
     
     
       
-        <title>DiffBot Differential Drive Mobile Robot</title>
+        <title>Diffbot perception - DiffBot Differential Drive Mobile Robot</title>
       
     
     
-      <link rel="stylesheet" href="/assets/stylesheets/main.3b61ea93.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.3b61ea93.min.css">
       
         
-        <link rel="stylesheet" href="/assets/stylesheets/palette.39b8e14a.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.39b8e14a.min.css">
         
       
     
     
     
-    <script src="//js/jquery-3.5.1.min.js"></script>
-    <script src="//js/jquery.fitvids.js"></script>
+    <script src="../js/jquery-3.5.1.min.js"></script>
+    <script src="../js/jquery.fitvids.js"></script>
     <!-- Arithmatex -->
-    <script src="//js/config.js"></script>
+    <script src="../js/config.js"></script>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <!-- UML diagrams using Mermaid -->
@@ -75,6 +75,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#perception" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -84,7 +89,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header-nav md-grid" aria-label="Header">
-    <a href="/." title="DiffBot Differential Drive Mobile Robot" class="md-header-nav__button md-logo" aria-label="DiffBot Differential Drive Mobile Robot">
+    <a href=".." title="DiffBot Differential Drive Mobile Robot" class="md-header-nav__button md-logo" aria-label="DiffBot Differential Drive Mobile Robot">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
@@ -103,7 +108,7 @@
         <div class="md-header-nav__topic">
           <span class="md-ellipsis">
             
-              
+              Diffbot perception
             
           </span>
         </div>
@@ -172,7 +177,7 @@
 
 
   <li class="md-tabs__item">
-    <a href="/." class="md-tabs__link">
+    <a href=".." class="md-tabs__link">
       Home
     </a>
   </li>
@@ -184,7 +189,7 @@
 
 
   <li class="md-tabs__item">
-    <a href="/components/" class="md-tabs__link">
+    <a href="../components/" class="md-tabs__link">
       Components
     </a>
   </li>
@@ -199,7 +204,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="/theory/motion-and-odometry/" class="md-tabs__link">
+      <a href="../theory/motion-and-odometry/" class="md-tabs__link">
         Hardware and Theory
       </a>
     </li>
@@ -215,7 +220,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="/ros-network-setup/" class="md-tabs__link">
+      <a href="../ros-network-setup/" class="md-tabs__link">
         Processing Units
       </a>
     </li>
@@ -231,7 +236,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="/diffbot_robot/" class="md-tabs__link">
+      <a href="../diffbot_robot/" class="md-tabs__link">
         Packages
       </a>
     </li>
@@ -260,7 +265,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="/." title="DiffBot Differential Drive Mobile Robot" class="md-nav__button md-logo" aria-label="DiffBot Differential Drive Mobile Robot">
+    <a href=".." title="DiffBot Differential Drive Mobile Robot" class="md-nav__button md-logo" aria-label="DiffBot Differential Drive Mobile Robot">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
@@ -291,7 +296,7 @@
 
 
   <li class="md-nav__item">
-    <a href="/." class="md-nav__link">
+    <a href=".." class="md-nav__link">
       Home
     </a>
   </li>
@@ -304,7 +309,7 @@
 
 
   <li class="md-nav__item">
-    <a href="/components/" class="md-nav__link">
+    <a href="../components/" class="md-nav__link">
       Components
     </a>
   </li>
@@ -341,7 +346,7 @@
 
 
   <li class="md-nav__item">
-    <a href="/theory/motion-and-odometry/" class="md-nav__link">
+    <a href="../theory/motion-and-odometry/" class="md-nav__link">
       Motion and Odometry
     </a>
   </li>
@@ -354,7 +359,7 @@
 
 
   <li class="md-nav__item">
-    <a href="/power-supply/" class="md-nav__link">
+    <a href="../power-supply/" class="md-nav__link">
       Power Supply
     </a>
   </li>
@@ -367,7 +372,7 @@
 
 
   <li class="md-nav__item">
-    <a href="/laser-range-scanner/" class="md-nav__link">
+    <a href="../laser-range-scanner/" class="md-nav__link">
       Laser Range Scanner
     </a>
   </li>
@@ -409,7 +414,7 @@
 
 
   <li class="md-nav__item">
-    <a href="/ros-network-setup/" class="md-nav__link">
+    <a href="../ros-network-setup/" class="md-nav__link">
       Raspberry Pi Setup
     </a>
   </li>
@@ -422,7 +427,7 @@
 
 
   <li class="md-nav__item">
-    <a href="/git-setup/" class="md-nav__link">
+    <a href="../git-setup/" class="md-nav__link">
       Git Setup
     </a>
   </li>
@@ -435,7 +440,7 @@
 
 
   <li class="md-nav__item">
-    <a href="/ros-setup/" class="md-nav__link">
+    <a href="../ros-setup/" class="md-nav__link">
       ROS Setup
     </a>
   </li>
@@ -448,7 +453,7 @@
 
 
   <li class="md-nav__item">
-    <a href="/teensy-mcu/" class="md-nav__link">
+    <a href="../teensy-mcu/" class="md-nav__link">
       Teensy MCU
     </a>
   </li>
@@ -461,7 +466,7 @@
 
 
   <li class="md-nav__item">
-    <a href="/hardware-interfaces/" class="md-nav__link">
+    <a href="../hardware-interfaces/" class="md-nav__link">
       Hardware Interfaces
     </a>
   </li>
@@ -474,7 +479,7 @@
 
 
   <li class="md-nav__item">
-    <a href="/ros-network-setup/" class="md-nav__link">
+    <a href="../ros-network-setup/" class="md-nav__link">
       ROS Network Setup
     </a>
   </li>
@@ -516,7 +521,7 @@
 
 
   <li class="md-nav__item">
-    <a href="/diffbot_robot/" class="md-nav__link">
+    <a href="../diffbot_robot/" class="md-nav__link">
       Robot Package
     </a>
   </li>
@@ -529,7 +534,7 @@
 
 
   <li class="md-nav__item">
-    <a href="/robot-description/" class="md-nav__link">
+    <a href="../robot-description/" class="md-nav__link">
       Robot Description
     </a>
   </li>
@@ -542,7 +547,7 @@
 
 
   <li class="md-nav__item">
-    <a href="/diffbot_gazebo/" class="md-nav__link">
+    <a href="../diffbot_gazebo/" class="md-nav__link">
       Simulation
     </a>
   </li>
@@ -555,7 +560,7 @@
 
 
   <li class="md-nav__item">
-    <a href="/diffbot_control/" class="md-nav__link">
+    <a href="../diffbot_control/" class="md-nav__link">
       Control
     </a>
   </li>
@@ -568,7 +573,7 @@
 
 
   <li class="md-nav__item">
-    <a href="/diffbot_base/" class="md-nav__link">
+    <a href="../diffbot_base/" class="md-nav__link">
       Base Hardware Interface
     </a>
   </li>
@@ -581,7 +586,7 @@
 
 
   <li class="md-nav__item">
-    <a href="/diffbot_msgs/" class="md-nav__link">
+    <a href="../diffbot_msgs/" class="md-nav__link">
       Messages
     </a>
   </li>
@@ -594,7 +599,7 @@
 
 
   <li class="md-nav__item">
-    <a href="/grove_motor_driver/" class="md-nav__link">
+    <a href="../grove_motor_driver/" class="md-nav__link">
       Motor Driver
     </a>
   </li>
@@ -607,7 +612,7 @@
 
 
   <li class="md-nav__item">
-    <a href="/DG01D-E-motor-with-encoder/" class="md-nav__link">
+    <a href="../DG01D-E-motor-with-encoder/" class="md-nav__link">
       Motor and Encoder
     </a>
   </li>
@@ -620,7 +625,7 @@
 
 
   <li class="md-nav__item">
-    <a href="/diffbot_navigation/" class="md-nav__link">
+    <a href="../diffbot_navigation/" class="md-nav__link">
       Navigation
     </a>
   </li>
@@ -633,7 +638,7 @@
 
 
   <li class="md-nav__item">
-    <a href="/diffbot_slam/" class="md-nav__link">
+    <a href="../diffbot_slam/" class="md-nav__link">
       SLAM
     </a>
   </li>
@@ -646,7 +651,7 @@
 
 
   <li class="md-nav__item">
-    <a href="/diffbot_mbf/" class="md-nav__link">
+    <a href="../diffbot_mbf/" class="md-nav__link">
       Move Base Flex
     </a>
   </li>
@@ -659,7 +664,7 @@
 
 
   <li class="md-nav__item">
-    <a href="/diffbot_bringup/" class="md-nav__link">
+    <a href="../diffbot_bringup/" class="md-nav__link">
       Hardware Bringup
     </a>
   </li>
@@ -677,12 +682,76 @@
               </div>
             
             
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#perception" class="md-nav__link">
+    Perception
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
           
           <div class="md-content">
             <article class="md-content__inner md-typeset">
               
-  <h1>404 - Not found</h1>
-
+                
+                  <a href="https://github.com/fjp/diffbot/blob/master/docs/diffbot_perception.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                  <h1>Diffbot perception</h1>
+                
+                <h2 id="perception">Perception</h2>
+<p>To provide perception capabilities to your mobile robot you need a sensor like a RGB or RGB-D camera as hardware and software like 
+<a href="https://opencv.org/">OpenCV</a> or <a href="https://pointclouds.org/">PCL</a>.</p>
+<div class="admonition quote">
+<p class="admonition-title">Quote</p>
+<p>OpenCV (Open Source Computer Vision Library) is a library of programming functions mainly aimed at real-time computer vision. 
+Originally developed by Intel, it was later supported by Willow Garage then Itseez (which was later acquired by Intel). 
+The library is cross-platform and free for use under the open-source Apache 2 License. 
+Starting with 2011, OpenCV features GPU acceleration for real-time operations.</p>
+</div>
+<div class="admonition quote">
+<p class="admonition-title">Quote</p>
+<p>The Point Cloud Library (PCL) is a standalone, large scale, open project for 2D/3D image and point cloud processing. 
+PCL is released under the terms of the BSD license, and thus free for commercial and research use.</p>
+</div>
+<p>When working with OpenCV and ROS we have to install required dependency using <code>ros-noetic-vision-opencv</code>. This will install additional dependencies like OpenCV (<code>libopencv-dv</code>) and <code>ros-noetic-cv-bridge</code>. There is no need to install OpenCV from source or the Ubuntu binaries (deb package).</p>
+<p>If you want to use OpenCV without ROS you should consider installing it from <a href="https://docs.opencv.org/master/d7/d9f/tutorial_linux_install.html">source using CMake</a>. 
+This will allow you to configure what features should be installed, e.g., example code.
+Otherwise you can install a pre compiled binary <code>libopencv-dev</code>.
+{: .notice }</p>
+<p>Similar to work with PCL and ROS you need to install the dependency <code>ros-noetic-perception-pcl</code>, which is the interface between ROS and PCL.</p>
+<p>To work with PCL without ROS you should consider installing it from <a href="https://pointclouds.org/documentation/tutorials/building_pcl.html">source using CMake</a>. 
+This will allow you to configure what features should be installed, e.g., example code.
+Otherwise you can install a pre compiled binary <code>libpcl-dev</code>.
+{: .notice }</p>
+<p><a href="https://wiki.ros.org/perception_pcl"><code>perception_pcl</code></a> is a meta package for PCL (Point Cloud Library) ROS interface stack. 
+PCL-ROS is the preferred bridge for 3D applications involving n-D Point Clouds and 3D geometry processing in ROS.</p>
+                
+              
               
                 
 
@@ -713,15 +782,15 @@
     </div>
     
     
-      <script src="/assets/javascripts/vendor.08c56446.min.js"></script>
-      <script src="/assets/javascripts/bundle.6ced434e.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      <script src="../assets/javascripts/vendor.08c56446.min.js"></script>
+      <script src="../assets/javascripts/bundle.6ced434e.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
       
       <script>
         app = initialize({
-          base: "/",
+          base: "..",
           features: ['navigation.tabs'],
           search: Object.assign({
-            worker: "/assets/javascripts/worker/search.8c7e0a7e.min.js"
+            worker: "../assets/javascripts/worker/search.8c7e0a7e.min.js"
           }, typeof search !== "undefined" && search)
         })
       </script>
