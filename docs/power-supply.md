@@ -24,4 +24,4 @@ with a suitable battery charchger such as the [Nitecore UMS4](https://charger.ni
 Note that four standard AA bateries with 1.5 V each is perfectly fine. 
 Only the motor driver has to provide 100% of its input voltage to avoid stalling the motors.
 With higher Voltage rated batteries more different speeds will be possible.
-{: .notice}
+{: .notice }
