@@ -9,7 +9,7 @@ theme:
 repo_url: https://github.com/fjp/diffbot
 
 
-edit_uri: blob/master/docs
+edit_uri: blob/noetic-devel/docs
 
 markdown_extensions:
   - admonition
