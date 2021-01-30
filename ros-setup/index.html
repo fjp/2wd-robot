@@ -796,7 +796,7 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/fjp/diffbot/blob/master/docs/ros-setup.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/fjp/diffbot/blob/noetic-devel/docs/ros-setup.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
@@ -812,10 +812,12 @@
 <h2 id="build-tool-catkin_tools">Build Tool: <code>catkin_tools</code></h2>
 <p>To work with ROS we will use <a href="https://catkin-tools.readthedocs.io/en/latest/index.html"><code>catkin_tools</code></a> 
 instead of <a href="http://wiki.ros.org/catkin/commands/catkin_make"><code>catkin_make</code></a>. <code>catkin_tools</code> provide commands such as <a href="https://catkin-tools.readthedocs.io/en/latest/verbs/catkin_build.html"><code>catkin build</code></a> which we will use instead of <a href="https://wiki.ros.org/catkin/commands/catkin_make"><code>catkin_make</code></a> because the <code>catkin_tools</code> are more actively developed than <code>catkin_make</code>
-<a href="https://robotics.stackexchange.com/questions/16604/ros-catkin-make-vs-catkin-build">ref</a>. </p>
+<a href="https://robotics.stackexchange.com/questions/16604/ros-catkin-make-vs-catkin-build">ref</a>.</p>
+<p>It is recommended to use <code>catkin_tools</code> instead of the default <code>catkin</code> when building ROS workspaces. <code>catkin_tools</code> provides a number of benefits over regular <code>catkin_make</code> and will be used in the documentation. All packages can be built using <code>catkin_make</code> however: use <code>catkin_make</code> in place of <code>catkin build</code> where appropriate.
+{: .notice}</p>
 <p>Follow the <a href="https://catkin-tools.readthedocs.io/en/latest/installing.html#installing-on-ubuntu-with-apt-get">instructions to insall</a> <code>catkin_tools</code> from a Ubuntu package repository. After sucessfully installing <code>catkin_tools</code> we can create and initialize a workspace (called <code>ros</code> for this project) with the <a href="https://catkin-tools.readthedocs.io/en/latest/quick_start.html">commands listed in the build_tools documentation</a>:</p>
 <p>Note that we already <code>source</code>d the <code>setup.bash</code> while following the <a href="http://wiki.ros.org/melodic/Installation/Ubuntu">ROS installation instructions</a>.
-{: .notice }</p>
+{: .notice}</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
  3
