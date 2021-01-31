@@ -169,7 +169,7 @@ fjp@ubuntu:~/git/2wd-robot/ros/src/control/src$ sudo i2cdetect -y 1
 
 As you can see the address of the motor driver is detected at `0x0f`.
 
-In case of the following output, where every address of the I2C bus seems to be taken
+In case of the following output, where every address of the I2C bus seems to be taken,
 it is most likely that the SDA (data) and SCL (clock) signal cables are switched:
 
 ```console
@@ -187,6 +187,8 @@ i2cdetect -y 1
 
 To solve this make sure the SDA and SCL cables are connected to the right pins on the Raspberry Pi.
 See [Hardware Interfaces](https://fjp.at/projects/diffbot/hardware-interfaces/#prepare-i2c-connection) for more infos.
+
+Another solution is to restart the Raspberry Pi while making sure that the motor driver is powerd on by connecting it to the battery pack.
 
 
 ### ROS Node for Motor Driver
